@@ -1,0 +1,15 @@
+.ivu-radio-group {
+    vertical-align: top;
+}
+
+.ivu-row:after, .ivu-row:before {
+  content: "";
+  display: block;
+}
+
+/* 修复iview selectedTag中的 X 颜色显示不正确的BUG */
+.ivu-tag.selectedTag:hover .ivu-icon-ios-close {
+  opacity: 1;
+  z-index: 100;
+  color: #fff;
+}
