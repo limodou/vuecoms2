@@ -40,7 +40,6 @@ const Components = {
 
 const install = function (Vue) {
   if (install.installed) return;
-  console.log(Components)
   Object.keys(Components).forEach((name) => {
     Vue.component(name, Components[name])
   })
