@@ -16,6 +16,7 @@
     "*.js"
   ],
   "dependencies": {
+    "resize-detector": "^0.2.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {

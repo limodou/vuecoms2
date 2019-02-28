@@ -2,7 +2,7 @@ import Box from './Box.vue'
 import {Grid, Buttons} from './Table'
 import Query from './Query'
 // import Uploader from './uploader'
-import uSelect from './Select.vue';
+import uSelect from './Select.vue'
 import uRadioGroup from './RadioGroup.vue'
 import uCheckboxGroup from './CheckboxGroup.vue'
 import {Build, BuildLayout, FormCell} from './Build'
