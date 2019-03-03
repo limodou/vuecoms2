@@ -62,6 +62,8 @@ export default {
   text-align: right;
   margin-right: 10px;
   vertical-align: top;
+  height: 28px;
+  line-height: 28px;
   font-weight: bold;
   margin-bottom: 0;
   padding-right: 10px;
