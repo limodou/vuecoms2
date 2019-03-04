@@ -6413,6 +6413,7 @@ function () {
     this.static = options.static;
     this.labelField = options.labelField;
     this.options = options.options || {};
+    this.on = options.on || {};
     this.multiple = options.multiple;
     this.format = options.format;
     this.from = options.from; //从value转为控件属性值的方法
@@ -6548,7 +6549,7 @@ function () {
       this.beforeRender(props);
       return h(this.component, {
         props: props,
-        on: events
+        on: Object.assign({}, this.on, events)
       });
     }
   }]);
@@ -7298,6 +7299,8 @@ var StaticField_component = normalizeComponent(
     onChange: {},
     options: {},
     // 编辑控件选项
+    on: {},
+    // 事件回调
     multiple: {
       type: Boolean,
       default: false
@@ -13431,12 +13434,12 @@ var CheckboxGroup_component = normalizeComponent(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6fd8f88f-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=419732aa&
-var Buildvue_type_template_id_419732aa_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
-var Buildvue_type_template_id_419732aa_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6fd8f88f-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=0d104b84&
+var Buildvue_type_template_id_0d104b84_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
+var Buildvue_type_template_id_0d104b84_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=419732aa&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=0d104b84&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 //
@@ -13598,6 +13601,7 @@ var Buildvue_type_template_id_419732aa_staticRenderFns = []
       try {
         for (var _iterator = this.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var row = _step.value;
+          var isStatic = row.static === undefined ? false : row.static;
 
           if (row.name) {
             this.rows[row.name] = row;
@@ -13611,7 +13615,7 @@ var Buildvue_type_template_id_419732aa_staticRenderFns = []
             for (var _iterator2 = (row.fields || [])[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
               var field = _step2.value;
               fs[field.name] = field;
-              this.$set(field, 'static', field.static || false);
+              this.$set(field, 'static', field.static || isStatic);
               this.$set(field, 'hidden', field.hidden || false);
               this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
 
@@ -13855,8 +13859,8 @@ var Buildvue_type_template_id_419732aa_staticRenderFns = []
 
 var Build_component = normalizeComponent(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_419732aa_render,
-  Buildvue_type_template_id_419732aa_staticRenderFns,
+  Buildvue_type_template_id_0d104b84_render,
+  Buildvue_type_template_id_0d104b84_staticRenderFns,
   false,
   null,
   null,
