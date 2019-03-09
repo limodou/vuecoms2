@@ -83,7 +83,7 @@ export default {
 .u-layout-cell-field {
   display: table-cell;
   width: 2000px;
-  vertical-align: bottom;
+  vertical-align: middle;
   /* border-bottom: 1px solid #ccc; */
 
   .u-generic-input-text {
