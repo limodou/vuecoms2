@@ -7,7 +7,7 @@
     "build-bundle": "vue-cli-service build --target lib --name vuecoms2 ./src/components/index.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "dist/vuecoms2.umd.min.js",
+  "main": "dist/vuecoms2.umd.js",
   "files": [
     "dist/*",
     "src/*",
