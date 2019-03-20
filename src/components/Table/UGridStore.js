@@ -2,6 +2,8 @@ import List from '../utils/list.js'
 import {uuid} from '../utils/utils.js'
 import VueScrollTo from 'vue-scrollto'
 
+let rowKey = 1
+
 class Store {
   constructor (grid, options, value) {
     this.grid = grid
@@ -56,6 +58,7 @@ class Store {
       treeField: '', // 展示树结构的列名
       isParentField: '_isParent', // 标识是否父结点列名
       expandField: '_expand', // 标识折叠状态列名
+      childrenField: 'children', // 子结点列名
       openedIcon: 'ivu-icon ivu-icon-md-arrow-dropdown', // 树结点展开的图标
       closedIcon: 'ivu-icon ivu-icon-md-arrow-dropright',
       indentWidth: 20, // 子结点缩近宽度

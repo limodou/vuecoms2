@@ -7791,12 +7791,12 @@ var UGridvue_type_template_id_40d49724_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=40d49724&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=2b804658&
-var UTablevue_type_template_id_2b804658_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:{selected:row.row._selected, hover:row.row._hover},style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{key:col._columnKey,style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
-var UTablevue_type_template_id_2b804658_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=5918c58c&
+var UTablevue_type_template_id_5918c58c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:{selected:row.row._selected, hover:row.row._hover},style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{key:col._columnKey,style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
+var UTablevue_type_template_id_5918c58c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=2b804658&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=5918c58c&
 
 // EXTERNAL MODULE: external "iview"
 var external_iview_ = __webpack_require__("3955");
@@ -8450,12 +8450,12 @@ function _broadcast(componentName, eventName, params) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=009246c4&
-var UCellvue_type_template_id_009246c4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField===_vm.col.column.name && _vm.col.row[_vm.isParentField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && (_vm.col.row[_vm.expandField] || _vm.defaultExpanded))?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal' && _vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.value},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal' && !_vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal' && _vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.value}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal' && !_vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.checkable)?[(_vm.col.row._selected)?_c('i',{staticClass:"ivu-icon ivu-icon-md-checkbox u-cell-checkbox",staticStyle:{"color":"#2489f3"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_c('i',{staticClass:"ivu-icon ivu-icon-md-square-outline u-cell-checkbox",staticStyle:{"color":"#bdbdbd"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}})]:_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{nowrap:_vm.nowrap}},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],2),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
-var UCellvue_type_template_id_009246c4_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=4c06c155&
+var UCellvue_type_template_id_4c06c155_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField===_vm.col.column.name && _vm.col.row[_vm.childrenField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && _vm.col.row[_vm.expandField])?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal' && _vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.value},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal' && !_vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal' && _vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.value}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal' && !_vm.col.column.showTitle)?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.checkable)?[(_vm.col.row._selected)?_c('i',{staticClass:"ivu-icon ivu-icon-md-checkbox u-cell-checkbox",staticStyle:{"color":"#2489f3"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_c('i',{staticClass:"ivu-icon ivu-icon-md-square-outline u-cell-checkbox",staticStyle:{"color":"#bdbdbd"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}})]:_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{nowrap:_vm.nowrap}},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],2),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
+var UCellvue_type_template_id_4c06c155_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=009246c4&
+// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=4c06c155&
 
 // CONCATENATED MODULE: ./src/components/Table/UCellRender.js
 
@@ -8620,6 +8620,12 @@ function () {
               _this.onChange(x, self.value);
             });
           }
+        },
+        'on-error': function onError(x) {
+          ctx.listeners['on-error'] && ctx.listeners['on-error'](x);
+        },
+        'on-clear-error': function onClearError(x) {
+          ctx.listeners['on-clear-error'] && ctx.listeners['on-clear-error'](x);
         }
       };
       var _iteratorNormalCompletion = true;
@@ -9447,9 +9453,10 @@ var StaticField_component = Object(componentNormalizer["a" /* default */])(
 
     if (self.value[self.name] !== undefined) {
       if (!self.labelField) input.setStaticValue(self.value[self.name]);else input.setStaticValue(self.value[self.labelField], true);
-    }
+    } // 当存在静态组件时，使用静态组件来展示静态内容
 
-    if (self.static) {
+
+    if (self.static && self.staticComponent) {
       return h(self.staticComponent, {
         props: ctx.props
       });
@@ -10005,7 +10012,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
     CellRender: UCellRender,
     GenericInput: GenericInput
   },
-  computed: objectSpread_default()({}, mapState('nowrap', 'start', 'editRow', 'editMode', 'onCheckable', 'cellTitle', 'tree', 'treeField', 'iconWidth', 'indentWidth', 'expandField', 'openedIcon', 'closedIcon', 'isParentField', 'defaultExpanded', 'onLoadData', 'url', 'selected', 'idField', 'static'), {
+  computed: objectSpread_default()({}, mapState('nowrap', 'start', 'editRow', 'editMode', 'onCheckable', 'cellTitle', 'tree', 'treeField', 'iconWidth', 'indentWidth', 'expandField', 'openedIcon', 'closedIcon', 'isParentField', 'defaultExpanded', 'onLoadData', 'url', 'selected', 'idField', 'static', 'childrenField'), {
     value: function value() {
       var value = this.col.value;
 
@@ -10096,18 +10103,19 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
     handleExpandClick: function handleExpandClick() {
       var _this = this;
 
-      var expand = !(this.col.row[this.expandField] || this.defaultExpanded);
+      var expand = !this.col.row[this.expandField];
 
-      if (expand && this.col.row[this.isParentField]) {
+      if (expand && this.col.row[this.childrenField]) {
         if (!this.col.row['_loaded']) {
           var callback = function callback(data, others) {
             //转换数据
             var rows = [];
 
             if (data) {
-              rows = _this.makeRows(data); //插入数据
+              rows = _this.makeRows(data);
 
-              utils_list.add(_this.store.states.data, rows, _this.row_index); //合并其它值
+              _this.$set(_this.col.row, _this.childrenField, rows); //合并其它值
+
 
               if (others && others instanceof Object) {
                 _this.store.mergeStates(others);
@@ -10167,8 +10175,8 @@ var UCellvue_type_style_index_0_lang_less_ = __webpack_require__("af09");
 
 var UCell_component = Object(componentNormalizer["a" /* default */])(
   Table_UCellvue_type_script_lang_js_,
-  UCellvue_type_template_id_009246c4_render,
-  UCellvue_type_template_id_009246c4_staticRenderFns,
+  UCellvue_type_template_id_4c06c155_render,
+  UCellvue_type_template_id_4c06c155_staticRenderFns,
   false,
   null,
   null,
@@ -10423,8 +10431,8 @@ var Sortable_default = /*#__PURE__*/__webpack_require__.n(Sortable);
 
 
 
+ // let rowKey = 1
 
-var rowKey = 1;
 var columnKey = 1;
 /* harmony default export */ var UTablevue_type_script_lang_js_ = ({
   name: 'Table',
@@ -10458,7 +10466,7 @@ var columnKey = 1;
       default: ''
     }
   },
-  computed: objectSpread_default()({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight'), {
+  computed: objectSpread_default()({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight', 'childrenField'), {
     rows: function rows() {
       var _this = this;
 
@@ -10473,77 +10481,84 @@ var columnKey = 1;
           index = _this$combineColsInde.index,
           last_columns_set = _this$combineColsInde.last_columns_set;
 
-      var parents_expanded = {};
-      var parents_show = {};
-      var parents_level = {};
-      var parents_rows = {};
-      var parent, expanded, pshow, show, level, prow;
-      this.data.forEach(function (row, i) {
+      var parent, show, level;
+
+      var processNode = function processNode(row, parent, rows) {
         var new_row = {
           row: row,
           columns: [],
-          _rowKey: ++rowKey // 增加对父结点是否可见的判断
-
+          _rowKey: row._rowKey
         };
+        rows.push(new_row);
+        processRow(new_row);
 
         if (_this.tree) {
-          parent = row[_this.parentField];
-
-          if (parent !== undefined) {
-            expanded = parents_expanded[parent];
-            pshow = parents_show[parent];
-            level = parents_level[parent];
-
-            if (expanded === undefined) {
-              expanded = _this.defaultExpanded;
-            }
-
-            if (pshow === undefined) {
-              pshow = true;
-            }
-
-            if (level === undefined) {
-              level = 0;
-            } else level++;
-
-            prow = parents_rows[parent];
-
-            if (prow === undefined) {
-              prow = null;
-            }
+          //设置level
+          if (parent) {
+            level = parent._level + 1;
           } else {
-            expanded = true;
-            pshow = true;
             level = 0;
-            prow = null;
           }
 
-          if (pshow && expanded) show = true;else show = false;
+          _this.$set(row, '_level', level);
 
-          _this.$set(row, '_hidden', !show);
+          if (row[_this.childrenField]) {
+            if (row[_this.childrenField].length > 0) {
+              // 处理展开状态
+              if (!row.hasOwnProperty(_this.expandField)) {
+                _this.$set(row, _this.expandField, _this.defaultExpanded);
+              }
 
-          _this.$set(row, '_level', level); //自动设置父结点是已装入状态
+              show = true; // 处理显示状态
 
+              if (!row[_this.expandField]) {
+                show = false;
+              }
 
-          if (prow) {
-            _this.$set(prow, '_loaded', true);
+              if (show) {
+                // 处理子节点
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                  for (var _iterator = row[_this.childrenField][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _row = _step.value;
+                    processNode(_row, row, rows);
+                  }
+                } catch (err) {
+                  _didIteratorError = true;
+                  _iteratorError = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                      _iterator.return();
+                    }
+                  } finally {
+                    if (_didIteratorError) {
+                      throw _iteratorError;
+                    }
+                  }
+                }
+              }
+            } else {
+              // 判断是否已经装载，如果已装载，则清除children字段
+              if (row['_loaded']) {
+                _this.$delete(row, _this.childrenField);
+              }
+            }
           }
-
-          parents_expanded[row[_this.idField]] = row[_this.expandField] === undefined ? _this.defaultExpanded : row[_this.expandField];
-          parents_show[row[_this.idField]] = show;
-          parents_level[row[_this.idField]] = level;
-          parents_rows[row[_this.idField]] = row;
         }
+      };
 
-        rows.push(new_row);
-
+      var processRow = function processRow(new_row) {
         _this.columns.forEach(function (col, j) {
           var item = {
-            value: row[col.name],
+            value: new_row.row[col.name],
             rowspan: 1,
             colspan: 1,
             column: col,
-            row: row,
+            row: new_row.row,
             _columnKey: ++columnKey // 不需要合并
 
           };
@@ -10572,8 +10587,8 @@ var columnKey = 1;
                   c.last_columns.push(item);
 
                   if (c.first) {
-                    for (var _i = 1, len = last_columns_set.length; _i < len; _i++) {
-                      last_columns_set[_i].splice(0);
+                    for (var i = 1, len = last_columns_set.length; i < len; i++) {
+                      last_columns_set[i].splice(0);
                     }
                   }
                 }
@@ -10581,7 +10596,32 @@ var columnKey = 1;
             }
           }
         });
-      });
+      };
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var row = _step2.value;
+          processNode(row, null, rows);
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
       return rows;
     },
     headerScrollStyles: function headerScrollStyles() {
@@ -10742,23 +10782,23 @@ var columnKey = 1;
       var i;
       var first = true;
       var last_columns_set = [];
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
       try {
         var _loop = function _loop() {
-          var cc = _step.value;
+          var cc = _step3.value;
           var last_columns = [];
           last_columns_set.push(last_columns);
           i = 0;
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
 
           try {
             var _loop2 = function _loop2() {
-              var c = _step2.value;
+              var c = _step4.value;
 
               _this4.columns.forEach(function (col, j) {
                 if (col.name === c) {
@@ -10773,39 +10813,39 @@ var columnKey = 1;
               });
             };
 
-            for (var _iterator2 = cc[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            for (var _iterator4 = cc[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
               _loop2();
             }
           } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                _iterator2.return();
+              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                _iterator4.return();
               }
             } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
+              if (_didIteratorError4) {
+                throw _iteratorError4;
               }
             }
           }
         };
 
-        for (var _iterator = this.combineCols[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator3 = this.combineCols[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
           _loop();
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
+          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+            _iterator3.return();
           }
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          if (_didIteratorError3) {
+            throw _iteratorError3;
           }
         }
       }
@@ -10945,8 +10985,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_2b804658_render,
-  UTablevue_type_template_id_2b804658_staticRenderFns,
+  UTablevue_type_template_id_5918c58c_render,
+  UTablevue_type_template_id_5918c58c_staticRenderFns,
   false,
   null,
   null,
@@ -10966,6 +11006,7 @@ var vue_scrollto_default = /*#__PURE__*/__webpack_require__.n(vue_scrollto);
 
 
 
+var rowKey = 1;
 
 var UGridStore_Store =
 /*#__PURE__*/
@@ -11050,6 +11091,8 @@ function () {
       // 标识是否父结点列名
       expandField: '_expand',
       // 标识折叠状态列名
+      childrenField: 'children',
+      // 子结点列名
       openedIcon: 'ivu-icon ivu-icon-md-arrow-dropdown',
       // 树结点展开的图标
       closedIcon: 'ivu-icon ivu-icon-md-arrow-dropright',
@@ -12028,12 +12071,12 @@ var Queryvue_type_template_id_68925c0a_staticRenderFns = []
 // CONCATENATED MODULE: ./src/components/Fields/index.js
 
 /* harmony default export */ var Fields = (GenericInput);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=6e9d716c&
-var FormCellvue_type_template_id_6e9d716c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-help-outline",attrs:{"title":_vm.col.info}}):_vm._e(),_vm._v("\n    "+_vm._s(_vm.col.label)+"\n  ")]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"root":_vm.root},on:{"on-validate":_vm.handleValidate}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
-var FormCellvue_type_template_id_6e9d716c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=47de4a4e&
+var FormCellvue_type_template_id_47de4a4e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-help-outline",attrs:{"title":_vm.col.info}}):_vm._e(),_vm._v("\n    "+_vm._s(_vm.col.label)+"\n  ")]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"root":_vm.root},on:{"on-validate":_vm.handleValidate,"on-error":_vm.handleError,"on-clear-error":_vm.handleClearError}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
+var FormCellvue_type_template_id_47de4a4e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=6e9d716c&
+// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=47de4a4e&
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
 var helpers_extends = __webpack_require__("41b2");
@@ -13342,6 +13385,8 @@ var validateUtil_validateRule = function validateRule(value, fieldname, validate
 //
 //
 //
+//
+//
 
 
 
@@ -13443,6 +13488,22 @@ var validateUtil_validateRule = function validateRule(value, fieldname, validate
     },
     handleValidate: function handleValidate() {
       this.validate();
+    },
+    // 错误为一个对象，可以包含多个字段
+    // 如： {name: error_msg, name: error_msg}
+    handleError: function handleError(error, $event) {
+      var d = {
+        error: error,
+        validateState: 'error'
+      };
+      this.$set(this.validateResult, this.col.name, Object.assign(this.validateResult[this.col.name], d));
+    },
+    handleClearError: function handleClearError(error, $event) {
+      var d = {
+        error: '',
+        validateState: ''
+      };
+      this.$set(this.validateResult, this.col.name, Object.assign(this.validateResult[this.col.name], d));
     }
   }
 });
@@ -13458,8 +13519,8 @@ var validateUtil_validateRule = function validateRule(value, fieldname, validate
 
 var FormCell_component = Object(componentNormalizer["a" /* default */])(
   Build_FormCellvue_type_script_lang_js_,
-  FormCellvue_type_template_id_6e9d716c_render,
-  FormCellvue_type_template_id_6e9d716c_staticRenderFns,
+  FormCellvue_type_template_id_47de4a4e_render,
+  FormCellvue_type_template_id_47de4a4e_staticRenderFns,
   false,
   null,
   null,
@@ -16307,19 +16368,22 @@ var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DatepickerRange = (DatepickerRange_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=78ec9530&
-var UploaderFilevue_type_template_id_78ec9530_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('file-upload',_vm._b({ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"name":_vm.name},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},'file-upload',_vm.config,false),[_vm._t("default")],2)}
-var UploaderFilevue_type_template_id_78ec9530_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=173f54b6&
+var UploaderFilevue_type_template_id_173f54b6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('FileUpload',{ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"name":_vm.name},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},[_vm._t("default")],2)}
+var UploaderFilevue_type_template_id_173f54b6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=78ec9530&
+// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=173f54b6&
 
 // EXTERNAL MODULE: ./src/components/vue-upload-component/index.js
 var vue_upload_component = __webpack_require__("2143");
 var vue_upload_component_default = /*#__PURE__*/__webpack_require__.n(vue_upload_component);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=script&lang=js&
-//
+
+
+var _name$components$prop;
+
 //
 //
 //
@@ -16341,8 +16405,11 @@ var vue_upload_component_default = /*#__PURE__*/__webpack_require__.n(vue_upload
 //
 //
 
-/* harmony default export */ var UploaderFilevue_type_script_lang_js_ = ({
+/* harmony default export */ var UploaderFilevue_type_script_lang_js_ = (_name$components$prop = {
   name: 'uploader-file',
+  components: {
+    FileUpload: vue_upload_component_default.a
+  },
   props: {
     value: {},
     size: {},
@@ -16380,89 +16447,87 @@ var vue_upload_component_default = /*#__PURE__*/__webpack_require__.n(vue_upload
     // 上传
     onDelete: {} // 删除
 
-  },
-  components: {
-    FileUpload: vue_upload_component_default.a
-  },
-  methods: {
-    handleInputFile: function handleInputFile(newFile, oldFile) {
-      if (this.inputFile) this.inputFile(newFile, oldFile);else this.defaultInputFile(newFile, oldFile);
-    },
-    defaultInputFile: function defaultInputFile(newFile, oldFile) {
-      if (newFile && !oldFile) {
-        // 添加文件
-        this.onUpload && this.onUpload(newFile);
-      }
-
-      if (newFile && oldFile) {
-        // 更新文件
-        // 开始上传
-        if (newFile.active !== oldFile.active) {
-          console.log('start', newFile.active, newFile);
-          this.onStart && this.onStart(newFile);
-        } // 上传进度
-
-
-        if (newFile.progress !== oldFile.progress) {
-          console.log('progress', newFile.progress, newFile);
-          this.onProgress && this.onProgress(newFile.progress, newFile);
-        } // 上传错误
-
-
-        if (newFile.error !== oldFile.error) {
-          console.log('error', newFile.error, newFile);
-          this.onError && this.onError(newFile.error, newFile);
-        } // 上传成功
-
-
-        if (newFile.success !== oldFile.success) {
-          console.log('success', newFile.success, newFile);
-          this.onSuccess && this.onSuccess(newFile.success, newFile);
-        }
-      }
-
-      if (!newFile && oldFile) {
-        // 删除文件
-        this.onDelete && this.onDelete(newFile);
-      } // 自动上传
-
-
-      if (this.autoUpload && (Boolean(newFile) !== Boolean(oldFile) || oldFile.error !== newFile.error)) {
-        if (!this.$refs.upload.active) {
-          this.$refs.upload.active = true;
-        }
-      }
-    },
-    handleUpdateFiles: function handleUpdateFiles(v) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = v[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var f = _step.value;
-          var status = f.error ? 'error' : f.success ? 'success' : f.active ? 'active' : '';
-          f.status = status;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      this.$emit('input', v);
-    }
   }
-});
+}, defineProperty_default()(_name$components$prop, "components", {
+  FileUpload: vue_upload_component_default.a
+}), defineProperty_default()(_name$components$prop, "methods", {
+  handleInputFile: function handleInputFile(newFile, oldFile) {
+    if (this.inputFile) this.inputFile(newFile, oldFile);else this.defaultInputFile(newFile, oldFile);
+  },
+  defaultInputFile: function defaultInputFile(newFile, oldFile) {
+    if (newFile && !oldFile) {
+      // 添加文件
+      this.onUpload && this.onUpload(newFile);
+    }
+
+    if (newFile && oldFile) {
+      // 更新文件
+      // 开始上传
+      if (newFile.active !== oldFile.active) {
+        console.log('start', newFile.active, newFile);
+        this.onStart && this.onStart(newFile);
+      } // 上传进度
+
+
+      if (newFile.progress !== oldFile.progress) {
+        console.log('progress', newFile.progress, newFile);
+        this.onProgress && this.onProgress(newFile.progress, newFile);
+      } // 上传错误
+
+
+      if (newFile.error !== oldFile.error) {
+        console.log('error', newFile.error, newFile);
+        this.onError && this.onError(newFile.error, newFile);
+      } // 上传成功
+
+
+      if (newFile.success !== oldFile.success) {
+        console.log('success', newFile.success, newFile);
+        this.onSuccess && this.onSuccess(newFile.success, newFile);
+      }
+    }
+
+    if (!newFile && oldFile) {
+      // 删除文件
+      this.onDelete && this.onDelete(newFile);
+    } // 自动上传
+
+
+    if (this.autoUpload && (Boolean(newFile) !== Boolean(oldFile) || oldFile.error !== newFile.error)) {
+      if (!this.$refs.upload.active) {
+        this.$refs.upload.active = true;
+      }
+    }
+  },
+  handleUpdateFiles: function handleUpdateFiles(v) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = v[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var f = _step.value;
+        var status = f.error ? 'error' : f.success ? 'success' : f.active ? 'active' : '';
+        f.status = status;
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    this.$emit('input', v);
+  }
+}), _name$components$prop);
 // CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_UploaderFilevue_type_script_lang_js_ = (UploaderFilevue_type_script_lang_js_); 
 // CONCATENATED MODULE: ./src/components/UploaderFile.vue
@@ -16475,8 +16540,8 @@ var vue_upload_component_default = /*#__PURE__*/__webpack_require__.n(vue_upload
 
 var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
   components_UploaderFilevue_type_script_lang_js_,
-  UploaderFilevue_type_template_id_78ec9530_render,
-  UploaderFilevue_type_template_id_78ec9530_staticRenderFns,
+  UploaderFilevue_type_template_id_173f54b6_render,
+  UploaderFilevue_type_template_id_173f54b6_staticRenderFns,
   false,
   null,
   null,
