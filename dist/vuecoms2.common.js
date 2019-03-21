@@ -4797,12 +4797,12 @@ module.exports = Object.keys || function keys(O) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=475e313e&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.className},[_vm._t("default"),_c('label',{attrs:{"for":_vm.inputId || _vm.name}}),_c('input-file')],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=72782c52&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.className},[_vm._t("default"),_c('label',{attrs:{"for":_vm.inputId || _vm.name}}),_c('input-file',{ref:"file"})],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=475e313e&
+// CONCATENATED MODULE: ./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=72782c52&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/toConsumableArray.js
 var toConsumableArray = __webpack_require__("448a");
@@ -5715,7 +5715,9 @@ var CHUNK_DEFAULT_OPTIONS = {
     clear: function clear() {
       if (this.files.length) {
         var files = this.files;
-        this.files = []; // 定位
+        this.files = []; // 清除input value
+
+        this.$refs.file.$el.value = ''; // 定位
 
         this.maps = {}; // 事件
 
@@ -16372,12 +16374,12 @@ var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DatepickerRange = (DatepickerRange_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=173f54b6&
-var UploaderFilevue_type_template_id_173f54b6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('FileUpload',{ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"name":_vm.name},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},[_vm._t("default")],2)}
-var UploaderFilevue_type_template_id_173f54b6_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=83d2a8fe&
+var UploaderFilevue_type_template_id_83d2a8fe_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('FileUpload',{ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"inputId":_vm.inputId,"name":_vm.name},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},[_vm._t("default")],2)}
+var UploaderFilevue_type_template_id_83d2a8fe_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=173f54b6&
+// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=83d2a8fe&
 
 // EXTERNAL MODULE: ./src/components/vue-upload-component/index.js
 var vue_upload_component = __webpack_require__("2143");
@@ -16408,6 +16410,8 @@ var _name$components$prop;
 //
 //
 //
+//
+
 
 /* harmony default export */ var UploaderFilevue_type_script_lang_js_ = (_name$components$prop = {
   name: 'uploader-file',
@@ -16424,7 +16428,12 @@ var _name$components$prop;
     headers: {},
     data: {},
     accept: {},
-    inputId: {},
+    inputId: {
+      type: String,
+      default: function _default() {
+        return uuid();
+      }
+    },
     name: {},
     extensions: {},
     postAction: {},
@@ -16530,6 +16539,9 @@ var _name$components$prop;
     }
 
     this.$emit('input', v);
+  },
+  clear: function clear() {
+    this.$refs.upload.clear();
   }
 }), _name$components$prop);
 // CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=script&lang=js&
@@ -16544,8 +16556,8 @@ var _name$components$prop;
 
 var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
   components_UploaderFilevue_type_script_lang_js_,
-  UploaderFilevue_type_template_id_173f54b6_render,
-  UploaderFilevue_type_template_id_173f54b6_staticRenderFns,
+  UploaderFilevue_type_template_id_83d2a8fe_render,
+  UploaderFilevue_type_template_id_83d2a8fe_staticRenderFns,
   false,
   null,
   null,
