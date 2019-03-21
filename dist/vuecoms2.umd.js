@@ -16292,12 +16292,12 @@ var iview_fix = __webpack_require__("2c21");
 // EXTERNAL MODULE: ./src/components/styles/common.css
 var common = __webpack_require__("a88d");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=607aefcc&
-var DatepickerRangevue_type_template_id_607aefcc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":"date","transfer":"","placeholder":_vm.placeholderBegin},model:{value:(_vm.val1),callback:function ($$v) {_vm.val1=$$v},expression:"val1"}}),_vm._v("\n  -\n  "),_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":"date","transfer":"","placeholder":_vm.placeholderEnd},model:{value:(_vm.val2),callback:function ($$v) {_vm.val2=$$v},expression:"val2"}})],1)}
-var DatepickerRangevue_type_template_id_607aefcc_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=7384a13c&
+var DatepickerRangevue_type_template_id_7384a13c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderBegin},model:{value:(_vm.val1),callback:function ($$v) {_vm.val1=$$v},expression:"val1"}}),_vm._v("\n  -\n  "),_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderEnd},model:{value:(_vm.val2),callback:function ($$v) {_vm.val2=$$v},expression:"val2"}})],1)}
+var DatepickerRangevue_type_template_id_7384a13c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=607aefcc&
+// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=7384a13c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=script&lang=js&
 //
@@ -16318,7 +16318,11 @@ var DatepickerRangevue_type_template_id_607aefcc_staticRenderFns = []
   props: {
     value: Array,
     placeholderBegin: String,
-    placeholderEnd: String
+    placeholderEnd: String,
+    type: {
+      type: String,
+      default: 'date'
+    }
   },
   methods: {
     parseDate: function parseDate(v) {
@@ -16367,8 +16371,8 @@ var DatepickerRangevue_type_template_id_607aefcc_staticRenderFns = []
 
 var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
   components_DatepickerRangevue_type_script_lang_js_,
-  DatepickerRangevue_type_template_id_607aefcc_render,
-  DatepickerRangevue_type_template_id_607aefcc_staticRenderFns,
+  DatepickerRangevue_type_template_id_7384a13c_render,
+  DatepickerRangevue_type_template_id_7384a13c_staticRenderFns,
   false,
   null,
   null,
