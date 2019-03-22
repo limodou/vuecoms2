@@ -7802,12 +7802,12 @@ var UGridvue_type_template_id_40d49724_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=40d49724&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=5918c58c&
-var UTablevue_type_template_id_5918c58c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:{selected:row.row._selected, hover:row.row._hover},style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{key:col._columnKey,style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
-var UTablevue_type_template_id_5918c58c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=9c5b89b8&
+var UTablevue_type_template_id_9c5b89b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:{selected:row.row._selected, hover:row.row._rowKey==_vm.hoverRowKey},style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{key:col._columnKey,style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
+var UTablevue_type_template_id_9c5b89b8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=5918c58c&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=9c5b89b8&
 
 // EXTERNAL MODULE: external "iview"
 var external_iview_ = __webpack_require__("3955");
@@ -10477,7 +10477,7 @@ var columnKey = 1;
       default: ''
     }
   },
-  computed: objectSpread_default()({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight', 'childrenField'), {
+  computed: objectSpread_default()({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight', 'childrenField', 'hoverRowKey'), {
     rows: function rows() {
       var _this = this;
 
@@ -10498,7 +10498,8 @@ var columnKey = 1;
         var new_row = {
           row: row,
           columns: [],
-          _rowKey: row._rowKey
+          _rowKey: row._rowKey,
+          _parent: parent
         };
         rows.push(new_row);
         processRow(new_row);
@@ -10934,10 +10935,10 @@ var columnKey = 1;
       }
     },
     handleTrMouseEnter: function handleTrMouseEnter(row) {
-      this.$set(row, '_hover', true);
+      this.hoverRowKey = row._rowKey;
     },
     handleTrMouseLeave: function handleTrMouseLeave(row) {
-      this.$set(row, '_hover', false);
+      this.hoverRowKey = null;
     },
     getRowId: function getRowId(row) {
       return row[this.idField];
@@ -10996,8 +10997,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_5918c58c_render,
-  UTablevue_type_template_id_5918c58c_staticRenderFns,
+  UTablevue_type_template_id_9c5b89b8_render,
+  UTablevue_type_template_id_9c5b89b8_staticRenderFns,
   false,
   null,
   null,
@@ -11094,12 +11095,8 @@ function () {
       // 是否treegrid
       defaultExpanded: false,
       // 缺省折叠状态
-      parentField: 'parent',
-      // 父列名
       treeField: '',
       // 展示树结构的列名
-      isParentField: '_isParent',
-      // 标识是否父结点列名
       expandField: '_expand',
       // 标识折叠状态列名
       childrenField: 'children',
@@ -11111,6 +11108,8 @@ function () {
       // 子结点缩近宽度
       iconWidth: 14,
       // icon所占宽度
+      hoverRowKey: null,
+      // hover时的rowKey
       // 回调
       onLoadData: null,
       // 装入数据回调函数，将传入 function (url, param, callback)，当树型结构时，会传入parent字段
@@ -11648,7 +11647,8 @@ function () {
         // 可显示checkbox
         _editting: false,
         _hidden: false,
-        _level: 0
+        _level: 0,
+        _rowKey: rowKey++
       }, row);
     }
   }, {

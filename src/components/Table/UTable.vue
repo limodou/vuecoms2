@@ -32,7 +32,7 @@
             v-if="!row.row._hidden"
             :style="bodyTrStyle"
             :key="row._rowKey"
-            :class="{selected:row.row._selected, hover:row.row._hover}"
+            :class="{selected:row.row._selected, hover:row.row._rowKey==hoverRowKey}"
             @mouseenter="handleTrMouseEnter(row.row)"
             @mouseleave="handleTrMouseLeave(row.row)"
             >
@@ -112,7 +112,7 @@ export default {
       'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth',
       'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth',
       'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData',
-      'noDataHeight', 'childrenField'
+      'noDataHeight', 'childrenField', 'hoverRowKey'
     ),
 
     rows () {
@@ -124,7 +124,7 @@ export default {
       let parent, show, level
 
       const processNode = (row, parent, rows) => {
-        let new_row = {row: row, columns: [], _rowKey: row._rowKey }
+        let new_row = {row: row, columns: [], _rowKey: row._rowKey, _parent: parent}
         rows.push(new_row)
         processRow(new_row)
         if (this.tree) {
@@ -438,11 +438,11 @@ export default {
     },
 
     handleTrMouseEnter (row) {
-      this.$set(row, '_hover', true)
+      this.hoverRowKey = row._rowKey
     },
 
     handleTrMouseLeave (row) {
-      this.$set(row, '_hover', false)
+      this.hoverRowKey = null
     },
 
     getRowId (row) {

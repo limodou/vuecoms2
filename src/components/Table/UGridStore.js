@@ -54,15 +54,14 @@ class Store {
       // tree 相关的参数
       tree: false, // 是否treegrid
       defaultExpanded: false, // 缺省折叠状态
-      parentField: 'parent', // 父列名
       treeField: '', // 展示树结构的列名
-      isParentField: '_isParent', // 标识是否父结点列名
       expandField: '_expand', // 标识折叠状态列名
       childrenField: 'children', // 子结点列名
       openedIcon: 'ivu-icon ivu-icon-md-arrow-dropdown', // 树结点展开的图标
       closedIcon: 'ivu-icon ivu-icon-md-arrow-dropright',
       indentWidth: 20, // 子结点缩近宽度
       iconWidth: 14, // icon所占宽度
+      hoverRowKey: null, // hover时的rowKey
 
       // 回调
       onLoadData: null, // 装入数据回调函数，将传入 function (url, param, callback)，当树型结构时，会传入parent字段
@@ -410,14 +409,20 @@ class Store {
       _checkable: true, // 可显示checkbox
       _editting: false,
       _hidden: false,
-      _level: 0
+      _level: 0,
+      _rowKey: rowKey++
     }, row)
   }
 
   makeRows (data) {
     var rows = []
     data.forEach(row => {
-      rows.push(this.getDefaultRow(row))
+      let new_row = this.getDefaultRow(row)
+      if (new_row[this.states.childrenField] && new_row[this.states.childrenField].length > 0) {
+        new_row['_loaded'] = true
+        new_row[this.states.childrenField] = this.makeRows(new_row[this.states.childrenField])
+      }
+      rows.push(new_row)
     })
     return rows
   }
