@@ -37,7 +37,6 @@
             @mouseleave="handleTrMouseLeave(row.row)"
             >
             <td v-for="(col, col_index) in row.columns"
-              :key="col._columnKey"
               @click="handleClick(col.row)"
               :style="cellStyles(col.column)"
               :rowspan="col.rowspan"
@@ -124,7 +123,8 @@ export default {
       let parent, show, level
 
       const processNode = (row, parent, rows) => {
-        let new_row = {row: row, columns: [], _rowKey: row._rowKey, _parent: parent}
+        let new_row = {row: row, columns: [], _rowKey: row._rowKey}
+        row._parent = parent
         rows.push(new_row)
         processRow(new_row)
         if (this.tree) {
@@ -169,7 +169,7 @@ export default {
       const processRow = (new_row) => {
         this.columns.forEach( (col, j) => {
           let item = {value: new_row.row[col.name], rowspan: 1, colspan: 1,
-          column: col, row: new_row.row, _columnKey: ++columnKey}
+          column: col, row: new_row.row/*, _columnKey: ++columnKey*/}
 
           // 不需要合并
           if (!this.combineCols) {
