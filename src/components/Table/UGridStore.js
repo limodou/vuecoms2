@@ -370,7 +370,7 @@ class Store {
    options 为滚动属性
   */
   addEditRow (row, parent, position, isChild=false) {
-    let n_row = this.addRow(row, parent, position, idChild)
+    let n_row = this.addRow(row, parent, position, isChild)
     this.grid.$set(n_row, '_editRow', Object.assign({}, n_row))
     this.grid.$set(n_row, '_editting', true)
     // if (options === undefined) return
@@ -406,7 +406,7 @@ class Store {
   }
 
   addEditChildRow (row, parent, position) {
-    return addEditRow(row, parent, position, true)
+    return this.addEditRow(row, parent, position, true)
   }
 
   mergeStates (o) {
