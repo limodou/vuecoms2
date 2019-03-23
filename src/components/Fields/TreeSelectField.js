@@ -36,7 +36,7 @@ export default class TreeSelectField extends Field {
 
     let v = []
     let selected = []
-    find(formatChoices(this.options.choices), value, v, selected)
+    find(this.options.choices, value, v, selected)
     if (selected.length === 0) return ''
 
     // 设置tree的初始值
