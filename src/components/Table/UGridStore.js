@@ -145,8 +145,8 @@ class Store {
     if (selectable) {
       this.grid.$set(row, '_selected', true)
       let id = row[this.states.idField]
-      this.grid.$set(this.states.selected, id, id)
-      this.grid.$set(this.states.selectedRows, id, row)
+      this.grid.$set(this.states.selected, row._rowKey, id)
+      this.grid.$set(this.states.selectedRows, row._rowKey, row)
     }
   }
 
@@ -171,8 +171,8 @@ class Store {
     this.grid.$set(row, '_deselected', deselectable)
     if (deselectable) {
       this.grid.$set(row, '_selected', false)
-      this.grid.$delete(this.states.selected, row[this.states.idField])
-      this.grid.$delete(this.states.selectedRows, row[this.states.idField])
+      this.grid.$delete(this.states.selected, row._rowKey)
+      this.grid.$delete(this.states.selectedRows, row._rowKey)
     }
   }
 
@@ -239,7 +239,7 @@ class Store {
   getKey (row, column) {
     let key, col
     if (typeof row === 'object') {
-      key = row[this.states.idField]
+      key = row._rowKey
     } else {
       key = row
     }
@@ -310,7 +310,7 @@ class Store {
 
   // 更新行
   updateRow (row){
-    List.update(this.states.data, row)
+    List.update(this.states.data, row, '_rowKey')
     return row
   }
 
