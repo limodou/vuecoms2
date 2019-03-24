@@ -8599,8 +8599,6 @@ function () {
           _this.setStaticValue(x);
 
           ctx.parent.$nextTick(function () {
-            console.log('xxxxxxx', _this.events, _this.events.indexOf('input') > -1, ctx.listeners['on-validate']);
-
             if (_this.events.indexOf('input') > -1) {
               ctx.listeners['on-validate'] && ctx.listeners['on-validate']();
             } // 触发on-field-change事件
@@ -12134,12 +12132,12 @@ var Queryvue_type_template_id_68925c0a_staticRenderFns = []
 // CONCATENATED MODULE: ./src/components/Fields/index.js
 
 /* harmony default export */ var Fields = (GenericInput);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"966c00e2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=ca244ac8&
-var FormCellvue_type_template_id_ca244ac8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-help-outline",attrs:{"title":_vm.col.info}}):_vm._e(),_vm._v("\n    "+_vm._s(_vm.col.label)+"\n  ")]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"root":_vm.root},on:{"on-validate":_vm.handleValidate,"on-error":_vm.handleError,"on-clear-error":_vm.handleClearError}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
-var FormCellvue_type_template_id_ca244ac8_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"966c00e2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=47de4a4e&
+var FormCellvue_type_template_id_47de4a4e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-help-outline",attrs:{"title":_vm.col.info}}):_vm._e(),_vm._v("\n    "+_vm._s(_vm.col.label)+"\n  ")]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"root":_vm.root},on:{"on-validate":_vm.handleValidate,"on-error":_vm.handleError,"on-clear-error":_vm.handleClearError}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
+var FormCellvue_type_template_id_47de4a4e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=ca244ac8&
+// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=47de4a4e&
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
 var helpers_extends = __webpack_require__("41b2");
@@ -13547,11 +13545,9 @@ var validateUtil_validateRule = function validateRule(value, fieldname, validate
   methods: {
     validate: function validate(type) {
       var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-      console.log('lllllllllllllll');
       if (!this.col.static) validateUtil_validateRule(this.value, this.col.name, this.validateResult);
     },
     handleValidate: function handleValidate() {
-      console.log('vvvvvvvvvvvvvvvvv');
       this.validate();
     },
     // 错误为一个对象，可以包含多个字段
@@ -13584,8 +13580,8 @@ var validateUtil_validateRule = function validateRule(value, fieldname, validate
 
 var FormCell_component = Object(componentNormalizer["a" /* default */])(
   Build_FormCellvue_type_script_lang_js_,
-  FormCellvue_type_template_id_ca244ac8_render,
-  FormCellvue_type_template_id_ca244ac8_staticRenderFns,
+  FormCellvue_type_template_id_47de4a4e_render,
+  FormCellvue_type_template_id_47de4a4e_staticRenderFns,
   false,
   null,
   null,
