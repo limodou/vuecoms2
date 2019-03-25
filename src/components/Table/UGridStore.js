@@ -128,11 +128,11 @@ class Store {
   }
 
   selected (row) {
-    return row._selected
+    return this.states.selected[row._rowKey]
   }
 
   toggle (row) {
-    if (row._selected) this.deselect(row)
+    if (this.selected(row)) this.deselect(row)
     else this.select(row)
   }
 
@@ -141,10 +141,8 @@ class Store {
     if (this.states.onSelect) {
       selectable = this.states.onSelect(row)
     }
-    this.grid.$set(row, '_selected', selectable)
     if (selectable) {
-      this.grid.$set(row, '_selected', true)
-      let id = row[this.states.idField]
+      let id = row[this.states.idField] || row._rowKey
       this.grid.$set(this.states.selected, row._rowKey, id)
       this.grid.$set(this.states.selectedRows, row._rowKey, row)
     }
@@ -170,7 +168,6 @@ class Store {
     }
     this.grid.$set(row, '_deselected', deselectable)
     if (deselectable) {
-      this.grid.$set(row, '_selected', false)
       this.grid.$delete(this.states.selected, row._rowKey)
       this.grid.$delete(this.states.selectedRows, row._rowKey)
     }
@@ -339,8 +336,16 @@ class Store {
     // if (!row[this.states.idField]) {
     //   row[this.states.idField] = uuid()
     // }
-    if (!item || !isChild) {
+    if (!item){
       data = this.states.data
+      pos = this.getPosition(item, data, position)
+    } else if(!isChild) {
+      data = item._parent
+      if (data) {
+        data = data[this.states.childrenField]
+      } else {
+        data = this.states.data
+      }
       pos = this.getPosition(item, data, position)
     } else {
       data = item[this.states.childrenField]
@@ -442,7 +447,6 @@ class Store {
 
   getDefaultRow (row={}) {
     return Object.assign({
-      _selected: false,
       _hover: false,
       _selectable: true, // 可被选中
       _checkable: true, // 可显示checkbox
