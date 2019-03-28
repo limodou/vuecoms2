@@ -1,5 +1,5 @@
 import List from '../utils/list.js'
-import {uuid} from '../utils/utils.js'
+import {uuid, walkTree} from '../utils/utils.js'
 import VueScrollTo from 'vue-scrollto'
 
 let rowKey = 1
@@ -128,7 +128,8 @@ class Store {
   }
 
   selected (row) {
-    return this.states.selected[row._rowKey]
+    let id = row[this.states.idField] || row._rowKey
+    return this.states.selected[id]
   }
 
   toggle (row) {
@@ -143,8 +144,8 @@ class Store {
     }
     if (selectable) {
       let id = row[this.states.idField] || row._rowKey
-      this.grid.$set(this.states.selected, row._rowKey, id)
-      this.grid.$set(this.states.selectedRows, row._rowKey, row)
+      this.grid.$set(this.states.selected, id, id)
+      this.grid.$set(this.states.selectedRows, id, row)
     }
   }
 
@@ -167,9 +168,10 @@ class Store {
       deselectable = this.states.onDeselect(row)
     }
     this.grid.$set(row, '_deselected', deselectable)
+    let id = row[this.states.idField] || row._rowKey
     if (deselectable) {
-      this.grid.$delete(this.states.selected, row._rowKey)
-      this.grid.$delete(this.states.selectedRows, row._rowKey)
+      this.grid.$delete(this.states.selected, id)
+      this.grid.$delete(this.states.selectedRows, id)
     }
   }
 
@@ -195,19 +197,27 @@ class Store {
   }
 
   setSelection (selection) {
-    let flag
-    for(let row of this.states.data) {
-      flag = false
-      let id = row[this.states.idField]
-      if (Array.isArray(selection)) {
-        flag = selection.indexOf(id) > -1
-      } else {
-        flag = this.states.selected.hasOwnProperty(id)
-      }
-      if (flag) {
-        this._select(row)
-      }
+    if (Array.isArray(selection)) {
+      for(let c of selection) {
+        this.grid.$set(this.states.selected, c, c)
+      }  
+    } else {
+      this.grid.$set(this.states.selected, selection, selection)
     }
+    // let flag
+    // const callback = (row) => {
+    //   flag = false
+    //   let id = row[this.states.idField]
+    //   if (Array.isArray(selection)) {
+    //     flag = selection.indexOf(id) > -1
+    //   } else {
+    //     flag = id === selection
+    //   }
+    //   if (flag) {
+    //     this._select(row)
+    //   }
+    // }
+    // walkTree(this.states.data, callback)
   }
 
   showLoading (loading=true, text='') {

@@ -8426,6 +8426,42 @@ var setChoice = function setChoice(vm, c, value) {
     vm.$set(c.options, 'choices', value);
   }
 };
+var walkTree = function walkTree(data, callback) {
+  var childrenField = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'children';
+  if (!data || data.length === 0) return;
+
+  var _f = function _f(d) {
+    var _iteratorNormalCompletion5 = true;
+    var _didIteratorError5 = false;
+    var _iteratorError5 = undefined;
+
+    try {
+      for (var _iterator5 = d[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+        var c = _step5.value;
+        callback(c);
+
+        if (c[childrenField] && c[childrenField].length > 0) {
+          _f(c[childrenField]);
+        }
+      }
+    } catch (err) {
+      _didIteratorError5 = true;
+      _iteratorError5 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+          _iterator5.return();
+        }
+      } finally {
+        if (_didIteratorError5) {
+          throw _iteratorError5;
+        }
+      }
+    }
+  };
+
+  return _f(data);
+};
 // CONCATENATED MODULE: ./src/components/mixins/emitter.js
 
 /* This is comes from iview */
@@ -11296,41 +11332,26 @@ function () {
   }, {
     key: "setSelection",
     value: function setSelection(selection) {
+      var _this3 = this;
+
       var flag;
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
 
-      try {
-        for (var _iterator = this.states.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var row = _step.value;
-          flag = false;
-          var id = row[this.states.idField];
+      var callback = function callback(row) {
+        flag = false;
+        var id = row[_this3.states.idField];
 
-          if (Array.isArray(selection)) {
-            flag = selection.indexOf(id) > -1;
-          } else {
-            flag = this.states.selected.hasOwnProperty(id);
-          }
-
-          if (flag) {
-            this._select(row);
-          }
+        if (Array.isArray(selection)) {
+          flag = selection.indexOf(id) > -1;
+        } else {
+          flag = id === selection;
         }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
+
+        if (flag) {
+          _this3._select(row);
         }
-      }
+      };
+
+      walkTree(this.states.data, callback);
     }
   }, {
     key: "showLoading",
@@ -11355,27 +11376,27 @@ function () {
       var d;
       if (!row._parent) d = this.states.data;else d = row._parent[this.states.childrenField];
       var removed = utils_list.remove(d, row, '_rowKey');
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
       try {
-        for (var _iterator2 = removed[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var i = _step2.value;
+        for (var _iterator = removed[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var i = _step.value;
           this.deselect(i);
           this.states.total -= 1;
         }
       } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError = true;
+        _iteratorError = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
           }
         } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
+          if (_didIteratorError) {
+            throw _iteratorError;
           }
         }
       }
@@ -11518,13 +11539,13 @@ function () {
 
       if (!row) {
         row = this.getDefaultRow();
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator3 = this.states.columns[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var c = _step3.value;
+          for (var _iterator2 = this.states.columns[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var c = _step2.value;
             var v = '';
 
             if (c.type === 'column') {
@@ -11532,16 +11553,16 @@ function () {
             }
           }
         } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-              _iterator3.return();
+            if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+              _iterator2.return();
             }
           } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
+            if (_didIteratorError2) {
+              throw _iteratorError2;
             }
           }
         }
@@ -11648,26 +11669,26 @@ function () {
   }, {
     key: "getColumn",
     value: function getColumn(name) {
-      var _iteratorNormalCompletion4 = true;
-      var _didIteratorError4 = false;
-      var _iteratorError4 = undefined;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator4 = this.states.columns[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-          var col = _step4.value;
+        for (var _iterator3 = this.states.columns[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var col = _step3.value;
           if (col.name === name) return col;
         }
       } catch (err) {
-        _didIteratorError4 = true;
-        _iteratorError4 = err;
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-            _iterator4.return();
+          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+            _iterator3.return();
           }
         } finally {
-          if (_didIteratorError4) {
-            throw _iteratorError4;
+          if (_didIteratorError3) {
+            throw _iteratorError3;
           }
         }
       }
@@ -11711,15 +11732,15 @@ function () {
   }, {
     key: "makeRows",
     value: function makeRows(data, parent) {
-      var _this3 = this;
+      var _this4 = this;
 
       var rows = [];
       data.forEach(function (row) {
-        var new_row = _this3.getDefaultRow(row, parent);
+        var new_row = _this4.getDefaultRow(row, parent);
 
-        if (new_row[_this3.states.childrenField] && new_row[_this3.states.childrenField].length > 0) {
+        if (new_row[_this4.states.childrenField] && new_row[_this4.states.childrenField].length > 0) {
           new_row['_loaded'] = true;
-          new_row[_this3.states.childrenField] = _this3.makeRows(new_row[_this3.states.childrenField]);
+          new_row[_this4.states.childrenField] = _this4.makeRows(new_row[_this4.states.childrenField]);
         }
 
         rows.push(new_row);
