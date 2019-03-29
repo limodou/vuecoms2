@@ -8635,7 +8635,7 @@ function () {
           _this.setStaticValue(x);
 
           ctx.parent.$nextTick(function () {
-            if (_this.events.indexOf('input') > -1) {
+            if (old_value !== undefined && _this.events.indexOf('input') > -1) {
               ctx.listeners['on-validate'] && ctx.listeners['on-validate']();
             } // 触发on-field-change事件
 
@@ -11235,7 +11235,8 @@ function () {
   createClass_default()(Store, [{
     key: "selected",
     value: function selected(row) {
-      return this.states.selected[row._rowKey];
+      var id = row[this.states.idField] || row._rowKey;
+      return this.states.selected[id];
     }
   }, {
     key: "toggle",
@@ -11253,8 +11254,8 @@ function () {
 
       if (selectable) {
         var id = row[this.states.idField] || row._rowKey;
-        this.grid.$set(this.states.selected, row._rowKey, id);
-        this.grid.$set(this.states.selectedRows, row._rowKey, row);
+        this.grid.$set(this.states.selected, id, id);
+        this.grid.$set(this.states.selectedRows, id, row);
       }
     }
   }, {
@@ -11286,10 +11287,11 @@ function () {
       }
 
       this.grid.$set(row, '_deselected', deselectable);
+      var id = row[this.states.idField] || row._rowKey;
 
       if (deselectable) {
-        this.grid.$delete(this.states.selected, row._rowKey);
-        this.grid.$delete(this.states.selectedRows, row._rowKey);
+        this.grid.$delete(this.states.selected, id);
+        this.grid.$delete(this.states.selectedRows, id);
       }
     }
   }, {
@@ -11323,26 +11325,47 @@ function () {
   }, {
     key: "setSelection",
     value: function setSelection(selection) {
-      var _this3 = this;
+      if (Array.isArray(selection)) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-      var flag;
-
-      var callback = function callback(row) {
-        flag = false;
-        var id = row[_this3.states.idField];
-
-        if (Array.isArray(selection)) {
-          flag = selection.indexOf(id) > -1;
-        } else {
-          flag = id === selection;
+        try {
+          for (var _iterator = selection[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var c = _step.value;
+            this.grid.$set(this.states.selected, c, c);
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
         }
+      } else {
+        this.grid.$set(this.states.selected, selection, selection);
+      } // let flag
+      // const callback = (row) => {
+      //   flag = false
+      //   let id = row[this.states.idField]
+      //   if (Array.isArray(selection)) {
+      //     flag = selection.indexOf(id) > -1
+      //   } else {
+      //     flag = id === selection
+      //   }
+      //   if (flag) {
+      //     this._select(row)
+      //   }
+      // }
+      // walkTree(this.states.data, callback)
 
-        if (flag) {
-          _this3._select(row);
-        }
-      };
-
-      walkTree(this.states.data, callback);
     }
   }, {
     key: "showLoading",
@@ -11367,27 +11390,27 @@ function () {
       var d;
       if (!row._parent) d = this.states.data;else d = row._parent[this.states.childrenField];
       var removed = utils_list.remove(d, row, '_rowKey');
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator = removed[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var i = _step.value;
+        for (var _iterator2 = removed[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var i = _step2.value;
           this.deselect(i);
           this.states.total -= 1;
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
           }
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          if (_didIteratorError2) {
+            throw _iteratorError2;
           }
         }
       }
@@ -11530,13 +11553,13 @@ function () {
 
       if (!row) {
         row = this.getDefaultRow();
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
         try {
-          for (var _iterator2 = this.states.columns[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var c = _step2.value;
+          for (var _iterator3 = this.states.columns[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var c = _step3.value;
             var v = '';
 
             if (c.type === 'column') {
@@ -11544,16 +11567,16 @@ function () {
             }
           }
         } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-              _iterator2.return();
+            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+              _iterator3.return();
             }
           } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
+            if (_didIteratorError3) {
+              throw _iteratorError3;
             }
           }
         }
@@ -11660,26 +11683,26 @@ function () {
   }, {
     key: "getColumn",
     value: function getColumn(name) {
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
 
       try {
-        for (var _iterator3 = this.states.columns[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var col = _step3.value;
+        for (var _iterator4 = this.states.columns[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var col = _step4.value;
           if (col.name === name) return col;
         }
       } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-            _iterator3.return();
+          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+            _iterator4.return();
           }
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          if (_didIteratorError4) {
+            throw _iteratorError4;
           }
         }
       }
@@ -11723,15 +11746,15 @@ function () {
   }, {
     key: "makeRows",
     value: function makeRows(data, parent) {
-      var _this4 = this;
+      var _this3 = this;
 
       var rows = [];
       data.forEach(function (row) {
-        var new_row = _this4.getDefaultRow(row, parent);
+        var new_row = _this3.getDefaultRow(row, parent);
 
-        if (new_row[_this4.states.childrenField] && new_row[_this4.states.childrenField].length > 0) {
+        if (new_row[_this3.states.childrenField] && new_row[_this3.states.childrenField].length > 0) {
           new_row['_loaded'] = true;
-          new_row[_this4.states.childrenField] = _this4.makeRows(new_row[_this4.states.childrenField]);
+          new_row[_this3.states.childrenField] = _this3.makeRows(new_row[_this3.states.childrenField]);
         }
 
         rows.push(new_row);
