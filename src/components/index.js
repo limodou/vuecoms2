@@ -46,8 +46,8 @@ const install = function (Vue) {
   Object.keys(Components).forEach((name) => {
     Vue.component(name, Components[name])
   })
-  // Vue.prototype.$list = List
-  // Vue.prototype.$findParent = findParent
+  Vue.prototype.$list = List
+  Vue.prototype.$findParent = findParent
 }
 
 // auto install
