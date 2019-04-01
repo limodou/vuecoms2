@@ -16168,12 +16168,12 @@ var Build_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Build = (Build_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Layout.vue?vue&type=template&id=ea4b73fa&
-var Layoutvue_type_template_id_ea4b73fa_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c('FormCell',{attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build"}}):_vm._e()],1)}))}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout"},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c('FormCell',{attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build}}):_vm._e()],1)}))}))}
-var Layoutvue_type_template_id_ea4b73fa_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Layout.vue?vue&type=template&id=74bf9fe9&
+var Layoutvue_type_template_id_74bf9fe9_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c('FormCell',{attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build"}}):_vm._e()],1)}))}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout"},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c('FormCell',{attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build}}):_vm._e()],1)}))}))}
+var Layoutvue_type_template_id_74bf9fe9_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Layout.vue?vue&type=template&id=ea4b73fa&
+// CONCATENATED MODULE: ./src/components/Build/Layout.vue?vue&type=template&id=74bf9fe9&
 
 // CONCATENATED MODULE: ./src/components/Build/layoutMixin.js
 
@@ -16371,8 +16371,8 @@ var Layoutvue_type_style_index_0_lang_less_ = __webpack_require__("afe8");
 
 var Layout_component = Object(componentNormalizer["a" /* default */])(
   Build_Layoutvue_type_script_lang_js_,
-  Layoutvue_type_template_id_ea4b73fa_render,
-  Layoutvue_type_template_id_ea4b73fa_staticRenderFns,
+  Layoutvue_type_template_id_74bf9fe9_render,
+  Layoutvue_type_template_id_74bf9fe9_staticRenderFns,
   false,
   null,
   null,
