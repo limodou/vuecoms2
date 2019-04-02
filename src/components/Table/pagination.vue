@@ -88,8 +88,9 @@ export default {
   methods: {
     handlePageSize (size) {
       this.limit = size
-      this.go(1)
       this.$emit('on-page-size', size)
+      this.current = 1
+      this.$emit('on-page', 1)
     },
 
     handlePageClick (page) {
