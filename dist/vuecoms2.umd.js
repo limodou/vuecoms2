@@ -11361,7 +11361,7 @@ function () {
           }
         }
       } else {
-        this.grid.$set(this.states.selected, selection, selection);
+        this.grid.$set(this.states, 'selected', selection);
       } // let flag
       // const callback = (row) => {
       //   flag = false
