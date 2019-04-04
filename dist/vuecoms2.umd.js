@@ -11572,7 +11572,8 @@ function () {
     key: "getPosition",
     value: function getPosition(row, list, position) {
       if (!row || !list || list && list.length === 0) return -1;
-      return utils_list.index(list, row, '_rowKey');
+      var id = this.states.idField || '_rowKey';
+      return utils_list.index(list, row, id);
     } // 新加记录有一个 _new 属性
     // parent 用于处理添加子结点
     // position = 'before', 'after'

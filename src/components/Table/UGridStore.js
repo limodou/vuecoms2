@@ -337,7 +337,8 @@ class Store {
 
   getPosition (row, list, position) {
     if (!row || !list || list && list.length === 0) return -1
-    return List.index(list, row, '_rowKey')
+    let id = this.states.idField || '_rowKey'
+    return List.index(list, row, id)
   }
 
   // 新加记录有一个 _new 属性
