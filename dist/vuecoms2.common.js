@@ -7087,499 +7087,6 @@ module.exports = _inherits;
 
 /***/ }),
 
-/***/ "f13c":
-/***/ (function(module, exports, __webpack_require__) {
-
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	undefined;
-}(this, (function () { 'use strict';
-
-/**
- * https://github.com/gre/bezier-easing
- * BezierEasing - use bezier curve for transition easing function
- * by Gaëtan Renaudeau 2014 - 2015 – MIT License
- */
-
-// These values are established by empiricism with tests (tradeoff: performance VS precision)
-var NEWTON_ITERATIONS = 4;
-var NEWTON_MIN_SLOPE = 0.001;
-var SUBDIVISION_PRECISION = 0.0000001;
-var SUBDIVISION_MAX_ITERATIONS = 10;
-
-var kSplineTableSize = 11;
-var kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
-
-var float32ArraySupported = typeof Float32Array === 'function';
-
-function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
-function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
-function C (aA1)      { return 3.0 * aA1; }
-
-// Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
-function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT; }
-
-// Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
-function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1); }
-
-function binarySubdivide (aX, aA, aB, mX1, mX2) {
-  var currentX, currentT, i = 0;
-  do {
-    currentT = aA + (aB - aA) / 2.0;
-    currentX = calcBezier(currentT, mX1, mX2) - aX;
-    if (currentX > 0.0) {
-      aB = currentT;
-    } else {
-      aA = currentT;
-    }
-  } while (Math.abs(currentX) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
-  return currentT;
-}
-
-function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
- for (var i = 0; i < NEWTON_ITERATIONS; ++i) {
-   var currentSlope = getSlope(aGuessT, mX1, mX2);
-   if (currentSlope === 0.0) {
-     return aGuessT;
-   }
-   var currentX = calcBezier(aGuessT, mX1, mX2) - aX;
-   aGuessT -= currentX / currentSlope;
- }
- return aGuessT;
-}
-
-var src = function bezier (mX1, mY1, mX2, mY2) {
-  if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) {
-    throw new Error('bezier x values must be in [0, 1] range');
-  }
-
-  // Precompute samples table
-  var sampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
-  if (mX1 !== mY1 || mX2 !== mY2) {
-    for (var i = 0; i < kSplineTableSize; ++i) {
-      sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
-    }
-  }
-
-  function getTForX (aX) {
-    var intervalStart = 0.0;
-    var currentSample = 1;
-    var lastSample = kSplineTableSize - 1;
-
-    for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
-      intervalStart += kSampleStepSize;
-    }
-    --currentSample;
-
-    // Interpolate to provide an initial guess for t
-    var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
-    var guessForT = intervalStart + dist * kSampleStepSize;
-
-    var initialSlope = getSlope(guessForT, mX1, mX2);
-    if (initialSlope >= NEWTON_MIN_SLOPE) {
-      return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
-    } else if (initialSlope === 0.0) {
-      return guessForT;
-    } else {
-      return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
-    }
-  }
-
-  return function BezierEasing (x) {
-    if (mX1 === mY1 && mX2 === mY2) {
-      return x; // linear
-    }
-    // Because JavaScript number are imprecise, we should guarantee the extremes are right.
-    if (x === 0) {
-      return 0;
-    }
-    if (x === 1) {
-      return 1;
-    }
-    return calcBezier(getTForX(x), mY1, mY2);
-  };
-};
-
-var easings = {
-    ease: [0.25, 0.1, 0.25, 1.0],
-    linear: [0.00, 0.0, 1.00, 1.0],
-    "ease-in": [0.42, 0.0, 1.00, 1.0],
-    "ease-out": [0.00, 0.0, 0.58, 1.0],
-    "ease-in-out": [0.42, 0.0, 0.58, 1.0]
-};
-
-// https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
-var supportsPassive = false;
-try {
-    var opts = Object.defineProperty({}, "passive", {
-        get: function get() {
-            supportsPassive = true;
-        }
-    });
-    window.addEventListener("test", null, opts);
-} catch (e) {}
-
-var _ = {
-    $: function $(selector) {
-        if (typeof selector !== "string") {
-            return selector;
-        }
-        return document.querySelector(selector);
-    },
-    on: function on(element, events, handler) {
-        var opts = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : { passive: false };
-
-        if (!(events instanceof Array)) {
-            events = [events];
-        }
-        for (var i = 0; i < events.length; i++) {
-            element.addEventListener(events[i], handler, supportsPassive ? opts : false);
-        }
-    },
-    off: function off(element, events, handler) {
-        if (!(events instanceof Array)) {
-            events = [events];
-        }
-        for (var i = 0; i < events.length; i++) {
-            element.removeEventListener(events[i], handler);
-        }
-    },
-    cumulativeOffset: function cumulativeOffset(element) {
-        var top = 0;
-        var left = 0;
-
-        do {
-            top += element.offsetTop || 0;
-            left += element.offsetLeft || 0;
-            element = element.offsetParent;
-        } while (element);
-
-        return {
-            top: top,
-            left: left
-        };
-    }
-};
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var abortEvents = ["mousedown", "wheel", "DOMMouseScroll", "mousewheel", "keyup", "touchmove"];
-
-var defaults$$1 = {
-    container: "body",
-    duration: 500,
-    easing: "ease",
-    offset: 0,
-    force: true,
-    cancelable: true,
-    onStart: false,
-    onDone: false,
-    onCancel: false,
-    x: false,
-    y: true
-};
-
-function setDefaults(options) {
-    defaults$$1 = _extends({}, defaults$$1, options);
-}
-
-var scroller = function scroller() {
-    var element = void 0; // element to scroll to
-    var container = void 0; // container to scroll
-    var duration = void 0; // duration of the scrolling
-    var easing = void 0; // easing to be used when scrolling
-    var offset = void 0; // offset to be added (subtracted)
-    var force = void 0; // force scroll, even if element is visible
-    var cancelable = void 0; // indicates if user can cancel the scroll or not.
-    var onStart = void 0; // callback when scrolling is started
-    var onDone = void 0; // callback when scrolling is done
-    var onCancel = void 0; // callback when scrolling is canceled / aborted
-    var x = void 0; // scroll on x axis
-    var y = void 0; // scroll on y axis
-
-    var initialX = void 0; // initial X of container
-    var targetX = void 0; // target X of container
-    var initialY = void 0; // initial Y of container
-    var targetY = void 0; // target Y of container
-    var diffX = void 0; // difference
-    var diffY = void 0; // difference
-
-    var abort = void 0; // is scrolling aborted
-
-    var abortEv = void 0; // event that aborted scrolling
-    var abortFn = function abortFn(e) {
-        if (!cancelable) return;
-        abortEv = e;
-        abort = true;
-    };
-    var easingFn = void 0;
-
-    var timeStart = void 0; // time when scrolling started
-    var timeElapsed = void 0; // time elapsed since scrolling started
-
-    var progress = void 0; // progress
-
-    function scrollTop(container) {
-        var scrollTop = container.scrollTop;
-
-        if (container.tagName.toLowerCase() === "body") {
-            // in firefox body.scrollTop always returns 0
-            // thus if we are trying to get scrollTop on a body tag
-            // we need to get it from the documentElement
-            scrollTop = scrollTop || document.documentElement.scrollTop;
-        }
-
-        return scrollTop;
-    }
-
-    function scrollLeft(container) {
-        var scrollLeft = container.scrollLeft;
-
-        if (container.tagName.toLowerCase() === "body") {
-            // in firefox body.scrollLeft always returns 0
-            // thus if we are trying to get scrollLeft on a body tag
-            // we need to get it from the documentElement
-            scrollLeft = scrollLeft || document.documentElement.scrollLeft;
-        }
-
-        return scrollLeft;
-    }
-
-    function step(timestamp) {
-        if (abort) return done();
-        if (!timeStart) timeStart = timestamp;
-
-        timeElapsed = timestamp - timeStart;
-
-        progress = Math.min(timeElapsed / duration, 1);
-        progress = easingFn(progress);
-
-        topLeft(container, initialY + diffY * progress, initialX + diffX * progress);
-
-        timeElapsed < duration ? window.requestAnimationFrame(step) : done();
-    }
-
-    function done() {
-        if (!abort) topLeft(container, targetY, targetX);
-        timeStart = false;
-
-        _.off(container, abortEvents, abortFn);
-        if (abort && onCancel) onCancel(abortEv, element);
-        if (!abort && onDone) onDone(element);
-    }
-
-    function topLeft(element, top, left) {
-        if (y) element.scrollTop = top;
-        if (x) element.scrollLeft = left;
-        if (element.tagName.toLowerCase() === "body") {
-            // in firefox body.scrollTop doesn't scroll the page
-            // thus if we are trying to scrollTop on a body tag
-            // we need to scroll on the documentElement
-            if (y) document.documentElement.scrollTop = top;
-            if (x) document.documentElement.scrollLeft = left;
-        }
-    }
-
-    function scrollTo(target, _duration) {
-        var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-        if ((typeof _duration === "undefined" ? "undefined" : _typeof(_duration)) === "object") {
-            options = _duration;
-        } else if (typeof _duration === "number") {
-            options.duration = _duration;
-        }
-
-        element = _.$(target);
-
-        if (!element) {
-            return console.warn("[vue-scrollto warn]: Trying to scroll to an element that is not on the page: " + target);
-        }
-
-        container = _.$(options.container || defaults$$1.container);
-        duration = options.duration || defaults$$1.duration;
-        easing = options.easing || defaults$$1.easing;
-        offset = options.offset || defaults$$1.offset;
-        force = options.hasOwnProperty("force") ? options.force !== false : defaults$$1.force;
-        cancelable = options.hasOwnProperty("cancelable") ? options.cancelable !== false : defaults$$1.cancelable;
-        onStart = options.onStart || defaults$$1.onStart;
-        onDone = options.onDone || defaults$$1.onDone;
-        onCancel = options.onCancel || defaults$$1.onCancel;
-        x = options.x === undefined ? defaults$$1.x : options.x;
-        y = options.y === undefined ? defaults$$1.y : options.y;
-
-        var cumulativeOffsetContainer = _.cumulativeOffset(container);
-        var cumulativeOffsetElement = _.cumulativeOffset(element);
-
-        if (typeof offset === "function") {
-            offset = offset();
-        }
-
-        initialY = scrollTop(container);
-        targetY = cumulativeOffsetElement.top - cumulativeOffsetContainer.top + offset;
-
-        initialX = scrollLeft(container);
-        targetX = cumulativeOffsetElement.left - cumulativeOffsetContainer.left + offset;
-
-        abort = false;
-
-        diffY = targetY - initialY;
-        diffX = targetX - initialX;
-
-        if (!force) {
-            var containerTop = initialY;
-            var containerBottom = containerTop + container.offsetHeight;
-            var elementTop = targetY;
-            var elementBottom = elementTop + element.offsetHeight;
-            if (elementTop >= containerTop && elementBottom <= containerBottom) {
-                return;
-            }
-        }
-
-        if (typeof easing === "string") {
-            easing = easings[easing] || easings["ease"];
-        }
-
-        easingFn = src.apply(src, easing);
-
-        if (!diffY && !diffX) return;
-        if (onStart) onStart(element);
-
-        _.on(container, abortEvents, abortFn, { passive: true });
-
-        window.requestAnimationFrame(step);
-
-        return function () {
-            abortEv = null;
-            abort = true;
-        };
-    }
-
-    return scrollTo;
-};
-
-var _scroller = scroller();
-
-var bindings = []; // store binding data
-
-function deleteBinding(el) {
-    for (var i = 0; i < bindings.length; ++i) {
-        if (bindings[i].el === el) {
-            bindings.splice(i, 1);
-            return true;
-        }
-    }
-    return false;
-}
-
-function findBinding(el) {
-    for (var i = 0; i < bindings.length; ++i) {
-        if (bindings[i].el === el) {
-            return bindings[i];
-        }
-    }
-}
-
-function getBinding(el) {
-    var binding = findBinding(el);
-
-    if (binding) {
-        return binding;
-    }
-
-    bindings.push(binding = {
-        el: el,
-        binding: {}
-    });
-
-    return binding;
-}
-
-function handleClick(e) {
-    e.preventDefault();
-    var ctx = getBinding(this).binding;
-
-    if (typeof ctx.value === "string") {
-        return _scroller(ctx.value);
-    }
-    _scroller(ctx.value.el || ctx.value.element, ctx.value);
-}
-
-var VueScrollTo$1 = {
-    bind: function bind(el, binding) {
-        getBinding(el).binding = binding;
-        _.on(el, "click", handleClick);
-    },
-    unbind: function unbind(el) {
-        deleteBinding(el);
-        _.off(el, "click", handleClick);
-    },
-    update: function update(el, binding) {
-        getBinding(el).binding = binding;
-    },
-
-    scrollTo: _scroller,
-    bindings: bindings
-};
-
-var install = function install(Vue, options) {
-    if (options) setDefaults(options);
-    Vue.directive("scroll-to", VueScrollTo$1);
-    Vue.prototype.$scrollTo = VueScrollTo$1.scrollTo;
-};
-
-if (typeof window !== "undefined" && window.Vue) {
-    window.VueScrollTo = VueScrollTo$1;
-    window.VueScrollTo.setDefaults = setDefaults;
-    window.Vue.use(install);
-}
-
-VueScrollTo$1.install = install;
-
-return VueScrollTo$1;
-
-})));
-
-
-/***/ }),
-
 /***/ "f52f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7786,19 +7293,21 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Box = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=a6f33308&
-var UGridvue_type_template_id_a6f33308_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_a6f33308_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=21ca1ca6&
+var UGridvue_type_template_id_21ca1ca6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_21ca1ca6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=a6f33308&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=21ca1ca6&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=3398259a&
-var UTablevue_type_template_id_3398259a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:{selected:_vm.store.selected(row.row), hover:_vm.hoverRowKey && row._rowKey==_vm.hoverRowKey},style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
-var UTablevue_type_template_id_3398259a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0a229372&
+var UTablevue_type_template_id_0a229372_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
+var _obj;
+return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:( _obj = {}, _obj[_vm.store.states.selectedRowClass] = _vm.store.states.selectedRowClass && _vm.store.selected(row.row), _obj.hover = _vm.hoverRowKey && row._rowKey==_vm.hoverRowKey, _obj ),style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){_vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){_vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan},on:{"click":function($event){_vm.handleClick(col.row)}}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed}})],1)})):_vm._e()}))])])])}
+var UTablevue_type_template_id_0a229372_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=3398259a&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=0a229372&
 
 // EXTERNAL MODULE: external "iview"
 var external_iview_ = __webpack_require__("3955");
@@ -8485,12 +7994,12 @@ function _broadcast(componentName, eventName, params) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=20024b84&
-var UCellvue_type_template_id_20024b84_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField===_vm.col.column.name && _vm.col.row[_vm.childrenField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && _vm.col.row[_vm.expandField])?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.checkable)?[(_vm.store.selected(_vm.col.row))?_c('i',{staticClass:"ivu-icon ivu-icon-md-checkbox u-cell-checkbox",staticStyle:{"color":"#2489f3"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_c('i',{staticClass:"ivu-icon ivu-icon-md-square-outline u-cell-checkbox",staticStyle:{"color":"#bdbdbd"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}})]:_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{nowrap:_vm.nowrap}},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],2),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
-var UCellvue_type_template_id_20024b84_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=3eab223e&
+var UCellvue_type_template_id_3eab223e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField===_vm.col.column.name && _vm.col.row[_vm.childrenField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && _vm.col.row[_vm.expandField])?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.value)}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.checkable)?[(_vm.store.selected(_vm.col.row))?_c('i',{staticClass:"ivu-icon ivu-icon-md-checkbox u-cell-checkbox",staticStyle:{"color":"#2489f3"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_c('i',{staticClass:"ivu-icon ivu-icon-md-square-outline u-cell-checkbox",staticStyle:{"color":"#bdbdbd"},on:{"click":function($event){$event.stopPropagation();return _vm.handleCheckClick($event)}}})]:_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{nowrap:_vm.nowrap}},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],2),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
+var UCellvue_type_template_id_3eab223e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=20024b84&
+// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=3eab223e&
 
 // CONCATENATED MODULE: ./src/components/Table/UCellRender.js
 
@@ -9979,6 +9488,46 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
     }
 
     return result;
+  },
+  reorder: function reorder(list, pos, des, options) {
+    var b = pos;
+    var e = des;
+
+    if (b > e) {
+      b = des;
+      e = pos;
+    }
+
+    var order = [];
+    var ids = [];
+
+    for (var i = b, len = e; i < e + 1 && i < list.length; i++) {
+      ids.push(list[i][options.idField]);
+      order.push(list[i][options.orderField]);
+    }
+
+    var r;
+
+    if (pos > des) {
+      // 向前移动
+      r = ids.splice(ids.length - 1, 1);
+      ids.splice(0, 0, r[0]);
+    } else {
+      r = ids.splice(0, 1);
+      ids.push(r[0]);
+    }
+
+    var result = [];
+    var d;
+
+    for (var _i2 = 0, _len3 = ids.length; _i2 < _len3; _i2++) {
+      d = {};
+      d[options.idField] = ids[_i2];
+      d[options.orderField] = order[_i2];
+      result.push(d);
+    }
+
+    return result;
   }
 });
 /*
@@ -10178,6 +9727,12 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
               if (others && others instanceof Object) {
                 _this.store.mergeStates(others);
               }
+
+              if (_this.afterLoadData) {
+                _this.afterLoadData();
+
+                _this.afterLoadData = null; // 清除
+              }
             } //更新
 
 
@@ -10233,8 +9788,8 @@ var UCellvue_type_style_index_0_lang_less_ = __webpack_require__("af09");
 
 var UCell_component = Object(componentNormalizer["a" /* default */])(
   Table_UCellvue_type_script_lang_js_,
-  UCellvue_type_template_id_20024b84_render,
-  UCellvue_type_template_id_20024b84_staticRenderFns,
+  UCellvue_type_template_id_3eab223e_render,
+  UCellvue_type_template_id_3eab223e_staticRenderFns,
   false,
   null,
   null,
@@ -11044,8 +10599,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_3398259a_render,
-  UTablevue_type_template_id_3398259a_staticRenderFns,
+  UTablevue_type_template_id_0a229372_render,
+  UTablevue_type_template_id_0a229372_staticRenderFns,
   false,
   null,
   null,
@@ -11054,9 +10609,6 @@ var UTable_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UTable = (UTable_component.exports);
-// EXTERNAL MODULE: ./node_modules/vue-scrollto/vue-scrollto.js
-var vue_scrollto = __webpack_require__("f13c");
-
 // CONCATENATED MODULE: ./src/components/Table/UGridStore.js
 
 
@@ -11090,12 +10642,16 @@ function () {
       cellTitle: true,
       // 单元格显示title属性
       idField: 'id',
+      orderField: '',
+      // 排序字段
       static: false,
       // 是否静态，如果true，则行编辑将禁止，不能进行行选择，可以执行setSelection()
       data: [],
       multiSelect: false,
       clickSelect: false,
       // 点击选中
+      selectedRowClass: 'selected',
+      // 选中行反显样式，可以设为指定类名
       resizable: true,
       // 是否表头列可以调整大小
       draggable: false,
@@ -11176,6 +10732,9 @@ function () {
       onRowEditRender: null,
       // 判断某行编辑列重定义 function (h, row) 返回 null 表示使用缺省的编辑render，
       // 否则应返回一个自定义的render, h为create函数
+      onMove: null,
+      // 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
+      // 需要定义idField，返回为true，表示成功，否则不进行排序
       // 内部变量
       drawColumns: [],
       // 用于绘制的表头
@@ -11199,6 +10758,8 @@ function () {
       selected: {},
       // 记录选中结果，可以跨页保存
       selectedRows: {},
+      afterLoadData: null,
+      // 在loadData之后的回调用于特殊场合，处理之后会清除，只会运行一次
       // 分页相关参数
       prev: '上一页',
       next: '下一页',
@@ -11244,15 +10805,17 @@ function () {
   }, {
     key: "toggle",
     value: function toggle(row) {
-      if (this.selected(row)) this.deselect(row);else this.select(row);
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      if (this.selected(row)) this.deselect(row, force);else this.select(row, force);
     }
   }, {
     key: "_select",
     value: function _select(row) {
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var selectable = true;
 
-      if (this.states.onSelect) {
-        selectable = this.states.onSelect(row);
+      if (!force && this.states.onSelect) {
+        selectable = this.states.onSelect(row, true);
       }
 
       if (selectable) {
@@ -11260,65 +10823,90 @@ function () {
         this.grid.$set(this.states.selected, id, id);
         this.grid.$set(this.states.selectedRows, id, row);
       }
+
+      return selectable;
     }
   }, {
     key: "select",
     value: function select(row) {
-      if (!this.states.multiSelect) this.deselectAll();
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      this._select(row);
-
-      this.grid.$emit('on-selected', row);
+      if (this._select(row, force)) {
+        if (!this.states.multiSelect) this.deselectAll();
+        this.grid.$emit('on-selected', row);
+      }
     }
   }, {
     key: "selectAll",
     value: function selectAll() {
       var _this = this;
 
+      var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var rows = [];
       this.states.data.forEach(function (row) {
-        _this._select(row);
+        if (!_this._select(row, force)) {
+          rows.push(row);
+        }
       });
-      this.grid.$emit('on-selected-all');
+      this.grid.$emit('on-selected-all', rows);
     }
   }, {
     key: "_deselect",
     value: function _deselect(row) {
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var deselectable = true;
 
-      if (this.states.onDeselect) {
+      if (!force && this.states.onDeselect) {
         deselectable = this.states.onDeselect(row);
+      } else if (!force && this.states.onSelect) {
+        deselectable = this.states.onSelect(row, false);
       }
 
-      this.grid.$set(row, '_deselected', deselectable);
-      var id = row[this.states.idField] || row._rowKey;
-
       if (deselectable) {
+        var id = row[this.states.idField] || row._rowKey;
         this.grid.$delete(this.states.selected, id);
         this.grid.$delete(this.states.selectedRows, id);
       }
+
+      return deselectable;
     }
   }, {
     key: "deselect",
     value: function deselect(row) {
-      this._deselect(row);
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      this.grid.$emit('on-deselected', row);
+      if (this._deselect(row, force)) {
+        this.grid.$emit('on-deselected', row);
+      }
     }
   }, {
     key: "deselectAll",
     value: function deselectAll() {
       var _this2 = this;
 
+      var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var rows = [];
       this.states.data.forEach(function (row) {
-        _this2._deselect(row);
-      });
-      this.states.selected = {};
-      this.grid.$emit('on-deselected-all');
+        if (!_this2._deselect(row)) {
+          rows.push(row);
+        }
+      }); // if (rows.length === 0) {
+      //   this.states.selected = {}
+      //   this.states.selectedRows = {}
+      // }
+
+      this.grid.$emit('on-deselected-all', rows);
     }
   }, {
     key: "getSelection",
     value: function getSelection() {
-      return Object.values(this.states.selected);
+      var s = [];
+
+      for (var c in this.states.selected) {
+        s.push(c);
+      }
+
+      return s;
     }
   }, {
     key: "getSelectedRows",
@@ -11330,6 +10918,7 @@ function () {
     value: function setSelection(selection) {
       var _this3 = this;
 
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       // if (Array.isArray(selection)) {
       //   for(let c of selection) {
       //     this.grid.$set(this.states.selected, c, c)
@@ -11357,9 +10946,9 @@ function () {
         index = s.indexOf(id);
 
         if (index > -1) {
-          _this3._select(row);
+          _this3._select(row, force);
 
-          s.splice(index, 1, 1);
+          s.splice(index, 1);
         }
 
         if (s.length === 0) return true;
@@ -11413,7 +11002,7 @@ function () {
     value: function removeRow(row) {
       var d;
       if (!row._parent) d = this.states.data;else d = row._parent[this.states.childrenField];
-      var removed = utils_list.remove(d, row, '_rowKey');
+      var removed = utils_list.remove(d, row, this.getKeyField(row));
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
@@ -11421,7 +11010,7 @@ function () {
       try {
         for (var _iterator2 = removed[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var i = _step2.value;
-          this.deselect(i);
+          this.deselect(i, true);
           this.states.total -= 1;
         }
       } catch (err) {
@@ -11551,20 +11140,34 @@ function () {
           this.grid.$delete(r, col);
         }
       }
+    }
+  }, {
+    key: "getKeyField",
+    value: function getKeyField(row) {
+      var key;
+
+      if (row[this.states.idField]) {
+        key = 'id';
+      } else if (row['_rowKey']) {
+        key = '_rowKey';
+      } else {
+        throw Error('Row data has not defined idField or _rowKey');
+      }
+
+      return key;
     } // 更新行
 
   }, {
     key: "updateRow",
     value: function updateRow(row) {
-      utils_list.update(this.states.data, row, '_rowKey');
+      utils_list.update(this.states.data, row, this.getKeyField(row));
       return row;
     }
   }, {
     key: "getPosition",
-    value: function getPosition(row, list, position) {
+    value: function getPosition(row, list) {
       if (!row || !list || list && list.length === 0) return -1;
-      var id = this.states.idField || '_rowKey';
-      return utils_list.index(list, row, id);
+      return utils_list.index(list, row, this.getKeyField(row));
     } // 新加记录有一个 _new 属性
     // parent 用于处理添加子结点
     // position = 'before', 'after'
@@ -11615,7 +11218,7 @@ function () {
 
       if (!item) {
         data = this.states.data;
-        pos = this.getPosition(item, data, position);
+        pos = -1;
       } else if (!isChild) {
         data = item._parent;
 
@@ -11625,7 +11228,7 @@ function () {
           data = this.states.data;
         }
 
-        pos = this.getPosition(item, data, position);
+        pos = this.getPosition(item, data);
       } else {
         data = item[this.states.childrenField];
 
@@ -11660,34 +11263,7 @@ function () {
       var isChild = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       var n_row = this.addRow(row, parent, position, isChild);
       this.grid.$set(n_row, '_editRow', Object.assign({}, n_row));
-      this.grid.$set(n_row, '_editting', true); // if (options === undefined) return
-      // this.grid.$nextTick(() => {
-      //   let el = this.grid.$refs.table.$refs.rows[this.states.data.length-1]
-      //   function findParent(e) {
-      //     let p = e.parentNode
-      //     while (p) {
-      //       if (p.scrollHeight > p.clientHeight) break
-      //       p = p.parentNode
-      //     }
-      //     return p
-      //   }
-      //   // var container = el.offsetParent.offsetParent
-      //   var _options = {
-      //     easing: 'ease-in',
-      //     offset: 0,
-      //     cancelable: false,
-      //     x: false,
-      //     y: true
-      //   }
-      //   if (options === true) options = {}
-      //   else if (typeof options === 'string') options = {container: options}
-      //   let opts = Object.assign({}, _options, options)
-      //   if (!opts.container) {
-      //     opts.container = findParent(el) || 'body'
-      //   }
-      //   VueScrollTo.scrollTo(el, 1, opts)
-      // })
-
+      this.grid.$set(n_row, '_editting', true);
       return n_row;
     }
   }, {
@@ -11755,6 +11331,7 @@ function () {
     key: "getDefaultRow",
     value: function getDefaultRow() {
       var row = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var parent = arguments.length > 1 ? arguments[1] : undefined;
       return Object.assign({
         _hover: false,
         _selectable: true,
@@ -11786,18 +11363,151 @@ function () {
       });
       return rows;
     }
+  }, {
+    key: "_callOnMove",
+    value: function _callOnMove(order) {
+      var _this5 = this;
+
+      return new Promise(function (resolve, reject) {
+        if (_this5.states.onMove) {
+          var callback = function callback(result) {
+            if (result) {
+              resolve(true);
+            } else {
+              reject(false);
+            }
+          };
+
+          _this5.states.onMove(order, callback);
+        } else {
+          resolve(true);
+        }
+      });
+    }
+  }, {
+    key: "_move",
+    value: function _move(data, pos, des, row) {
+      var _this6 = this;
+
+      var _id = this.states.idField;
+      var _order = this.states.orderField;
+      if (pos === des) return;
+      var begin = pos;
+      var end = des;
+
+      if (pos > des) {
+        begin = des;
+        end = pos;
+      }
+
+      var new_order = utils_list.reorder(data, pos, des, {
+        idField: _id,
+        orderField: _order
+      });
+
+      this._callOnMove(new_order).then(function () {
+        for (var i = begin, _len = end; i <= _len && i < data.length; i++) {
+          for (var j = 0, _len_j = new_order.length; j < _len_j; j++) {
+            if (new_order[j][_this6.states.idField] === data[i][_this6.states.idField]) {
+              data[i][_order] = new_order[j][_order];
+              break;
+            }
+          }
+        }
+
+        row = data.splice(pos, 1);
+        data.splice(des, 0, row[0]);
+      });
+    } // 移动元素位置
+    // position up, down, first, last
+
+  }, {
+    key: "moveRow",
+    value: function moveRow(row, position) {
+      var _this7 = this;
+
+      var d, des; // 目标位置
+
+      var _id = this.states.idField;
+      var _order = this.states.orderField;
+      if (!row._parent) d = this.states.data;else d = row._parent[this.states.childrenField];
+      var pos = this.getPosition(row, d);
+      row = this.states.data[pos];
+
+      switch (position) {
+        case 'up':
+          des = pos - 1;
+
+          if (des < 0 && !row._parent && this.states.page > 1) {
+            this.states.afterLoadData = function () {
+              var _new_order$push, _new_order$push2;
+
+              var new_order = [];
+              var last = _this7.states.data[_this7.states.data.length - 1];
+              new_order.push((_new_order$push = {}, defineProperty_default()(_new_order$push, _id, row[_id]), defineProperty_default()(_new_order$push, _order, last[_order]), _new_order$push));
+              new_order.push((_new_order$push2 = {}, defineProperty_default()(_new_order$push2, _id, last[_id]), defineProperty_default()(_new_order$push2, _order, row[_order]), _new_order$push2));
+
+              _this7._callOnMove(new_order).then(function () {
+                row[_order] = last[_order];
+
+                _this7.states.data.splice(_this7.states.data.length - 1, 1, row);
+              });
+            };
+
+            this.grid.go(this.states.page - 1);
+            return;
+          }
+
+          break;
+
+        case 'down':
+          des = pos + 1;
+
+          if (des >= this.states.data.length && !row._parent && this.states.page < this.grid.$refs.pagination.pages) {
+            this.states.afterLoadData = function () {
+              var _new_order$push3, _new_order$push4;
+
+              var new_order = [];
+              var last = _this7.states.data[0];
+              new_order.push((_new_order$push3 = {}, defineProperty_default()(_new_order$push3, _id, row[_id]), defineProperty_default()(_new_order$push3, _order, last[_order]), _new_order$push3));
+              new_order.push((_new_order$push4 = {}, defineProperty_default()(_new_order$push4, _id, last[_id]), defineProperty_default()(_new_order$push4, _order, row[_order]), _new_order$push4));
+
+              _this7._callOnMove(new_order).then(function () {
+                row[_order] = last[_order];
+
+                _this7.states.data.splice(0, 1, row);
+              });
+            };
+
+            this.grid.go(this.states.page + 1);
+            return;
+          }
+
+          break;
+
+        case 'first':
+          des = 0;
+          break;
+
+        case 'last':
+          des = d.length;
+          break;
+      }
+
+      this._move(d, pos, des, row);
+    }
   }]);
 
   return Store;
 }();
 
 /* harmony default export */ var UGridStore = (UGridStore_Store);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/pagination.vue?vue&type=template&id=e2b65fee&
-var paginationvue_type_template_id_e2b65fee_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pagination"},[_c('ul',[(_vm.first)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasFirst},attrs:{"title":_vm.first}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(1)}}},[_vm._v(_vm._s(_vm.first))])]):_vm._e(),(_vm.prev)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasPrev},attrs:{"title":_vm.prev}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.current-1)}}},[_vm._v(_vm._s(_vm.prev))])]):_vm._e(),(_vm.next)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasNext},attrs:{"title":_vm.next}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.current+1)}}},[_vm._v(_vm._s(_vm.next))])]):_vm._e(),(_vm.last)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasLast},attrs:{"title":_vm.last}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.pages)}}},[_vm._v(_vm._s(_vm.last))])]):_vm._e(),_c('Dropdown',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",on:{"on-click":_vm.handlePageSize}},[_c('a',[_vm._v("\n        "+_vm._s(_vm.limit)+"条/页\n        "),_c('Icon',{attrs:{"type":"ios-arrow-down"}})],1),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},_vm._l((_vm.pageSizeOpts),function(x){return _c('DropdownItem',{key:x,attrs:{"name":x}},[_vm._v(_vm._s(x)+"条/页")])}))],1),_c('li',{staticClass:"ivu-btn ivu-btn-text ivu-btn-small page-input"},[_vm._v("\n    跳至\n      "),_c('input',{ref:"page",attrs:{"type":"text"},domProps:{"value":_vm.current},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.handleEnter($event)}}}),_vm._v("\n    页\n    ")])],1),_vm._t("default"),_c('span',{staticClass:"page-total"},[_vm._v("共 "+_vm._s(_vm.pages)+" 页/"+_vm._s(_vm.total)+" 条记录")])],2)}
-var paginationvue_type_template_id_e2b65fee_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/pagination.vue?vue&type=template&id=396223e4&
+var paginationvue_type_template_id_396223e4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pagination"},[_c('ul',[(_vm.first)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasFirst},attrs:{"title":_vm.first}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(1)}}},[_vm._v(_vm._s(_vm.first))])]):_vm._e(),(_vm.prev)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasPrev},attrs:{"title":_vm.prev}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.current-1)}}},[_vm._v(_vm._s(_vm.prev))])]):_vm._e(),(_vm.next)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasNext},attrs:{"title":_vm.next}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.current+1)}}},[_vm._v(_vm._s(_vm.next))])]):_vm._e(),(_vm.last)?_c('li',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",class:{'disabled':!_vm.hasLast},attrs:{"title":_vm.last}},[_c('a',{on:{"click":function($event){$event.preventDefault();_vm.handlePageClick(_vm.pages)}}},[_vm._v(_vm._s(_vm.last))])]):_vm._e(),_c('Dropdown',{staticClass:"ivu-btn ivu-btn-default ivu-btn-small",attrs:{"transfer":""},on:{"on-click":_vm.handlePageSize}},[_c('a',[_vm._v("\n        "+_vm._s(_vm.limit)+"条/页\n        "),_c('Icon',{attrs:{"type":"ios-arrow-down"}})],1),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},_vm._l((_vm.pageSizeOpts),function(x){return _c('DropdownItem',{key:x,attrs:{"name":x}},[_vm._v(_vm._s(x)+"条/页")])}))],1),_c('li',{staticClass:"ivu-btn ivu-btn-text ivu-btn-small page-input"},[_vm._v("\n    跳至\n      "),_c('input',{ref:"page",attrs:{"type":"text"},domProps:{"value":_vm.current},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.handleEnter($event)}}}),_vm._v("\n    页\n    ")])],1),_vm._t("default"),_c('span',{staticClass:"page-total"},[_vm._v("共 "+_vm._s(_vm.pages)+" 页/"+_vm._s(_vm.total)+" 条记录")])],2)}
+var paginationvue_type_template_id_396223e4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/pagination.vue?vue&type=template&id=e2b65fee&
+// CONCATENATED MODULE: ./src/components/Table/pagination.vue?vue&type=template&id=396223e4&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/pagination.vue?vue&type=script&lang=js&
 
@@ -11931,8 +11641,8 @@ var paginationvue_type_style_index_0_lang_less_ = __webpack_require__("253f");
 
 var pagination_component = Object(componentNormalizer["a" /* default */])(
   Table_paginationvue_type_script_lang_js_,
-  paginationvue_type_template_id_e2b65fee_render,
-  paginationvue_type_template_id_e2b65fee_staticRenderFns,
+  paginationvue_type_template_id_396223e4_render,
+  paginationvue_type_template_id_396223e4_staticRenderFns,
   false,
   null,
   null,
@@ -14603,7 +14313,7 @@ function resetTriggers(elem) {
       }
     }
   },
-  computed: objectSpread_default()({}, mapState('columns', 'columnResizing', 'checkCol', 'indexCol', 'gridWidth', 'width', 'height', 'resizable', 'columnPosition', 'guiderHeight', 'defaultColWidth', 'leftWidth', 'rightWidth', 'checkColTitle', 'checkColWidth', 'indexColWidth', 'indexColTitle', 'scrollLeft', 'total', 'pageSizeOpts', 'pagination', 'loading', 'loadingText', 'loadingTop', 'loadingLeft', 'autoLoad', 'url', 'param', 'buttons', 'rightButtons', 'bottomButtons', 'selected', 'editMode', 'actionColumn', 'deleteRowConfirm', 'onSaveRow', 'onDeleteRow', 'onLoadData', 'query', 'theme', 'cellTitle', 'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo', 'onRowEditRender', 'static', 'xscroll'), {
+  computed: objectSpread_default()({}, mapState('columns', 'columnResizing', 'checkCol', 'indexCol', 'gridWidth', 'width', 'height', 'resizable', 'columnPosition', 'guiderHeight', 'defaultColWidth', 'leftWidth', 'rightWidth', 'checkColTitle', 'checkColWidth', 'indexColWidth', 'indexColTitle', 'scrollLeft', 'total', 'pageSizeOpts', 'pagination', 'loading', 'loadingText', 'loadingTop', 'loadingLeft', 'autoLoad', 'url', 'param', 'buttons', 'rightButtons', 'bottomButtons', 'selected', 'editMode', 'actionColumn', 'deleteRowConfirm', 'onSaveRow', 'onDeleteRow', 'onLoadData', 'query', 'theme', 'cellTitle', 'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo', 'onRowEditRender', 'static', 'xscroll', 'afterLoadData'), {
     columnDraggerStyles: function columnDraggerStyles() {
       return {
         left: this.columnPosition - 7 + 'px',
@@ -15119,6 +14829,9 @@ function resetTriggers(elem) {
         }
       }, row._editting ? '取消' : '删除');
     },
+    go: function go(page) {
+      this.$refs.pagination.go(page);
+    },
     loadData: function loadData(url, param) {
       var _this6 = this;
 
@@ -15140,6 +14853,12 @@ function resetTriggers(elem) {
 
         if (others && others instanceof Object) {
           _this6.store.mergeStates(others);
+        }
+
+        if (_this6.afterLoadData) {
+          _this6.afterLoadData();
+
+          _this6.afterLoadData = null; // 清除
         }
 
         _this6.$nextTick(function () {
@@ -15306,8 +15025,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_a6f33308_render,
-  UGridvue_type_template_id_a6f33308_staticRenderFns,
+  UGridvue_type_template_id_21ca1ca6_render,
+  UGridvue_type_template_id_21ca1ca6_staticRenderFns,
   false,
   null,
   null,

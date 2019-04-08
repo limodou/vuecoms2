@@ -1,6 +1,5 @@
 import List from '../utils/list.js'
 import {uuid, walkTree, isEmpty} from '../utils/utils.js'
-import VueScrollTo from 'vue-scrollto'
 
 let rowKey = 1
 
@@ -22,10 +21,12 @@ class Store {
       checkColTitle: '',
       cellTitle: true, // 单元格显示title属性
       idField: 'id',
+      orderField: '', // 排序字段
       static: false, // 是否静态，如果true，则行编辑将禁止，不能进行行选择，可以执行setSelection()
       data: [],
       multiSelect: false,
       clickSelect: false,  // 点击选中
+      selectedRowClass: 'selected', // 选中行反显样式，可以设为指定类名
       resizable: true, // 是否表头列可以调整大小
       draggable: false,
       indexCol: false, // 是否显示序号列
@@ -76,6 +77,8 @@ class Store {
       onDeleteRow: null,// 删除行的确认 function (row, callback), callback(flag, data)
       onRowEditRender: null, // 判断某行编辑列重定义 function (h, row) 返回 null 表示使用缺省的编辑render，
                               // 否则应返回一个自定义的render, h为create函数
+      onMove: null,// 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
+                   // 需要定义idField，返回为true，表示成功，否则不进行排序
 
       // 内部变量
       drawColumns: [], // 用于绘制的表头
@@ -93,6 +96,7 @@ class Store {
       loading: false, // 是否显示loading信息
       selected: {}, // 记录选中结果，可以跨页保存
       selectedRows: {},
+      afterLoadData: null, // 在loadData之后的回调用于特殊场合，处理之后会清除，只会运行一次
 
       // 分页相关参数
       prev: '上一页',
@@ -133,71 +137,89 @@ class Store {
     return this.states.selected[id]
   }
 
-  toggle (row) {
-    if (this.selected(row)) this.deselect(row)
-    else this.select(row)
+  toggle (row, force=false) {
+    if (this.selected(row)) this.deselect(row, force)
+    else this.select(row, force)
   }
 
-  _select (row) {
+  _select (row, force=false) {
     let selectable = true
-    if (this.states.onSelect) {
-      selectable = this.states.onSelect(row)
+    if (!force && this.states.onSelect) {
+      selectable = this.states.onSelect(row, true)
     }
     if (selectable) {
       let id = row[this.states.idField] || row._rowKey
       this.grid.$set(this.states.selected, id, id)
       this.grid.$set(this.states.selectedRows, id, row)
     }
+    return selectable
   }
 
-  select (row) {
-    if (!this.states.multiSelect) this.deselectAll()
-    this._select(row)
-    this.grid.$emit('on-selected', row)
-  }
-
-  selectAll () {
-    this.states.data.forEach(row => {
-      this._select(row)
-    })
-    this.grid.$emit('on-selected-all')
-  }
-
-  _deselect (row) {
-    let deselectable = true
-    if (this.states.onDeselect) {
-      deselectable = this.states.onDeselect(row)
+  select (row, force=false) {
+    if (this._select(row, force)) {
+      if (!this.states.multiSelect) this.deselectAll()
+      this.grid.$emit('on-selected', row)
     }
-    this.grid.$set(row, '_deselected', deselectable)
-    let id = row[this.states.idField] || row._rowKey
+  }
+
+  selectAll (force=false) {
+    let rows = []
+    this.states.data.forEach(row => {
+      if (!this._select(row, force)) {
+        rows.push(row)
+      }
+    })
+    this.grid.$emit('on-selected-all', rows)
+  }
+
+  _deselect (row, force=false) {
+    let deselectable = true
+    if (!force && this.states.onDeselect) {
+      deselectable = this.states.onDeselect(row)
+    } else if (!force && this.states.onSelect) {
+      deselectable = this.states.onSelect(row, false)
+    }
     if (deselectable) {
+      let id = row[this.states.idField] || row._rowKey
       this.grid.$delete(this.states.selected, id)
       this.grid.$delete(this.states.selectedRows, id)
     }
+    return deselectable
   }
 
-  deselect (row) {
-    this._deselect(row)
-    this.grid.$emit('on-deselected', row)
+  deselect (row, force=false) {
+    if (this._deselect(row, force)) {
+      this.grid.$emit('on-deselected', row)
+    }
   }
 
-  deselectAll () {
+  deselectAll (force=false) {
+    let rows = []
     this.states.data.forEach(row => {
-      this._deselect(row)
+      if (!this._deselect(row)){
+        rows.push(row)
+      }
     })
-    this.states.selected = {}
-    this.grid.$emit('on-deselected-all')
+    // if (rows.length === 0) {
+    //   this.states.selected = {}
+    //   this.states.selectedRows = {}
+    // }
+    this.grid.$emit('on-deselected-all', rows)
   }
 
   getSelection () {
-    return Object.values(this.states.selected)
+    let s = []
+    for (let c in this.states.selected) {
+      s.push(c)
+    }
+    return s
   }
 
   getSelectedRows () {
     return Object.values(this.states.selectedRows)
   }
 
-  setSelection (selection) {
+  setSelection (selection, force=true) {
     // if (Array.isArray(selection)) {
     //   for(let c of selection) {
     //     this.grid.$set(this.states.selected, c, c)
@@ -221,8 +243,8 @@ class Store {
       let id = row[this.states.idField]
       index = s.indexOf(id)
       if (index > -1) {
-        this._select(row)
-        s.splice(index, 1, 1)
+        this._select(row, force)
+        s.splice(index, 1)
       }
       if (s.length === 0) return true
     }
@@ -250,9 +272,9 @@ class Store {
     let d
     if (!row._parent) d = this.states.data
     else d = row._parent[this.states.childrenField]
-    let removed = List.remove(d, row, '_rowKey')
+    let removed = List.remove(d, row, this.getKeyField(row))
     for(let i of removed) {
-      this.deselect(i)
+      this.deselect(i, true)
       this.states.total -= 1
     }
   }
@@ -329,16 +351,27 @@ class Store {
     }
   }
 
+  getKeyField (row) {
+    let key
+    if (row[this.states.idField]) {
+      key = 'id'
+    } else if (row['_rowKey']) {
+      key = '_rowKey'
+    } else {
+      throw Error('Row data has not defined idField or _rowKey')
+    }
+    return key
+  }
+
   // 更新行
-  updateRow (row){
-    List.update(this.states.data, row, '_rowKey')
+  updateRow (row) {
+    List.update(this.states.data, row, this.getKeyField(row))
     return row
   }
 
-  getPosition (row, list, position) {
+  getPosition (row, list) {
     if (!row || !list || list && list.length === 0) return -1
-    let id = this.states.idField || '_rowKey'
-    return List.index(list, row, id)
+    return List.index(list, row, this.getKeyField(row))
   }
 
   // 新加记录有一个 _new 属性
@@ -363,7 +396,7 @@ class Store {
     // }
     if (!item){
       data = this.states.data
-      pos = this.getPosition(item, data, position)
+      pos = -1
     } else if(!isChild) {
       data = item._parent
       if (data) {
@@ -371,7 +404,7 @@ class Store {
       } else {
         data = this.states.data
       }
-      pos = this.getPosition(item, data, position)
+      pos = this.getPosition(item, data)
     } else {
       data = item[this.states.childrenField]
       if (!data) {
@@ -403,35 +436,6 @@ class Store {
     let n_row = this.addRow(row, parent, position, isChild)
     this.grid.$set(n_row, '_editRow', Object.assign({}, n_row))
     this.grid.$set(n_row, '_editting', true)
-    // if (options === undefined) return
-
-    // this.grid.$nextTick(() => {
-    //   let el = this.grid.$refs.table.$refs.rows[this.states.data.length-1]
-    //   function findParent(e) {
-    //     let p = e.parentNode
-    //     while (p) {
-    //       if (p.scrollHeight > p.clientHeight) break
-    //       p = p.parentNode
-    //     }
-    //     return p
-    //   }
-    //   // var container = el.offsetParent.offsetParent
-    //   var _options = {
-    //     easing: 'ease-in',
-    //     offset: 0,
-    //     cancelable: false,
-    //     x: false,
-    //     y: true
-    //   }
-    //   if (options === true) options = {}
-    //   else if (typeof options === 'string') options = {container: options}
-    //   let opts = Object.assign({}, _options, options)
-    //   if (!opts.container) {
-    //     opts.container = findParent(el) || 'body'
-    //   }
-    //   VueScrollTo.scrollTo(el, 1, opts)
-    // })
-
     return n_row
   }
 
@@ -470,7 +474,7 @@ class Store {
       this.states.query.value = Object.assign({}, p)
   }
 
-  getDefaultRow (row={}) {
+  getDefaultRow (row={}, parent) {
     return Object.assign({
       _hover: false,
       _selectable: true, // 可被选中
@@ -496,6 +500,102 @@ class Store {
     return rows
   }
 
+  _callOnMove (order) {
+    return new Promise((resolve, reject) => {
+      if (this.states.onMove) {
+        const callback = (result) => {
+          if (result) {
+            resolve(true)
+          } else {
+            reject(false)
+          }
+        }
+        this.states.onMove(order, callback)
+      } else {
+        resolve(true)
+      }
+    })
+  }
+
+  _move(data, pos, des, row) {
+    let _id = this.states.idField
+    let _order = this.states.orderField
+    if (pos === des) return
+    let begin = pos
+    let end = des
+    if (pos > des) {
+      begin = des
+      end = pos
+    }
+    let new_order = List.reorder(data, pos, des, {idField: _id, orderField: _order})
+    this._callOnMove(new_order).then(() => {
+      for(let i=begin, _len=end; i<=_len && i<data.length; i++) {
+        for(let j=0, _len_j=new_order.length; j<_len_j; j++) {
+          if (new_order[j][this.states.idField] === data[i][this.states.idField]) {
+            data[i][_order] = new_order[j][_order]
+            break
+          }
+        }
+      }
+      row = data.splice(pos, 1)
+      data.splice(des, 0, row[0])  
+    })
+  }
+
+  // 移动元素位置
+  // position up, down, first, last
+  moveRow (row, position) {
+    let d, des // 目标位置
+    let _id = this.states.idField
+    let _order = this.states.orderField
+    if (!row._parent) d = this.states.data
+    else d = row._parent[this.states.childrenField]
+    let pos = this.getPosition(row, d)
+    row = this.states.data[pos]
+    switch (position) {
+      case 'up':
+        des = pos - 1
+        if (des < 0 && !row._parent && this.states.page > 1) {
+          this.states.afterLoadData = () => {
+            let new_order = []
+            let last = this.states.data[this.states.data.length-1]
+            new_order.push({[_id]:row[_id], [_order]:last[_order]})
+            new_order.push({[_id]:last[_id], [_order]:row[_order]})
+            this._callOnMove(new_order).then(() => {
+              row[_order] = last[_order]
+              this.states.data.splice(this.states.data.length-1, 1, row)
+            })
+          }
+          this.grid.go(this.states.page - 1)
+          return
+        }
+        break
+      case 'down':
+        des = pos + 1
+        if (des >= this.states.data.length && !row._parent && this.states.page < this.grid.$refs.pagination.pages) {
+          this.states.afterLoadData = () => {
+            let new_order = []
+            let last = this.states.data[0]
+            new_order.push({[_id]:row[_id], [_order]:last[_order]})
+            new_order.push({[_id]:last[_id], [_order]:row[_order]})
+            this._callOnMove(new_order).then(() => {
+              row[_order] = last[_order]
+              this.states.data.splice(0, 1, row)
+            })
+          }
+          this.grid.go(this.states.page + 1)
+          return
+        }
+        break
+      case 'first':
+        des = 0
+        break
+      case 'last':
+        des = d.length
+        break
+    }
+    this._move(d, pos, des, row)
+  }
 }
 
 
