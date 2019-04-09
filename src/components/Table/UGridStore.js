@@ -144,31 +144,40 @@ class Store {
 
   _select (row, force=false) {
     let selectable = true
+    let checkable = true
     if (!force && this.states.onSelect) {
       selectable = this.states.onSelect(row, true)
     }
-    if (selectable) {
+    if (!force && this.states.onCheckable) {
+      checkable = this.states.onCheckable(row, true)
+    }
+    if (selectable && checkable) {
       let id = row[this.states.idField] || row._rowKey
       this.grid.$set(this.states.selected, id, id)
       this.grid.$set(this.states.selectedRows, id, row)
+    } else {
+      this.states.checkAll = false
     }
     return selectable
   }
 
   select (row, force=false) {
     if (this._select(row, force)) {
-      if (!this.states.multiSelect) this.deselectAll()
+      if (!this.states.multiSelect){
+        this.deselectAll()
+        this._select(row, force)
+      }
       this.grid.$emit('on-selected', row)
     }
   }
 
   selectAll (force=false) {
     let rows = []
-    this.states.data.forEach(row => {
+    walkTree(this.states.data, (row)=>{
       if (!this._select(row, force)) {
         rows.push(row)
       }
-    })
+    }, this.states.childrenField)
     this.grid.$emit('on-selected-all', rows)
   }
 
@@ -183,6 +192,7 @@ class Store {
       let id = row[this.states.idField] || row._rowKey
       this.grid.$delete(this.states.selected, id)
       this.grid.$delete(this.states.selectedRows, id)
+      this.states.checkAll = false
     }
     return deselectable
   }

@@ -10813,15 +10813,22 @@ function () {
     value: function _select(row) {
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var selectable = true;
+      var checkable = true;
 
       if (!force && this.states.onSelect) {
         selectable = this.states.onSelect(row, true);
       }
 
-      if (selectable) {
+      if (!force && this.states.onCheckable) {
+        checkable = this.states.onCheckable(row, true);
+      }
+
+      if (selectable && checkable) {
         var id = row[this.states.idField] || row._rowKey;
         this.grid.$set(this.states.selected, id, id);
         this.grid.$set(this.states.selectedRows, id, row);
+      } else {
+        this.states.checkAll = false;
       }
 
       return selectable;
@@ -10832,7 +10839,12 @@ function () {
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       if (this._select(row, force)) {
-        if (!this.states.multiSelect) this.deselectAll();
+        if (!this.states.multiSelect) {
+          this.deselectAll();
+
+          this._select(row, force);
+        }
+
         this.grid.$emit('on-selected', row);
       }
     }
@@ -10843,11 +10855,11 @@ function () {
 
       var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var rows = [];
-      this.states.data.forEach(function (row) {
+      walkTree(this.states.data, function (row) {
         if (!_this._select(row, force)) {
           rows.push(row);
         }
-      });
+      }, this.states.childrenField);
       this.grid.$emit('on-selected-all', rows);
     }
   }, {
@@ -10866,6 +10878,7 @@ function () {
         var id = row[this.states.idField] || row._rowKey;
         this.grid.$delete(this.states.selected, id);
         this.grid.$delete(this.states.selectedRows, id);
+        this.states.checkAll = false;
       }
 
       return deselectable;
