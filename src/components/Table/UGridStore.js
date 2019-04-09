@@ -389,7 +389,7 @@ class Store {
   // position = 'before', 'after'
   addRow (row, item, position='after', isChild=false) {
     let pos, data
-    if (!row) {
+    if (!row || isEmpty(row)) {
       row = this.getDefaultRow()
       for(let c of this.states.columns) {
         let v = ''
@@ -400,7 +400,6 @@ class Store {
     } else {
       row = this.getDefaultRow(row)
     }
-    row['_new'] = true
     // if (!row[this.states.idField]) {
     //   row[this.states.idField] = uuid()
     // }
@@ -443,6 +442,11 @@ class Store {
    options 为滚动属性
   */
   addEditRow (row, parent, position, isChild=false) {
+    if (!row || isEmpty) {
+      row = {_new: true}
+    } else {
+      row['_new'] = true
+    }
     let n_row = this.addRow(row, parent, position, isChild)
     this.grid.$set(n_row, '_editRow', Object.assign({}, n_row))
     this.grid.$set(n_row, '_editting', true)

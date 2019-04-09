@@ -11201,7 +11201,7 @@ function () {
       var isChild = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       var pos, data;
 
-      if (!row) {
+      if (!row || isEmpty(row)) {
         row = this.getDefaultRow();
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
@@ -11232,11 +11232,10 @@ function () {
         }
       } else {
         row = this.getDefaultRow(row);
-      }
-
-      row['_new'] = true; // if (!row[this.states.idField]) {
+      } // if (!row[this.states.idField]) {
       //   row[this.states.idField] = uuid()
       // }
+
 
       if (!item) {
         data = this.states.data;
@@ -11283,6 +11282,15 @@ function () {
     key: "addEditRow",
     value: function addEditRow(row, parent, position) {
       var isChild = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+      if (!row || isEmpty) {
+        row = {
+          _new: true
+        };
+      } else {
+        row['_new'] = true;
+      }
+
       var n_row = this.addRow(row, parent, position, isChild);
       this.grid.$set(n_row, '_editRow', Object.assign({}, n_row));
       this.grid.$set(n_row, '_editting', true);
