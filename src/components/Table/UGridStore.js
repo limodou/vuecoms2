@@ -442,7 +442,7 @@ class Store {
    options 为滚动属性
   */
   addEditRow (row, parent, position, isChild=false) {
-    if (!row || isEmpty) {
+    if (!row || isEmpty(row)) {
       row = {_new: true}
     } else {
       row['_new'] = true

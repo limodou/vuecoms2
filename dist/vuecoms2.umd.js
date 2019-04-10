@@ -11283,7 +11283,7 @@ function () {
     value: function addEditRow(row, parent, position) {
       var isChild = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
-      if (!row || isEmpty) {
+      if (!row || isEmpty(row)) {
         row = {
           _new: true
         };
