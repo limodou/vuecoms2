@@ -5361,12 +5361,12 @@ function () {
 }();
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/InputFile.vue?vue&type=template&id=073b6a94&
-var InputFilevue_type_template_id_073b6a94_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{attrs:{"type":"file","name":_vm.$parent.name,"id":_vm.$parent.inputId || _vm.$parent.name,"accept":_vm.$parent.accept,"capture":_vm.$parent.capture,"webkitdirectory":_vm.$parent.directory && _vm.$parent.features.directory,"directory":_vm.$parent.directory && _vm.$parent.features.directory,"multiple":_vm.$parent.multiple && _vm.$parent.features.html5},on:{"change":_vm.change}})}
-var InputFilevue_type_template_id_073b6a94_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/InputFile.vue?vue&type=template&id=a9ef5e68&
+var InputFilevue_type_template_id_a9ef5e68_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{attrs:{"type":"file","name":_vm.$parent.name,"id":_vm.$parent.inputId || _vm.$parent.name,"accept":_vm.$parent.accept,"capture":_vm.$parent.capture,"webkitdirectory":_vm.$parent.directory && _vm.$parent.features.directory,"directory":_vm.$parent.directory && _vm.$parent.features.directory,"multiple":_vm.$parent.multiple && _vm.$parent.features.html5},on:{"change":_vm.change}})}
+var InputFilevue_type_template_id_a9ef5e68_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-upload-component/InputFile.vue?vue&type=template&id=073b6a94&
+// CONCATENATED MODULE: ./src/components/vue-upload-component/InputFile.vue?vue&type=template&id=a9ef5e68&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/InputFile.vue?vue&type=script&lang=js&
 //
@@ -5385,7 +5385,8 @@ var InputFilevue_type_template_id_073b6a94_staticRenderFns = []
 /* harmony default export */ var InputFilevue_type_script_lang_js_ = ({
   methods: {
     change: function change(e) {
-      this.$parent.addInputFile(e.target); // e.target.value = ''
+      this.$parent.addInputFile(e.target);
+      e.target.value = '';
 
       if (!e.target.files || e.target.files.length === 0) {
         // ie9 fix #219
@@ -5414,8 +5415,8 @@ var componentNormalizer = __webpack_require__("2877");
 
 var component = Object(componentNormalizer["a" /* default */])(
   vue_upload_component_InputFilevue_type_script_lang_js_,
-  InputFilevue_type_template_id_073b6a94_render,
-  InputFilevue_type_template_id_073b6a94_staticRenderFns,
+  InputFilevue_type_template_id_a9ef5e68_render,
+  InputFilevue_type_template_id_a9ef5e68_staticRenderFns,
   false,
   null,
   null,
