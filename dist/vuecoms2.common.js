@@ -11165,7 +11165,7 @@ function () {
       var key;
 
       if (row[this.states.idField]) {
-        key = 'id';
+        key = this.states.idField;
       } else if (row['_rowKey']) {
         key = '_rowKey';
       } else {
