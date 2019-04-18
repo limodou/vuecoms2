@@ -8158,7 +8158,8 @@ function () {
           _this.setStaticValue(x);
 
           ctx.parent.$nextTick(function () {
-            if (old_value !== undefined && _this.events.indexOf('input') > -1) {
+            // 当old_value不为undefined或因为点过校验，而有错误信息的情况下进行校验
+            if (_this.events.indexOf('input') > -1 && (old_value !== undefined || ctx.parent.validateResult[self.name] && ctx.parent.validateResult[self.name].error)) {
               ctx.listeners['on-validate'] && ctx.listeners['on-validate']();
             } // 触发on-field-change事件
 
@@ -15519,12 +15520,12 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=0d104b84&
-var Buildvue_type_template_id_0d104b84_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
-var Buildvue_type_template_id_0d104b84_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=f3577dd8&
+var Buildvue_type_template_id_f3577dd8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
+var Buildvue_type_template_id_f3577dd8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=0d104b84&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=f3577dd8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 //
@@ -15550,6 +15551,8 @@ var Buildvue_type_template_id_0d104b84_staticRenderFns = []
   name: 'Build',
   data: function data() {
     return {
+      originValue: deepCopy(this.value),
+      // 保留初始值，用于reset
       oldvalue: deepCopy(this.value),
       fields: {},
       rows: {},
@@ -15609,65 +15612,74 @@ var Buildvue_type_template_id_0d104b84_staticRenderFns = []
     validate: function validate(callback) {
       var _this = this;
 
-      if (this.validating) return;
-      this.validating = true;
-      this.$emit('validating', true);
+      return new Promise(function (resolve, reject) {
+        if (_this.validating) {
+          return;
+        }
 
-      var _check = function _check(children, result, recursion) {
-        var error = '';
+        _this.validating = true;
 
-        for (var k in _this.validateResult) {
-          var r = _this.validateResult[k]; // 增加对hidden的处理
+        _this.$emit('validating', true);
 
-          if (r.rule && r.rule.length > 0 && !_this.fields[k].hidden) {
-            if (!r.validateState && !_this.fields[k].static) {
-              validateUtil_validateRule(_this.value, k, _this.validateResult);
-              result.pending.push(r);
-            } else if (r.validateState === 'validating') {
-              result.pending.push(r);
-            } else if (r.validateState === 'error' && !result.error) {
-              result.error = r.error;
+        var _check = function _check(children, result, recursion) {
+          var error = '';
+
+          for (var k in _this.validateResult) {
+            var r = _this.validateResult[k]; // 增加对hidden的处理
+
+            if (r.rule && r.rule.length > 0 && !_this.fields[k].hidden) {
+              if (!r.validateState && !_this.fields[k].static) {
+                validateUtil_validateRule(_this.value, k, _this.validateResult);
+                result.pending.push(r);
+              } else if (r.validateState === 'validating') {
+                result.pending.push(r);
+              } else if (r.validateState === 'error' && !result.error) {
+                result.error = r.error;
+              }
             }
           }
-        }
-      };
-
-      var _check_pending = function _check_pending(children, recursion) {
-        var r = {
-          error: '',
-          pending: []
         };
 
-        _check(children, r, recursion);
+        var _check_pending = function _check_pending(children, recursion) {
+          var r = {
+            error: '',
+            pending: []
+          };
 
-        if (r.error) {
-          _this.validating = false;
+          _check(children, r, recursion);
 
-          _this.$emit('validating', false);
+          if (r.error) {
+            _this.validating = false;
 
-          callback(r.error);
-          return;
-        } else if (r.pending.length > 0) {
-          setTimeout(function () {
-            _check_pending(r.pending, false);
-          }, 10);
-        } else {
-          _this.validating = false;
+            _this.$emit('validating', false);
 
-          _this.$emit('validating', false);
+            reject(r.error);
+            if (callback) callback(r.error);
+            return;
+          } else if (r.pending.length > 0) {
+            setTimeout(function () {
+              _check_pending(r.pending, false);
+            }, 10);
+          } else {
+            _this.validating = false;
 
-          callback();
-        }
-      };
+            _this.$emit('validating', false);
 
-      _check_pending(this.validateResult, true);
+            resolve();
+            if (callback) callback();
+          }
+        };
+
+        _check_pending(_this.validateResult, true);
+      });
     },
     //生成校验结构
-    makeValidateResult: function makeValidateResult() {
+    //force表示是否强制
+    makeValidateResult: function makeValidateResult(force) {
       for (var name in this.fields) {
         var field = this.fields[name];
 
-        if (!this.validateResult[name] && !field.static) {
+        if ((force || !this.validateResult[name]) && !field.static) {
           var rule = this.getRule(field);
           this.$set(this.validateResult, name, {
             error: '',
@@ -15822,6 +15834,12 @@ var Buildvue_type_template_id_0d104b84_staticRenderFns = []
           result.rule.push(v);
         }
       }
+    },
+    // 清空数据
+    reset: function reset() {
+      var v = deepCopy(this.originValue);
+      Object.assign(this.value, v);
+      this.makeValidateResult(true);
     }
   },
   created: function created() {
@@ -15944,8 +15962,8 @@ var Buildvue_type_template_id_0d104b84_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_0d104b84_render,
-  Buildvue_type_template_id_0d104b84_staticRenderFns,
+  Buildvue_type_template_id_f3577dd8_render,
+  Buildvue_type_template_id_f3577dd8_staticRenderFns,
   false,
   null,
   null,
