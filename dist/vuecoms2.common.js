@@ -10909,11 +10909,19 @@ function () {
 
       var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var rows = [];
-      this.states.data.forEach(function (row) {
+
+      var callback = function callback(row) {
         if (!_this2._deselect(row)) {
           rows.push(row);
         }
-      }); // if (rows.length === 0) {
+      };
+
+      walkTree(this.states.data, callback); // this.states.data.forEach(row => {
+      //   if (!this._deselect(row)){
+      //     rows.push(row)
+      //   }
+      // })
+      // if (rows.length === 0) {
       //   this.states.selected = {}
       //   this.states.selectedRows = {}
       // }
