@@ -16669,6 +16669,313 @@ var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UploaderFile = (UploaderFile_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=253c78b8&
+var CardListvue_type_template_id_253c78b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0)?_c('div',[_vm._t("nodata",[_c('div',{domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{data:_vm.store.data})],2):[_vm._t("default",null,{data:_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
+var CardListvue_type_template_id_253c78b8_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=253c78b8&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var CardListvue_type_script_lang_js_rowKey = 1;
+/* harmony default export */ var CardListvue_type_script_lang_js_ = ({
+  props: {
+    config: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    value: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    // 用于选择控件设置choices
+    choices: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    }
+  },
+  components: {
+    Pagination: pagination,
+    Buttons: UButtons,
+    Query: components_Query
+  },
+  data: function data() {
+    var _default = {
+      query: null,
+      pagination: true,
+      pageSize: 10,
+      total: 0,
+      start: 1,
+      data: [],
+      param: {
+        page: 1,
+        pageSize: 10
+      },
+      page: 1,
+      prev: '上一页',
+      next: '下一页',
+      pageSizeOpts: [10, 20, 30],
+      autoLoad: true,
+      onLoadData: null,
+      bottomButtons: [],
+      loadingText: 'loading...',
+      loading: false,
+      nodata: '暂无数据',
+      scroll: false // 是否无限滚动
+
+    };
+    var d = Object.assign(_default, this.config);
+    return {
+      store: d
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // 初始化query 的 param
+    this.store.param = {
+      page: this.store.page,
+      pageSize: this.store.pageSize
+    };
+    if (this.$refs.query && this.$refs.query.value) this.store.param = Object.assign(this.store.param, this.$refs.query.value);
+
+    if (this.store.autoLoad) {
+      this.$nextTick(function () {
+        _this.loadData();
+      });
+    }
+  },
+  methods: {
+    handlePage: function handlePage(page) {
+      var _this2 = this;
+
+      this.$nextTick(function () {
+        _this2.$set(_this2.store.param, 'page', page);
+
+        _this2.store.page = page;
+        _this2.store.start = (page - 1) * _this2.store.pageSize + 1;
+
+        _this2.loadData();
+      });
+    },
+    handlePageSize: function handlePageSize(size) {
+      var _this3 = this;
+
+      this.$nextTick(function () {
+        _this3.$set(_this3.store.param, 'pageSize', size);
+
+        _this3.store.pageSize = size;
+        _this3.store.start = (_this3.store.page - 1) * size + 1;
+
+        _this3.loadData();
+      });
+    },
+    handleQueryChange: function handleQueryChange(change) {
+      this.$emit('on-query-change', change);
+    },
+    handleReachBottom: function handleReachBottom() {
+      if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
+        this.store.param.page = this.store.param.page + 1;
+        return this.loadData();
+      }
+    },
+    go: function go(page) {
+      this.$refs.pagination.go(page);
+    },
+    loadData: function loadData(param) {
+      var _this4 = this;
+
+      return new Promise(function (resolve, reject) {
+        var args = _this4.store.param; // data 为数据行， others 为其它信息，如total
+
+        var callback = function callback(data, others) {
+          if (data) {
+            if (!_this4.store.scroll) {
+              _this4.store.data = [];
+            }
+
+            _this4.addRows(data);
+          }
+
+          if (others && others instanceof Object) {
+            _this4.mergeStates(others);
+          }
+
+          _this4.$nextTick(function () {
+            _this4.showLoading(false);
+
+            _this4.$emit('input', _this4.store.data);
+
+            resolve(data);
+          });
+        };
+
+        if (_this4.store.onLoadData) {
+          _this4.showLoading(true);
+
+          _this4.store.onLoadData(Object.assign({}, args, param || {}), callback);
+        }
+      });
+    },
+    handleQuerySubmit: function handleQuerySubmit(data) {
+      this.store.param = Object.assign(this.store.param, data);
+      this.store.page = 1;
+      this.store.start = 1;
+      this.$set(this.store.param, 'page', 1);
+      this.loadData();
+    },
+    showLoading: function showLoading() {
+      var loading = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      this.store.loading = loading;
+
+      if (text) {
+        this.store.loadingText = text;
+      }
+    },
+    mergeStates: function mergeStates(o) {
+      for (var name in o) {
+        if (this.store.hasOwnProperty(name)) {
+          this.$set(this.store, name, o[name]);
+        }
+      }
+    },
+    addRows: function addRows(rows) {
+      if (!Array.isArray(rows)) {
+        rows = [rows];
+      }
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = rows[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var r = _step.value;
+          this.store.data.push(Object.assign({
+            _rowKey: CardListvue_type_script_lang_js_rowKey++
+          }, r));
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+  },
+  watch: {
+    choices: {
+      immediate: true,
+      handler: function handler(v) {
+        if (this.store.query) {
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
+
+          try {
+            for (var _iterator2 = this.store.query.fields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var field = _step2.value;
+              var choices = v[field.name];
+
+              if (choices) {
+                setChoice(this, field, choices);
+              }
+            }
+          } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                _iterator2.return();
+              }
+            } finally {
+              if (_didIteratorError2) {
+                throw _iteratorError2;
+              }
+            }
+          }
+        }
+      },
+      deep: true
+    },
+    value: {
+      handler: function handler(value) {
+        this.store.data = value;
+      },
+      deep: true
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=script&lang=js&
+ /* harmony default export */ var CardList_CardListvue_type_script_lang_js_ = (CardListvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue
+
+
+
+
+
+/* normalize component */
+
+var CardList_component = Object(componentNormalizer["a" /* default */])(
+  CardList_CardListvue_type_script_lang_js_,
+  CardListvue_type_template_id_253c78b8_render,
+  CardListvue_type_template_id_253c78b8_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var CardList = (CardList_component.exports);
+// CONCATENATED MODULE: ./src/components/CardList/index.js
+
+/* harmony default export */ var components_CardList = (CardList);
 // CONCATENATED MODULE: ./src/components/index.js
 
 
@@ -16692,6 +16999,7 @@ var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
 // import VueScrollTo from 'vue-scrollto'
 
 
+
 var Components = {
   Box: Box,
   Grid: UGrid,
@@ -16711,7 +17019,7 @@ var Components = {
   DatepickerRange: DatepickerRange,
   // uTemplate,
   UploaderFile: UploaderFile,
-  CardList: CardList
+  CardList: components_CardList
 };
 
 var components_install = function install(Vue) {

@@ -19,6 +19,7 @@ import DatepickerRange from './DatepickerRange.vue'
 // import uTemplate from "v-runtime-template"
 // import VueScrollTo from 'vue-scrollto'
 import UploaderFile from './UploaderFile.vue'
+import CardList from './CardList'
 
 const Components = {
   Box,
