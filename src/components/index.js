@@ -38,7 +38,8 @@ const Components = {
   // tinymce: TinyMce,
   DatepickerRange,
   // uTemplate,
-  UploaderFile
+  UploaderFile,
+  CardList
 }
 
 const install = function (Vue) {

@@ -16710,7 +16710,8 @@ var Components = {
   // tinymce: TinyMce,
   DatepickerRange: DatepickerRange,
   // uTemplate,
-  UploaderFile: UploaderFile
+  UploaderFile: UploaderFile,
+  CardList: CardList
 };
 
 var components_install = function install(Vue) {
