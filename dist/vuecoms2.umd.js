@@ -8171,7 +8171,7 @@ function () {
 
           ctx.parent.$nextTick(function () {
             // 当old_value不为undefined或因为点过校验，而有错误信息的情况下进行校验
-            if (_this.events.indexOf('input') > -1 && (old_value !== undefined || ctx.parent.validateResult[self.name] && ctx.parent.validateResult[self.name].error)) {
+            if (_this.events.indexOf('input') > -1 && (old_value !== undefined || ctx.parent.validateResult && ctx.parent.validateResult[self.name] && ctx.parent.validateResult[self.name].error)) {
               ctx.listeners['on-validate'] && ctx.listeners['on-validate']();
             } // 触发on-field-change事件
 
