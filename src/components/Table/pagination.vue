@@ -96,7 +96,9 @@ export default {
     },
 
     handleEnter () {
-      this.go(parseInt(this.$refs.page.value))
+      let page = parseInt(this.$refs.page.value)
+      if (!isNaN(page))
+        this.go(page)
     },
 
     go (page) {
@@ -107,6 +109,10 @@ export default {
 
     handleClose () {
       this.showPageSize = false
+    },
+
+    inputWidth () {
+      return $this.refs.page.value.length + 4
     }
   },
 
@@ -165,7 +171,7 @@ export default {
   .page-input {
     input {
       height: 20px;
-      width: 30px;
+      width: 50px;
       line-height: 20px;
       border: 1px solid #dddee1;
       vertical-align: middle;
