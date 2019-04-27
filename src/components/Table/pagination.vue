@@ -24,7 +24,8 @@
       </Dropdown>
       <li class="ivu-btn ivu-btn-text ivu-btn-small page-input">
       跳至
-        <input type="text" ref='page' :value="current" @keypress.enter="handleEnter">
+        <input type="text" ref='page' :value="current" :size="inputSize" @keypress.enter="handleEnter"
+        @keyup="handleKeyUp" @input="handleInput">
       页
       </li>
     </ul>
@@ -45,7 +46,8 @@ export default {
   data () {
     return {
       current: this.store.page,
-      limit: this.store.pageSize
+      limit: this.store.pageSize,
+      inputSize: 3
     }
   },
 
@@ -111,15 +113,38 @@ export default {
       this.showPageSize = false
     },
 
-    inputWidth () {
-      return $this.refs.page.value.length + 4
+    handleKeyUp (event) {
+      let n = parseInt(event.key)
+      var keycode = event.which
+      if (!isNaN(n) || (event.ctrlKey && (keycode == 88 || keycode == 89 || keycode == 90) ||
+          event.keyCode === 46 || event.keyCode ===8)) {
+          // this.handleInput(event)
+      } else
+        event.preventDefault()
+    },
+
+    handleInput (event) {
+      let value = event.target.value
+      let val = parseInt(value)
+      if (isNaN(val)) {
+        value = '1'
+        this.current = 1
+      } else {
+        this.current = val
+      }
+      this.inputSize = value.length + 2
     }
   },
 
   watch: {
-    'store.states.page': {
-      handler: function (val) {
-        this.current = val
+    'store.page': {
+      immediate: true,
+      handler (val) {
+        if (!Number.isNaN(val)) {
+          this.current = val
+        } else {
+          this.current = 1
+        }
       }
     }
   }
@@ -171,7 +196,6 @@ export default {
   .page-input {
     input {
       height: 20px;
-      width: 50px;
       line-height: 20px;
       border: 1px solid #dddee1;
       vertical-align: middle;
