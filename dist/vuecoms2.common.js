@@ -7147,14 +7147,15 @@ if (typeof window !== 'undefined') {
 var objectSpread = __webpack_require__("3156");
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Box.vue?vue&type=template&id=5baab5ea&
-var Boxvue_type_template_id_5baab5ea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.removed)?_c('div',{staticClass:"box",class:[_vm.boxType, _vm.headerStyle, _vm.boxTheme]},[(_vm.title)?_c('div',{staticClass:"box-header",class:{'with-border':_vm.withBorder}},[_c('h3',{staticClass:"box-title"},[_vm._v(_vm._s(_vm.title))]),_c('div',{staticClass:"box-tools pull-right"},[_vm._t("tools"),(_vm.collapse)?_c('button',{staticClass:"box-tool",attrs:{"type":"button"},on:{"click":function($event){$event.preventDefault();return _vm.toggle($event)}}},[(_vm.open)?_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-remove"}}):_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-add"}})],1):_vm._e(),(_vm.removerable)?_c('button',{staticClass:"box-tool",attrs:{"type":"button"},on:{"click":function($event){$event.preventDefault();_vm.removed=true}}},[_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-close"}})],1):_vm._e()],2)]):_vm._e(),_c('transition',{attrs:{"name":"collapse"},on:{"enter":_vm.enter,"after-enter":_vm.afterEnter,"before-leave":_vm.beforeLeave}},[(_vm.open)?_c('div',{staticClass:"box-body",style:(_vm.bodyStyle)},[_vm._t("default")],2):_vm._e()]),(_vm.$slots.footer)?_c('div',{staticClass:"box-footer"},[_vm._t("footer")],2):_vm._e()],1):_vm._e()}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Box.vue?vue&type=template&id=044903ac&
+var Boxvue_type_template_id_044903ac_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.removed)?_c('div',{staticClass:"box",class:[_vm.boxType, _vm.headerStyle, _vm.boxTheme]},[(_vm.title)?_c('div',{staticClass:"box-header",class:{'with-border':_vm.withBorder}},[_c('div',{staticClass:"box-title",style:({'text-align':_vm.headerAlign})},[_vm._t("title",[_c('p',[(_vm.icon)?_c('Icon',{attrs:{"type":_vm.icon}}):_vm._e(),_vm._v(_vm._s(_vm.title))],1)])],2),_c('div',{staticClass:"box-tools pull-right"},[_vm._t("tools"),(_vm.collapse)?_c('button',{staticClass:"box-tool",attrs:{"type":"button"},on:{"click":function($event){$event.preventDefault();return _vm.toggle($event)}}},[(_vm.open)?_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-remove"}}):_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-add"}})],1):_vm._e(),(_vm.removerable)?_c('button',{staticClass:"box-tool",attrs:{"type":"button"},on:{"click":function($event){$event.preventDefault();_vm.removed=true}}},[_c('Icon',{staticClass:"box-icon",attrs:{"type":"ios-close"}})],1):_vm._e()],2)]):_vm._e(),_c('transition',{attrs:{"name":"collapse"},on:{"enter":_vm.enter,"after-enter":_vm.afterEnter,"before-leave":_vm.beforeLeave}},[(_vm.open)?_c('div',{staticClass:"box-body",style:(_vm.bodyStyle)},[_vm._t("default")],2):_vm._e()]),(_vm.$slots.footer)?_c('div',{staticClass:"box-footer",class:{'with-footer-border':_vm.withFooterBorder},style:({'text-align':_vm.footerAlign})},[_vm._t("footer")],2):_vm._e()],1):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Box.vue?vue&type=template&id=5baab5ea&
+// CONCATENATED MODULE: ./src/components/Box.vue?vue&type=template&id=044903ac&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Box.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -7204,7 +7205,19 @@ var staticRenderFns = []
       type: String,
       default: ''
     },
+    headerAlign: {
+      type: String,
+      default: 'left'
+    },
+    footerAlign: {
+      type: String,
+      default: 'left'
+    },
     withBorder: {
+      type: Boolean,
+      default: true
+    },
+    withFooterBorder: {
       type: Boolean,
       default: true
     },
@@ -7220,6 +7233,10 @@ var staticRenderFns = []
       type: Boolean,
       default: false
     },
+    icon: {
+      type: String,
+      default: ''
+    },
     height: {},
     theme: {
       type: String,
@@ -7229,7 +7246,7 @@ var staticRenderFns = []
   },
   computed: {
     headerStyle: function headerStyle() {
-      return "box-".concat(this.headerClass);
+      if (this.headerClass) return "box-".concat(this.headerClass);else return '';
     },
     bodyStyle: function bodyStyle() {
       if (this.height) {
@@ -7296,7 +7313,7 @@ var componentNormalizer = __webpack_require__("2877");
 
 var component = Object(componentNormalizer["a" /* default */])(
   components_Boxvue_type_script_lang_js_,
-  Boxvue_type_template_id_5baab5ea_render,
+  Boxvue_type_template_id_044903ac_render,
   staticRenderFns,
   false,
   null,
