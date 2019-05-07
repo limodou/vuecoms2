@@ -564,7 +564,8 @@ export default {
     },
 
     go(page) {
-      this.$refs.pagination.go(page)
+      if (this.$refs.pagination)
+        this.$refs.pagination.go(page)
     },
 
     loadData (url, param) {

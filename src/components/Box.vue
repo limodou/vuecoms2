@@ -12,7 +12,7 @@
             <Icon v-if="open" type="ios-remove" class="box-icon"></Icon>
             <Icon v-else type="ios-add" class="box-icon"></Icon>
         </button>
-        <button v-if="removerable" type="button" class="box-tool"
+        <button v-if="removable" type="button" class="box-tool"
           @click.prevent="removed=true"
         ><Icon type="ios-close" class="box-icon"></Icon></button>
       </div>
@@ -82,7 +82,7 @@ export default {
       default: true
     },
 
-    removerable: {
+    removable: {
       type: Boolean,
       default: false
     },
@@ -156,7 +156,6 @@ export default {
 </script>
 
 <style>
-.list-group {margin-bottom: 0px;}
 .box {
     position: relative;
     border-radius: 3px;
@@ -193,28 +192,6 @@ export default {
 
 .box.collapsed-box .box-body,.box.collapsed-box .box-footer {
     display: none
-}
-
-.box .nav-stacked>li {
-    border-bottom: 1px solid #f4f4f4;
-    margin: 0
-}
-
-.box .nav-stacked>li:last-of-type {
-    border-bottom: none
-}
-
-.box.height-control .box-body {
-    max-height: 300px;
-    overflow: auto
-}
-
-.box .border-right {
-    border-right: 1px solid #f4f4f4
-}
-
-.box .border-left {
-    border-left: 1px solid #f4f4f4
 }
 
 .box.box-solid {
