@@ -7323,12 +7323,12 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Box = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=797e464d&
-var UGridvue_type_template_id_797e464d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_797e464d_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=6edfe7e8&
+var UGridvue_type_template_id_6edfe7e8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_6edfe7e8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=797e464d&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=6edfe7e8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0cdbef22&
 var UTablevue_type_template_id_0cdbef22_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}))}))])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})})),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
@@ -14917,27 +14917,11 @@ function resetTriggers(elem) {
       }
     },
     handlePage: function handlePage(page) {
-      var _this2 = this;
-
-      this.$nextTick(function () {
-        _this2.$set(_this2.store.states.param, 'page', page);
-
-        _this2.page = page;
-        _this2.start = (page - 1) * _this2.pageSize + 1;
-
-        _this2.loadData();
-      });
+      this.go(page);
     },
     handlePageSize: function handlePageSize(size) {
-      var _this3 = this;
-
-      this.$nextTick(function () {
-        _this3.$set(_this3.store.states.param, 'pageSize', size);
-
-        _this3.pageSize = size;
-        _this3.start = (_this3.page - 1) * size + 1;
-
-        _this3.loadData();
+      this.go(1, {
+        pageSize: size
       });
     },
     handleQueryChange: function handleQueryChange(change) {
@@ -14957,7 +14941,7 @@ function resetTriggers(elem) {
       }, [this.defaultEditRender(h, param.row), this.defaultDeleteRender(h, param.row)]);
     },
     defaultEditRender: function defaultEditRender(h, row) {
-      var _this4 = this;
+      var _this2 = this;
 
       return h('Button', {
         props: {
@@ -14971,48 +14955,48 @@ function resetTriggers(elem) {
         on: {
           click: function click() {
             if (!row._editting) {
-              _this4.$set(row, '_editRow', Object.assign({}, row));
+              _this2.$set(row, '_editRow', Object.assign({}, row));
 
-              _this4.$set(row, '_editting', true);
+              _this2.$set(row, '_editting', true);
             } else {
-              _this4.$set(row, '_saving', true);
+              _this2.$set(row, '_saving', true);
 
-              if (_this4.onSaveRow) {
+              if (_this2.onSaveRow) {
                 var callback = function callback(flag, data) {
                   if (flag === 'ok') {
                     copyDataRow(row, row._editRow);
 
-                    _this4.removeComment(row);
+                    _this2.removeComment(row);
 
-                    _this4.$set(row, '_editting', !row._editting);
+                    _this2.$set(row, '_editting', !row._editting);
 
-                    _this4.$set(row, '_new', false); //保存之后，将_new置为false
+                    _this2.$set(row, '_new', false); //保存之后，将_new置为false
 
 
                     delete row._editRow;
 
-                    _this4.sendInputEvent();
+                    _this2.sendInputEvent();
                   } else {
                     for (var key in data) {
                       var v = data[key];
 
-                      _this4.setComment(row, key, v, 'error');
+                      _this2.setComment(row, key, v, 'error');
                     }
                   }
 
-                  _this4.$set(row, '_saving', false);
+                  _this2.$set(row, '_saving', false);
                 };
 
-                _this4.onSaveRow.call(_this4, row._editRow, callback, row);
+                _this2.onSaveRow.call(_this2, row._editRow, callback, row);
               } else {
                 copyDataRow(row, row._editRow);
                 delete row._editRow;
 
-                _this4.$set(row, '_editting', false);
+                _this2.$set(row, '_editting', false);
 
-                _this4.$set(row, '_saving', false);
+                _this2.$set(row, '_saving', false);
 
-                _this4.sendInputEvent();
+                _this2.sendInputEvent();
               }
             }
           }
@@ -15020,18 +15004,18 @@ function resetTriggers(elem) {
       }, row._editting ? '保存' : '编辑');
     },
     defaultDeleteRender: function defaultDeleteRender(h, row) {
-      var _this5 = this;
+      var _this3 = this;
 
       var defaultDeleteFunc = function defaultDeleteFunc() {
         if (row._editting) {
-          _this5.$set(row, '_editting', false);
+          _this3.$set(row, '_editting', false);
 
-          _this5.$delete(row, '_editRow');
+          _this3.$delete(row, '_editRow');
 
-          _this5.removeComment(row);
+          _this3.removeComment(row);
 
           if (row._new) {
-            _this5.removeRow(row);
+            _this3.removeRow(row);
           }
 
           return;
@@ -15039,24 +15023,24 @@ function resetTriggers(elem) {
 
         var callback = function callback(flag, data) {
           if (flag === 'ok') {
-            _this5.removeRow(row);
+            _this3.removeRow(row);
 
-            _this5.sendInputEvent();
+            _this3.sendInputEvent();
           } else {
             for (var key in data) {
               var v = data[key];
 
-              _this5.setComment(row, key, v, 'error');
+              _this3.setComment(row, key, v, 'error');
             }
 
-            _this5.$set(row, '_deleting', false);
+            _this3.$set(row, '_deleting', false);
           }
         };
 
-        if (_this5.onDeleteRow) {
-          _this5.onDeleteRow.call(_this5, row, callback);
+        if (_this3.onDeleteRow) {
+          _this3.onDeleteRow.call(_this3, row, callback);
         } else {
-          _this5.removeRow(row);
+          _this3.removeRow(row);
         }
       };
 
@@ -15073,8 +15057,8 @@ function resetTriggers(elem) {
         },
         on: {
           click: function click() {
-            if (_this5.deleteRowConfirm && !row._editting) {
-              _this5.$Modal.confirm({
+            if (_this3.deleteRowConfirm && !row._editting) {
+              _this3.$Modal.confirm({
                 content: '请确认是否要删除本条记录？',
                 onOk: function onOk() {
                   defaultDeleteFunc();
@@ -15087,11 +15071,14 @@ function resetTriggers(elem) {
         }
       }, row._editting ? '取消' : '删除');
     },
-    go: function go(page) {
-      if (this.$refs.pagination) this.$refs.pagination.go(page);
+    go: function go(page, opts) {
+      this.page = page;
+      this.start = 1;
+      this.$set(this.param, 'page', page);
+      this.loadData(opts || {});
     },
     loadData: function loadData(url, param) {
-      var _this6 = this;
+      var _this4 = this;
 
       var _url;
 
@@ -15102,43 +15089,39 @@ function resetTriggers(elem) {
         _url = url || this.url;
       }
 
-      var args = this.param; // data 为数据行， others 为其它信息，如total
+      Object.assign(this.param, param || {}); // data 为数据行， others 为其它信息，如total
 
       var callback = function callback(data, others) {
         if (data) {
-          _this6.store.states.data = _this6.makeRows(data);
+          _this4.store.states.data = _this4.makeRows(data);
         }
 
         if (others && others instanceof Object) {
-          _this6.store.mergeStates(others);
+          _this4.store.mergeStates(others);
         }
 
-        if (_this6.afterLoadData) {
-          _this6.afterLoadData();
+        if (_this4.afterLoadData) {
+          _this4.afterLoadData();
 
-          _this6.afterLoadData = null; // 清除
+          _this4.afterLoadData = null; // 清除
         }
 
-        _this6.$nextTick(function () {
-          _this6.showLoading(false);
+        _this4.$nextTick(function () {
+          _this4.showLoading(false);
 
-          _this6.setSelection(_this6.selected);
+          _this4.setSelection(_this4.selected);
 
-          _this6.sendInputEvent();
+          _this4.sendInputEvent();
         });
       };
 
       if (this.onLoadData) {
         this.showLoading(true);
-        this.onLoadData(_url, Object.assign({}, args, param || {}), callback);
+        this.onLoadData(_url, this.param, callback);
       }
     },
     handleQuerySubmit: function handleQuerySubmit(data) {
-      this.param = Object.assign(this.param, data);
-      this.page = 1;
-      this.start = 1;
-      this.$set(this.param, 'page', 1);
-      this.loadData();
+      this.go(1, data);
     }
   }),
   created: function created() {
@@ -15146,7 +15129,7 @@ function resetTriggers(elem) {
     this.store.states.data = this.makeRows(this.store.states.data);
   },
   mounted: function mounted() {
-    var _this7 = this;
+    var _this5 = this;
 
     this.resize();
     window.addEventListener('resize', this.handleResize, true); // 初始化query 的 param
@@ -15155,20 +15138,20 @@ function resetTriggers(elem) {
 
     if (this.autoLoad) {
       this.$nextTick(function () {
-        _this7.loadData();
+        _this5.loadData();
       });
     }
 
     this.oldParentWidth = this.$parent.$el.offsetWidth;
     this.__resizeHandler = debounce_default()(function () {
-      var width = _this7.$parent.$el.offsetWidth;
+      var width = _this5.$parent.$el.offsetWidth;
 
-      if (width !== _this7.oldParentWidth) {
-        _this7.store.states.columns = _this7.makeCols();
+      if (width !== _this5.oldParentWidth) {
+        _this5.store.states.columns = _this5.makeCols();
 
-        _this7.resize();
+        _this5.resize();
 
-        _this7.oldParentWidth = width;
+        _this5.oldParentWidth = width;
       }
     }, 100, {
       leading: true
@@ -15283,8 +15266,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_797e464d_render,
-  UGridvue_type_template_id_797e464d_staticRenderFns,
+  UGridvue_type_template_id_6edfe7e8_render,
+  UGridvue_type_template_id_6edfe7e8_staticRenderFns,
   false,
   null,
   null,

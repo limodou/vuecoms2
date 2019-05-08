@@ -417,21 +417,11 @@ export default {
     },
 
     handlePage (page) {
-      this.$nextTick( () => {
-        this.$set(this.store.states.param, 'page', page)
-        this.page = page
-        this.start = (page - 1) * this.pageSize + 1
-        this.loadData()
-      })
+      this.go(page)
     },
 
     handlePageSize (size) {
-      this.$nextTick( () => {
-        this.$set(this.store.states.param, 'pageSize', size)
-        this.pageSize = size
-        this.start = (this.page - 1) * size + 1
-        this.loadData()
-      })
+      this.go(1, {pageSize: size})
     },
 
     handleQueryChange (change) {
@@ -563,9 +553,11 @@ export default {
       }, row._editting ? '取消' : '删除')
     },
 
-    go(page) {
-      if (this.$refs.pagination)
-        this.$refs.pagination.go(page)
+    go(page, opts) {
+      this.page = page
+      this.start = 1
+      this.$set(this.param, 'page', page)
+      this.loadData(opts || {})
     },
 
     loadData (url, param) {
@@ -576,7 +568,7 @@ export default {
       } else {
         _url = url || this.url
       }
-      let args = this.param
+      Object.assign(this.param, param || {})
       // data 为数据行， others 为其它信息，如total
       const callback = (data, others) => {
         if (data) {
@@ -597,16 +589,12 @@ export default {
       }
       if (this.onLoadData) {
         this.showLoading(true)
-        this.onLoadData(_url, Object.assign({}, args, param || {}), callback)
+        this.onLoadData(_url, this.param, callback)
       }
     },
 
     handleQuerySubmit (data) {
-      this.param = Object.assign(this.param, data)
-      this.page = 1
-      this.start = 1
-      this.$set(this.param, 'page', 1)
-      this.loadData()
+      this.go(1, data)
     }
   },
 
