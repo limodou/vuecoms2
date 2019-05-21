@@ -10720,7 +10720,7 @@ function () {
       // 是否显示序号列
       indexColTitle: '#',
       indexColWidth: 40,
-      loadingText: '<i class="icon-loading ivu-icon ivu-icon-load-c"></i> Loading...',
+      loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       // 正在装入时显示的文本
       autoLoad: true,
       // 是否自动装入数据
@@ -12968,7 +12968,7 @@ function validator_pattern_pattern(rule, value, callback, source, options) {
 
 
 
-function date(rule, value, callback, source, options) {
+function date_date(rule, value, callback, source, options) {
   // console.log('integer rule called %j', rule);
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
@@ -12996,7 +12996,7 @@ function date(rule, value, callback, source, options) {
   callback(errors);
 }
 
-/* harmony default export */ var validator_date = (date);
+/* harmony default export */ var validator_date = (date_date);
 // CONCATENATED MODULE: ./node_modules/async-validator/es/validator/required.js
 
 
@@ -16425,12 +16425,12 @@ var iview_fix = __webpack_require__("2c21");
 // EXTERNAL MODULE: ./src/components/styles/common.css
 var common = __webpack_require__("a88d");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=7384a13c&
-var DatepickerRangevue_type_template_id_7384a13c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderBegin},model:{value:(_vm.val1),callback:function ($$v) {_vm.val1=$$v},expression:"val1"}}),_vm._v("\n  -\n  "),_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderEnd},model:{value:(_vm.val2),callback:function ($$v) {_vm.val2=$$v},expression:"val2"}})],1)}
-var DatepickerRangevue_type_template_id_7384a13c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=fa52d9ec&
+var DatepickerRangevue_type_template_id_fa52d9ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderBegin,"options":_vm.options1},model:{value:(_vm.val1),callback:function ($$v) {_vm.val1=$$v},expression:"val1"}}),_vm._v("\n  -\n  "),_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderEnd,"options":_vm.options2},model:{value:(_vm.val2),callback:function ($$v) {_vm.val2=$$v},expression:"val2"}})],1)}
+var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=7384a13c&
+// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=fa52d9ec&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=script&lang=js&
 //
@@ -16446,7 +16446,19 @@ var DatepickerRangevue_type_template_id_7384a13c_staticRenderFns = []
 /* harmony default export */ var DatepickerRangevue_type_script_lang_js_ = ({
   name: 'DatepickerRange',
   data: function data() {
-    return this.parseDate(this.value);
+    var v = this.parseDate(this.value);
+    var self = this;
+    v.options1 = {
+      disabledDate: function disabledDate(date) {
+        return self.val2 && formatDate(date) > formatDate(self.val2);
+      }
+    };
+    v.options2 = {
+      disabledDate: function disabledDate(date) {
+        return self.val1 && formatDate(date) < formatDate(self.val1);
+      }
+    };
+    return v;
   },
   props: {
     value: Array,
@@ -16504,8 +16516,8 @@ var DatepickerRangevue_type_template_id_7384a13c_staticRenderFns = []
 
 var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
   components_DatepickerRangevue_type_script_lang_js_,
-  DatepickerRangevue_type_template_id_7384a13c_render,
-  DatepickerRangevue_type_template_id_7384a13c_staticRenderFns,
+  DatepickerRangevue_type_template_id_fa52d9ec_render,
+  DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns,
   false,
   null,
   null,
@@ -16706,14 +16718,17 @@ var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UploaderFile = (UploaderFile_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=253c78b8&
-var CardListvue_type_template_id_253c78b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0)?_c('div',[_vm._t("nodata",[_c('div',{domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{data:_vm.store.data})],2):[_vm._t("default",null,{data:_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
-var CardListvue_type_template_id_253c78b8_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=58e1ecfc&
+var CardListvue_type_template_id_58e1ecfc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0 && !_vm.store.loading)?_c('div',[_vm._t("nodata",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.data.length === 0 && _vm.store.loading)?_c('div',[_vm._t("loading",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.loadingText)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{data:_vm.store.data})],2):[_vm._t("default",null,{data:_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
+var CardListvue_type_template_id_58e1ecfc_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=253c78b8&
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=58e1ecfc&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -16790,7 +16805,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       autoLoad: true,
       onLoadData: null,
       bottomButtons: [],
-      loadingText: 'loading...',
+      loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
       nodata: '暂无数据',
       scroll: false // 是否无限滚动
@@ -17000,8 +17015,8 @@ var CardListvue_type_script_lang_js_rowKey = 1;
 
 var CardList_component = Object(componentNormalizer["a" /* default */])(
   CardList_CardListvue_type_script_lang_js_,
-  CardListvue_type_template_id_253c78b8_render,
-  CardListvue_type_template_id_253c78b8_staticRenderFns,
+  CardListvue_type_template_id_58e1ecfc_render,
+  CardListvue_type_template_id_58e1ecfc_staticRenderFns,
   false,
   null,
   null,

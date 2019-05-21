@@ -35,7 +35,7 @@ class Store {
       indexCol: false, // 是否显示序号列
       indexColTitle: '#',
       indexColWidth: 40,
-      loadingText: '<i class="icon-loading ivu-icon ivu-icon-load-c"></i> Loading...', // 正在装入时显示的文本
+      loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...', // 正在装入时显示的文本
       autoLoad: true, // 是否自动装入数据
       parseUrl: true, // 是否从URL解析查询参数
       url: '', // 访问后台的URL

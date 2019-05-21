@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DatePicker :type="type" v-model="val1" transfer :placeholder="placeholderBegin" style="width: 120px;"></DatePicker>
+    <DatePicker :type="type" v-model="val1" transfer :placeholder="placeholderBegin" :options="options1" style="width: 120px;"></DatePicker>
     -
-    <DatePicker :type="type" v-model="val2" transfer :placeholder="placeholderEnd" style="width: 120px;"></DatePicker>
+    <DatePicker :type="type" v-model="val2" transfer :placeholder="placeholderEnd" :options="options2" style="width: 120px;"></DatePicker>
   </div>
 </template>
 
@@ -14,7 +14,20 @@ import {formatDate} from './utils/utils.js'
 export default {
   name: 'DatepickerRange',
   data () {
-    return this.parseDate(this.value)
+    let v = this.parseDate(this.value)
+    let self = this
+    v.options1 = {
+      disabledDate (date) {
+        return (self.val2 && formatDate(date)>formatDate(self.val2))
+      }
+    }
+    v.options2 = {
+      disabledDate (date) {
+        return (self.val1 && formatDate(date)<formatDate(self.val1))
+      }
+    }
+
+    return v
   },
   props: {
     value: Array,

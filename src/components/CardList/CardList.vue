@@ -4,8 +4,11 @@
     <Query ref="query" v-if="store.query" v-bind="store.query" 
       @input="handleQuerySubmit" 
       @on-query-change="handleQueryChange"></Query>
-    <div v-if="store.data.length === 0">
-      <slot name="nodata"><div v-html="store.nodata"></div></slot>
+    <div v-if="store.data.length === 0 && !store.loading">
+      <slot name="nodata"><div v-html="store.nodata" class="ivu-spin"></div></slot>
+    </div>
+    <div v-if="store.data.length === 0 && store.loading">
+      <slot name="loading"><div v-html="store.loadingText" class="ivu-spin"></div></slot>
     </div>
     <Scroll v-if="store.scroll" :on-reach-bottom="handleReachBottom">
       <slot :data="store.data"></slot>
@@ -79,7 +82,7 @@ export default {
       autoLoad: true,
       onLoadData: null,
       bottomButtons: [],
-      loadingText: 'loading...',
+      loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
       nodata: '暂无数据',
       scroll: false // 是否无限滚动
