@@ -14,7 +14,7 @@ export default {
         if (Array.isArray(object[c])) {
           this.$set(object, c, [])
         } else if (object[c] instanceof Object) {
-          this.$set(object, c, {})
+          this.reset(object[c])
         } else if (typeof object[c] === 'number') {
           this.$set(object, c, 0)
         } else if (typeof object[c] === 'string') {
