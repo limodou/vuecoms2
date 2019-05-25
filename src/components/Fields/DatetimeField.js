@@ -10,6 +10,7 @@ export default class DatetimeField extends Field {
   }
 
   convert_value (x) {
+    if (!this.options.convert) return x
     if (x instanceof Date){
       return formatDate(x, 'yyyy/MM/dd hh:mm:ss')
     }

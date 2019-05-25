@@ -8427,6 +8427,8 @@ function (_Field) {
   createClass_default()(DateField, [{
     key: "convert_value",
     value: function convert_value(x) {
+      if (!this.options.convert) return x;
+
       if (x instanceof Date) {
         return formatDate(x, 'yyyy/MM/dd');
       }
@@ -8475,6 +8477,8 @@ function (_Field) {
   createClass_default()(DatetimeField, [{
     key: "convert_value",
     value: function convert_value(x) {
+      if (!this.options.convert) return x;
+
       if (x instanceof Date) {
         return formatDate(x, 'yyyy/MM/dd hh:mm:ss');
       }
@@ -12181,7 +12185,7 @@ var warning = function warning() {};
 // don't print warning message when in production env or node runtime
 if (false) {}
 
-function format() {
+function util_format() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
@@ -12366,7 +12370,7 @@ function deepMerge(target, source) {
  */
 function required(rule, value, source, errors, options, type) {
   if (rule.required && (!source.hasOwnProperty(rule.field) || isEmptyValue(value, type || rule.type))) {
-    errors.push(format(options.messages.required, rule.fullField));
+    errors.push(util_format(options.messages.required, rule.fullField));
   }
 }
 
@@ -12387,7 +12391,7 @@ function required(rule, value, source, errors, options, type) {
  */
 function whitespace(rule, value, source, errors, options) {
   if (/^\s+$/.test(value) || value === '') {
-    errors.push(format(options.messages.whitespace, rule.fullField));
+    errors.push(util_format(options.messages.whitespace, rule.fullField));
   }
 }
 
@@ -12472,11 +12476,11 @@ function type_type(rule, value, source, errors, options) {
   var ruleType = rule.type;
   if (custom.indexOf(ruleType) > -1) {
     if (!types[ruleType](value)) {
-      errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
+      errors.push(util_format(options.messages.types[ruleType], rule.fullField, rule.type));
     }
     // straight typeof check
   } else if (ruleType && (typeof value === 'undefined' ? 'undefined' : helpers_typeof_default()(value)) !== rule.type) {
-    errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
+    errors.push(util_format(options.messages.types[ruleType], rule.fullField, rule.type));
   }
 }
 
@@ -12528,14 +12532,14 @@ function range(rule, value, source, errors, options) {
   }
   if (len) {
     if (val !== rule.len) {
-      errors.push(format(options.messages[key].len, rule.fullField, rule.len));
+      errors.push(util_format(options.messages[key].len, rule.fullField, rule.len));
     }
   } else if (min && !max && val < rule.min) {
-    errors.push(format(options.messages[key].min, rule.fullField, rule.min));
+    errors.push(util_format(options.messages[key].min, rule.fullField, rule.min));
   } else if (max && !min && val > rule.max) {
-    errors.push(format(options.messages[key].max, rule.fullField, rule.max));
+    errors.push(util_format(options.messages[key].max, rule.fullField, rule.max));
   } else if (min && max && (val < rule.min || val > rule.max)) {
-    errors.push(format(options.messages[key].range, rule.fullField, rule.min, rule.max));
+    errors.push(util_format(options.messages[key].range, rule.fullField, rule.min, rule.max));
   }
 }
 
@@ -12558,7 +12562,7 @@ var ENUM = 'enum';
 function enumerable(rule, value, source, errors, options) {
   rule[ENUM] = Array.isArray(rule[ENUM]) ? rule[ENUM] : [];
   if (rule[ENUM].indexOf(value) === -1) {
-    errors.push(format(options.messages[ENUM], rule.fullField, rule[ENUM].join(', ')));
+    errors.push(util_format(options.messages[ENUM], rule.fullField, rule[ENUM].join(', ')));
   }
 }
 
@@ -12585,12 +12589,12 @@ function pattern_pattern(rule, value, source, errors, options) {
       // is not necessary and the result might be misleading
       rule.pattern.lastIndex = 0;
       if (!rule.pattern.test(value)) {
-        errors.push(format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+        errors.push(util_format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
       }
     } else if (typeof rule.pattern === 'string') {
       var _pattern = new RegExp(rule.pattern);
       if (!_pattern.test(value)) {
-        errors.push(format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+        errors.push(util_format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
       }
     }
   }
@@ -13294,7 +13298,7 @@ Schema.prototype = {
             if (rule.message) {
               errors = [].concat(rule.message).map(complementError(rule));
             } else if (options.error) {
-              errors = [options.error(rule, format(options.messages.required, rule.field))];
+              errors = [options.error(rule, util_format(options.messages.required, rule.field))];
             } else {
               errors = [];
             }
@@ -13345,7 +13349,7 @@ Schema.prototype = {
       rule.type = 'pattern';
     }
     if (typeof rule.validator !== 'function' && rule.type && !es_validator.hasOwnProperty(rule.type)) {
-      throw new Error(format('Unknown rule type %s', rule.type));
+      throw new Error(util_format('Unknown rule type %s', rule.type));
     }
     return rule.type || 'string';
   },
@@ -16416,12 +16420,12 @@ var iview_fix = __webpack_require__("2c21");
 // EXTERNAL MODULE: ./src/components/styles/common.css
 var common = __webpack_require__("a88d");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=fa52d9ec&
-var DatepickerRangevue_type_template_id_fa52d9ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderBegin,"options":_vm.options1},model:{value:(_vm.val1),callback:function ($$v) {_vm.val1=$$v},expression:"val1"}}),_vm._v("\n  -\n  "),_c('DatePicker',{staticStyle:{"width":"120px"},attrs:{"type":_vm.type,"transfer":"","placeholder":_vm.placeholderEnd,"options":_vm.options2},model:{value:(_vm.val2),callback:function ($$v) {_vm.val2=$$v},expression:"val2"}})],1)}
-var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=12c6a7f8&
+var DatepickerRangevue_type_template_id_12c6a7f8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":"val1","transfer":"","placeholder":_vm.placeholderBegin,"options":_vm.options1},on:{"input":_vm.handleInput1}}),_vm._v("\n  -\n  "),_c('DatePicker',{style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":"val2","transfer":"","placeholder":_vm.placeholderEnd,"options":_vm.options2},on:{"input":_vm.handleInput2}})],1)}
+var DatepickerRangevue_type_template_id_12c6a7f8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=fa52d9ec&
+// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=12c6a7f8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=script&lang=js&
 //
@@ -16441,12 +16445,32 @@ var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
     var self = this;
     v.options1 = {
       disabledDate: function disabledDate(date) {
-        return self.val2 && formatDate(date) > formatDate(self.val2);
+        var ret = false;
+
+        if (self.disabledBegin) {
+          ret = self.disabledBegin(date);
+        }
+
+        if (self.val2) {
+          ret = ret || formatDate(date) > formatDate(self.val2);
+        }
+
+        return ret;
       }
     };
     v.options2 = {
       disabledDate: function disabledDate(date) {
-        return self.val1 && formatDate(date) < formatDate(self.val1);
+        var ret = false;
+
+        if (self.disabledEnd) {
+          ret = self.disabledEnd(date);
+        }
+
+        if (self.val1) {
+          ret = ret || formatDate(date) < formatDate(self.val1);
+        }
+
+        return ret;
       }
     };
     return v;
@@ -16458,6 +16482,17 @@ var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
     type: {
       type: String,
       default: 'date'
+    },
+    disabledBegin: null,
+    disabledEnd: null,
+    width: {
+      type: Number,
+      default: 120
+    },
+    convert: {
+      // 转换结果为string
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -16476,15 +16511,44 @@ var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
         val1: val1,
         val2: val2
       };
+    },
+    handleInput1: function handleInput1(v) {
+      this.val1 = v;
+      this.$emit('input', [this.format(this.val1), this.format(this.val2)]);
+    },
+    handleInput2: function handleInput2(v) {
+      this.val2 = v;
+      this.$emit('input', [this.format(this.val1), this.format(this.val2)]);
+    },
+    format: function format(v) {
+      if (this.convert && v) {
+        v = new Date(v);
+
+        switch (this.type) {
+          case 'date':
+            return formatDate(v);
+
+          case 'year':
+            return v.getYear();
+
+          case 'month':
+            return v.getMonth();
+
+          case 'datetime':
+            return formatDate(v, 'yyyy/MM/dd hh:mm:ss');
+        }
+      } else {
+        return v;
+      }
     }
   },
   watch: {
-    val1: function val1(v) {
-      this.$emit('input', [formatDate(this.val1), formatDate(this.val2)]);
-    },
-    val2: function val2(v) {
-      this.$emit('input', [formatDate(this.val1), formatDate(this.val2)]);
-    },
+    // val1: function(v) {
+    //   this.$emit('input', [formatDate(this.val1), formatDate(this.val2)])
+    // },
+    // val2: function(v) {
+    //   this.$emit('input', [formatDate(this.val1), formatDate(this.val2)])
+    // },
     value: {
       handler: function handler(v) {
         var d = this.parseDate(v);
@@ -16507,8 +16571,8 @@ var DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns = []
 
 var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
   components_DatepickerRangevue_type_script_lang_js_,
-  DatepickerRangevue_type_template_id_fa52d9ec_render,
-  DatepickerRangevue_type_template_id_fa52d9ec_staticRenderFns,
+  DatepickerRangevue_type_template_id_12c6a7f8_render,
+  DatepickerRangevue_type_template_id_12c6a7f8_staticRenderFns,
   false,
   null,
   null,
