@@ -30,7 +30,7 @@
 import Pagination from '../Table/pagination'
 import Buttons from '../Table/UButtons'
 import Query from '../Query'
-import {setChoice} from '../utils/utils.js'
+import {setChoice, deepCopy, deepCompare} from '../utils/utils.js'
 
 let rowKey = 1
 
@@ -85,10 +85,11 @@ export default {
       loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
       nodata: '暂无数据',
-      scroll: false // 是否无限滚动
+      scroll: false, // 是否无限滚动,
+      toEnd: false // 是否到头（用于滚动模式）
     }
     let d = Object.assign(_default, this.config)
-    return {store: d}
+    return {store: d, old_param: {}}
   },
 
   mounted() {
@@ -128,10 +129,16 @@ export default {
     },
 
     handleReachBottom () {
-      if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
+      if (!this.store.scroll){
+        if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
+          this.store.param.page = this.store.param.page + 1
+          this.store.page = this.store.param.page
+        }
+      } else {
         this.store.param.page = this.store.param.page + 1
-        return this.loadData()
+        this.store.page = this.store.param.page
       }
+      return this.loadData()
     },
 
     go(page) {
@@ -140,15 +147,23 @@ export default {
 
     loadData (param) {
       return new Promise((resolve, reject) => {
-        let args = this.store.param
+        Object.assign(this.store.param, param || {})
+        // 比较除page之外的值，如果有变化则有两种处理
+        // 1. 清空数据列表
+        // 2. 重置page = 1
+        let args = deepCopy(this.store.param)
+        delete args.page
+        let same = deepCompare(args, this.old_param)
         // data 为数据行， others 为其它信息，如total
         const callback = (data, others) => {
           if (data) {
-            if (!this.store.scroll) {
+            if (!this.store.scroll || !same) {
               this.store.data = []
             }
             this.addRows(data)
+            this.old_param = args
           }
+          // 可以有 total , toEnd
           if (others && (others instanceof Object)) {
             this.mergeStates(others)
           }
@@ -160,7 +175,12 @@ export default {
         }
         if (this.store.onLoadData) {
           this.showLoading(true)
-          this.store.onLoadData(Object.assign({}, args, param || {}), callback)
+          if (!same) {
+            this.store.param.page = 1
+            this.store.page = 1
+            this.store.start = 1
+          }
+          this.store.onLoadData(this.store.param, callback)
         }
       })
     },
@@ -169,6 +189,7 @@ export default {
       this.store.param = Object.assign(this.store.param, data)
       this.store.page = 1
       this.store.start = 1
+      this.store.data = []
       this.$set(this.store.param, 'page', 1)
       this.loadData()
     },

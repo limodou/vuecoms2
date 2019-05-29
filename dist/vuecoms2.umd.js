@@ -16782,12 +16782,12 @@ var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UploaderFile = (UploaderFile_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=58e1ecfc&
-var CardListvue_type_template_id_58e1ecfc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0 && !_vm.store.loading)?_c('div',[_vm._t("nodata",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.data.length === 0 && _vm.store.loading)?_c('div',[_vm._t("loading",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.loadingText)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{data:_vm.store.data})],2):[_vm._t("default",null,{data:_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
-var CardListvue_type_template_id_58e1ecfc_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"8920130a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=557a8561&
+var CardListvue_type_template_id_557a8561_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0 && !_vm.store.loading)?_c('div',[_vm._t("nodata",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.data.length === 0 && _vm.store.loading)?_c('div',[_vm._t("loading",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.loadingText)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{data:_vm.store.data})],2):[_vm._t("default",null,{data:_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
+var CardListvue_type_template_id_557a8561_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=58e1ecfc&
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=557a8561&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=script&lang=js&
 //
@@ -16872,12 +16872,15 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
       nodata: '暂无数据',
-      scroll: false // 是否无限滚动
+      scroll: false,
+      // 是否无限滚动,
+      toEnd: false // 是否到头（用于滚动模式）
 
     };
     var d = Object.assign(_default, this.config);
     return {
-      store: d
+      store: d,
+      old_param: {}
     };
   },
   mounted: function mounted() {
@@ -16925,10 +16928,17 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       this.$emit('on-query-change', change);
     },
     handleReachBottom: function handleReachBottom() {
-      if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
+      if (!this.store.scroll) {
+        if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
+          this.store.param.page = this.store.param.page + 1;
+          this.store.page = this.store.param.page;
+        }
+      } else {
         this.store.param.page = this.store.param.page + 1;
-        return this.loadData();
+        this.store.page = this.store.param.page;
       }
+
+      return this.loadData();
     },
     go: function go(page) {
       this.$refs.pagination.go(page);
@@ -16937,16 +16947,25 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       var _this4 = this;
 
       return new Promise(function (resolve, reject) {
-        var args = _this4.store.param; // data 为数据行， others 为其它信息，如total
+        Object.assign(_this4.store.param, param || {}); // 比较除page之外的值，如果有变化则有两种处理
+        // 1. 清空数据列表
+        // 2. 重置page = 1
+
+        var args = deepCopy(_this4.store.param);
+        delete args.page;
+        var same = deepCompare(args, _this4.old_param); // data 为数据行， others 为其它信息，如total
 
         var callback = function callback(data, others) {
           if (data) {
-            if (!_this4.store.scroll) {
+            if (!_this4.store.scroll || !same) {
               _this4.store.data = [];
             }
 
             _this4.addRows(data);
-          }
+
+            _this4.old_param = args;
+          } // 可以有 total , toEnd
+
 
           if (others && others instanceof Object) {
             _this4.mergeStates(others);
@@ -16964,7 +16983,13 @@ var CardListvue_type_script_lang_js_rowKey = 1;
         if (_this4.store.onLoadData) {
           _this4.showLoading(true);
 
-          _this4.store.onLoadData(Object.assign({}, args, param || {}), callback);
+          if (!same) {
+            _this4.store.param.page = 1;
+            _this4.store.page = 1;
+            _this4.store.start = 1;
+          }
+
+          _this4.store.onLoadData(_this4.store.param, callback);
         }
       });
     },
@@ -16972,6 +16997,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       this.store.param = Object.assign(this.store.param, data);
       this.store.page = 1;
       this.store.start = 1;
+      this.store.data = [];
       this.$set(this.store.param, 'page', 1);
       this.loadData();
     },
@@ -17079,8 +17105,8 @@ var CardListvue_type_script_lang_js_rowKey = 1;
 
 var CardList_component = Object(componentNormalizer["a" /* default */])(
   CardList_CardListvue_type_script_lang_js_,
-  CardListvue_type_template_id_58e1ecfc_render,
-  CardListvue_type_template_id_58e1ecfc_staticRenderFns,
+  CardListvue_type_template_id_557a8561_render,
+  CardListvue_type_template_id_557a8561_staticRenderFns,
   false,
   null,
   null,
