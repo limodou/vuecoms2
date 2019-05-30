@@ -8436,7 +8436,7 @@ function (_Field) {
   createClass_default()(DateField, [{
     key: "convert_value",
     value: function convert_value(x) {
-      if (!this.options.convert) return x;
+      if (this.options.convert === false) return x;
 
       if (x instanceof Date) {
         return formatDate(x, 'yyyy/MM/dd');
@@ -8486,7 +8486,7 @@ function (_Field) {
   createClass_default()(DatetimeField, [{
     key: "convert_value",
     value: function convert_value(x) {
-      if (!this.options.convert) return x;
+      if (this.options.convert === false) return x;
 
       if (x instanceof Date) {
         return formatDate(x, 'yyyy/MM/dd hh:mm:ss');
