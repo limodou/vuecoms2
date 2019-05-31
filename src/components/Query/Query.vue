@@ -229,7 +229,7 @@ export default {
   watch: {
     defaultValue: {
       handler (v) {
-        this.merge(this.current_value, v)
+        this.merge_object(this.current_value, v)
       },
       deep: true
     },
@@ -245,11 +245,11 @@ export default {
 
         // 比较两个变量是否不同
         let result = {}
-        this.merge(result, deepCompare(this.old_value, this.current_value, true))
+        this.merge_object(result, deepCompare(this.old_value, this.current_value, true))
         if (!isEmpty(result)) {
           this.$emit('on-query-change', result)
         }
-        this.merge(this.old_value, this.current_value)
+        this.merge_object(this.old_value, this.current_value)
       },
       deep: true
     },
@@ -278,10 +278,10 @@ export default {
     if (this.parseUrl)
       curValue = query_url.urlParams
 
-    this.merge(this.value, this.defaultValue)
-    this.merge(this.value, curValue)
-    this.merge(this.current_value, this.value)
-    this.merge(this.old_value, this.current_value)
+    this.merge_object(this.value, this.defaultValue)
+    this.merge_object(this.value, curValue)
+    this.merge_object(this.current_value, this.value)
+    this.merge_object(this.old_value, this.current_value)
     this.makeFields()
   },
 
@@ -309,10 +309,10 @@ export default {
     },
     handleClick(btn){
       if (btn.name === 'reset') {
-        this.reset(this.current_value)
-        this.merge(this.current_value, this.defaultValue)
+        this.reset_object(this.current_value)
+        this.merge_object(this.current_value, this.defaultValue)
       }
-      this.merge(this.value, this.current_value)
+      this.merge_object(this.value, this.current_value)
       this.$emit("input", this.value)
     },
     getRows(rows) {

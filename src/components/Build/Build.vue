@@ -18,9 +18,11 @@
 <script>
 import {validateRule} from './validateUtil'
 import {deepCompare, deepCopy, isEmpty} from '../utils/utils'
+import dict from '../mixins/dict'
 
 export default {
   name: 'Build',
+  mixins: [dict],
   data () {
     return {
       originValue: deepCopy(this.value), // 保留初始值，用于reset
@@ -227,6 +229,7 @@ export default {
     // 清空数据
     reset () {
       let v = deepCopy(this.originValue)
+      this.reset_object(this.value)
       Object.assign(this.value, v)
       this.makeValidateResult(true)
     }
