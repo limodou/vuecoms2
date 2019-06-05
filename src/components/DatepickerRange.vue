@@ -1,8 +1,14 @@
 <template>
   <div>
-    <DatePicker :type="type" value="val1" transfer :placeholder="placeholderBegin" :options="options1" :style="{width: `${width}px`}" @input="handleInput1"></DatePicker>
+    <DatePicker ref="val1"
+      :type="type" :value="val1" transfer 
+      :placeholder="placeholderBegin" :options="options1" 
+      :style="{width: `${width}px`}" @input="handleInput1"></DatePicker>
     -
-    <DatePicker :type="type" value="val2" transfer :placeholder="placeholderEnd" :options="options2" :style="{width: `${width}px`}" @input="handleInput2"></DatePicker>
+    <DatePicker ref="val2"
+      :type="type" :value="val2" transfer 
+      :placeholder="placeholderEnd" :options="options2" 
+      :style="{width: `${width}px`}" @input="handleInput2"></DatePicker>
   </div>
 </template>
 
@@ -112,6 +118,12 @@ export default {
         let d = this.parseDate(v)
         this.val1 = d['val1']
         this.val2 = d['val2']
+        if (!this.val1) {
+          this.$refs.val1.internalValue = []
+        }
+        if (!this.val2) {
+          this.$refs.val2.internalValue = []
+        }
       },
       deep: true
     }

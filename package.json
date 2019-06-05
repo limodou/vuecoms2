@@ -18,7 +18,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.4",
     "resize-detector": "^0.2.0",
-    "vue": "^2.5.17"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.3.4",
@@ -35,6 +35,6 @@
     "less-loader": "^4.1.0",
     "sortablejs": "^1.8.3",
     "vue-scrollto": "^2.13.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.6.10"
   }
 }
