@@ -15748,12 +15748,12 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=25644978&
-var Buildvue_type_template_id_25644978_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
-var Buildvue_type_template_id_25644978_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=1fcbed8c&
+var Buildvue_type_template_id_1fcbed8c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
+var Buildvue_type_template_id_1fcbed8c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=25644978&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=1fcbed8c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 //
@@ -15788,7 +15788,9 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
       rows: {},
       // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
-      validateResult: {} //保存校验结果
+      validateResult: {},
+      //保存校验结果,
+      visible_fields: {} //保存显示字段
 
     };
   },
@@ -15908,6 +15910,7 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
     makeValidateResult: function makeValidateResult(force) {
       for (var name in this.fields) {
         var field = this.fields[name];
+        if (!this.visible_fields[field.name]) continue;
 
         if ((force || !this.validateResult[name]) && !field.static) {
           var rule = this.getRule(field);
@@ -15919,39 +15922,27 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
         }
       }
     },
-    makeFields: function makeFields() {
-      var fs = {};
+    check_in_layout: function check_in_layout(f, layout) {
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = this.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = layout[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var row = _step.value;
-          var isStatic = row.static === undefined ? false : row.static;
-
-          if (row.name) {
-            this.rows[row.name] = row;
-          }
-
           var _iteratorNormalCompletion2 = true;
           var _didIteratorError2 = false;
           var _iteratorError2 = undefined;
 
           try {
-            for (var _iterator2 = (row.fields || [])[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var field = _step2.value;
-              fs[field.name] = field;
-              this.$set(field, 'static', field.static || isStatic);
-              this.$set(field, 'hidden', field.hidden || false);
-              this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
+            for (var _iterator2 = row[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var c = _step2.value;
 
-              if (typeof field.options === 'undefined') {
-                this.$set(field, 'options', {});
+              if (typeof c === 'string') {
+                if (c === f.name) return true;
+              } else if (c instanceof Object) {
+                if (c.name === f.name) return true;
               }
-
-              if (field.options.hasOwnProperty('choices')) this.$set(field.options, 'choices', field.options.choices);
-              if (!field.type) this.$set(field, 'type', 'str'); //str
             }
           } catch (err) {
             _didIteratorError2 = true;
@@ -15982,8 +15973,78 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
           }
         }
       }
+    },
+    makeFields: function makeFields() {
+      var fs = {};
+      var vfs = {};
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = this.data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var row = _step3.value;
+          var isStatic = row.static === undefined ? false : row.static;
+
+          if (row.name) {
+            this.rows[row.name] = row;
+          }
+
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
+
+          try {
+            for (var _iterator4 = (row.fields || [])[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              var field = _step4.value;
+              fs[field.name] = field;
+              this.$set(field, 'static', field.static || isStatic);
+              this.$set(field, 'hidden', field.hidden || false);
+              this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
+
+              if (typeof field.options === 'undefined') {
+                this.$set(field, 'options', {});
+              }
+
+              if (field.options.hasOwnProperty('choices')) this.$set(field.options, 'choices', field.options.choices);
+              if (!field.type) this.$set(field, 'type', 'str'); //str
+
+              if (this.check_in_layout(field, row.layout) && !field.hidden) {
+                vfs[field.name] = true;
+              }
+            }
+          } catch (err) {
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                _iterator4.return();
+              }
+            } finally {
+              if (_didIteratorError4) {
+                throw _iteratorError4;
+              }
+            }
+          }
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+            _iterator3.return();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
 
       this.fields = fs;
+      this.visible_fields = vfs;
     },
     getRule: function getRule(field) {
       var rule;
@@ -15996,29 +16057,29 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
           rule = [field.rule];
         } else {
           rule = field.rule.slice();
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
 
           try {
-            for (var _iterator3 = rule[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var r = _step3.value;
+            for (var _iterator5 = rule[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var r = _step5.value;
 
               if (r instanceof Object) {
                 r.fullField = field.label;
               }
             }
           } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
+              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                _iterator5.return();
               }
             } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
+              if (_didIteratorError5) {
+                throw _iteratorError5;
               }
             }
           }
@@ -16107,20 +16168,20 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
     choices: {
       immediate: true,
       handler: function handler() {
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
 
         try {
-          for (var _iterator4 = this.data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var row = _step4.value;
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+          for (var _iterator6 = this.data[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var row = _step6.value;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-              for (var _iterator5 = (row.fields || [])[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var field = _step5.value;
+              for (var _iterator7 = (row.fields || [])[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                var field = _step7.value;
                 var choices = this.choices[field.name];
 
                 if (choices) {
@@ -16134,31 +16195,31 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
                 }
               }
             } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
+              _didIteratorError7 = true;
+              _iteratorError7 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                  _iterator5.return();
+                if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                  _iterator7.return();
                 }
               } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
+                if (_didIteratorError7) {
+                  throw _iteratorError7;
                 }
               }
             }
           }
         } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
+          _didIteratorError6 = true;
+          _iteratorError6 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-              _iterator4.return();
+            if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+              _iterator6.return();
             }
           } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
+            if (_didIteratorError6) {
+              throw _iteratorError6;
             }
           }
         }
@@ -16193,8 +16254,8 @@ var Buildvue_type_template_id_25644978_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_25644978_render,
-  Buildvue_type_template_id_25644978_staticRenderFns,
+  Buildvue_type_template_id_1fcbed8c_render,
+  Buildvue_type_template_id_1fcbed8c_staticRenderFns,
   false,
   null,
   null,

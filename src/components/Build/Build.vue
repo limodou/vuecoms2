@@ -30,7 +30,8 @@ export default {
       fields: {},
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
-      validateResult: {} //保存校验结果
+      validateResult: {}, //保存校验结果,
+      visible_fields: {} //保存显示字段
     }
   },
   props: {
@@ -139,6 +140,7 @@ export default {
     makeValidateResult (force) {
       for(let name in this.fields) {
         let field = this.fields[name]
+        if (!this.visible_fields[field.name]) continue
         if ((force || !this.validateResult[name]) && !field.static) {
           let rule = this.getRule(field)
           this.$set(this.validateResult, name, {error: '', validateState: '', rule: rule})
@@ -146,8 +148,21 @@ export default {
       }
     },
 
+    check_in_layout(f, layout) {
+      for (let row of layout) {
+        for (let c of row) {
+          if (typeof c === 'string') {
+            if (c === f.name) return true
+          } else if (c instanceof Object) {
+            if (c.name === f.name) return true
+          }
+        }
+      }
+    },
+
     makeFields () {
       let fs = {}
+      let vfs = {}
       for(let row of this.data) {
         let isStatic = row.static === undefined ? false : row.static
         if (row.name) {
@@ -165,9 +180,13 @@ export default {
             this.$set(field.options, 'choices', field.options.choices)
           if (!field.type)
             this.$set(field, 'type', 'str') //str
+          if (this.check_in_layout(field, row.layout) && !field.hidden) {
+            vfs[field.name] = true
+          }
         }
       }
       this.fields = fs
+      this.visible_fields = vfs
     },
 
     getRule (field) {
