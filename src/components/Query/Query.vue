@@ -307,10 +307,13 @@ export default {
       this.$set(this.value, name, reset(this.value[name]))
       this.$set(this.value, `${name}${this.staticSuffix}`, '')
     },
-    handleClick(btn){
-      if (btn.name === 'reset') {
+    reset () {
         this.reset_object(this.current_value)
         this.merge_object(this.current_value, this.defaultValue)
+    },
+    handleClick(btn){
+      if (btn.name === 'reset') {
+        this.reset()
       }
       this.merge_object(this.value, this.current_value)
       this.$emit("input", this.value)
