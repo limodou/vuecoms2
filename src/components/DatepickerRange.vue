@@ -93,11 +93,9 @@ export default {
         v = new Date(v)
         switch (this.type) {
           case 'date':
-            return formatDate(v)
           case 'year':
-            return v.getYear()
           case 'month':
-            return v.getMonth()
+            return formatDate(v)
           case 'datetime':
             return formatDate(v, 'yyyy/MM/dd hh:mm:ss')
         }

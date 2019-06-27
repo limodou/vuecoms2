@@ -560,6 +560,10 @@ export default {
       this.loadData(opts || {})
     },
 
+    reset_query () {
+      this.$refs.query.reset()
+    },
+
     loadData (url, param) {
       let _url
       if (url instanceof Object) {

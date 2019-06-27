@@ -7323,12 +7323,12 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Box = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=6edfe7e8&
-var UGridvue_type_template_id_6edfe7e8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_6edfe7e8_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=3a0fcbef&
+var UGridvue_type_template_id_3a0fcbef_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons.length>0 || _vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons.length>0)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons.length>0)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),_c('u-table',{directives:[{name:"show",rawName:"v-show",value:(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight),expression:"rightWidth && xscroll && !isScrollRight"}],ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}})],1):_vm._e(),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_3a0fcbef_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=6edfe7e8&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=3a0fcbef&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0cdbef22&
 var UTablevue_type_template_id_0cdbef22_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
@@ -15088,6 +15088,9 @@ function resetTriggers(elem) {
       this.$set(this.param, 'page', page);
       this.loadData(opts || {});
     },
+    reset_query: function reset_query() {
+      this.$refs.query.reset();
+    },
     loadData: function loadData(url, param) {
       var _this4 = this;
 
@@ -15277,8 +15280,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_6edfe7e8_render,
-  UGridvue_type_template_id_6edfe7e8_staticRenderFns,
+  UGridvue_type_template_id_3a0fcbef_render,
+  UGridvue_type_template_id_3a0fcbef_staticRenderFns,
   false,
   null,
   null,
@@ -16491,12 +16494,12 @@ var iview_fix = __webpack_require__("2c21");
 // EXTERNAL MODULE: ./src/components/styles/common.css
 var common = __webpack_require__("a88d");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=5d912d73&
-var DatepickerRangevue_type_template_id_5d912d73_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{ref:"val1",style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":_vm.val1,"transfer":"","placeholder":_vm.placeholderBegin,"options":_vm.options1},on:{"input":_vm.handleInput1}}),_vm._v("\n  -\n  "),_c('DatePicker',{ref:"val2",style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":_vm.val2,"transfer":"","placeholder":_vm.placeholderEnd,"options":_vm.options2},on:{"input":_vm.handleInput2}})],1)}
-var DatepickerRangevue_type_template_id_5d912d73_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=template&id=bc8243c8&
+var DatepickerRangevue_type_template_id_bc8243c8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('DatePicker',{ref:"val1",style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":_vm.val1,"transfer":"","placeholder":_vm.placeholderBegin,"options":_vm.options1},on:{"input":_vm.handleInput1}}),_vm._v("\n  -\n  "),_c('DatePicker',{ref:"val2",style:({width: (_vm.width + "px")}),attrs:{"type":_vm.type,"value":_vm.val2,"transfer":"","placeholder":_vm.placeholderEnd,"options":_vm.options2},on:{"input":_vm.handleInput2}})],1)}
+var DatepickerRangevue_type_template_id_bc8243c8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=5d912d73&
+// CONCATENATED MODULE: ./src/components/DatepickerRange.vue?vue&type=template&id=bc8243c8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DatepickerRange.vue?vue&type=script&lang=js&
 //
@@ -16603,13 +16606,9 @@ var DatepickerRangevue_type_template_id_5d912d73_staticRenderFns = []
 
         switch (this.type) {
           case 'date':
-            return formatDate(v);
-
           case 'year':
-            return v.getYear();
-
           case 'month':
-            return v.getMonth();
+            return formatDate(v);
 
           case 'datetime':
             return formatDate(v, 'yyyy/MM/dd hh:mm:ss');
@@ -16656,8 +16655,8 @@ var DatepickerRangevue_type_template_id_5d912d73_staticRenderFns = []
 
 var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
   components_DatepickerRangevue_type_script_lang_js_,
-  DatepickerRangevue_type_template_id_5d912d73_render,
-  DatepickerRangevue_type_template_id_5d912d73_staticRenderFns,
+  DatepickerRangevue_type_template_id_bc8243c8_render,
+  DatepickerRangevue_type_template_id_bc8243c8_staticRenderFns,
   false,
   null,
   null,
