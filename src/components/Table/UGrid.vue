@@ -555,7 +555,7 @@ export default {
 
     go(page, opts) {
       this.page = page
-      this.start = 1
+      this.start = (this.page - 1) * this.pageSize + 1
       this.$set(this.param, 'page', page)
       this.loadData(opts || {})
     },
