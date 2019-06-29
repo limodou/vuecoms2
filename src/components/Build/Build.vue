@@ -148,6 +148,14 @@ export default {
       }
     },
 
+    //清除某个字段的校验结果，适用于直接改value的情况
+    validateField (name) {
+      let field = this.fields[name]
+      if (!this.visible_fields[field.name] || field.static) return
+      validateRule(this.value, name, this.validateResult)
+    },
+
+    //检查是否在layout中定义了
     check_in_layout(f, layout) {
       for (let row of layout) {
         for (let c of row) {

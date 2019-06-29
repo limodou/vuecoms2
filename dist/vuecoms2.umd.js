@@ -15763,12 +15763,12 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=1fcbed8c&
-var Buildvue_type_template_id_1fcbed8c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
-var Buildvue_type_template_id_1fcbed8c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=471110d2&
+var Buildvue_type_template_id_471110d2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'BuildLayout',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})],2)}
+var Buildvue_type_template_id_471110d2_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=1fcbed8c&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=471110d2&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 //
@@ -15937,6 +15937,13 @@ var Buildvue_type_template_id_1fcbed8c_staticRenderFns = []
         }
       }
     },
+    //清除某个字段的校验结果，适用于直接改value的情况
+    validateField: function validateField(name) {
+      var field = this.fields[name];
+      if (!this.visible_fields[field.name] || field.static) return;
+      validateUtil_validateRule(this.value, name, this.validateResult);
+    },
+    //检查是否在layout中定义了
     check_in_layout: function check_in_layout(f, layout) {
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -16269,8 +16276,8 @@ var Buildvue_type_template_id_1fcbed8c_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_1fcbed8c_render,
-  Buildvue_type_template_id_1fcbed8c_staticRenderFns,
+  Buildvue_type_template_id_471110d2_render,
+  Buildvue_type_template_id_471110d2_staticRenderFns,
   false,
   null,
   null,
