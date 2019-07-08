@@ -503,3 +503,10 @@ export const walkTree = (data, callback, childrenField='children') => {
 
   return _f(data)
 }
+
+// 转换HTML为文本
+export const html2text = (txt) => {
+  if (typeof txt === 'string')
+    return txt.replace(/&nbsp;/ig, ' ').replace(/<br\/?>/ig, '\n').replace(/<.*?>/ig, '')
+  return txt
+}

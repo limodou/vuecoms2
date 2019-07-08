@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {mapState, mapMethod} from '../utils/utils.js'
+import {mapState, mapMethod, html2text} from '../utils/utils.js'
 import CellRender from './UCellRender'
 import GenericInput from '../Fields/GenericInput'
 import List from '../utils/list.js'
@@ -80,7 +80,7 @@ export default {
           //调用原始值及format值
           return showTitle(this.col.value, this.value)
         } else {
-          return this.value
+          return html2text(this.value)
         }
       }
     },
