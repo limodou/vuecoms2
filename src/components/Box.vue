@@ -9,8 +9,8 @@
         <button v-if="collapse" type="button" class="box-tool"
           @click.prevent="toggle"
         >
-            <Icon v-if="open" type="ios-remove" class="box-icon"></Icon>
-            <Icon v-else type="ios-add" class="box-icon"></Icon>
+            <Icon v-if="open" :type="openIcon" class="box-icon"></Icon>
+            <Icon v-else :type="closeIcon" class="box-icon"></Icon>
         </button>
         <button v-if="removable" type="button" class="box-tool"
           @click.prevent="removed=true"
@@ -90,6 +90,16 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+
+    openIcon: {
+      type: String,
+      default: 'ios-add'
+    },
+
+    closeIcon: {
+      type: String,
+      default: 'ios-remove'
     },
 
     height: {

@@ -1,17 +1,47 @@
 <template>
   <div class="u-build">
-    <template v-for="item in data">
-      <component
-        v-if="!item.hidden"
-        :is="item.component || 'BuildLayout'"
-        v-bind="item"
-        :value="value"
-        :labelWidth="item.labelWidth || labelWidth"
-        :staticSuffix="staticSuffix"
-        :validateResult="validateResult"
-        :ref="item.name"
+    <div slot="header"></div>
+
+    <template v-if="theme === 'default'">
+      <template v-for="item in data">
+        <component
+          v-if="!item.hidden"
+          :is="item.component || 'uSection'"
+          v-bind="item"
+          :boxComponent="showBox ? item.boxComponent : ''"
+          :boxOptions="getBoxOptions(item)"
+          :value="value"
+          :labelWidth="item.labelWidth || labelWidth"
+          :labelDir="item.labelDir || labelDir"
+          :staticSuffix="staticSuffix"
+          :validateResult="validateResult"
+          :ref="item.name"
         ></component>
+      </template>
     </template>
+    <template v-if="theme === 'tab'">
+      <Tabs value="section_1">
+        <TabPane v-for="(item, index) of data" :label="item.title" :name="`section_${index+1}`">
+          <component
+            v-if="!item.hidden"
+            :is="item.component || 'uSection'"
+            v-bind="item"
+            :boxComponent="item.boxComponent && showBox ? item.boxComponent : ''"
+            :boxOptions="getBoxOptions(item)"
+            :value="value"
+            :labelWidth="item.labelWidth || labelWidth"
+            :labelDir="item.labelDir || labelDir"
+            :staticSuffix="staticSuffix"
+            :validateResult="validateResult"
+            :ref="item.name"
+          ></component>          
+        </TabPane>
+      </Tabs>
+    </template>
+    <div slot="footer"></div>
+    <Row v-if="buttons" slot="buttons">
+      <Buttons :buttons="btns" :data="value" :size="btnSize" :target="this"></Buttons>
+    </Row>
   </div>
 </template>
 
@@ -19,10 +49,12 @@
 import {validateRule} from './validateUtil'
 import {deepCompare, deepCopy, isEmpty} from '../utils/utils'
 import dict from '../mixins/dict'
+import Buttons from '../Table/UButtons'
 
 export default {
   name: 'Build',
   mixins: [dict],
+  components: {Buttons},
   data () {
     return {
       originValue: deepCopy(this.value), // 保留初始值，用于reset
@@ -35,6 +67,14 @@ export default {
     }
   },
   props: {
+    theme: {
+      type: String,
+      default: 'default'
+    },
+    showBox: {
+      type: Boolean,
+      default: true
+    },
     data: {
       type: Array,
       default: () => []
@@ -45,7 +85,6 @@ export default {
       default: 150
     },
 
-    plainData: true, //数据是否扁平化
     staticSuffix: {
       type: String,
       default: '_static'
@@ -80,6 +119,31 @@ export default {
       default () {
         return {}
       }
+    },
+
+    buttons: {
+      
+    },
+    labelDir: {
+      type: String,
+      default: 'horizontal'
+    },
+    boxOptions: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+
+  computed: {
+    btns () {
+      if (Array.isArray(this.buttons)) return this.buttons
+      else return this.buttons.items
+    },
+
+    btnSize () {
+      return this.buttons.size || 'default'
     }
   },
 
@@ -148,6 +212,10 @@ export default {
       }
     },
 
+    getBoxOptions (item) {
+      return Object.assign({}, this.boxOptions, item.boxOptions || {})
+    },
+
     //清除某个字段的校验结果，适用于直接改value的情况
     validateField (name) {
       let field = this.fields[name]
@@ -178,7 +246,7 @@ export default {
         }
         for(let field of (row.fields || [])) {
           fs[field.name] = field
-          this.$set(field, 'static', field.static === undefined ? isStatic : field.static)
+          this.$set(field, 'static', field.static || isStatic)
           this.$set(field, 'hidden', field.hidden || false)
           this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
           if (typeof field.options === 'undefined') {

@@ -1,9 +1,9 @@
 import Build from './Build.vue'
-import BuildLayout from './Layout.vue'
+import uSection from './Section.vue'
 import FormCell from './FormCell.vue'
 
 export {
   Build,
-  BuildLayout,
+  uSection,
   FormCell
 }

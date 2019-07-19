@@ -5,7 +5,7 @@ import Query from './Query'
 import uSelect from './Select.vue'
 import uRadioGroup from './RadioGroup.vue'
 import uCheckboxGroup from './CheckboxGroup.vue'
-import {Build, BuildLayout, FormCell} from './Build'
+import {Build, uSection, FormCell} from './Build'
 import GenericInput from './Fields'
 import './styles/iview.fix.css'
 import './styles/common.css'
@@ -31,7 +31,7 @@ const Components = {
   uRadioGroup,
   uCheckboxGroup,
   Build,
-  BuildLayout,
+  uSection,
   FormCell,
   GenericInput,
   // Chart,

@@ -40,7 +40,8 @@
               @click="handleClick(col.row)"
               :style="cellStyles(col.column)"
               :rowspan="col.rowspan"
-              :colspan="col.colspan">
+              :colspan="col.colspan"
+              :class="{'u-cell-last': col.last}">
               <Cell :store="store" :col="col" :row_index="row_index" :fixed="fixed"></Cell>
             </td>
           </tr>
@@ -206,6 +207,13 @@ export default {
 
       for (let row of this.data) {
         processNode(row, null, rows)
+      }
+
+      // 增加对每列最后单元格的判断
+      for (let line of last_columns_set) {
+        for (let c of line) {
+          c.last = true
+        }
       }
       return rows
     },
@@ -529,6 +537,10 @@ export default {
             border: none;
             border-right: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
+
+            // &:last-child {
+            //   border-right: none;
+            // }
           }
         }
       }
@@ -563,6 +575,14 @@ export default {
           border: none;
           border-right: 1px solid #ddd;
           border-bottom: 1px solid #ddd;
+
+          &.u-cell-last {
+            border-bottom: none;
+          }
+
+          // &:last-child {
+          //   border-right: none;
+          // }
         }
       }
     }
