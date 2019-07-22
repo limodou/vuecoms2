@@ -1,32 +1,15 @@
 <template>
   <div class="u-build">
-    <div slot="header"></div>
+    <div slot="header" class="u-build-header"></div>
 
-    <template v-if="theme === 'default'">
-      <template v-for="item in data">
-        <component
-          v-if="!item.hidden"
-          :is="item.component || 'uSection'"
-          v-bind="item"
-          :boxComponent="showBox ? item.boxComponent : ''"
-          :boxOptions="getBoxOptions(item)"
-          :value="value"
-          :labelWidth="item.labelWidth || labelWidth"
-          :labelDir="item.labelDir || labelDir"
-          :staticSuffix="staticSuffix"
-          :validateResult="validateResult"
-          :ref="item.name"
-        ></component>
-      </template>
-    </template>
-    <template v-if="theme === 'tab'">
-      <Tabs value="section_1">
-        <TabPane v-for="(item, index) of data" :label="item.title" :name="`section_${index+1}`">
+    <div class="u-build-body">
+      <template v-if="theme === 'default'">
+        <template v-for="item in data">
           <component
             v-if="!item.hidden"
             :is="item.component || 'uSection'"
             v-bind="item"
-            :boxComponent="item.boxComponent && showBox ? item.boxComponent : ''"
+            :boxComponent="showBox ? item.boxComponent : ''"
             :boxOptions="getBoxOptions(item)"
             :value="value"
             :labelWidth="item.labelWidth || labelWidth"
@@ -34,11 +17,33 @@
             :staticSuffix="staticSuffix"
             :validateResult="validateResult"
             :ref="item.name"
-          ></component>          
-        </TabPane>
-      </Tabs>
-    </template>
-    <div slot="footer"></div>
+          ></component>
+        </template>
+      </template>
+      <template v-if="theme === 'tab'">
+        <Tabs value="section_1">
+          <TabPane v-for="(item, index) of data" :label="item.title" :name="`section_${index+1}`">
+            <component
+              v-if="!item.hidden"
+              :is="item.component || 'uSection'"
+              v-bind="item"
+              :boxComponent="item.boxComponent && showBox ? item.boxComponent : ''"
+              :boxOptions="getBoxOptions(item)"
+              :value="value"
+              :labelWidth="item.labelWidth || labelWidth"
+              :labelDir="item.labelDir || labelDir"
+              :staticSuffix="staticSuffix"
+              :validateResult="validateResult"
+              :ref="item.name"
+            ></component>          
+          </TabPane>
+        </Tabs>
+      </template>
+          
+    </div>
+
+    <div slot="footer" class="u-build-header"></div>
+    
     <Row v-if="buttons" slot="buttons">
       <Buttons :buttons="btns" :data="value" :size="btnSize" :target="this"></Buttons>
     </Row>

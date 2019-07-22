@@ -94,7 +94,10 @@ export default {
     },
 
     themeClasses () {
-      return `build-layout-theme-${this.theme}`
+      let klass = {}
+      klass[`build-layout-theme-${this.theme}`] = true
+      klass[`u-layout-${this.labelDir}`] = true
+      return klass
     }
   }
 }
