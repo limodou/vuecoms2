@@ -51,14 +51,14 @@
 </template>
 
 <script>
-import {validateRule} from './validateUtil'
+import validateMixin from './validateMixin'
 import {deepCompare, deepCopy, isEmpty} from '../utils/utils'
 import dict from '../mixins/dict'
 import Buttons from '../Table/UButtons'
 
 export default {
   name: 'Build',
-  mixins: [dict],
+  mixins: [dict, validateMixin],
   components: {Buttons},
   data () {
     return {
@@ -68,7 +68,9 @@ export default {
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {}, //保存校验结果,
-      visible_fields: {} //保存显示字段
+      visible_fields: {}, //保存显示字段
+      validateRules: {}, //保存校验规则
+      fieldsLabel: {}
     }
   },
   props: {
@@ -154,53 +156,37 @@ export default {
 
   methods: {
     validate (callback) {
+      if (this.validating) return
+
       return new Promise((resolve, reject) => {
-        if (this.validating){
-          return
-        }
         this.validating = true
         this.$emit('validating', true)
+        let error = ''
 
-        const _check = (children, result, recursion) => {
-          let error = ''
-          for(let k in this.validateResult) {
-            let r = this.validateResult[k]
-            // 增加对hidden的处理
-            if (r.rule && r.rule.length > 0 && !this.fields[k].hidden) {
-              if (!r.validateState && !this.fields[k].static) {
-                validateRule(this.value, k, this.validateResult)
-                result.pending.push(r)
-              } else if (r.validateState === 'validating') {
-                result.pending.push(r)
-              } else if (r.validateState === 'error' && !result.error) {
-                result.error = r.error
-              }
+        this.$validator.validate(this.value, this.validateRules, this.fieldsLabel).then(res => {
+          if (res) {
+            for(let k of Object.keys(res)) {
+              this.validateResult[k].validateState = 'error'
+              this.validateResult[k].error = res[k]
+              if (!error) error = res[k]
             }
-          }
-        }
-
-        const _check_pending = (children, recursion) => {
-          let r = {error: '', pending: []}
-          _check(children, r, recursion)
-          if (r.error) {
-            this.validating = false
-            this.$emit('validating', false)
-            reject(r.error)
-            if (callback) callback(r.error)
-            return
-          } else if (r.pending.length > 0) {
-            setTimeout(()=>{
-              _check_pending(r.pending, false)
-            }, 10)
+            if (callback) callback(error)
           } else {
-            this.validating = false
-            this.$emit('validating', false)
-            resolve()
+            for(let k of Object.keys(this.validateResult)) {
+              this.validateResult[k].validateState = 'success'
+              this.validateResult[k].error = ''
+            }
             if (callback) callback()
           }
-        }
 
-        _check_pending(this.validateResult, true)
+          this.validating = false
+          this.$emit('validating', false)
+
+          if (error) reject(error)
+          else resolve()
+
+          if (callback) callback(error)
+        })
       })
     },
 
@@ -212,7 +198,8 @@ export default {
         if (!this.visible_fields[field.name]) continue
         if ((force || !this.validateResult[name]) && !field.static) {
           let rule = this.getRule(field)
-          this.$set(this.validateResult, name, {error: '', validateState: '', rule: rule})
+          this.$set(this.validateResult, name, {error: '', validateState: '', rule: rule, fullfield: field.label})
+          this.validateRules[field.name] = rule
         }
       }
     },
@@ -225,7 +212,7 @@ export default {
     validateField (name) {
       let field = this.fields[name]
       if (!this.visible_fields[field.name] || field.static) return
-      validateRule(this.value, name, this.validateResult)
+      this.validateRule(this.value, name, this.validateResult)
     },
 
     //检查是否在layout中定义了
@@ -251,6 +238,7 @@ export default {
         }
         for(let field of (row.fields || [])) {
           fs[field.name] = field
+          this.fieldsLabel[field.name] = field.label
           this.$set(field, 'static', field.static || isStatic)
           this.$set(field, 'hidden', field.hidden || false)
           this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
@@ -277,30 +265,15 @@ export default {
         rule = []
       } else {
         if (!Array.isArray(field.rule)) {
-          field.rule.fullField = field.label
           rule = [field.rule]
         } else {
           rule = field.rule.slice()
-          for(var r of rule) {
-            if (r instanceof Object) {
-              r.fullField = field.label
-            }
-          }
         }
       }
 
       // 添加必填校验
       if (field.required) {
-        if (field.type !== 'checkbox') {
-          // 如果有上一个校验规则，则将required合并到其中，否则插入新的规则
-          if (rule.length > 0) {
-            rule[0].required = true
-          } else {
-            rule.splice(0, 0, {required:true, fullField: field.label, type: field.multiple ? 'array' : 'string'})
-          }
-        } else {
-          field.required = false
-        }
+        rule.splice(0, 0, {required:true, type: 'any'})
       }
       return rule
     },
@@ -323,6 +296,7 @@ export default {
         } else {
           result.rule.push(v)
         }
+        this.validateRules[k] = result.rule
       }
     },
 
@@ -332,6 +306,7 @@ export default {
       this.reset_object(this.value)
       Object.assign(this.value, v)
       this.makeValidateResult(true)
+      this.mergeRules()
     }
   },
 
@@ -388,7 +363,7 @@ export default {
       handler () {
         this.makeFields()
         this.makeValidateResult()
-        this.mergeRules()
+        // this.mergeRules()
       },
       deep: true
     }

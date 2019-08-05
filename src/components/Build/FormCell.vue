@@ -19,14 +19,14 @@
 
 <script>
 import GenericInput from '../Fields'
-import {validateRule} from './validateUtil'
+import validateMixin from './validateMixin'
 import { deepCopy } from '../utils/utils';
 import Emitter from '../mixins/emitter.js'
 
 export default {
   name: 'FormCell',
-  mixins: {Emitter},
-  components: {GenericInput,},
+  mixins: [Emitter, validateMixin],
+  components: {GenericInput},
   props: {
     col:{},
     value: {},
@@ -104,7 +104,7 @@ export default {
   methods: {
     validate (type, callback = function () {}) {
       if (!this.col.static)
-        validateRule(this.value, this.col.name, this.validateResult)
+        this.validateRule(this.value, this.col.name, this.validateResult)
     },
 
     handleValidate () {

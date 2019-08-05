@@ -315,6 +315,8 @@ export const deepCopy = function (data) {
 export const isEmpty = function (v) {
   if (Array.isArray(v)) {
     return v.length === 0
+  } else if (v instanceof Date) {
+    return false
   } else if (v instanceof Object) {
     for (let c in v) {
       return false

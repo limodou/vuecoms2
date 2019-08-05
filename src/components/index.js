@@ -20,6 +20,7 @@ import DatepickerRange from './DatepickerRange.vue'
 // import VueScrollTo from 'vue-scrollto'
 import UploaderFile from './UploaderFile.vue'
 import CardList from './CardList'
+import Validator from './validator'
 
 const Components = {
   Box,
@@ -43,13 +44,15 @@ const Components = {
   CardList
 }
 
-const install = function (Vue) {
+const install = function (Vue, options={}) {
   if (install.installed) return;
   Object.keys(Components).forEach((name) => {
     Vue.component(name, Components[name])
   })
   Vue.prototype.$list = List
   Vue.prototype.$findParent = findParent
+  let validator = new Validator(options.validatorOptions)
+  Vue.prototype.$validator = validator
 }
 
 // auto install
