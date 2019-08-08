@@ -46,4 +46,18 @@ export default {
 
 	object: "{field} 需要是一个对象！",
 	objectStrict: "{field} 包含无效的键值: '{actual}'！",
+
+	idnumber: "{field} 为无效身份证号！",
+	mobile: "{field} 不是有效手机号！",
+	telephone: "{field} 不是有效的固定电话号码！",
+	ip: "{field} 不是有效的IP地址！",
+	ipv4: "{field} 不是有效的IPV4地址！",
+	ipv6: "{field} 不是有效的IPV6地址！",
+	realname: "{field} 不是有效的姓名，仅支持全部汉字，或全部英文字母，数字！",
+	realnameHZ: "{field} 不是有效的姓名，仅支持汉字！",
+	password: "{field} 不是有效的密码，需要包含字母，数字和特殊字符！",
+	passwordMin: "{field} 长度需大于等于 {expected} 长度！",
+	passwordMax: "{field} 长度需小于等于 {expected} 长度！",
+	passwordRange: "{field} 长度应在 {expected} 长度之间！",
+
 };

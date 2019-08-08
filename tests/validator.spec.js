@@ -379,5 +379,124 @@ describe('validator', function () {
     })
   })
 
+  it('Test certid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '11010519491231002X'}, 
+      {c: 'idnumber'}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test certid invalid crc', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '110105194912310021'}, 
+      {c: 'idnumber'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available ID Number!"})
+    })
+  })
+
+  it('Test certid invalid date', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '110105194902310026'}, 
+      {c: 'idnumber'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available ID Number!"})
+    })
+  })
+
+  it('Test certid invalid area', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '160105194912310029'}, 
+      {c: 'idnumber'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available ID Number!"})
+    })
+  })
+
+  it('Test mobile', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '13301101217'}, 
+      {c: 'mobile'}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test mobile invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '11301101217'}, 
+      {c: 'mobile'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available mobile number!"})
+    })
+  })
+
+  it('Test telephone', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '028-23422342'}, 
+      {c: 'telephone'}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test telephone invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '234223'}, 
+      {c: 'telephone'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available telephone number!"})
+    })
+  })
+
+  it('Test IP', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '12.32.24.244'}, 
+      {c: 'ip'}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test IP invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '12.32.24.266'}, 
+      {c: 'ip'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available IP address!"})
+    })
+  })
+
+  it('Test real name', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '姓名'}, 
+      {c: 'realname'}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test real name invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '姓 名'}, 
+      {c: 'realname'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available real name, you should include chinese, alpha, number and dot!"})
+    })
+  })
+
+  it('Test password', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'abc123&'}, 
+      {c: 'password'}).then((res) => {
+      expect(res).to.to.null
+    })
+  })
+
+  it('Test password invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'abc'}, 
+      {c: 'password'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available password, you should include alpha, number and special character!"})
+    })
+  })
+
+  it('Test password invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'ab1#'}, 
+      {c: {type: 'password', range: [8, 20]}}).then((res) => {
+      expect(res).to.eql({c: "The 'c' length should between 8-20 characters long!"})
+    })
+  })
 
 })

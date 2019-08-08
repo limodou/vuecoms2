@@ -4,6 +4,8 @@ const ALPHANUM_PATTERN = /^[a-zA-Z0-9]+$/;
 const ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/;
 
 export default (rule, value, model) => {
+	if (rule.trim) value = value.trim()
+	
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
 		return
@@ -13,7 +15,6 @@ export default (rule, value, model) => {
 		return rule.makeError("string")
 	}
 
-	value = value.trim()
 	const valueLength = value.length
 
 	if (rule.min && valueLength < rule.min) {

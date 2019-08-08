@@ -6,7 +6,7 @@ export default {
       if (result.rule.length > 0) {
         result.validateState = 'validating'
     
-        let res = await this.$validator.validate(value, {[fieldname]: result.rule}, {fieldname: result.fullfield})
+        let res = await this.$validator.validate(value, {[fieldname]: result.rule}, {[fieldname]: result.fullfield})
         if (res) {
           result.validateState = 'error'
           result.error = res[fieldname]

@@ -46,4 +46,18 @@ export default {
 
 	object: "The '{field}' must be an Object!",
 	objectStrict: "The object '{field}' contains invalid keys: '{actual}'!",
+
+	idnumber: "The '{field}' is not an available ID Number!",
+	mobile: "The '{field}' is not an available mobile number!",
+	telephone: "The '{field}' is not an available telephone number!",
+	ip: "The '{field}' is not an available IP address!",
+	ipv4: "The '{field}' is not an available IPV4 address!",
+	ipv6: "The '{field}' is not an available IPV6 address!",
+	realname: "The '{field}' is not an available real name, you should include chinese, alpha, number and dot!",
+	realnameHZ: "The '{field}' is not an available real name, you should include chinese!",
+	password: "The '{field}' is not an available password, you should include alpha, number and special character!",
+	passwordMin: "The '{field}' length must be greater than or equal to {expected}!",
+	passwordMax: "The '{field}' length must be less than or equal to {expected}!",
+	passwordRange: "The '{field}' length should between {expected} characters long!",
+
 };
