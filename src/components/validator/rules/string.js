@@ -1,11 +1,12 @@
-const NUMERIC_PATTERN = /^-?[0-9]\d*(\.\d+)?$/;
-const ALPHA_PATTERN = /^[a-zA-Z]+$/;
-const ALPHANUM_PATTERN = /^[a-zA-Z0-9]+$/;
-const ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/;
+const NUMERIC_PATTERN = /^-?[0-9]\d*(\.\d+)?$/
+const ALPHA_PATTERN = /^[a-zA-Z]+$/
+const ALPHANUM_PATTERN = /^[a-zA-Z0-9]+$/
+const ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/
+const INTEGER = /^\d+$/
 
 export default (rule, value, model) => {
 	if (rule.trim) value = value.trim()
-	
+
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
 		return
@@ -48,6 +49,10 @@ export default (rule, value, model) => {
 
 	if (rule.numeric === true && !NUMERIC_PATTERN.test(value) ) {
 		return rule.makeError("stringNumeric", "A numeric string", value)
+	}
+
+	if (rule.integer === true && !INTEGER.test(value)) {
+		return rule.makeError("stringInteger", "A integer string", value)
 	}
 
 	if(rule.alpha === true && !ALPHA_PATTERN.test(value)) {

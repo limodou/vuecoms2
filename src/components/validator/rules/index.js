@@ -14,6 +14,8 @@ import telephone from './telephone'
 import ip from './ip'
 import realname from './realname'
 import password from './password'
+import socialCreditCode from './socialCreditCode'
+import zipcode from './zipcode'
 
 let rules = {
   any,
@@ -31,6 +33,8 @@ let rules = {
   telephone,
   ip,
   realname,
-  password
+  password,
+  socialCreditCode,
+  zipcode
 }
 export default {...rules}

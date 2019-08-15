@@ -11,6 +11,7 @@ export default {
 	stringContains: "The '{field}' field must contain the '{expected}' text!",
 	stringEnum: "The '{field}' field does not match any of the allowed values!",
 	stringNumeric: "The '{field}' field must be a numeric string!",
+	stringInteger: "The '{field}' field must be a integer string!",
 	stringAlpha: "The '{field}' field must be an alphabetic string!",
 	stringAlphanum: "The '{field}' field must be an alphanumeric string!",
 	stringAlphadash: "The '{field}' field must be an alphadash string!",
@@ -59,5 +60,7 @@ export default {
 	passwordMin: "The '{field}' length must be greater than or equal to {expected}!",
 	passwordMax: "The '{field}' length must be less than or equal to {expected}!",
 	passwordRange: "The '{field}' length should between {expected} characters long!",
-
+	passwordRange: "The '{field}' length should between {expected} characters long!",
+	SocialCreditCode: "The '{field}' is not an available Social Credit Code!",
+	zipcode: "The '{field}' is not an available Zip Code!",
 };

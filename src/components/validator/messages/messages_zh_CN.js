@@ -11,6 +11,7 @@ export default {
 	stringContains: "{field} 应包含 '{expected}' 内容！",
 	stringEnum: "{field} 无法与任一允许的值相匹配！",
 	stringNumeric: "{field} 需要是包含数字的字符串！",
+	stringInteger: "{field} 需要是包含数字的字符串！",
 	stringAlpha: "{field} 需要是包含字母的字符串！",
 	stringAlphanum: "{field} 需要是包含字母和数字的字符串！",
 	stringAlphadash: "{field} 需要是包含字母、横线及下划线的字符串！",
@@ -47,7 +48,7 @@ export default {
 	object: "{field} 需要是一个对象！",
 	objectStrict: "{field} 包含无效的键值: '{actual}'！",
 
-	idnumber: "{field} 为无效身份证号！",
+	idnumber: "{field} 不是有效身份证号！",
 	mobile: "{field} 不是有效手机号！",
 	telephone: "{field} 不是有效的固定电话号码！",
 	ip: "{field} 不是有效的IP地址！",
@@ -59,5 +60,7 @@ export default {
 	passwordMin: "{field} 长度需大于等于 {expected} 长度！",
 	passwordMax: "{field} 长度需小于等于 {expected} 长度！",
 	passwordRange: "{field} 长度应在 {expected} 长度之间！",
+	SocialCreditCode: "{field} 不是有效统一社会信用代码！",
+	zipcode: "{field} 不是有效的邮政编码！",
 
 };

@@ -110,7 +110,7 @@ export default class Validator {
   /**
    * 校验某一个规则，可能是字符串，或对象
    *
-   * @param {Object} rule 待校验的规则
+   * @param {Object|String|Function} rule 待校验的规则
    * @param {Any} value 待校验的对应的字段的值，不是整个对象
    * @param {Object} model 待校验的整个数据对象
    * @returns 返回校验结果
@@ -139,7 +139,39 @@ export default class Validator {
     }
 
     // 调用validate方法，如果成功，返回 null，否则返回出错信息，可以包含{field}的占位符
-    return await rule_func(rule, fieldvalue, model)
+    return await rule_func.call(this, rule, fieldvalue, model)
   }
 
+  /**
+   * 引用现有校验规则
+   *
+   * @param {Object|String|Function} rule 新的校验规则
+   * @param {Object} oldrule 传入的rule参数
+   * @param {*} value 待校验的值
+   * @param {*} model 完整的数据对象
+   * @param {Function} fail 出错时的回调，用于返回校验错误信息
+   * @memberof Validator
+   */
+  async useRule (rule, oldrule, value, model, fail) {
+    let newrule
+    if (typeof rule === 'string') {
+      newrule = {type: rule}
+    } else if (typeof rule === 'function') {
+      newrule = {validate: rule}
+    } else if (rule instanceof Object) {
+      newrule = rule
+    } 
+  
+    const r = Object.assign({}, newrule, rule)
+    let res
+    try {
+      res = await this.validateRule(r, value, model)
+    } catch (e) {
+      res = e
+    }
+    if (res && fail)
+      return fail()
+    else
+      return res
+  }
 }

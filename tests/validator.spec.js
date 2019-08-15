@@ -499,4 +499,44 @@ describe('validator', function () {
     })
   })
 
+  it('Test password invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'abc'}, 
+      {c: 'password'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available password, you should include alpha, number and special character!"})
+    })
+  })
+
+  it('Test social credit code', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '91350100M000100Y43'}, 
+      {c: {type: 'socialCreditCode'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test social credit code invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'I1350100M000100Y43'}, 
+      {c: {type: 'socialCreditCode'}}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available Social Credit Code!"})
+    })
+  })
+
+  it('Test zipcode', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '100055'}, 
+      {c: {type: 'zipcode'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test zipcode invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: 'X00055'}, 
+      {c: {type: 'zipcode'}}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available Zip Code!"})
+    })
+  })
+
 })
