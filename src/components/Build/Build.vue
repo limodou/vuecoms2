@@ -27,7 +27,7 @@
               v-if="!item.hidden"
               :is="item.component || 'uSection'"
               v-bind="item"
-              :boxComponent="item.boxComponent && showBox ? item.boxComponent : ''"
+              :boxComponent="showBox ? item.boxComponent : ''"
               :boxOptions="getBoxOptions(item)"
               :value="value"
               :labelWidth="item.labelWidth || labelWidth"

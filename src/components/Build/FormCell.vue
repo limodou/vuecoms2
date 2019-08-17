@@ -1,8 +1,8 @@
 <template>
   <div :class="classes">
     <label class="u-layout-cell-label" :style="labelStyle" v-if="col.label">
-      <i class="ivu-icon ivu-icon-ios-information-circle-outline" v-if="col.info" :title="col.info"></i>
       {{col.label}}
+      <i class="ivu-icon ivu-icon-ios-information-circle-outline" v-if="col.info" :title="col.info"></i>
     </label>
     <div class="u-layout-cell-field" :style="fieldStyle">
       <GenericInput v-bind="col" :value="value"
@@ -31,10 +31,6 @@ export default {
     col:{},
     value: {},
     fieldStyle: {},
-    labelPosition: {
-      type: String,
-      default: 'right'
-    },
     labelDir: {
       type: String,
       default: 'horizontal'
@@ -58,14 +54,17 @@ export default {
   computed: {
     classes () {
       return {'u-layout-cell': true, 'u-layout-required': this.col.required && !this.col.static,
-        'u-layout-error': this.error, 'u-layout-compact': this.compact
+        'u-layout-error': this.error, 'u-layout-compact': this.compact,
+        'u-layout-cell-left': this.col.labelAlign === 'left',
+        'u-layout-cell-center': this.col.labelAlign === 'center',
+        'u-layout-cell-right': this.col.labelAlign === 'right',
       }
     },
     labelStyle () {
       if (this.compact) return {}
 
       let s = {minWidth: `${this.col.labelWidth}px`}
-      switch (this.labelPosition) {
+      switch (this.col.labelAlign) {
         case 'left':
           s['textAlign'] = 'left'
           break

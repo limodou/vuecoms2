@@ -38,6 +38,10 @@ export default {
       type: Number,
       default: 150
     },
+    labelAlign: {
+      type: String,
+      default: 'right'
+    },
     theme: {
       type: String,
       default: 'default'
@@ -71,9 +75,10 @@ export default {
           }
           let width = 100 / 24 * span
           let f = List.get(this.fields, name, 'name')
-          if (!f) throw Error(`Can't find field ${name} in fields, please check if the name is not correct between layout and fields`)
+          if (!f) throw new Error(`Can't find field ${name} in fields, please check if the name is not correct between layout and fields`)
           let field = Object.assign({colspan: span,
             labelWidth: this.labelWidth,
+            labelAlign: col.labelAlign || f.labelAlign || this.labelAlign,
             static: col.static || this.static,
             hidden: this.hidden || col.hidden,
           }, f)

@@ -72,6 +72,7 @@ export default {
   font-weight: bold;
   margin-bottom: 0;
   padding-right: 10px;
+  padding-left: 10px;
   font-size: 14px;
 
   &:after {
