@@ -7365,6 +7365,7 @@ function () {
   function Field(parent, options) {
     classCallCheck_default()(this, Field);
 
+    this.field = options;
     this.parent = parent; //记录父结点
 
     this.component = options.type; //底层组件名,缺省使用type,后续定义的组件可以重定义这个值
@@ -7380,6 +7381,7 @@ function () {
     this.label = options.label;
     this.static = options.static;
     this.labelField = options.labelField;
+    this.validateResult = options.validateResult;
     this.options = options.options || {};
     this.on = options.on || {};
     this.multiple = options.multiple;
@@ -7454,7 +7456,9 @@ function () {
       }
 
       var props = Object.assign({}, this.defaultOptions, {
-        value: value
+        value: value,
+        validateResult: this.validateResult,
+        field: this.field
       }, opts);
       var events = {
         input: function input(x) {
@@ -8310,6 +8314,7 @@ var StaticField_component = Object(componentNormalizer["a" /* default */])(
       type: Boolean,
       default: false
     },
+    validateResult: {},
     staticSuffix: {
       type: String,
       default: '_static'
@@ -11502,12 +11507,12 @@ var Queryvue_type_template_id_602708a0_staticRenderFns = []
 // CONCATENATED MODULE: ./src/components/Fields/index.js
 
 /* harmony default export */ var Fields = (GenericInput);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b54bfafe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=66e50574&
-var FormCellvue_type_template_id_66e50574_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[_vm._v("\n    "+_vm._s(_vm.col.label)+"\n    "),(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-information-circle-outline",attrs:{"title":_vm.col.info}}):_vm._e()]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"root":_vm.root},on:{"on-validate":_vm.handleValidate,"on-error":_vm.handleError,"on-clear-error":_vm.handleClearError}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
-var FormCellvue_type_template_id_66e50574_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b54bfafe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=template&id=3dd13eba&
+var FormCellvue_type_template_id_3dd13eba_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes},[(_vm.col.label)?_c('label',{staticClass:"u-layout-cell-label",style:(_vm.labelStyle)},[_vm._v("\n    "+_vm._s(_vm.col.label)+"\n    "),(_vm.col.info)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-information-circle-outline",attrs:{"title":_vm.col.info}}):_vm._e()]):_vm._e(),_c('div',{staticClass:"u-layout-cell-field",style:(_vm.fieldStyle)},[_c('GenericInput',_vm._b({attrs:{"value":_vm.value,"staticSuffix":_vm.staticSuffix,"validate-result":_vm.validateResult,"root":_vm.root},on:{"on-validate":_vm.handleValidate,"on-error":_vm.handleError,"on-clear-error":_vm.handleClearError}},'GenericInput',_vm.col,false)),(_vm.col.help && !_vm.col.static)?_c('div',{staticClass:"u-layout-cell-help"},[_vm._v(_vm._s(_vm.col.help))]):_vm._e(),(_vm.error && _vm.col.showError !== false)?_c('div',{staticClass:"u-layout-cell-error"},[_vm._v(_vm._s(_vm.error))]):_vm._e()],1)])}
+var FormCellvue_type_template_id_3dd13eba_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=66e50574&
+// CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=3dd13eba&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -11523,6 +11528,76 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
 
 /* harmony default export */ var validateMixin = ({
   methods: {
+    formatRule: function formatRule(rule, field) {
+      var r = rule;
+
+      if (typeof rule === 'string') {
+        r = {
+          type: rule,
+          fieldname: field.label
+        };
+      } else if (typeof rule === 'function') {
+        r = {
+          validate: rule,
+          fieldname: field.label
+        };
+      } else {
+        r = Object.assign({
+          fieldname: field.label
+        }, rule);
+      }
+
+      return r;
+    },
+    getRule: function getRule(field) {
+      var rule;
+
+      if (!field.rule || field.static || field.hidden) {
+        rule = [];
+      } else {
+        if (!Array.isArray(field.rule)) {
+          rule = [field.rule];
+        } else {
+          rule = field.rule;
+        }
+      }
+
+      var new_rule = [];
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = rule[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var r = _step.value;
+          new_rule.push(this.formatRule(r, field));
+        } // 添加必填校验
+
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (field.required) {
+        new_rule.splice(0, 0, {
+          required: true,
+          type: 'any',
+          fieldname: field.label
+        });
+      }
+
+      return new_rule;
+    },
     validateRule: function () {
       var _validateRule = asyncToGenerator_default()(
       /*#__PURE__*/
@@ -11549,7 +11624,7 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
 
                 result.validateState = 'validating';
                 _context.next = 7;
-                return this.$validator.validate(value, defineProperty_default()({}, fieldname, result.rule), defineProperty_default()({}, fieldname, result.fullfield));
+                return this.$validator.validate(value, defineProperty_default()({}, fieldname, result.rule), defineProperty_default()({}, fieldname, result.field.label));
 
               case 7:
                 res = _context.sent;
@@ -11579,6 +11654,7 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
   }
 });
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormCell.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -11637,7 +11713,7 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
       return {
         'u-layout-cell': true,
         'u-layout-required': this.col.required && !this.col.static,
-        'u-layout-error': this.error,
+        'u-layout-error': this.col.showError !== false && this.error,
         'u-layout-compact': this.compact,
         'u-layout-cell-left': this.col.labelAlign === 'left',
         'u-layout-cell-center': this.col.labelAlign === 'center',
@@ -11727,8 +11803,8 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
 
 var FormCell_component = Object(componentNormalizer["a" /* default */])(
   Build_FormCellvue_type_script_lang_js_,
-  FormCellvue_type_template_id_66e50574_render,
-  FormCellvue_type_template_id_66e50574_staticRenderFns,
+  FormCellvue_type_template_id_3dd13eba_render,
+  FormCellvue_type_template_id_3dd13eba_staticRenderFns,
   false,
   null,
   null,
@@ -13869,14 +13945,16 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b54bfafe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=a37a010c&
-var Buildvue_type_template_id_a37a010c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.data),function(item,index){return _c('TabPane',{attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_a37a010c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b54bfafe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=30c6e293&
+var Buildvue_type_template_id_30c6e293_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.data),function(item,index){return _c('TabPane',{attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_30c6e293_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=a37a010c&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=30c6e293&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
+
+
 //
 //
 //
@@ -13952,8 +14030,7 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
       //保存校验结果,
       visible_fields: {},
       //保存显示字段
-      validateRules: {},
-      //保存校验规则
+      // validateRules: {}, //保存校验规则
       fieldsLabel: {}
     };
   },
@@ -14029,66 +14106,231 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
     }
   },
   methods: {
-    validate: function validate(callback) {
-      var _this = this;
+    validate: function () {
+      var _validate = asyncToGenerator_default()(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee(callback) {
+        var error, validateRules, _arr, _i, _k2, field, _v, rules, _arr5, _i5, c, _rules, _arr6, _i6, _c, res, _arr2, _i2, k, v, validateResult, i, _len, r, _arr3, _i3, k1, c_r, _arr4, _i4, _k, _c_r;
 
-      if (this.validating) return;
-      return new Promise(function (resolve, reject) {
-        _this.validating = true;
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // if (this.validating) return
+                // this.validating = true
+                // this.$emit('validating', true)
+                console.log('begin');
+                error = '';
+                validateRules = {};
+                _arr = Object.keys(this.validateResult);
 
-        _this.$emit('validating', true);
+                for (_i = 0; _i < _arr.length; _i++) {
+                  _k2 = _arr[_i];
+                  field = this.fields[_k2];
+                  _v = this.validateResult[_k2];
 
-        var error = '';
+                  if (field && !field.static && !field.hidden) {
+                    // 如果children为对象或数组，则合成object或array的校验规则模式
+                    if (_v.children) {
+                      if (Array.isArray(_v.children) && _v.children.length > 0) {
+                        rules = {};
+                        _arr5 = Object.keys(_v.children[0]);
 
-        _this.$validator.validate(_this.value, _this.validateRules, _this.fieldsLabel).then(function (res) {
-          if (res) {
-            var _arr = Object.keys(res);
+                        for (_i5 = 0; _i5 < _arr5.length; _i5++) {
+                          c = _arr5[_i5];
+                          rules[c] = _v.children[0][c].rule;
+                        }
 
-            for (var _i = 0; _i < _arr.length; _i++) {
-              var k = _arr[_i];
-              _this.validateResult[k].validateState = 'error';
-              _this.validateResult[k].error = res[k];
-              if (!error) error = res[k];
+                        validateRules[_k2] = {
+                          type: 'array',
+                          items: {
+                            type: 'object',
+                            props: rules
+                          }
+                        };
+                      } else if (_v.children instanceof Object) {
+                        _rules = {};
+                        _arr6 = Object.keys(_v.children);
+
+                        for (_i6 = 0; _i6 < _arr6.length; _i6++) {
+                          _c = _arr6[_i6];
+                          _rules[_c] = _v.children[_c].rule;
+                        }
+
+                        validateRules[_k2] = {
+                          type: 'object',
+                          props: _rules
+                        };
+                      }
+                    } else validateRules[_k2] = _v.rule;
+                  }
+                }
+
+                console.log('validateReuls', validateRules);
+                _context.next = 8;
+                return this.$validator.validate(this.value, validateRules);
+
+              case 8:
+                res = _context.sent;
+                console.log('resssssss', res);
+
+                if (res) {
+                  _arr2 = Object.keys(res);
+
+                  for (_i2 = 0; _i2 < _arr2.length; _i2++) {
+                    k = _arr2[_i2];
+                    v = res[k]; // 出错结果
+
+                    validateResult = this.validateResult[k]; // 校验结果
+
+                    if (Array.isArray(v)) {
+                      for (i = 0, _len = v.length; i < _len; i++) {
+                        r = v[i];
+
+                        if (r instanceof Object) {
+                          _arr3 = Object.keys(r);
+
+                          for (_i3 = 0; _i3 < _arr3.length; _i3++) {
+                            k1 = _arr3[_i3];
+                            c_r = r[k1];
+                            this.setValidateResultKey(validateResult.children[i], k1, c_r);
+
+                            if (c_r && !error) {
+                              error = c_r;
+                            }
+                          }
+                        }
+                      }
+                    } else if (v instanceof Object) {
+                      _arr4 = Object.keys(v);
+
+                      for (_i4 = 0; _i4 < _arr4.length; _i4++) {
+                        _k = _arr4[_i4];
+                        _c_r = v[_k];
+                        this.setValidateResultKey(validateResult.children, _k, _c_r);
+
+                        if (_c_r && !error) {
+                          error = _c_r;
+                        }
+                      }
+                    } else {
+                      this.setValidateResultKey(this.validateResult, k, v);
+
+                      if (v && !error) {
+                        error = v;
+                      }
+                    }
+                  }
+                } else {
+                  this.clearValidateResult();
+                } // this.validating = false
+                // this.$emit('validating', false)
+                // if (error) reject(error)
+                // else resolve()
+
+
+                if (callback) callback(error);
+
+                if (!error) {
+                  _context.next = 14;
+                  break;
+                }
+
+                throw error;
+
+              case 14:
+              case "end":
+                return _context.stop();
             }
-
-            if (callback) callback(error);
-          } else {
-            var _arr2 = Object.keys(_this.validateResult);
-
-            for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-              var _k = _arr2[_i2];
-              _this.validateResult[_k].validateState = 'success';
-              _this.validateResult[_k].error = '';
-            }
-
-            if (callback) callback();
           }
+        }, _callee, this);
+      }));
 
-          _this.validating = false;
+      function validate(_x) {
+        return _validate.apply(this, arguments);
+      }
 
-          _this.$emit('validating', false);
+      return validate;
+    }(),
+    setValidateResultKey: function setValidateResultKey(result, name, err) {
+      var flag = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'success';
 
-          if (error) reject(error);else resolve();
-          if (callback) callback(error);
-        });
-      });
+      if (err) {
+        this.$set(result[name], 'validateState', 'error');
+        this.$set(result[name], 'error', err);
+      } else {
+        this.$set(result[name], 'validateState', flag);
+        this.$set(result[name], 'error', '');
+      }
     },
     //生成校验结构
     //force表示是否强制
-    makeValidateResult: function makeValidateResult(force) {
+    makeValidateResult: function makeValidateResult() {
       for (var name in this.fields) {
         var field = this.fields[name];
         if (!this.visible_fields[field.name]) continue;
 
-        if ((force || !this.validateResult[name]) && !field.static) {
+        if (!this.validateResult[name] && !field.static) {
           var rule = this.getRule(field);
+          var e_rule = this.formatRule(this.rules[name], field);
+
+          if (e_rule) {
+            if (Array.isArray(e_rule)) {
+              rule = rule.concat(e_rule);
+            } else {
+              rule.push(e_rule);
+            }
+          }
+
           this.$set(this.validateResult, name, {
             error: '',
             validateState: '',
             rule: rule,
+            field: field,
             fullfield: field.label
-          });
-          this.validateRules[field.name] = rule;
+          }); // this.validateRules[field.name] = rule
+        }
+      }
+    },
+    clearValidateResult: function clearValidateResult(validateResult) {
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      if (!validateResult) validateResult = this.validateResult;
+
+      var _arr7 = Object.keys(validateResult);
+
+      for (var _i7 = 0; _i7 < _arr7.length; _i7++) {
+        var k = _arr7[_i7];
+        this.setValidateResultKey(validateResult, k, '', flag);
+        var r = validateResult[k];
+
+        if (r.children) {
+          if (Array.isArray(r.children)) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+              for (var _iterator = r.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var r1 = _step.value;
+                this.clearValidateResult(r1, flag);
+              }
+            } catch (err) {
+              _didIteratorError = true;
+              _iteratorError = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+              } finally {
+                if (_didIteratorError) {
+                  throw _iteratorError;
+                }
+              }
+            }
+          } else if (r.children instanceof Object) {
+            this.clearValidateResult(r.children, flag);
+          }
         }
       }
     },
@@ -14103,20 +14345,20 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
     },
     //检查是否在layout中定义了
     check_in_layout: function check_in_layout(f, layout) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator = layout[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var row = _step.value;
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+        for (var _iterator2 = layout[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var row = _step2.value;
+          var _iteratorNormalCompletion3 = true;
+          var _didIteratorError3 = false;
+          var _iteratorError3 = undefined;
 
           try {
-            for (var _iterator2 = row[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var c = _step2.value;
+            for (var _iterator3 = row[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var c = _step3.value;
 
               if (typeof c === 'string') {
                 if (c === f.name) return true;
@@ -14125,31 +14367,31 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
               }
             }
           } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                _iterator2.return();
+              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                _iterator3.return();
               }
             } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
+              if (_didIteratorError3) {
+                throw _iteratorError3;
               }
             }
           }
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
           }
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          if (_didIteratorError2) {
+            throw _iteratorError2;
           }
         }
       }
@@ -14157,26 +14399,26 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
     makeFields: function makeFields() {
       var fs = {};
       var vfs = {};
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
 
       try {
-        for (var _iterator3 = this.data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var row = _step3.value;
+        for (var _iterator4 = this.data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var row = _step4.value;
           var isStatic = row.static === undefined ? false : row.static;
 
           if (row.name) {
             this.rows[row.name] = row;
           }
 
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
 
           try {
-            for (var _iterator4 = (row.fields || [])[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var field = _step4.value;
+            for (var _iterator5 = (row.fields || [])[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var field = _step5.value;
               fs[field.name] = field;
               this.fieldsLabel[field.name] = field.label;
               this.$set(field, 'static', field.static || isStatic);
@@ -14195,60 +14437,37 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
               }
             }
           } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
+              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                _iterator5.return();
               }
             } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
+              if (_didIteratorError5) {
+                throw _iteratorError5;
               }
             }
           }
         }
       } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-            _iterator3.return();
+          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+            _iterator4.return();
           }
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          if (_didIteratorError4) {
+            throw _iteratorError4;
           }
         }
       }
 
       this.fields = fs;
       this.visible_fields = vfs;
-    },
-    getRule: function getRule(field) {
-      var rule;
-
-      if (!field.rule || field.static) {
-        rule = [];
-      } else {
-        if (!Array.isArray(field.rule)) {
-          rule = [field.rule];
-        } else {
-          rule = field.rule.slice();
-        }
-      } // 添加必填校验
-
-
-      if (field.required) {
-        rule.splice(0, 0, {
-          required: true,
-          type: 'any'
-        });
-      }
-
-      return rule;
     },
     mergeErrors: function mergeErrors(errors) {
       for (var k in this.errors) {
@@ -14267,24 +14486,27 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
           result.rule = result.rule.concat(v);
         } else {
           result.rule.push(v);
-        }
+        } // this.validateRules[k] = result.rule
 
-        this.validateRules[k] = result.rule;
       }
     },
     // 清空数据
     reset: function reset() {
+      var _this = this;
+
       var v = deepCopy(this.originValue);
       this.reset_object(this.value);
       Object.assign(this.value, v);
-      this.makeValidateResult(true);
-      this.mergeRules();
+      this.$nextTick(function () {
+        _this.clearValidateResult();
+      }); // this.makeValidateResult(true)
+      // this.mergeRules()
     }
   },
   created: function created() {
     this.makeFields();
-    this.makeValidateResult();
-    this.mergeRules();
+    this.makeValidateResult(); // this.mergeRules()
+
     this.mergeErrors();
   },
   watch: {
@@ -14315,20 +14537,20 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
     choices: {
       immediate: true,
       handler: function handler() {
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
 
         try {
-          for (var _iterator5 = this.data[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-            var row = _step5.value;
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
+          for (var _iterator6 = this.data[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var row = _step6.value;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-              for (var _iterator6 = (row.fields || [])[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                var field = _step6.value;
+              for (var _iterator7 = (row.fields || [])[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                var field = _step7.value;
                 var choices = this.choices[field.name];
 
                 if (choices) {
@@ -14342,31 +14564,31 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
                 }
               }
             } catch (err) {
-              _didIteratorError6 = true;
-              _iteratorError6 = err;
+              _didIteratorError7 = true;
+              _iteratorError7 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-                  _iterator6.return();
+                if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                  _iterator7.return();
                 }
               } finally {
-                if (_didIteratorError6) {
-                  throw _iteratorError6;
+                if (_didIteratorError7) {
+                  throw _iteratorError7;
                 }
               }
             }
           }
         } catch (err) {
-          _didIteratorError5 = true;
-          _iteratorError5 = err;
+          _didIteratorError6 = true;
+          _iteratorError6 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-              _iterator5.return();
+            if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+              _iterator6.return();
             }
           } finally {
-            if (_didIteratorError5) {
-              throw _iteratorError5;
+            if (_didIteratorError6) {
+              throw _iteratorError6;
             }
           }
         }
@@ -14400,8 +14622,8 @@ var Buildvue_type_template_id_a37a010c_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_a37a010c_render,
-  Buildvue_type_template_id_a37a010c_staticRenderFns,
+  Buildvue_type_template_id_30c6e293_render,
+  Buildvue_type_template_id_30c6e293_staticRenderFns,
   false,
   null,
   null,
@@ -14497,7 +14719,6 @@ var Sectionvue_type_template_id_449f7002_staticRenderFns = []
         for (var _iterator = this.layout[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var row = _step.value;
           var new_r = [];
-          r.push(new_r);
           var span = 24 / row.length; //重新计算col
 
           var _iteratorNormalCompletion2 = true;
@@ -14515,7 +14736,6 @@ var Sectionvue_type_template_id_449f7002_staticRenderFns = []
                 name = col;
               }
 
-              var width = 100 / 24 * span;
               var f = utils_list.get(this.fields, name, 'name');
               if (!f) throw new Error("Can't find field ".concat(name, " in fields, please check if the name is not correct between layout and fields"));
               var field = Object.assign({
@@ -14525,7 +14745,7 @@ var Sectionvue_type_template_id_449f7002_staticRenderFns = []
                 static: col.static || this.static,
                 hidden: this.hidden || col.hidden
               }, f);
-              new_r.push(field);
+              if (!field.hidden) new_r.push(field);
             }
           } catch (err) {
             _didIteratorError2 = true;
@@ -14541,6 +14761,8 @@ var Sectionvue_type_template_id_449f7002_staticRenderFns = []
               }
             }
           }
+
+          if (new_r.length > 0) r.push(new_r);
         }
       } catch (err) {
         _didIteratorError = true;
@@ -14638,7 +14860,225 @@ var Section_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Section = (Section_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b54bfafe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormBlock.vue?vue&type=template&id=3ef24ea3&
+var FormBlockvue_type_template_id_3ef24ea3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
+var FormBlockvue_type_template_id_3ef24ea3_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Build/FormBlock.vue?vue&type=template&id=3ef24ea3&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormBlock.vue?vue&type=script&lang=js&
+
+
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var FormBlockvue_type_script_lang_js_ = ({
+  name: 'form-block',
+  mixins: [validateMixin],
+  props: {//   value: {
+    //   },
+    //   validateResult: {},
+    //   data: {
+    //     type: Object
+    //   },
+    // field: {
+    //   default () {
+    //     return {}
+    //   }
+    // }
+  },
+  // data() {
+  //   return {
+  //     validating: false
+  //   }
+  // },
+  methods: {
+    validate: function () {
+      var _validate = asyncToGenerator_default()(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee(value, validateResult) {
+        var error, i, _len, v, validateRules, fieldsLabel, _arr, _i, _k2, field, res, _arr2, _i2, k, _arr3, _i3, _k;
+
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // if (this.validating) return
+                // this.validating = true
+                // this.$emit('validating', true)
+                if (!Array.isArray(validateResult)) {
+                  validateResult = [validateResult];
+                  value = [value];
+                }
+
+                i = 0, _len = validateResult.length;
+
+              case 2:
+                if (!(i < _len)) {
+                  _context.next = 15;
+                  break;
+                }
+
+                v = validateResult[i];
+                validateRules = {};
+                fieldsLabel = {};
+                _arr = Object.keys(v);
+
+                for (_i = 0; _i < _arr.length; _i++) {
+                  _k2 = _arr[_i];
+                  field = v[_k2].field;
+
+                  if (field && !field.static && !field.hidden) {
+                    validateRules[_k2] = v[_k2].rule;
+                    fieldsLabel[_k2] = field.label;
+                  }
+                }
+
+                _context.next = 10;
+                return this.$validator.validate(value[i], validateRules, fieldsLabel);
+
+              case 10:
+                res = _context.sent;
+
+                if (res) {
+                  _arr2 = Object.keys(res);
+
+                  for (_i2 = 0; _i2 < _arr2.length; _i2++) {
+                    k = _arr2[_i2];
+                    v[k].validateState = 'error';
+                    v[k].error = res[k];
+                    if (!error) error = res[k];
+                  }
+                } else {
+                  _arr3 = Object.keys(v);
+
+                  for (_i3 = 0; _i3 < _arr3.length; _i3++) {
+                    _k = _arr3[_i3];
+                    v[_k].validateState = 'success';
+                    v[_k].error = '';
+                  }
+                }
+
+              case 12:
+                i++;
+                _context.next = 2;
+                break;
+
+              case 15:
+                return _context.abrupt("return", error);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function validate(_x, _x2) {
+        return _validate.apply(this, arguments);
+      }
+
+      return validate;
+    }(),
+    makeFields: function makeFields() {
+      var fields = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var fs = {};
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = fields[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var field = _step.value;
+          fs[field.name] = field;
+          this.$set(field, 'static', field.static || false);
+          this.$set(field, 'hidden', field.hidden || false);
+          this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
+
+          if (typeof field.options === 'undefined') {
+            this.$set(field, 'options', {});
+          }
+
+          if (field.options.hasOwnProperty('choices')) this.$set(field.options, 'choices', field.options.choices);
+          if (!field.type) this.$set(field, 'type', 'str'); //str
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return fs;
+    },
+    makeValidateResult: function makeValidateResult() {
+      var fields = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var validateResult = {};
+
+      for (var name in fields) {
+        var field = fields[name];
+        var rule = this.getRule(field);
+        validateResult[name] = {
+          error: '',
+          validateState: '',
+          rule: rule,
+          field: field,
+          fullfield: field.label
+        };
+      }
+
+      return validateResult;
+    }
+  } // watch: {
+  //   data: {
+  //     handler () {
+  //       this.makeFields()
+  //       this.makeValidateResults()
+  //       // this.mergeRules()
+  //     },
+  //     deep: true
+  //   }
+  // }
+
+});
+// CONCATENATED MODULE: ./src/components/Build/FormBlock.vue?vue&type=script&lang=js&
+ /* harmony default export */ var Build_FormBlockvue_type_script_lang_js_ = (FormBlockvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Build/FormBlock.vue
+
+
+
+
+
+/* normalize component */
+
+var FormBlock_component = Object(componentNormalizer["a" /* default */])(
+  Build_FormBlockvue_type_script_lang_js_,
+  FormBlockvue_type_template_id_3ef24ea3_render,
+  FormBlockvue_type_template_id_3ef24ea3_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var FormBlock = (FormBlock_component.exports);
 // CONCATENATED MODULE: ./src/components/Build/index.js
+
 
 
 
@@ -15474,39 +15914,188 @@ var BASIC_PATTERN = /^\S+@\S+\.\S+$/;
   }
 });
 // CONCATENATED MODULE: ./src/components/validator/rules/array.js
-/* harmony default export */ var array = (function (rule, value, model) {
-  if (!Array.isArray(value)) {
-    return rule.makeError("array");
-  }
-
-  var arrLength = value.length;
-  if (rule.required && arrLength === 0) return rule.makeError('required');
-
-  if (rule.min != null && arrLength < rule.min) {
-    return rule.makeError("arrayMin", rule.min, arrLength);
-  }
-
-  if (rule.max != null && arrLength > rule.max) {
-    return rule.makeError("arrayMax", rule.max, arrLength);
-  } // Check fix length
 
 
-  if (rule.length != null && arrLength !== rule.length) {
-    return rule.makeError("arrayLength", rule.length, arrLength);
-  }
-
-  if (rule.contains != null && value.indexOf(rule.contains) === -1) {
-    return rule.makeError("arrayContains", rule.contains);
-  }
-
-  if (rule.enum != null) {
-    for (var i = 0; i < value.length; i++) {
-      if (rule.enum.indexOf(value[i]) === -1) {
-        return rule.makeError("arrayEnum", value[i], rule.enum);
-      }
-    }
-  }
+/* harmony default export */ var array = (function (_x, _x2, _x3) {
+  return _ref.apply(this, arguments);
 });
+
+function _ref() {
+  _ref = asyncToGenerator_default()(
+  /*#__PURE__*/
+  regenerator_default.a.mark(function _callee(rule, value, model) {
+    var arrLength, i, errs, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, err, n;
+
+    return regenerator_default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (Array.isArray(value)) {
+              _context.next = 2;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("array"));
+
+          case 2:
+            arrLength = value.length;
+
+            if (!(rule.required && arrLength === 0)) {
+              _context.next = 5;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError('required'));
+
+          case 5:
+            if (!(rule.min != null && arrLength < rule.min)) {
+              _context.next = 7;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("arrayMin", rule.min, arrLength));
+
+          case 7:
+            if (!(rule.max != null && arrLength > rule.max)) {
+              _context.next = 9;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("arrayMax", rule.max, arrLength));
+
+          case 9:
+            if (!(rule.length != null && arrLength !== rule.length)) {
+              _context.next = 11;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("arrayLength", rule.length, arrLength));
+
+          case 11:
+            if (!(rule.contains != null && value.indexOf(rule.contains) === -1)) {
+              _context.next = 13;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("arrayContains", rule.contains));
+
+          case 13:
+            if (!(rule.enum != null)) {
+              _context.next = 21;
+              break;
+            }
+
+            i = 0;
+
+          case 15:
+            if (!(i < value.length)) {
+              _context.next = 21;
+              break;
+            }
+
+            if (!(rule.enum.indexOf(value[i]) === -1)) {
+              _context.next = 18;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("arrayEnum", value[i], rule.enum));
+
+          case 18:
+            i++;
+            _context.next = 15;
+            break;
+
+          case 21:
+            if (!rule.items) {
+              _context.next = 54;
+              break;
+            }
+
+            errs = [];
+            _iteratorNormalCompletion = true;
+            _didIteratorError = false;
+            _iteratorError = undefined;
+            _context.prev = 26;
+            _iterator = value[Symbol.iterator]();
+
+          case 28:
+            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+              _context.next = 37;
+              break;
+            }
+
+            item = _step.value;
+            _context.next = 32;
+            return this.validate({
+              x: item
+            }, {
+              x: rule.items
+            });
+
+          case 32:
+            err = _context.sent;
+            if (err) errs.push(err['x']);else errs.push(err);
+
+          case 34:
+            _iteratorNormalCompletion = true;
+            _context.next = 28;
+            break;
+
+          case 37:
+            _context.next = 43;
+            break;
+
+          case 39:
+            _context.prev = 39;
+            _context.t0 = _context["catch"](26);
+            _didIteratorError = true;
+            _iteratorError = _context.t0;
+
+          case 43:
+            _context.prev = 43;
+            _context.prev = 44;
+
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+
+          case 46:
+            _context.prev = 46;
+
+            if (!_didIteratorError) {
+              _context.next = 49;
+              break;
+            }
+
+            throw _iteratorError;
+
+          case 49:
+            return _context.finish(46);
+
+          case 50:
+            return _context.finish(43);
+
+          case 51:
+            n = errs.filter(function (x) {
+              return x;
+            });
+
+            if (!(n.length > 0)) {
+              _context.next = 54;
+              break;
+            }
+
+            return _context.abrupt("return", errs);
+
+          case 54:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this, [[26, 39, 43, 51], [44,, 46, 50]]);
+  }));
+  return _ref.apply(this, arguments);
+}
 // CONCATENATED MODULE: ./src/components/validator/rules/number.js
 /* harmony default export */ var number = (function (rule, value, model) {
   if (rule.convert === true && typeof value !== "number") {
@@ -15561,27 +16150,48 @@ var BASIC_PATTERN = /^\S+@\S+\.\S+$/;
 // CONCATENATED MODULE: ./src/components/validator/rules/object.js
 
 
-/* harmony default export */ var rules_object = (function (rule, value, model) {
-  if (typeof_default()(value) !== "object" || value === null || Array.isArray(value)) {
-    return rule.makeError("object");
-  }
 
-  if (rule.strict === true && rule.props) {
-    var allowedProps = Object.keys(rule.props);
-    var invalidProps = [];
-    var props = Object.keys(value);
 
-    for (var i = 0; i < props.length; i++) {
-      if (allowedProps.indexOf(props[i]) === -1) {
-        invalidProps.push(props[i]);
-      }
-    }
-
-    if (invalidProps.length !== 0) {
-      return rule.makeError("objectStrict", undefined, invalidProps.join(", "));
-    }
-  }
+/* harmony default export */ var rules_object = (function (_x, _x2, _x3) {
+  return object_ref.apply(this, arguments);
 });
+
+function object_ref() {
+  object_ref = asyncToGenerator_default()(
+  /*#__PURE__*/
+  regenerator_default.a.mark(function _callee(rule, value, model) {
+    return regenerator_default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (!(typeof_default()(value) !== "object" || value === null || Array.isArray(value))) {
+              _context.next = 2;
+              break;
+            }
+
+            return _context.abrupt("return", rule.makeError("object"));
+
+          case 2:
+            if (!rule.props) {
+              _context.next = 6;
+              break;
+            }
+
+            _context.next = 5;
+            return this.validate(value, rule.props);
+
+          case 5:
+            return _context.abrupt("return", _context.sent);
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return object_ref.apply(this, arguments);
+}
 // CONCATENATED MODULE: ./src/components/validator/rules/string.js
 var NUMERIC_PATTERN = /^-?[0-9]\d*(\.\d+)?$/;
 var ALPHA_PATTERN = /^[a-zA-Z]+$/;
@@ -15908,7 +16518,7 @@ var SocialCreditCode = /^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10
 //       return r.makeError('zipcode')
 // }
 /* harmony default export */ var zipcode = (function (_x, _x2, _x3) {
-  return _ref.apply(this, arguments);
+  return zipcode_ref.apply(this, arguments);
 }); // export default function (rule, value, model) {
 //   const r = Object.assign({}, rule, {type: 'string', length: 6, integer: true})
 //   return new Promise((resolve, reject) => {
@@ -15923,8 +16533,8 @@ var SocialCreditCode = /^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10
 //   })
 // }
 
-function _ref() {
-  _ref = asyncToGenerator_default()(
+function zipcode_ref() {
+  zipcode_ref = asyncToGenerator_default()(
   /*#__PURE__*/
   regenerator_default.a.mark(function _callee(rule, value, model) {
     return regenerator_default.a.wrap(function _callee$(_context) {
@@ -15946,7 +16556,7 @@ function _ref() {
       }
     }, _callee, this);
   }));
-  return _ref.apply(this, arguments);
+  return zipcode_ref.apply(this, arguments);
 }
 // CONCATENATED MODULE: ./src/components/validator/rules/index.js
 
@@ -16031,7 +16641,6 @@ function () {
   }, {
     key: "validate",
     value: function validate(value, rules) {
-      var fields = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var funcs = []; // 对传入的规则进行遍历处理，获取每个规则的校验方法，准备校验
       // 传入字段名，字段名对应的规则，value(整个数据对象)，显示字段名,如果未提供则为字段名
 
@@ -16039,7 +16648,7 @@ function () {
 
       for (var _i = 0; _i < _arr.length; _i++) {
         var k = _arr[_i];
-        funcs.push(this.validateFunc(k, rules[k], value, fields[k] || k));
+        funcs.push(this.validateFunc(k, rules[k], value));
       } //执行校验，生成出错对象，结果为 {字段名: 消息}
 
 
@@ -16055,7 +16664,7 @@ function () {
 
             // 出错时返回一个对象：{name: message:}
             if (r) {
-              errors[r.name] = r.message;
+              errors[r.name] = r.error;
             }
           }
         } catch (err) {
@@ -16091,7 +16700,7 @@ function () {
     value: function () {
       var _validateFunc = asyncToGenerator_default()(
       /*#__PURE__*/
-      regenerator_default.a.mark(function _callee(field, rule, value, fieldname) {
+      regenerator_default.a.mark(function _callee(field, rule, value) {
         var rules, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, ru, r, messages, ret;
 
         return regenerator_default.a.wrap(function _callee$(_context) {
@@ -16112,7 +16721,7 @@ function () {
 
               case 7:
                 if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-                  _context.next = 37;
+                  _context.next = 27;
                   break;
                 }
 
@@ -16131,109 +16740,85 @@ function () {
                 r = Object.assign({}, ru); // 合并消息
 
                 messages = Object.assign({}, ru.messages || {}, this.messages);
-                r.fieldname = fieldname;
+                if (!r.fieldname) r.fieldname = field;
                 r.field = field;
-                r.makeError = this.makeError(messages, fieldname);
-                _context.prev = 15;
-                _context.next = 18;
+                r.makeError = this.makeError(messages, r.fieldname); // try {
+
+                _context.next = 17;
                 return this.validateRule(r, value[field], value);
 
-              case 18:
+              case 17:
                 ret = _context.sent;
 
                 if (!(ret instanceof Error)) {
-                  _context.next = 23;
+                  _context.next = 22;
                   break;
                 }
 
                 return _context.abrupt("return", {
                   name: field,
-                  message: ret.message
+                  error: ret.message
                 });
 
-              case 23:
+              case 22:
                 if (!ret) {
-                  _context.next = 25;
+                  _context.next = 24;
                   break;
                 }
 
                 return _context.abrupt("return", {
                   name: field,
-                  message: ret
+                  error: ret
                 });
 
-              case 25:
-                _context.next = 34;
-                break;
-
-              case 27:
-                _context.prev = 27;
-                _context.t0 = _context["catch"](15);
-
-                if (!(_context.t0 instanceof Error)) {
-                  _context.next = 33;
-                  break;
-                }
-
-                return _context.abrupt("return", {
-                  name: field,
-                  message: _context.t0.message
-                });
-
-              case 33:
-                return _context.abrupt("return", {
-                  name: field,
-                  message: _context.t0
-                });
-
-              case 34:
+              case 24:
                 _iteratorNormalCompletion2 = true;
                 _context.next = 7;
                 break;
 
-              case 37:
-                _context.next = 43;
+              case 27:
+                _context.next = 33;
                 break;
 
-              case 39:
-                _context.prev = 39;
-                _context.t1 = _context["catch"](5);
+              case 29:
+                _context.prev = 29;
+                _context.t0 = _context["catch"](5);
                 _didIteratorError2 = true;
-                _iteratorError2 = _context.t1;
+                _iteratorError2 = _context.t0;
 
-              case 43:
-                _context.prev = 43;
-                _context.prev = 44;
+              case 33:
+                _context.prev = 33;
+                _context.prev = 34;
 
                 if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
                   _iterator2.return();
                 }
 
-              case 46:
-                _context.prev = 46;
+              case 36:
+                _context.prev = 36;
 
                 if (!_didIteratorError2) {
-                  _context.next = 49;
+                  _context.next = 39;
                   break;
                 }
 
                 throw _iteratorError2;
 
-              case 49:
-                return _context.finish(46);
+              case 39:
+                return _context.finish(36);
 
-              case 50:
-                return _context.finish(43);
+              case 40:
+                return _context.finish(33);
 
-              case 51:
+              case 41:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[5, 39, 43, 51], [15, 27], [44,, 46, 50]]);
+        }, _callee, this, [[5, 29, 33, 41], [34,, 36, 40]]);
       }));
 
-      function validateFunc(_x, _x2, _x3, _x4) {
+      function validateFunc(_x, _x2, _x3) {
         return _validateFunc.apply(this, arguments);
       }
 
@@ -16295,7 +16880,7 @@ function () {
                     name = 'custom';
                     rule_func = rule.validate;
                   } else {
-                    name = rule.type || 'string';
+                    name = rule.type || 'any';
                     rule_func = this.rules[name];
                   }
                 }
@@ -16322,7 +16907,7 @@ function () {
         }, _callee2, this);
       }));
 
-      function validateRule(_x5, _x6, _x7) {
+      function validateRule(_x4, _x5, _x6) {
         return _validateRule.apply(this, arguments);
       }
 
@@ -16396,7 +16981,7 @@ function () {
         }, _callee3, this, [[2, 8]]);
       }));
 
-      function useRule(_x8, _x9, _x10, _x11, _x12) {
+      function useRule(_x7, _x8, _x9, _x10, _x11) {
         return _useRule.apply(this, arguments);
       }
 
@@ -16445,6 +17030,7 @@ var Components = {
   Build: Build,
   uSection: Section,
   FormCell: FormCell,
+  FormBlock: FormBlock,
   GenericInput: Fields,
   // Chart,
   //   ckeditor: CKEditor

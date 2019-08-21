@@ -24,12 +24,12 @@ export default class Validator {
    * @returns Promise，errors，为空表示无错误
    * @memberof Validator
    */
-  validate (value, rules, fields={}) {
+  validate (value, rules) {
     let funcs = []
     // 对传入的规则进行遍历处理，获取每个规则的校验方法，准备校验
     // 传入字段名，字段名对应的规则，value(整个数据对象)，显示字段名,如果未提供则为字段名
     for (let k of Object.keys(rules)) {
-      funcs.push(this.validateFunc(k, rules[k], value, fields[k] || k))
+      funcs.push(this.validateFunc(k, rules[k], value))
     }
     //执行校验，生成出错对象，结果为 {字段名: 消息}
     return Promise.all(funcs).then((res) => {
@@ -37,7 +37,7 @@ export default class Validator {
       for(let r of res) {
         // 出错时返回一个对象：{name: message:}
         if (r) {
-          errors[r.name] = r.message
+          errors[r.name] = r.error
         } 
       }
       return JSON.stringify(errors) === '{}' ? null : errors
@@ -53,7 +53,7 @@ export default class Validator {
    * @param {String} fieldname 错误信息中显示的字段名
    * @memberof Validator
    */
-  async validateFunc (field, rule, value, fieldname) {
+  async validateFunc (field, rule, value) {
     let rules = rule
     if (!Array.isArray(rule)) {
       rules = [rule]
@@ -69,22 +69,23 @@ export default class Validator {
 
       // 合并消息
       let messages = Object.assign({}, ru.messages || {}, this.messages)
-      r.fieldname = fieldname
+      if (!r.fieldname) r.fieldname = field
       r.field = field
-      r.makeError = this.makeError(messages, fieldname)
-      try {
+      r.makeError = this.makeError(messages, r.fieldname)
+      // try {
         let ret = await this.validateRule (r, value[field], value)
         if (ret instanceof Error) {
-          return {name: field, message: ret.message}
+          return {name: field, error: ret.message}
         } else if (ret) {
-          return {name: field, message: ret}
+          return {name: field, error: ret}
         }
-      } catch (err) {
-        if (err instanceof Error)
-          return {name: field, message: err.message}
-        else
-          return {name: field, message: err}
-      }
+      // } 
+      // catch (err) {
+      //   if (err instanceof Error)
+      //     return {name: field, message: err.message}
+      //   else
+      //     return {name: field, message: err}
+      // }
     }
   }
 
@@ -130,7 +131,7 @@ export default class Validator {
         name = 'custom'
         rule_func = rule.validate
       } else {
-        name = rule.type || 'string'
+        name = rule.type || 'any'
         rule_func = this.rules[name]
       }
     } 

@@ -1,4 +1,4 @@
-export default (rule, value, model) => {
+export default async function (rule, value, model) {
 	if (!Array.isArray(value)) {
 		return rule.makeError("array")
 	}
@@ -31,5 +31,19 @@ export default (rule, value, model) => {
 				return rule.makeError("arrayEnum", value[i], rule.enum);
 			}
 		}
-	}	
+	}
+
+	if (rule.items) {
+		let errs = []
+		for (let item of value) {
+			let err = await this.validate({x: item}, {x: rule.items})
+			if (err)
+				errs.push(err['x'])
+			else
+				errs.push(err)
+		}
+		let n = errs.filter(x => x)
+		if (n.length > 0)
+			return errs
+	}
 }

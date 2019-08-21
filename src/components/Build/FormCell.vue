@@ -7,12 +7,13 @@
     <div class="u-layout-cell-field" :style="fieldStyle">
       <GenericInput v-bind="col" :value="value"
         :staticSuffix="staticSuffix"
+        :validate-result="validateResult"
         @on-validate="handleValidate"
         @on-error="handleError"
         @on-clear-error="handleClearError"
         :root="root"></GenericInput>
       <div class="u-layout-cell-help" v-if="col.help && !col.static">{{col.help}}</div>
-      <div class="u-layout-cell-error" v-if="error">{{error}}</div>
+      <div class="u-layout-cell-error" v-if="error && col.showError !== false">{{error}}</div>
     </div>
   </div>
 </template>
@@ -54,7 +55,7 @@ export default {
   computed: {
     classes () {
       return {'u-layout-cell': true, 'u-layout-required': this.col.required && !this.col.static,
-        'u-layout-error': this.error, 'u-layout-compact': this.compact,
+        'u-layout-error': this.col.showError !== false && this.error, 'u-layout-compact': this.compact,
         'u-layout-cell-left': this.col.labelAlign === 'left',
         'u-layout-cell-center': this.col.labelAlign === 'center',
         'u-layout-cell-right': this.col.labelAlign === 'right',

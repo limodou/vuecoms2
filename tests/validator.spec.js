@@ -6,8 +6,8 @@ import messages from '../src/components/validator/messages/messages_en_US'
 const async_validate = (rule, value, model) => {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
-      reject('Error')
-    }, 1000)
+      resolve('Error')
+    }, 1)
   })
 }
 
@@ -28,7 +28,7 @@ describe('validator', function () {
 
   it('Add new rule type', function() {
     const abc = (rule, fieldvalue, model) => {
-      if (fieldvalue !== 'abc') throw new Error("The value should be 'abc'!")
+      if (fieldvalue !== 'abc') return "The value should be 'abc'!"
     }
     let validator = new Validator({rules: {abc}})
     return validator.validate({s: 'x'}, {s: {type: 'abc'}}).then((res) => {
@@ -140,7 +140,7 @@ describe('validator', function () {
   it('Test custom validate function invalid', function() {
     let validator = new Validator({messages})
     return validator.validate({e: 'd'}, {e: {validate (rule, value, model) {
-      throw new Error('Error')
+      return 'Error'
     }}}).then((res) => {
       expect(res).to.eql({e: 'Error'})
     })
@@ -211,6 +211,32 @@ describe('validator', function () {
     })
   })
 
+  it('Test array items', function() {
+    let validator = new Validator({messages})
+    return validator.validate({a: [
+      {a: 1, b: 2},
+      {a: 1, b: 2}
+    ]}, {a: {type: 'array', items: {type: 'object', props: {
+      a: 'number',
+      b: 'number'
+    }}}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test array items invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({a: [
+      {a: 1, b: '2'},
+      {a: 1, b: 2}
+    ]}, {a: {type: 'array', items: {type: 'object', props: {
+      a: 'number',
+      b: 'number'
+    }}}}).then((res) => {
+      expect(res).to.eql({a:[{b:"The 'b' field must be a number!"},null]})
+    })
+  })
+
   it('Test number', function() {
     let validator = new Validator({messages})
     return validator.validate({n: '1'}, {n: {type: 'number'}}).then((res) => {
@@ -278,13 +304,6 @@ describe('validator', function () {
     let validator = new Validator({messages})
     return validator.validate({n: 1}, {n: {type: 'number', negative: true}}).then((res) => {
       expect(res).to.eql({n: "The 'n' field must be a negative number!"})
-    })
-  })
-
-  it('Test object', function() {
-    let validator = new Validator({messages})
-    return validator.validate({n: 1}, {n: {type: 'object'}}).then((res) => {
-      expect(res).to.eql({n: "The 'n' must be an Object!"})
     })
   })
 
@@ -536,6 +555,35 @@ describe('validator', function () {
     return validator.validate({c: 'X00055'}, 
       {c: {type: 'zipcode'}}).then((res) => {
       expect(res).to.eql({c: "The 'c' is not an available Zip Code!"})
+    })
+  })
+
+  it('Test object', function() {
+    let validator = new Validator({messages})
+    return validator.validate({n: 1}, {n: {type: 'object'}}).then((res) => {
+      expect(res).to.eql({n: "The 'n' must be an Object!"})
+    })
+  })
+
+  it('Test object props', function() {
+    let validator = new Validator({messages})
+    return validator.validate({o: {a: '1', b: '2'}}, 
+      {o: {type: 'object', props: {
+        a: 'string',
+        b: 'string'
+      }}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test object props invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({o: {a: '1', b: '2'}}, 
+      {o: {type: 'object', props: {
+        a: 'string',
+        b: 'number'
+      }}}).then((res) => {
+      expect(res).to.eql({o: {b: "The 'b' field must be a number!"}})
     })
   })
 

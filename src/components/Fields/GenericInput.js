@@ -33,6 +33,7 @@ export default {
       type: Boolean,
       default: false
     },
+    validateResult: {},
     staticSuffix: {
       type: String,
       default: '_static'

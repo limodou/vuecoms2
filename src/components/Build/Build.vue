@@ -69,7 +69,7 @@ export default {
       validating: false,
       validateResult: {}, //保存校验结果,
       visible_fields: {}, //保存显示字段
-      validateRules: {}, //保存校验规则
+      // validateRules: {}, //保存校验规则
       fieldsLabel: {}
     }
   },
@@ -155,51 +155,135 @@ export default {
   },
 
   methods: {
-    validate (callback) {
-      if (this.validating) return
+    async validate (callback) {
+      // if (this.validating) return
 
-      return new Promise((resolve, reject) => {
-        this.validating = true
-        this.$emit('validating', true)
-        let error = ''
-
-        this.$validator.validate(this.value, this.validateRules, this.fieldsLabel).then(res => {
-          if (res) {
-            for(let k of Object.keys(res)) {
-              this.validateResult[k].validateState = 'error'
-              this.validateResult[k].error = res[k]
-              if (!error) error = res[k]
+        // this.validating = true
+        // this.$emit('validating', true)
+      console.log('begin')
+      let error = ''
+      let validateRules = {}
+      for(let k of Object.keys(this.validateResult)) {
+        let field = this.fields[k]
+        let v = this.validateResult[k]
+        if (field && !field.static && !field.hidden) {
+          // 如果children为对象或数组，则合成object或array的校验规则模式
+          if (v.children) {
+            if (Array.isArray(v.children) && v.children.length > 0) {
+              let rules = {}
+              for (let c of Object.keys(v.children[0])) {
+                rules[c] = v.children[0][c].rule
+              }
+              validateRules[k] = {type: 'array', items: {type: 'object', props: rules}}
+            } else if (v.children instanceof Object) {
+              let rules = {}
+              for (let c of Object.keys(v.children)) {
+                rules[c] = v.children[c].rule
+              }
+              validateRules[k] = {type: 'object', props: rules}
             }
-            if (callback) callback(error)
+          } else
+            validateRules[k] = v.rule
+        }
+      }
+
+      console.log('validateReuls', validateRules)
+
+      let res = await this.$validator.validate(this.value, validateRules)
+
+      console.log('resssssss', res)
+      if (res) {
+        for(let k of Object.keys(res)) {
+          let v = res[k] // 出错结果
+          let validateResult = this.validateResult[k] // 校验结果
+          if (Array.isArray(v)) {
+            for(let i=0, _len=v.length; i<_len; i++) {
+              let r = v[i]
+              if (r instanceof Object) {
+                for (let k1 of Object.keys(r)) {
+                  let c_r = r[k1]
+                  this.setValidateResultKey(validateResult.children[i], k1, c_r)
+                  if (c_r && !error) {
+                    error = c_r
+                  }
+                }
+              }
+            }
+          } else if (v instanceof Object) {
+            for (let k1 of Object.keys(v)) {
+              let c_r = v[k1]
+              this.setValidateResultKey(validateResult.children, k1, c_r)
+              if (c_r && !error) {
+                error = c_r
+              }
+            }
           } else {
-            for(let k of Object.keys(this.validateResult)) {
-              this.validateResult[k].validateState = 'success'
-              this.validateResult[k].error = ''
+            this.setValidateResultKey(this.validateResult, k, v)
+            if (v && !error) {
+              error = v
             }
-            if (callback) callback()
           }
+        }
+      } else {
+        this.clearValidateResult()
+      }
 
-          this.validating = false
-          this.$emit('validating', false)
+      // this.validating = false
+      // this.$emit('validating', false)
 
-          if (error) reject(error)
-          else resolve()
+      // if (error) reject(error)
+      // else resolve()
 
-          if (callback) callback(error)
-        })
-      })
+      if (callback) callback(error)
+
+      if (error) throw error
+    },
+
+    setValidateResultKey (result, name, err, flag='success') {
+      if (err) {
+        this.$set(result[name], 'validateState', 'error')
+        this.$set(result[name], 'error', err)
+      } else {
+        this.$set(result[name], 'validateState', flag)
+        this.$set(result[name], 'error', '')
+      }
     },
 
     //生成校验结构
     //force表示是否强制
-    makeValidateResult (force) {
+    makeValidateResult () {
       for(let name in this.fields) {
         let field = this.fields[name]
         if (!this.visible_fields[field.name]) continue
-        if ((force || !this.validateResult[name]) && !field.static) {
+        if (!this.validateResult[name] && !field.static) {
           let rule = this.getRule(field)
-          this.$set(this.validateResult, name, {error: '', validateState: '', rule: rule, fullfield: field.label})
-          this.validateRules[field.name] = rule
+          let e_rule = this.formatRule(this.rules[name], field)
+          if (e_rule) {
+            if (Array.isArray(e_rule)) {
+              rule = rule.concat(e_rule)
+            } else {
+              rule.push(e_rule)
+            }
+          }
+          this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
+          // this.validateRules[field.name] = rule
+        }
+      }
+    },
+
+    clearValidateResult (validateResult, flag='') {
+      if (!validateResult) validateResult = this.validateResult
+      for (let k of Object.keys(validateResult)) {
+        this.setValidateResultKey(validateResult, k, '', flag)
+        let r = validateResult[k]
+        if (r.children) {
+          if (Array.isArray(r.children)) {
+            for (let r1 of r.children) {
+              this.clearValidateResult(r1, flag)
+            }
+          } else if (r.children instanceof Object) {
+            this.clearValidateResult(r.children, flag)
+          }
         }
       }
     },
@@ -258,26 +342,6 @@ export default {
       this.visible_fields = vfs
     },
 
-    getRule (field) {
-      let rule
-
-      if (!field.rule || field.static) {
-        rule = []
-      } else {
-        if (!Array.isArray(field.rule)) {
-          rule = [field.rule]
-        } else {
-          rule = field.rule.slice()
-        }
-      }
-
-      // 添加必填校验
-      if (field.required) {
-        rule.splice(0, 0, {required:true, type: 'any'})
-      }
-      return rule
-    },
-
     mergeErrors (errors) {
       for(let k in this.errors) {
         this.$set(this.validateResult[k], 'error', this.errors[k])
@@ -296,7 +360,7 @@ export default {
         } else {
           result.rule.push(v)
         }
-        this.validateRules[k] = result.rule
+        // this.validateRules[k] = result.rule
       }
     },
 
@@ -305,15 +369,18 @@ export default {
       let v = deepCopy(this.originValue)
       this.reset_object(this.value)
       Object.assign(this.value, v)
-      this.makeValidateResult(true)
-      this.mergeRules()
+      this.$nextTick(() => {
+        this.clearValidateResult()
+      })
+      // this.makeValidateResult(true)
+      // this.mergeRules()
     }
   },
 
   created () {
     this.makeFields()
     this.makeValidateResult()
-    this.mergeRules()
+    // this.mergeRules()
     this.mergeErrors()
   },
 

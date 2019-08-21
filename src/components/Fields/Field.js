@@ -2,6 +2,7 @@ import {isEmpty, findParent, deepCompare} from '../utils/utils'
 
 export default class Field {
   constructor (parent, options) {
+    this.field = options
     this.parent = parent //记录父结点
     this.component = options.type //底层组件名,缺省使用type,后续定义的组件可以重定义这个值
     this.defaultOptions = {}
@@ -13,6 +14,7 @@ export default class Field {
     this.label = options.label
     this.static = options.static
     this.labelField = options.labelField
+    this.validateResult = options.validateResult
     this.options = options.options || {}
     this.on = options.on || {}
     this.multiple = options.multiple
@@ -74,7 +76,7 @@ export default class Field {
       value = {label: self.value[this.labelField], value: value}
     } 
 
-    let props = Object.assign({}, this.defaultOptions, {value}, opts)
+    let props = Object.assign({}, this.defaultOptions, {value, validateResult: this.validateResult, field: this.field}, opts)
     let events = {
       input: (x) => {
         x = this.convert_value(x)
