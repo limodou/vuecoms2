@@ -40,7 +40,7 @@ export default {
     validateRule: async function (value, fieldname, validateResult) {
       let result = validateResult[fieldname]
       if (!result) return
-      if (result.rule.length > 0) {
+      if (result.rule) {
         result.validateState = 'validating'
     
         let res = await this.$validator.validate(value, {[fieldname]: result.rule}, {[fieldname]: result.field.label})

@@ -11617,7 +11617,7 @@ var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerat
                 return _context.abrupt("return");
 
               case 3:
-                if (!(result.rule.length > 0)) {
+                if (!result.rule) {
                   _context.next = 9;
                   break;
                 }
