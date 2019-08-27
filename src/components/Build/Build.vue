@@ -252,23 +252,27 @@ export default {
     //生成校验结构
     //force表示是否强制
     makeValidateResult () {
-      for(let name in this.fields) {
+      for(let name of Object.keys(this.fields)) {
         let field = this.fields[name]
-        if (!this.visible_fields[field.name]) continue
+        if (!this.visible_fields[name]) continue
         if (!this.validateResult[name] && !field.static) {
-          let rule = this.getRule(field)
-          let e_rule = this.formatRule(this.rules[name], field)
-          if (e_rule) {
-            if (Array.isArray(e_rule)) {
-              rule = rule.concat(e_rule)
-            } else {
-              rule.push(e_rule)
-            }
-          }
-          this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
-          // this.validateRules[field.name] = rule
+          this.setFieldRule(name)
         }
       }
+    },
+
+    setFieldRule (name) {
+      let field = this.fields[name]
+      let rule = this.getRule(field)
+      let e_rule = this.formatRule(this.rules[name], field)
+      if (e_rule) {
+        if (Array.isArray(e_rule)) {
+          rule = rule.concat(e_rule)
+        } else {
+          rule.push(e_rule)
+        }
+      }
+      this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
     },
 
     clearValidateResult (validateResult, flag='') {
@@ -292,7 +296,7 @@ export default {
       return Object.assign({}, this.boxOptions, item.boxOptions || {})
     },
 
-    //清除某个字段的校验结果，适用于直接改value的情况
+    //校验某个字段的校验结果，适用于直接改value的情况
     validateField (name) {
       let field = this.fields[name]
       if (!this.visible_fields[field.name] || field.static) return

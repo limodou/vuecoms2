@@ -328,6 +328,13 @@ describe('validator', function () {
     })
   })
 
+  it('Test string empty trim', function() {
+    let validator = new Validator({messages})
+    return validator.validate({s: '     '}, {s: {type: 'string', trim: true}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
   it('Test string alpha', function() {
     let validator = new Validator({messages})
     return validator.validate({s: '12'}, {s: {type: 'string', alpha: true}}).then((res) => {

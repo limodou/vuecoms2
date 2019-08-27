@@ -13945,12 +13945,12 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=30c6e293&
-var Buildvue_type_template_id_30c6e293_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.data),function(item,index){return _c('TabPane',{attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_30c6e293_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=20a296a4&
+var Buildvue_type_template_id_20a296a4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.data),function(item,index){return _c('TabPane',{attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_20a296a4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=30c6e293&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=20a296a4&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 
@@ -14266,40 +14266,47 @@ var Buildvue_type_template_id_30c6e293_staticRenderFns = []
     //生成校验结构
     //force表示是否强制
     makeValidateResult: function makeValidateResult() {
-      for (var name in this.fields) {
+      var _arr7 = Object.keys(this.fields);
+
+      for (var _i7 = 0; _i7 < _arr7.length; _i7++) {
+        var name = _arr7[_i7];
         var field = this.fields[name];
-        if (!this.visible_fields[field.name]) continue;
+        if (!this.visible_fields[name]) continue;
 
         if (!this.validateResult[name] && !field.static) {
-          var rule = this.getRule(field);
-          var e_rule = this.formatRule(this.rules[name], field);
-
-          if (e_rule) {
-            if (Array.isArray(e_rule)) {
-              rule = rule.concat(e_rule);
-            } else {
-              rule.push(e_rule);
-            }
-          }
-
-          this.$set(this.validateResult, name, {
-            error: '',
-            validateState: '',
-            rule: rule,
-            field: field,
-            fullfield: field.label
-          }); // this.validateRules[field.name] = rule
+          this.setFieldRule(name);
         }
       }
+    },
+    setFieldRule: function setFieldRule(name) {
+      var field = this.fields[name];
+      var rule = this.getRule(field);
+      var e_rule = this.formatRule(this.rules[name], field);
+
+      if (e_rule) {
+        if (Array.isArray(e_rule)) {
+          rule = rule.concat(e_rule);
+        } else {
+          rule.push(e_rule);
+        }
+      }
+
+      this.$set(this.validateResult, name, {
+        error: '',
+        validateState: '',
+        rule: rule,
+        field: field,
+        fullfield: field.label
+      });
     },
     clearValidateResult: function clearValidateResult(validateResult) {
       var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       if (!validateResult) validateResult = this.validateResult;
 
-      var _arr7 = Object.keys(validateResult);
+      var _arr8 = Object.keys(validateResult);
 
-      for (var _i7 = 0; _i7 < _arr7.length; _i7++) {
-        var k = _arr7[_i7];
+      for (var _i8 = 0; _i8 < _arr8.length; _i8++) {
+        var k = _arr8[_i8];
         this.setValidateResultKey(validateResult, k, '', flag);
         var r = validateResult[k];
 
@@ -14337,7 +14344,7 @@ var Buildvue_type_template_id_30c6e293_staticRenderFns = []
     getBoxOptions: function getBoxOptions(item) {
       return Object.assign({}, this.boxOptions, item.boxOptions || {});
     },
-    //清除某个字段的校验结果，适用于直接改value的情况
+    //校验某个字段的校验结果，适用于直接改value的情况
     validateField: function validateField(name) {
       var field = this.fields[name];
       if (!this.visible_fields[field.name] || field.static) return;
@@ -14421,7 +14428,7 @@ var Buildvue_type_template_id_30c6e293_staticRenderFns = []
               var field = _step5.value;
               fs[field.name] = field;
               this.fieldsLabel[field.name] = field.label;
-              this.$set(field, 'static', field.static || isStatic);
+              this.$set(field, 'static', field.static === undefined ? isStatic : field.static);
               this.$set(field, 'hidden', field.hidden || false);
               this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
 
@@ -14622,8 +14629,8 @@ var Buildvue_type_template_id_30c6e293_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_30c6e293_render,
-  Buildvue_type_template_id_30c6e293_staticRenderFns,
+  Buildvue_type_template_id_20a296a4_render,
+  Buildvue_type_template_id_20a296a4_staticRenderFns,
   false,
   null,
   null,
