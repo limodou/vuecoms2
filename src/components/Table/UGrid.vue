@@ -3,11 +3,11 @@
     <slot name="beforeQuery"></slot>
     <Query ref="query" v-if="query" v-bind="query" @input="handleQuerySubmit" @on-query-change="handleQueryChange"></Query>
     <slot name="afterQuery"></slot>
-    <div class="u-grid-tools" slot="tools" v-if="buttons.length>0 || rightButtons.length>0">
-      <div class="u-grid-tools-left" v-if="buttons.length>0">
+    <div class="u-grid-tools" slot="tools" v-if="buttons || rightButtons">
+      <div class="u-grid-tools-left" v-if="buttons">
         <Buttons ref="buttons" :buttons="buttons" :data="store" :target="this"></Buttons>
       </div>
-      <div class="u-grid-tools-right" v-if="rightButtons.length>0">
+      <div class="u-grid-tools-right" v-if="rightButtons">
         <Buttons ref="rightButtons" :buttons="rightButtons" :data="store" :target="this"></Buttons>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <Pagination ref="pagination" v-if="pagination && store.states.data.length > 0" :store="store.states"
       @on-page="handlePage"
       @on-page-size="handlePageSize">
-      <Buttons ref="bottomButtons" :buttons="bottomButtons" :target="this" :data="store"></Buttons>
+      <Buttons ref="bottomButtons" v-if="buttomButtons" :buttons="bottomButtons" :target="this" :data="store"></Buttons>
     </Pagination>
     <slot name="afterTable"></slot>
   </div>

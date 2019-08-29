@@ -12,8 +12,8 @@
       <CellRender v-if="columnType === 'render'"
         :row="col.row" :render="col.column.render" :column="col.column"
         :value="col.value"></CellRender>
-      <div v-if="col.column.html && columnType === 'normal'" v-html="value" :title="title" class="u-cell-text" :class="{nowrap:nowrap}"></div>
-      <div v-if="!col.column.html && columnType === 'normal'" :title="title" class="u-cell-text" :class="{nowrap:nowrap}">{{value}}</div>
+      <div v-if="col.column.html && columnType === 'normal'" v-html="value" :title="title" class="u-cell-text" :class="{nowrap:nowrap}" @click="handleClick()"></div>
+      <div v-if="!col.column.html && columnType === 'normal'" :title="title" class="u-cell-text" :class="{nowrap:nowrap}" @click="handleClick">{{value}}</div>
       <GenericInput v-if="columnType === 'editor'" 
         v-bind="col.column.editor"
         :name="col.column.name"
@@ -202,6 +202,9 @@ export default {
       }
       this.$set(this.col.row, this.expandField, expand)
       this.$emit('expanded', this.col.row[this.expandField], this.col.row)
+    },
+    handleClick (e) {
+      this.$emit('click', e)
     },
     checkCellStatic (col, row) {
       let static_flag = (col.column.fixed !== this.fixed || col.column.editor.static || !col.row._editting)

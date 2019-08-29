@@ -37,12 +37,11 @@
             @mouseleave="handleTrMouseLeave(row.row)"
             >
             <td v-for="(col, col_index) in row.columns"
-              @click="handleClick(col.row)"
               :style="cellStyles(col.column)"
               :rowspan="col.rowspan"
               :colspan="col.colspan"
               :class="{'u-cell-last': col.last}">
-              <Cell :store="store" :col="col" :row_index="row_index" :fixed="fixed"></Cell>
+              <Cell :store="store" :col="col" :row_index="row_index" @click="handleClick(col.row)" :fixed="fixed"></Cell>
             </td>
           </tr>
         </tbody>

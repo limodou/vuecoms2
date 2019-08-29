@@ -1,5 +1,6 @@
 <template>
   <div class="u-query">
+    <form @submit="handleSubmit">
     <template v-if="showSelected && selected.length>0">
       <Row class="selectedRow">
         <Col span="1">
@@ -22,7 +23,7 @@
         :compact="true"
         root="Query"
         ></FormCell>
-      <Button v-for="btn of buttons" v-bind="btn" @click="handleClick(btn)" style="margin-right:5px">{{btn.label}}</Button>
+      <Buttons :buttons="btns" :size="btnSize"></Buttons>
     </Row>
     <!-- 生成多行条件 -->
     <Row v-else v-for="(row, index) in getRows(rows)" class="u-layout-row" :key="index">
@@ -41,9 +42,10 @@
     <!-- 生成查询按钮 -->
     <Row v-if="isShow || !isShow && showLine>1">
       <Col style="margin:5px; text-align:center" span="24">
-        <Button v-for="btn of buttons" v-bind="btn" @click="handleClick(btn)" style="margin-right:5px">{{btn.label}}</Button>
+        <Buttons :buttons="btns" :size="btnSize"></Buttons>
       </Col>
     </Row>
+    </form>
   </div>
 </template>
 
@@ -121,20 +123,59 @@ export default {
     parseUrl: {
       type: Boolean,
       default: true
+    },
+    buttons: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    btnSize: {
+      default: 'default'
     }
   },
   mixins: [Emitter, dict],
   components: {
-    Row, Col, FormCell, Button, Tag, Icon, GenericInput
+    Row, Col, FormCell, Button, Tag, Icon, GenericInput, Buttons
   },
   data(){
-    let buttons = [
-      {label: this.submitText, type:'primary', name: 'submit'}
-    ]
+    let self = this
+    let submitBtn = {label: this.submitText, htmlType: 'submit', type:'primary', name: 'submit', onClick (target, data, btn) {
+        self.handleClick(btn)
+      }
+    }
+    
+    let resetBtn
     if (this.resetText) {
-      buttons.push(
-        {label: this.resetText, type:'default', name: 'reset'}
-      )
+      resetBtn = {label: this.resetText, type:'default', name: 'reset', onClick (target, data, btn) {
+        self.handleClick(btn)
+      }}
+    }
+
+    let buttons = []
+
+    if (this.buttons.length > 0) {
+      for (let group of this.buttons) {
+        let g = []
+        buttons.push(g)
+        for (let b of group) {
+          if (b.name === 'submit') {
+            g.push(Object.assign({}, submitBtn, b))
+          }
+          else if (b.name === 'reset' && resetBtn) {
+            g.push(Object.assign({}, resetBtn, b))
+          } else {
+            g.push(b)
+          }
+        }
+      }
+    } else {
+      buttons = [
+        [submitBtn]
+      ]
+      if (resetBtn) {
+        buttons.push([resetBtn])
+      }
     }
 
     return {
@@ -142,7 +183,7 @@ export default {
       current_value: {},
       old_value: {}, //保存上一次的值,用于数据比较
       isShow: false, // 是否显示隐藏内容
-      buttons: buttons
+      btns: buttons
     }
   },
   computed: {
@@ -315,14 +356,17 @@ export default {
       if (btn.name === 'reset') {
         this.reset()
       }
-      this.merge_object(this.value, this.current_value)
-      this.$emit("input", this.value)
+      this.handleSubmit()
     },
     getRows(rows) {
       if (this.isShow) return rows
       else {
         return rows.slice(0, this.showLine)
       }
+    },
+    handleSubmit() {
+      this.merge_object(this.value, this.current_value)
+      this.$emit("input", this.value)
     }
   }
 }

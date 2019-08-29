@@ -501,6 +501,14 @@ describe('validator', function () {
     })
   })
 
+  it('Test real name invalid length', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '姓名很长的中文超过二十个字符长度应该报错才对'}, 
+      {c: 'realname'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' field length must be less than or equal to 20 characters long!"})
+    })
+  })
+
   it('Test password', function() {
     let validator = new Validator({messages})
     return validator.validate({c: 'abc123&'}, 

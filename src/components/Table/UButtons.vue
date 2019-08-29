@@ -1,12 +1,13 @@
 <template>
   <div class="u-buttons">
-    <ButtonGroup v-for="btnGroup in btngroups" :size="size">
+    <ButtonGroup v-for="btnGroup in getButtons" :size="btnSize">
       <template v-for="btn in btnGroup">
         <Button 
           v-if="!btn.component || btn.component =='Button'"
           :type="btn.type || 'default'"
+          :html-type="btn.htmlType"
           :ghost="btn.ghost || false"
-          :disabled="btn.disabled || disabled"
+          :disabled="btn.disabled !== undefined ? btn.disabled : disabled"
           :shape="btn.shape"
           :size="btn.size"
           :long="btn.long"
@@ -41,7 +42,7 @@ export default {
   },
 
   props: {
-    buttons: Array,
+    buttons: [Array, Object],
     data: {},
     target: {},
     size: {
@@ -50,6 +51,15 @@ export default {
   },
 
   computed: {
+    getButtons () {
+      if (Array.isArray(this.buttons)) return this.buttons
+      else return this.buttons.items || []
+    },
+
+    btnSize () {
+      return this.buttons.size || this.size
+    },
+
     btngroups () {
       let v = []
       for(let bs of this.buttons) {
@@ -69,12 +79,12 @@ export default {
   methods: {
     handleButtonClick (btn) {
       if (btn.onClick) {
-        btn.onClick.call(this, this.target, this.data)
+        btn.onClick.call(this, this.target, this.data, btn)
       }
     },
     collectButtons () {
       var btns = {}
-      for(let bs of this.buttons) {
+      for(let bs of this.getButtons) {
         for(let b of bs) {
           if (b.name) {
             btns[b.name] = b
@@ -101,8 +111,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 .u-buttons {
   display: inline-block;
+
+  .ivu-btn-group {
+    margin-right: 5px;
+  }
 }
 </style>

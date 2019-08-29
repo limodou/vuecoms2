@@ -41,9 +41,9 @@ class Store {
       url: '', // 访问后台的URL
       param: {
       }, // 访问后台的URL所带参数
-      buttons: [],
-      rightButtons: [],
-      bottomButtons: [],
+      buttons: null,
+      rightButtons: null,
+      bottomButtons: null,
       comments: {}, // 记录单元格的注释，形式为 {row_id: {col_name:comment}}
       classes: {}, // 记录单元格的class
       combineCols: [], // 单元格合并列名
