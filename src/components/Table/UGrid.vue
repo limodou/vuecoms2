@@ -113,7 +113,8 @@ export default {
       'selected', 'editMode', 'actionColumn', 'deleteRowConfirm',
       'onSaveRow', 'onDeleteRow', 'onLoadData', 'query', 'theme', 'cellTitle',
       'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo',
-      'onRowEditRender', 'static', 'xscroll', 'afterLoadData', 'multiHeaderSep'
+      'onRowEditRender', 'static', 'xscroll', 'afterLoadData', 'multiHeaderSep',
+      'zebra'
     ),
 
     columnDraggerStyles () {
@@ -124,7 +125,7 @@ export default {
     },
 
     themeClass () {
-      return `theme-${this.theme}`
+      return {[`theme-${this.theme}`]: this.theme, 'u-grid-zebra': this.zebra}
     },
 
     tableWidth () {
@@ -720,6 +721,7 @@ label {
     .u-grid-tools-right {
       float: right!important;
     }
+
   }
 
   .u-grid {
@@ -800,4 +802,23 @@ label {
     }
   }
 }
+.u-grid-zebra .u-table-body-scroll table{
+  tr {
+    background-color: #fff;
+  }
+  @nth: ~"nth-child(2n)";
+  tr:@{nth} {
+    background-color: #f8f8f8;
+
+    &.selected {
+      background-color: #ffefd5;
+    }
+
+    &.hover{
+      background-color:#e1eff8;
+    }
+  }
+}
+
+
 </style>

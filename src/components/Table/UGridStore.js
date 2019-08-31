@@ -42,6 +42,7 @@ class Store {
       param: {
       }, // 访问后台的URL所带参数
       buttons: null,
+      zebra: true,
       rightButtons: null,
       bottomButtons: null,
       comments: {}, // 记录单元格的注释，形式为 {row_id: {col_name:comment}}
