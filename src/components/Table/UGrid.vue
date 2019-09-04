@@ -658,7 +658,7 @@ export default {
             setChoice(this, field.editor, choices)
           }
         }
-        if (this.query) {
+        if (this.query && this.query.fields) {
           for(let field of this.query.fields) {
             let choices = v[field.name]
             if (choices) {
