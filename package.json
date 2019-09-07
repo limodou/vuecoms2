@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name vuecoms2 ./src/components/index.js",
+    "build": "vue-cli-service build --target lib --name vuecoms2 ./src/components/index.js",
+    "report": "vue-cli-service build --target lib --name vuecoms2 ./src/components/index.js --report",
     "lint": "vue-cli-service lint",
     "test": "karma start --single-run"
   },

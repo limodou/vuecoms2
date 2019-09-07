@@ -672,7 +672,7 @@ export default {
 
     value: {
       handler: function (value) {
-        this.store.states.data = value
+        this.store.states.data = this.makeRows(value || [])
       },
       deep: true
     },

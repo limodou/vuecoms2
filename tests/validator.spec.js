@@ -251,6 +251,13 @@ describe('validator', function () {
     })
   })
 
+  it('Test number convert negative', function() {
+    let validator = new Validator({messages})
+    return validator.validate({n: '-1'}, {n: {type: 'number', convert: true}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
   it('Test number min', function() {
     let validator = new Validator({messages})
     return validator.validate({n: 1}, {n: {type: 'number', min: 3}}).then((res) => {
@@ -551,7 +558,7 @@ describe('validator', function () {
 
   it('Test social credit code invalid', function() {
     let validator = new Validator({messages})
-    return validator.validate({c: 'I1350100M000100Y43'}, 
+    return validator.validate({c: '91110108801146341A'}, 
       {c: {type: 'socialCreditCode'}}).then((res) => {
       expect(res).to.eql({c: "The 'c' is not an available Social Credit Code!"})
     })
