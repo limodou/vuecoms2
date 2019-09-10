@@ -12,7 +12,7 @@
 
     </div>
 
-    <div v-if="column.type === 'check'">
+    <div v-if="column.type === 'check'" class="u-table-header-cell-title">
       <Checkbox v-if="multiSelect"
         @click.prevent.native="handleCheckAll"
         :value="checkAll"
@@ -21,7 +21,7 @@
       <span v-if="column.title">{{column.title}}</span>
     </div>
 
-    <div v-if="column.type === 'index'">
+    <div v-if="column.type === 'index'" class="u-table-header-cell-title">
       <span v-if="column.title">{{column.title}}</span>
     </div>
   </div>

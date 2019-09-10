@@ -68,9 +68,9 @@ export default {
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {}, //保存校验结果,
-      visible_fields: {}, //保存显示字段
+      // visible_fields: {}, //保存显示字段
       // validateRules: {}, //保存校验规则
-      fieldsLabel: {}
+      // fieldsLabel: {}
     }
   },
   props: {
@@ -160,7 +160,6 @@ export default {
 
         // this.validating = true
         // this.$emit('validating', true)
-      console.log('begin')
       let error = ''
       let validateRules = {}
       for(let k of Object.keys(this.validateResult)) {
@@ -187,11 +186,8 @@ export default {
         }
       }
 
-      console.log('validateReuls', validateRules)
-
       let res = await this.$validator.validate(this.value, validateRules)
 
-      console.log('resssssss', res)
       if (res) {
         for(let k of Object.keys(res)) {
           let v = res[k] // 出错结果
@@ -254,7 +250,7 @@ export default {
     makeValidateResult () {
       for(let name of Object.keys(this.fields)) {
         let field = this.fields[name]
-        if (!this.visible_fields[name]) continue
+        // if (!this.visible_fields[name]) continue
         if (!this.validateResult[name] && !field.static) {
           this.setFieldRule(name)
         }
@@ -299,51 +295,57 @@ export default {
     //校验某个字段的校验结果，适用于直接改value的情况
     validateField (name) {
       let field = this.fields[name]
-      if (!this.visible_fields[field.name] || field.static) return
+      // if (!field.hidden || field.static) return
       this.validateRule(this.value, name, this.validateResult)
     },
 
     //检查是否在layout中定义了
-    check_in_layout(f, layout) {
-      for (let row of layout) {
-        for (let c of row) {
-          if (typeof c === 'string') {
-            if (c === f.name) return true
-          } else if (c instanceof Object) {
-            if (c.name === f.name) return true
-          }
-        }
-      }
-    },
+    // check_in_layout(f, layout) {
+    //   if (!layout) return true
+    //   for (let row of layout) {
+    //     for (let c of row) {
+    //       if (typeof c === 'string') {
+    //         if (c === f.name) return true
+    //       } else if (c instanceof Object) {
+    //         if (c.name === f.name) return true
+    //       }
+    //     }
+    //   }
+    // },
 
     makeFields () {
       let fs = {}
-      let vfs = {}
+      // let vfs = {}
       for(let row of this.data) {
         let isStatic = row.static === undefined ? false : row.static
         if (row.name) {
           this.rows[row.name] = row
         }
+        // 增加layout的缺省处理
+        let default_layout
+        if (!row.layout || row.layout && row.layout.length===0) {
+          default_layout = []
+        }
         for(let field of (row.fields || [])) {
           fs[field.name] = field
-          this.fieldsLabel[field.name] = field.label
-          this.$set(field, 'static', field.static === undefined ? isStatic: field.static)
-          this.$set(field, 'hidden', field.hidden || false)
-          this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
-          if (typeof field.options === 'undefined') {
-            this.$set(field, 'options', {})
-          }
-          if (field.options.hasOwnProperty('choices'))
-            this.$set(field.options, 'choices', field.options.choices)
-          if (!field.type)
-            this.$set(field, 'type', 'str') //str
-          if (this.check_in_layout(field, row.layout) && !field.hidden) {
-            vfs[field.name] = true
+          // this.fieldsLabel[field.name] = field.label
+          if (field.static === undefined) this.$set(field, 'static', false)
+          if (field.hidden === undefined) this.$set(field, 'hidden', false)
+          if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
+          if (field.options === undefined) this.$set(field, 'options', {})
+          if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+          if (field.type === undefined) this.$set(field, 'type', 'str') //str
+          // if (this.check_in_layout(field, row.layout) && !field.hidden) {
+          //   vfs[field.name] = true
+          // }
+          if (default_layout) {
+            default_layout.push([field.name])
           }
         }
+        if (default_layout) this.$set(row, 'layout', default_layout)
       }
       this.fields = fs
-      this.visible_fields = vfs
+      // this.visible_fields = vfs
     },
 
     mergeErrors (errors) {

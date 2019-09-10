@@ -328,6 +328,36 @@ export default {
       result.push(d)
     }
     return result
+  },
+
+  tree (list, options={}) {
+    let default_options = {parent: 'parent', children: 'children', id: 'id'}
+    let opts = Object.assign({}, default_options, options)
+    let result = []
+    let objs = {}
+
+    let new_list = JSON.parse(JSON.stringify(list))
+
+    for(let item of new_list) {
+      let parent_id = item[opts.parent]
+      let parent = objs[parent_id]
+      let id = item[opts.id]
+      if (objs[id]) {
+        Object.assign(objs[id], item)
+      } else objs[id] = item
+      if (parent_id) {
+        if (!parent) {
+          objs[parent_id] = {id: parent_id}
+        }
+        if (!parent[opts.children]) {
+          parent[opts.children] = []
+        }
+        parent[opts.children].push(item)  
+      } else {
+        result.push(item)
+      }
+    }
+    return result
   }
 
 }

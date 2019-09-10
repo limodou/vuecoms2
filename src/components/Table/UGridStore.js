@@ -19,6 +19,8 @@ class Store {
       checkCol: false,
       checkColWidth: 30,
       checkColTitle: '',
+      columnAlign: 'center', // 缺省列的对齐方式
+      columnHeaderAlign: 'center', // 缺省表头列的对齐方式
       cellTitle: true, // 单元格显示title属性
       headerShow: true, // 是否显示表头，缺省为true
       hoverShow: true, // 是否显示hover效果

@@ -19,6 +19,10 @@ export default {
       type: Boolean,
       default: true
     },
+    showError: {
+      type: Boolean,
+      default: true,
+    },
     onChange: {},
     options: {}, // 编辑控件选项
     on: {}, // 事件回调

@@ -75,16 +75,12 @@ export default {
       let fs = {}
       for(let field of fields) {
         fs[field.name] = field
-        this.$set(field, 'static', field.static || false)
-        this.$set(field, 'hidden', field.hidden || false)
-        this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
-        if (typeof field.options === 'undefined') {
-          this.$set(field, 'options', {})
-        }
-        if (field.options.hasOwnProperty('choices'))
-          this.$set(field.options, 'choices', field.options.choices)
-        if (!field.type)
-          this.$set(field, 'type', 'str') //str
+        if (field.static === undefined) this.$set(field, 'static', false)
+        if (field.hidden === undefined) this.$set(field, 'hidden', false)
+        if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
+        if (field.options === undefined) this.$set(field, 'options', {})
+        if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+        if (field.type === undefined) this.$set(field, 'type', 'str') //str
       }
       return fs
     },

@@ -111,7 +111,8 @@ export default {
       'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth',
       'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth',
       'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData',
-      'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow'
+      'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow',
+      'columnHeaderAlign', 'columnAlign'
     ),
 
     rows () {
@@ -382,7 +383,7 @@ export default {
 
     thStyles (col) {
       // return {textAlign: col.align || 'left'}
-      let s = {textAlign: 'center'}
+      let s = {textAlign: col.headerAlign || this.columnHeaderAlign}
       if (this.fixed === 'left') {
         if (col.fixed !== 'left') {
           s['visibility'] = 'hidden'
@@ -423,7 +424,7 @@ export default {
     // 单元格样式：
     //    文字对齐
     cellStyles (col) {
-      let s = {textAlign: col.align || 'center', height: `${this.rowHeight}px`, overflow:'hidden'}
+      let s = {textAlign: col.align || this.columnAlign, height: `${this.rowHeight}px`, overflow:'hidden'}
       if (this.fixed === 'left') {
         if (col.fixed !== 'left') {
           s['visibility'] = 'hidden'

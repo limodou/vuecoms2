@@ -22,7 +22,7 @@ export default (rule, value, model) => {
 		return
 	}
 
-  if(value && !(SocialCreditCode.test(value) && checkCRC(value))){ 
+  if(value && !SocialCreditCode.test(value) || !checkCRC(value)){ 
       return rule.makeError('SocialCreditCode')
   } 
 }

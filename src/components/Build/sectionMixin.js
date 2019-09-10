@@ -64,23 +64,39 @@ export default {
         let new_r = []
         let span = 24 / row.length
 
-        //重新计算col
+        //重新计算col，对于col可以设置labelWidth, labelAlign, static, hidden, colspan
         for (let col of row) {
           if (typeof col === 'object') {
             name = col.name
             span = col.colspan || span
           } else {
             name = col
+            col = {name}
           }
-          let f = List.get(this.fields, name, 'name')
-          if (!f) throw new Error(`Can't find field ${name} in fields, please check if the name is not correct between layout and fields`)
-          let field = Object.assign({colspan: span,
+          let f
+          if (col.name) {
+            f = List.get(this.fields, name, 'name')
+            if (!f) throw new Error(`Can't find field ${name} in fields, please check if the name is not correct between layout and fields`)
+          } else f = {}
+          let field = Object.assign({}, col, {
+            component: col.component || 'FormCell',
+            colspan: span,
             labelWidth: this.labelWidth,
             labelAlign: col.labelAlign || f.labelAlign || this.labelAlign,
             static: col.static || this.static,
             hidden: this.hidden || col.hidden,
           }, f)
 
+          // 处理自定义字段列表
+          if (field.component !== 'FormCell' && col.fields) {
+            field.fields = {}
+            for (let c of col.fields) {
+              let ff = List.get(this.fields, c, 'name')
+              if (!ff) throw new Error(`Can't find field ${c} in fields, please check if the name is not correct between layout and fields`)
+              field.fields[c] = ff
+            }
+          }
+          
           if (!field.hidden)
             new_r.push(field)
         }

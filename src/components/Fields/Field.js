@@ -18,6 +18,7 @@ export default class Field {
     this.options = options.options || {}
     this.on = options.on || {}
     this.multiple = options.multiple
+    this.showError = options.showError
     this.format = options.format
     this.from = options.from  //从value转为控件属性值的方法
     this.to = options.to //从控件值转为value值的方法
@@ -112,6 +113,9 @@ export default class Field {
       },
       'on-clear-error': (x) => {
         ctx.listeners['on-clear-error'] && ctx.listeners['on-clear-error'](x)
+      },
+      'on-validate': () => {
+        ctx.listeners['on-validate'] && ctx.listeners['on-validate']()
       }
     }
     for(let e_name of this.events) {

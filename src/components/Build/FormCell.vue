@@ -50,7 +50,10 @@ export default {
       type: Boolean,
       default: false
     },
-    root: String
+    root: {
+      type: String,
+      default: 'Build'
+    }
   },
   computed: {
     classes () {

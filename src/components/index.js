@@ -6,6 +6,7 @@ import uSelect from './Select.vue'
 import uRadioGroup from './RadioGroup.vue'
 import uCheckboxGroup from './CheckboxGroup.vue'
 import {Build, uSection, FormCell, FormBlock} from './Build'
+import uText from './Text'
 import GenericInput from './Fields'
 import './styles/iview.fix.css'
 import './styles/common.css'
@@ -33,6 +34,7 @@ const Components = {
   uCheckboxGroup,
   Build,
   uSection,
+  uText,
   FormCell,
   FormBlock,
   GenericInput,
