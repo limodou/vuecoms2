@@ -347,7 +347,9 @@ export default {
       } else objs[id] = item
       if (parent_id) {
         if (!parent) {
-          objs[parent_id] = {id: parent_id}
+          // objs[parent_id] = {id: parent_id}
+          result.push(item)
+          continue
         }
         if (!parent[opts.children]) {
           parent[opts.children] = []

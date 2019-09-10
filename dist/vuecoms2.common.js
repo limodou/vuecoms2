@@ -13986,9 +13986,9 @@ var es6_array_sort = __webpack_require__("55dd");
 
         if (parent_id) {
           if (!parent) {
-            objs[parent_id] = {
-              id: parent_id
-            };
+            // objs[parent_id] = {id: parent_id}
+            result.push(item);
+            continue;
           }
 
           if (!parent[opts.children]) {
@@ -22358,7 +22358,7 @@ function () {
 
                 r = assign_default()({}, ru); // 合并消息
 
-                messages = assign_default()({}, ru.messages || {}, this.messages);
+                messages = assign_default()({}, this.messages, ru.messages || {});
                 if (!r.fieldname) r.fieldname = field;
                 r.field = field;
                 r.makeError = this.makeError(messages, r.fieldname); // try {

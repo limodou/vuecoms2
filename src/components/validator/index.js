@@ -68,7 +68,7 @@ export default class Validator {
       let r = Object.assign({}, ru)
 
       // 合并消息
-      let messages = Object.assign({}, ru.messages || {}, this.messages)
+      let messages = Object.assign({}, this.messages, ru.messages || {})
       if (!r.fieldname) r.fieldname = field
       r.field = field
       r.makeError = this.makeError(messages, r.fieldname)

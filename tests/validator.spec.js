@@ -26,6 +26,13 @@ describe('validator', function () {
     })
   })
 
+  it('Test any required messages', function() {
+    let validator = new Validator({messages})
+    return validator.validate({b: 'x'}, {s: {type: 'any', required: true, messages: {required: 'Error'}}}).then((res) => {
+      expect(res).to.eql({ s: 'Error' })
+    })
+  })
+
   it('Add new rule type', function() {
     const abc = (rule, fieldvalue, model) => {
       if (fieldvalue !== 'abc') return "The value should be 'abc'!"
