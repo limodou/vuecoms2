@@ -13987,17 +13987,23 @@ var es6_array_sort = __webpack_require__("55dd");
         var item = _step8.value;
         var parent_id = item[opts.parent];
         var parent = objs[parent_id];
+        var rootvalue = opts.rootvalue;
         var id = item[opts.id];
 
         if (objs[id]) {
-          assign_default()(objs[id], item);
+          item = assign_default()(objs[id], item);
         } else objs[id] = item;
 
         if (parent_id) {
           if (!parent) {
-            // objs[parent_id] = {id: parent_id}
-            result.push(item);
-            continue;
+            // 增加对根结点值的处理，等于的话认为是根结点，不等于，但找不到则自动创建根结点
+            if (rootvalue && parent_id === rootvalue || !rootvalue) {
+              result.push(item);
+              continue;
+            } else {
+              parent = Object(defineProperty["a" /* default */])({}, opts.id, parent_id);
+              objs[parent_id] = parent;
+            }
           }
 
           if (!parent[opts.children]) {
@@ -21838,6 +21844,8 @@ var PATTERN = /^https?:\/\/\S+/; //const PATTERN = /^(?:(?:https?|ftp):\/\/)(?:\
 //const PATTERN = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
 
 /* harmony default export */ var rules_url = (function (rule, value, model) {
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
     return;
@@ -21977,6 +21985,8 @@ var MOBILE = /^1[3456789]\d{9}$/;
 // CONCATENATED MODULE: ./src/components/validator/rules/telephone.js
 var TELEPNONE = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
 /* harmony default export */ var telephone = (function (rule, value, model) {
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
     return;
@@ -22011,6 +22021,8 @@ var IPV6 = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}
 var HZ = /^([\u4e00-\u9fa5\·]+)$/;
 var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 /* harmony default export */ var realname = (function (rule, value, model) {
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
     return;
@@ -22040,6 +22052,8 @@ var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 
 var PASSWORD = "^(?=.*[a-zA-Z])(?=.*\\\d)(?=.*[~!@#$%^&*()_+`\\\-={}\\\[\\]:\\\";'<>?,.\\\/]).";
 /* harmony default export */ var rules_password = (function (rule, value, model) {
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
     return;
@@ -22109,6 +22123,8 @@ var socialCreditCode_checkCRC = function checkCRC(code) {
 };
 
 /* harmony default export */ var socialCreditCode = (function (rule, value, model) {
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
     return;
@@ -22160,7 +22176,8 @@ function zipcode_ref() {
             return _context.abrupt("return", this.useRule({
               type: 'string',
               length: 6,
-              integer: true
+              integer: true,
+              trim: true
             }, rule, value, model, function (err) {
               return rule.makeError('zipcode');
             }));
