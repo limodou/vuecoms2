@@ -3,6 +3,7 @@ const PATTERN = /^https?:\/\/\S+/;
 //const PATTERN = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
 
 export default (rule, value, model) => {
+	if (rule.trim) value = value.trim()
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
 		return

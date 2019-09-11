@@ -10,7 +10,7 @@
 //       return r.makeError('zipcode')
 // }
 export default async function (rule, value, model) {
-  return this.useRule({type: 'string', length: 6, integer: true}, rule, value,model, (err)=>{
+  return this.useRule({type: 'string', length: 6, integer: true, trim: true}, rule, value,model, (err)=>{
     return rule.makeError('zipcode')
   })
 }

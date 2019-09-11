@@ -341,15 +341,21 @@ export default {
     for(let item of new_list) {
       let parent_id = item[opts.parent]
       let parent = objs[parent_id]
+      let rootvalue = opts.rootvalue
       let id = item[opts.id]
       if (objs[id]) {
-        Object.assign(objs[id], item)
+        item = Object.assign(objs[id], item)
       } else objs[id] = item
       if (parent_id) {
         if (!parent) {
-          // objs[parent_id] = {id: parent_id}
-          result.push(item)
-          continue
+          // 增加对根结点值的处理，等于的话认为是根结点，不等于，但找不到则自动创建根结点
+          if (rootvalue && parent_id===rootvalue || !rootvalue) {
+            result.push(item)
+            continue
+          } else {
+            parent = {[opts.id]: parent_id}
+            objs[parent_id] = parent
+          }
         }
         if (!parent[opts.children]) {
           parent[opts.children] = []

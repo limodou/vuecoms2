@@ -2,6 +2,7 @@ const HZ = /^([\u4e00-\u9fa5\·]+)$/
 const ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/
 
 export default (rule, value, model) => {
+	if (rule.trim) value = value.trim()
   if (!value) {
 		if (rule.required) return rule.makeError('required')
 		return
