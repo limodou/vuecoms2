@@ -555,6 +555,14 @@ describe('validator', function () {
     })
   })
 
+  it('Test password trim invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '   '}, 
+      {c: 'password'}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available password, you should include alpha, number and special character!"})
+    })
+  })
+
   it('Test social credit code', function() {
     let validator = new Validator({messages})
     return validator.validate({c: '91350100M000100Y43'}, 
@@ -566,6 +574,14 @@ describe('validator', function () {
   it('Test social credit code invalid', function() {
     let validator = new Validator({messages})
     return validator.validate({c: '91110108801146341A'}, 
+      {c: {type: 'socialCreditCode'}}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available Social Credit Code!"})
+    })
+  })
+
+  it('Test social credit code trim invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '         '}, 
       {c: {type: 'socialCreditCode'}}).then((res) => {
       expect(res).to.eql({c: "The 'c' is not an available Social Credit Code!"})
     })
@@ -583,6 +599,14 @@ describe('validator', function () {
     let validator = new Validator({messages})
     return validator.validate({c: 'X00055'}, 
       {c: {type: 'zipcode'}}).then((res) => {
+      expect(res).to.eql({c: "The 'c' is not an available Zip Code!"})
+    })
+  })
+
+  it('Test zipcode trim invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '      '}, 
+      {c: {type: 'zipcode', trim: true}}).then((res) => {
       expect(res).to.eql({c: "The 'c' is not an available Zip Code!"})
     })
   })

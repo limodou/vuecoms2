@@ -21777,11 +21777,12 @@ var ALPHANUM_PATTERN = /^[a-zA-Z0-9]+$/;
 var ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/;
 var INTEGER = /^\d+$/;
 /* harmony default export */ var string = (function (rule, value, model) {
+  var oldvalue = value;
   if (rule.trim) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (typeof value !== "string") {
@@ -21973,9 +21974,12 @@ var checkID = function checkID(val) {
 // CONCATENATED MODULE: ./src/components/validator/rules/mobile.js
 var MOBILE = /^1[3456789]\d{9}$/;
 /* harmony default export */ var mobile = (function (rule, value, model) {
+  var oldvalue = value;
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (value && !MOBILE.test(value)) {
@@ -21985,11 +21989,12 @@ var MOBILE = /^1[3456789]\d{9}$/;
 // CONCATENATED MODULE: ./src/components/validator/rules/telephone.js
 var TELEPNONE = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
 /* harmony default export */ var telephone = (function (rule, value, model) {
+  var oldvalue = value;
   if (rule.trim) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (value && !TELEPNONE.test(value)) {
@@ -22000,9 +22005,12 @@ var TELEPNONE = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
 var IPV4 = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 var IPV6 = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
 /* harmony default export */ var ip = (function (rule, value, model) {
+  var oldvalue = value;
+  if (rule.trim) value = value.trim();
+
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (rule.ipv4 && !IPV4.test(value)) {
@@ -22021,11 +22029,12 @@ var IPV6 = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}
 var HZ = /^([\u4e00-\u9fa5\·]+)$/;
 var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 /* harmony default export */ var realname = (function (rule, value, model) {
+  var oldvalue = value;
   if (rule.trim) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (rule.hz && !HZ.test(value)) {
@@ -22052,11 +22061,12 @@ var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 
 var PASSWORD = "^(?=.*[a-zA-Z])(?=.*\\\d)(?=.*[~!@#$%^&*()_+`\\\-={}\\\[\\]:\\\";'<>?,.\\\/]).";
 /* harmony default export */ var rules_password = (function (rule, value, model) {
+  var oldvalue = value;
   if (rule.trim) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (value) {
@@ -22123,11 +22133,12 @@ var socialCreditCode_checkCRC = function checkCRC(code) {
 };
 
 /* harmony default export */ var socialCreditCode = (function (rule, value, model) {
+  var oldvalue = value;
   if (rule.trim) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
-    return;
+    if (!oldvalue) return;
   }
 
   if (value && !SocialCreditCode.test(value) || !socialCreditCode_checkCRC(value)) {

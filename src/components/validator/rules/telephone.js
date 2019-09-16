@@ -1,10 +1,11 @@
 const TELEPNONE = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/
 
 export default (rule, value, model) => {
+	let oldvalue = value
 	if (rule.trim) value = value.trim()
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
-		return
+		if (!oldvalue) return
 	}
 
   if(value && !(TELEPNONE.test(value))){ 

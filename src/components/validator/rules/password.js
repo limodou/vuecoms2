@@ -1,10 +1,11 @@
 const PASSWORD = "^(?=.*[a-zA-Z])(?=.*\\\d)(?=.*[~!@#$%^&*()_+`\\\-={}\\\[\\]:\\\";'<>?,.\\\/])."
 
 export default (rule, value, model) => {
+	let oldvalue = value
 	if (rule.trim) value = value.trim()
   if (!value) {
 		if (rule.required) return rule.makeError('required')
-		return
+		if (!oldvalue) return
 	}
 
   if (value) {

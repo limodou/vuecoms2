@@ -17,10 +17,11 @@ const checkCRC = (code) => {
 	return code[code.length-1] === map2[31-t%31]
 }
 export default (rule, value, model) => {
+	let oldvalue = value
 	if (rule.trim) value = value.trim()
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
-		return
+		if (!oldvalue) return
 	}
 
   if(value && !SocialCreditCode.test(value) || !checkCRC(value)){ 

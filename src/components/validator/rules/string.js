@@ -5,11 +5,12 @@ const ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/
 const INTEGER = /^\d+$/
 
 export default (rule, value, model) => {
+	let oldvalue = value
 	if (rule.trim) value = value.trim()
 
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
-		return
+		if (!oldvalue) return
 	}
 
 	if (typeof value !== "string") {
