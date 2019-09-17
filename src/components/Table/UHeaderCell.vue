@@ -2,7 +2,7 @@
   <div class="u-header-cell">
     <div v-if="column.type === 'column'" class="u-table-header-header-cell" :style="trStyles(column)">
 
-      <div class="u-table-header-cell-title" :class="{nowrap:nowrap}" v-html="column.title"></div>
+      <div class="u-table-header-cell-title" :class="{nowrap:nowrap}" v-html="column.title" :title="title"></div>
 
       <Sort v-if="column.sortable && column.leaf" :store="store" :column="column"></Sort>
 
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {mapState} from '../utils/utils.js'
+import {html2text, mapState} from '../utils/utils.js'
 import Sort from './USort'
 
 export default {
@@ -42,7 +42,18 @@ export default {
   },
 
   computed: {
-    ...mapState('nowrap', 'resizable', 'multiSelect', 'checkAll', 'rowHeight', 'static', 'indeterminate')
+    ...mapState('nowrap', 'resizable', 'multiSelect', 'checkAll', 'rowHeight', 'static', 'indeterminate'),
+    title () {
+      let showTitle = this.column.showHeaderTitle
+      if (showTitle) {
+        if (typeof showTitle === 'function') {
+          //调用原始值及format值
+          return showTitle(this.column.title)
+        } else {
+          return html2text(this.column.title)
+        }
+      }
+    }
   },
 
   methods: {

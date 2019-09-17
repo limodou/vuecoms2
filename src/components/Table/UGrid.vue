@@ -325,6 +325,16 @@ export default {
       if (options.showTitle !== undefined) {
         show = options.showTitle
       }
+      // 如果column设置了showHeadreTitle，则使用column的值，否则使用全局的headerTitle属性
+      let headerShow
+      if (this.headerTitle === undefined) {
+        headerShow = true
+      } else {
+        headerShow = this.headerTitle
+      }
+      if (options.showHeaderTitle !== undefined) {
+        headerShow = options.showHeaderTitle
+      }
       return Object.assign({
         name: 'title',
         width: 0,
@@ -337,6 +347,7 @@ export default {
         type: 'column',
         editorOptions: {},
         showTitle: show,
+        showHeaderTitle: headerShow,
         html: true
       }, options || {})
     },
