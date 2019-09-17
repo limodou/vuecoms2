@@ -363,6 +363,20 @@ describe('validator', function () {
     })
   })
 
+  it('Test string pattern', function() {
+    let validator = new Validator({messages})
+    return validator.validate({s: '123456'}, {s: {type: 'string', pattern: '^[0-9]+$'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test string pattern invalid', function() {
+    let validator = new Validator({messages})
+    return validator.validate({s: '123456'}, {s: {type: 'string', pattern: '/^[0-9]+$/'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
   it('Test url', function() {
     let validator = new Validator({messages})
     return validator.validate({s: 'http://abc.com'}, {s: {type: 'url', required: true}}).then((res) => {

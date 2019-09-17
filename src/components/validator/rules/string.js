@@ -35,6 +35,7 @@ export default (rule, value, model) => {
 		return rule.makeError("stringRange", `(${rule.range[0]}, ${rule.range[1]})`, valueLength)
 	}
 	if (rule.pattern) {
+		if (rule.pattern.startsWith('/') && rule.pattern.endsWith('/')) rule.pattern = rule.pattern.slice(1, rule.length-1)
 		const pattern = typeof rule.pattern == "string" ? new RegExp(rule.pattern, rule.patternFlags) : rule.pattern
 		if (!pattern.test(value))
 			return rule.makeError("stringPattern", pattern )

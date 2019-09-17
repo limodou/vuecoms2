@@ -12,6 +12,7 @@ import './styles/iview.fix.css'
 import './styles/common.css'
 import List from "./utils/list.js"
 import {findParent} from "./utils/utils.js"
+import fileupload from './utils/fileupload.js'
 // import Chart from './EChart'
 // import CKEditor from './Editor/CKEditor'
 // import TinyMce from './Editor/TinyMce'
@@ -56,6 +57,7 @@ const install = function (Vue, options={}) {
   Vue.prototype.$findParent = findParent
   let validator = new Validator(options.validatorOptions)
   Vue.prototype.$validator = validator
+  Vue.prototype.$fileupload = fileupload
 }
 
 // auto install
