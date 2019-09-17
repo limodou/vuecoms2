@@ -329,7 +329,7 @@ export default {
         for(let field of (row.fields || [])) {
           fs[field.name] = field
           // this.fieldsLabel[field.name] = field.label
-          if (field.static === undefined) this.$set(field, 'static', false)
+          if (field.static === undefined) this.$set(field, 'static', isStatic)
           if (field.hidden === undefined) this.$set(field, 'hidden', false)
           if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
           if (field.options === undefined) this.$set(field, 'options', {})
