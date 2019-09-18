@@ -33,12 +33,12 @@ const sendfile = (formData, file, options={}) => {
     
     //监听ajax成功完成事件
     xhr.onload = (event) => {
-      resolve({event, file, type: 'success'})
+      resolve({event, response: event.target.response, file, type: 'success'})
     }
     
     //监听ajax错误事件    
     xhr.onerror = function(event){
-      reject({event, file, type: 'error'})
+      reject({event, error: event.target.response, file, type: 'error'})
     }
     
     //监听ajax被中止事件

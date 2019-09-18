@@ -21861,6 +21861,7 @@ var fileupload_sendfile = function sendfile(formData, file) {
     xhr.onload = function (event) {
       resolve({
         event: event,
+        response: event.target.response,
         file: file,
         type: 'success'
       });
@@ -21870,6 +21871,7 @@ var fileupload_sendfile = function sendfile(formData, file) {
     xhr.onerror = function (event) {
       reject({
         event: event,
+        error: event.target.response,
         file: file,
         type: 'error'
       });
