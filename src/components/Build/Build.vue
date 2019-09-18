@@ -323,6 +323,15 @@ export default {
       }
     },
 
+    setChoices (name, choices) {
+      let field = this.fields[name]
+      if (!field.options) {
+        this.$set(field, 'options', { choices, type: 'select' })
+      } else {
+        this.$set(field.options, 'choices', choices)
+      }
+    },
+
     // 合并rules
     // mergeRules () {
     //   for(let k in this.rules) {
