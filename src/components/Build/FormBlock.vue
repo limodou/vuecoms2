@@ -79,7 +79,7 @@ export default {
         if (field.hidden === undefined) this.$set(field, 'hidden', false)
         if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
         if (field.options === undefined) this.$set(field, 'options', {})
-        if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+        // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
         if (field.type === undefined) this.$set(field, 'type', 'str') //str
       }
       return fs

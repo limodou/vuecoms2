@@ -54,7 +54,7 @@ export default {
 	ip: "The '{field}' is not an available IP address!",
 	ipv4: "The '{field}' is not an available IPV4 address!",
 	ipv6: "The '{field}' is not an available IPV6 address!",
-	realname: "The '{field}' is not an available real name, you should include chinese, alpha, number and dot!",
+	realname: "The '{field}' is not an available real name, you should only include chinese, alpha and dot!",
 	realnameHZ: "The '{field}' is not an available real name, you should include chinese!",
 	password: "The '{field}' is not an available password, you should include alpha, number and special character!",
 	passwordMin: "The '{field}' length must be greater than or equal to {expected}!",

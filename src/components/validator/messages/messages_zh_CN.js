@@ -54,7 +54,7 @@ export default {
 	ip: "{field} 不是有效的IP地址！",
 	ipv4: "{field} 不是有效的IPV4地址！",
 	ipv6: "{field} 不是有效的IPV6地址！",
-	realname: "{field} 不是有效的姓名，仅支持全部汉字，或全部英文字母，数字！",
+	realname: "{field} 不是有效的姓名，仅支持全部汉字，或全部英文字母！",
 	realnameHZ: "{field} 不是有效的姓名，仅支持汉字！",
 	password: "{field} 不是有效的密码，需要包含字母，数字和特殊字符！",
 	passwordMin: "{field} 长度需大于等于 {expected} 长度！",

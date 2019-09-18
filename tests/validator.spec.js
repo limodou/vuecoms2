@@ -372,6 +372,14 @@ describe('validator', function () {
 
   it('Test string pattern invalid', function() {
     let validator = new Validator({messages})
+    return validator.validate({s: '12356a'}, {s: {type: 'string', pattern: '^[0-9]+$'}}).then((res) => {
+      console.log(res)
+      expect(res).to.be.eql({s: "The 's' field fails to match the required pattern!"})
+    })
+  })
+
+  it('Test string pattern invalid', function() {
+    let validator = new Validator({messages})
     return validator.validate({s: '123456'}, {s: {type: 'string', pattern: '/^[0-9]+$/'}}).then((res) => {
       expect(res).to.be.null
     })
@@ -525,7 +533,7 @@ describe('validator', function () {
     let validator = new Validator({messages})
     return validator.validate({c: '姓 名'}, 
       {c: 'realname'}).then((res) => {
-      expect(res).to.eql({c: "The 'c' is not an available real name, you should include chinese, alpha, number and dot!"})
+      expect(res).to.eql({c: "The 'c' is not an available real name, you should only include chinese, alpha and dot!"})
     })
   })
 

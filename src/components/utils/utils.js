@@ -293,6 +293,8 @@ export const deepCopy = function (data) {
 
   if (Array.isArray(data)) {
       o = []
+  } else if (typeof data === 'function') {
+    return data
   } else if (data instanceof Object) {
       o = {}
   } else {

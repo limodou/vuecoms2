@@ -13179,6 +13179,8 @@ var utils_deepCopy = function deepCopy(data) {
 
   if (is_array_default()(data)) {
     o = [];
+  } else if (typeof data === 'function') {
+    return data;
   } else if (data instanceof Object) {
     o = {};
   } else {
@@ -20511,12 +20513,12 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=0b0aec14&
-var Buildvue_type_template_id_0b0aec14_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.data),function(item){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.data),function(item,index){return _c('TabPane',{attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=b9fff7a4&
+var Buildvue_type_template_id_b9fff7a4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_b9fff7a4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=0b0aec14&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=b9fff7a4&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 
@@ -20528,6 +20530,7 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
 
 
 
+//
 //
 //
 //
@@ -20595,14 +20598,12 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
       originValue: utils_deepCopy(this.value),
       // 保留初始值，用于reset
       oldvalue: utils_deepCopy(this.value),
+      current: utils_deepCopy(this.data),
       fields: {},
       rows: {},
       // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {} //保存校验结果,
-      // visible_fields: {}, //保存显示字段
-      // validateRules: {}, //保存校验规则
-      // fieldsLabel: {}
 
     };
   },
@@ -20688,9 +20689,6 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // if (this.validating) return
-                // this.validating = true
-                // this.$emit('validating', true)
                 error = '';
                 validateRules = {};
                 _arr = keys_default()(this.validateResult);
@@ -20792,11 +20790,7 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
                   }
                 } else {
                   this.clearValidateResult();
-                } // this.validating = false
-                // this.$emit('validating', false)
-                // if (error) reject(error)
-                // else resolve()
-
+                }
 
                 if (callback) callback(error);
 
@@ -20839,7 +20833,7 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
 
       for (var _i7 = 0; _i7 < _arr7.length; _i7++) {
         var name = _arr7[_i7];
-        var field = this.fields[name]; // if (!this.visible_fields[name]) continue
+        var field = this.fields[name];
 
         if (!this.validateResult[name] && !field.static) {
           this.setFieldRule(name);
@@ -20918,28 +20912,14 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
 
       this.validateRule(this.value, name, this.validateResult);
     },
-    //检查是否在layout中定义了
-    // check_in_layout(f, layout) {
-    //   if (!layout) return true
-    //   for (let row of layout) {
-    //     for (let c of row) {
-    //       if (typeof c === 'string') {
-    //         if (c === f.name) return true
-    //       } else if (c instanceof Object) {
-    //         if (c.name === f.name) return true
-    //       }
-    //     }
-    //   }
-    // },
     makeFields: function makeFields() {
-      var fs = {}; // let vfs = {}
-
+      var fs = {};
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator2 = get_iterator_default()(this.data), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        for (var _iterator2 = get_iterator_default()(this.current), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var row = _step2.value;
           var isStatic = row.static === undefined ? false : row.static;
 
@@ -20961,18 +20941,14 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
           try {
             for (var _iterator3 = get_iterator_default()(row.fields || []), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
               var field = _step3.value;
-              fs[field.name] = field; // this.fieldsLabel[field.name] = field.label
-
+              fs[field.name] = field;
               if (field.static === undefined) this.$set(field, 'static', isStatic);
               if (field.hidden === undefined) this.$set(field, 'hidden', false);
               if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
 
-              if (field.options === undefined) this.$set(field, 'options', {});
-              if (field.options.choices === undefined) this.$set(field.options, 'choices', []);
+              if (field.options === undefined) this.$set(field, 'options', {}); // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+
               if (field.type === undefined) this.$set(field, 'type', 'str'); //str
-              // if (this.check_in_layout(field, row.layout) && !field.hidden) {
-              //   vfs[field.name] = true
-              // }
 
               if (default_layout) {
                 default_layout.push([field.name]);
@@ -21010,7 +20986,7 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
         }
       }
 
-      this.fields = fs; // this.visible_fields = vfs
+      this.fields = fs;
     },
     mergeErrors: function mergeErrors(errors) {
       for (var k in this.errors) {
@@ -21019,20 +20995,19 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
       }
     },
     // 合并rules
-    mergeRules: function mergeRules() {
-      for (var k in this.rules) {
-        var result = this.validateResult[k];
-        var v = this.rules[k];
-        if (!result) continue;
-
-        if (is_array_default()(v)) {
-          result.rule = result.rule.concat(v);
-        } else {
-          result.rule.push(v);
-        } // this.validateRules[k] = result.rule
-
-      }
-    },
+    // mergeRules () {
+    //   for(let k in this.rules) {
+    //     let result = this.validateResult[k]
+    //     let v = this.rules[k]
+    //     if (!result) continue
+    //     if (Array.isArray(v)) {
+    //       result.rule = result.rule.concat(v)
+    //     } else {
+    //       result.rule.push(v)
+    //     }
+    //     // this.validateRules[k] = result.rule
+    //   }
+    // },
     // 清空数据
     reset: function reset() {
       var _this = this;
@@ -21087,7 +21062,7 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
         var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator4 = get_iterator_default()(this.data), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          for (var _iterator4 = get_iterator_default()(this.current), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
             var row = _step4.value;
             var _iteratorNormalCompletion5 = true;
             var _didIteratorError5 = false;
@@ -21141,7 +21116,8 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
       deep: true
     },
     data: {
-      handler: function handler() {
+      handler: function handler(newdata) {
+        this.current = utils_deepCopy(newdata);
         this.makeFields();
         this.makeValidateResult(); // this.mergeRules()
       },
@@ -21167,8 +21143,8 @@ var Buildvue_type_template_id_0b0aec14_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_0b0aec14_render,
-  Buildvue_type_template_id_0b0aec14_staticRenderFns,
+  Buildvue_type_template_id_b9fff7a4_render,
+  Buildvue_type_template_id_b9fff7a4_staticRenderFns,
   false,
   null,
   null,
@@ -21450,12 +21426,12 @@ var Section_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Section = (Section_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormBlock.vue?vue&type=template&id=5eb9da7c&
-var FormBlockvue_type_template_id_5eb9da7c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
-var FormBlockvue_type_template_id_5eb9da7c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormBlock.vue?vue&type=template&id=510984e6&
+var FormBlockvue_type_template_id_510984e6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
+var FormBlockvue_type_template_id_510984e6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/FormBlock.vue?vue&type=template&id=5eb9da7c&
+// CONCATENATED MODULE: ./src/components/Build/FormBlock.vue?vue&type=template&id=510984e6&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/FormBlock.vue?vue&type=script&lang=js&
 
@@ -21596,8 +21572,8 @@ var FormBlockvue_type_template_id_5eb9da7c_staticRenderFns = []
           if (field.hidden === undefined) this.$set(field, 'hidden', false);
           if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
 
-          if (field.options === undefined) this.$set(field, 'options', {});
-          if (field.options.choices === undefined) this.$set(field.options, 'choices', []);
+          if (field.options === undefined) this.$set(field, 'options', {}); // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+
           if (field.type === undefined) this.$set(field, 'type', 'str'); //str
         }
       } catch (err) {
@@ -21659,8 +21635,8 @@ var FormBlockvue_type_template_id_5eb9da7c_staticRenderFns = []
 
 var FormBlock_component = Object(componentNormalizer["a" /* default */])(
   Build_FormBlockvue_type_script_lang_js_,
-  FormBlockvue_type_template_id_5eb9da7c_render,
-  FormBlockvue_type_template_id_5eb9da7c_staticRenderFns,
+  FormBlockvue_type_template_id_510984e6_render,
+  FormBlockvue_type_template_id_510984e6_staticRenderFns,
   false,
   null,
   null,
@@ -22706,7 +22682,7 @@ var es6_string_iterator = __webpack_require__("5df3");
   ip: "{field} 不是有效的IP地址！",
   ipv4: "{field} 不是有效的IPV4地址！",
   ipv6: "{field} 不是有效的IPV6地址！",
-  realname: "{field} 不是有效的姓名，仅支持全部汉字，或全部英文字母，数字！",
+  realname: "{field} 不是有效的姓名，仅支持全部汉字，或全部英文字母！",
   realnameHZ: "{field} 不是有效的姓名，仅支持汉字！",
   password: "{field} 不是有效的密码，需要包含字母，数字和特殊字符！",
   passwordMin: "{field} 长度需大于等于 {expected} 长度！",
@@ -23118,7 +23094,7 @@ var INTEGER = /^\d+$/;
   }
 
   if (rule.pattern) {
-    if (rule.pattern.startsWith('/') && rule.pattern.endsWith('/')) rule.pattern = rule.pattern.slice(1, rule.length - 1);
+    if (rule.pattern.startsWith('/') && rule.pattern.endsWith('/')) rule.pattern = rule.pattern.slice(1, rule.pattern.length - 1);
     var pattern = typeof rule.pattern == "string" ? new RegExp(rule.pattern, rule.patternFlags) : rule.pattern;
     if (!pattern.test(value)) return rule.makeError("stringPattern", pattern);
   }

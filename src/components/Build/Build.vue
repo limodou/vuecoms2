@@ -4,9 +4,10 @@
 
     <div class="u-build-body">
       <template v-if="theme === 'default'">
-        <template v-for="item in data">
+        <template v-for="(item, index) in current">
           <component
             v-if="!item.hidden"
+            :key="index"
             :is="item.component || 'uSection'"
             v-bind="item"
             :boxComponent="showBox ? item.boxComponent : ''"
@@ -22,7 +23,7 @@
       </template>
       <template v-if="theme === 'tab'">
         <Tabs value="section_1">
-          <TabPane v-for="(item, index) of data" :label="item.title" :name="`section_${index+1}`">
+          <TabPane v-for="(item, index) of current" :label="item.title" :name="`section_${index+1}`" :key="index">
             <component
               v-if="!item.hidden"
               :is="item.component || 'uSection'"
@@ -64,13 +65,11 @@ export default {
     return {
       originValue: deepCopy(this.value), // 保留初始值，用于reset
       oldvalue: deepCopy(this.value),
+      current: deepCopy(this.data),
       fields: {},
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {}, //保存校验结果,
-      // visible_fields: {}, //保存显示字段
-      // validateRules: {}, //保存校验规则
-      // fieldsLabel: {}
     }
   },
   props: {
@@ -156,10 +155,6 @@ export default {
 
   methods: {
     async validate (callback) {
-      // if (this.validating) return
-
-        // this.validating = true
-        // this.$emit('validating', true)
       let error = ''
       let validateRules = {}
       for(let k of Object.keys(this.validateResult)) {
@@ -224,12 +219,6 @@ export default {
         this.clearValidateResult()
       }
 
-      // this.validating = false
-      // this.$emit('validating', false)
-
-      // if (error) reject(error)
-      // else resolve()
-
       if (callback) callback(error)
 
       if (error) throw error
@@ -250,7 +239,6 @@ export default {
     makeValidateResult () {
       for(let name of Object.keys(this.fields)) {
         let field = this.fields[name]
-        // if (!this.visible_fields[name]) continue
         if (!this.validateResult[name] && !field.static) {
           this.setFieldRule(name)
         }
@@ -299,24 +287,9 @@ export default {
       this.validateRule(this.value, name, this.validateResult)
     },
 
-    //检查是否在layout中定义了
-    // check_in_layout(f, layout) {
-    //   if (!layout) return true
-    //   for (let row of layout) {
-    //     for (let c of row) {
-    //       if (typeof c === 'string') {
-    //         if (c === f.name) return true
-    //       } else if (c instanceof Object) {
-    //         if (c.name === f.name) return true
-    //       }
-    //     }
-    //   }
-    // },
-
     makeFields () {
       let fs = {}
-      // let vfs = {}
-      for(let row of this.data) {
+      for(let row of this.current) {
         let isStatic = row.static === undefined ? false : row.static
         if (row.name) {
           this.rows[row.name] = row
@@ -328,16 +301,12 @@ export default {
         }
         for(let field of (row.fields || [])) {
           fs[field.name] = field
-          // this.fieldsLabel[field.name] = field.label
           if (field.static === undefined) this.$set(field, 'static', isStatic)
           if (field.hidden === undefined) this.$set(field, 'hidden', false)
           if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
           if (field.options === undefined) this.$set(field, 'options', {})
-          if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+          // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
           if (field.type === undefined) this.$set(field, 'type', 'str') //str
-          // if (this.check_in_layout(field, row.layout) && !field.hidden) {
-          //   vfs[field.name] = true
-          // }
           if (default_layout) {
             default_layout.push([field.name])
           }
@@ -345,7 +314,6 @@ export default {
         if (default_layout) this.$set(row, 'layout', default_layout)
       }
       this.fields = fs
-      // this.visible_fields = vfs
     },
 
     mergeErrors (errors) {
@@ -356,19 +324,19 @@ export default {
     },
 
     // 合并rules
-    mergeRules () {
-      for(let k in this.rules) {
-        let result = this.validateResult[k]
-        let v = this.rules[k]
-        if (!result) continue
-        if (Array.isArray(v)) {
-          result.rule = result.rule.concat(v)
-        } else {
-          result.rule.push(v)
-        }
-        // this.validateRules[k] = result.rule
-      }
-    },
+    // mergeRules () {
+    //   for(let k in this.rules) {
+    //     let result = this.validateResult[k]
+    //     let v = this.rules[k]
+    //     if (!result) continue
+    //     if (Array.isArray(v)) {
+    //       result.rule = result.rule.concat(v)
+    //     } else {
+    //       result.rule.push(v)
+    //     }
+    //     // this.validateRules[k] = result.rule
+    //   }
+    // },
 
     // 清空数据
     reset () {
@@ -416,7 +384,7 @@ export default {
     choices: {
       immediate: true,
       handler () {
-        for(let row of this.data) {
+        for(let row of this.current) {
           for(let field of (row.fields || [])) {
             let choices = this.choices[field.name]
             if (choices) {
@@ -433,7 +401,8 @@ export default {
     },
 
     data: {
-      handler () {
+      handler (newdata) {
+        this.current = deepCopy(newdata)
         this.makeFields()
         this.makeValidateResult()
         // this.mergeRules()
