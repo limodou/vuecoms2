@@ -90,6 +90,7 @@ export default {
   display: table-cell;
   width: 2000px;
   vertical-align: middle;
+  text-align: left;
   /* border-bottom: 1px solid #ccc; */
 
   .u-generic-input-text {

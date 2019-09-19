@@ -42,7 +42,8 @@ export default {
   },
 
   computed: {
-    ...mapState('nowrap', 'resizable', 'multiSelect', 'checkAll', 'rowHeight', 'static', 'indeterminate'),
+    ...mapState('nowrap', 'resizable', 'multiSelect', 'checkAll', 'rowHeight', 'static', 'indeterminate',
+    'tree', 'iconWidth', 'treeField'),
     title () {
       let showTitle = this.column.showHeaderTitle
       if (showTitle) {
@@ -77,11 +78,16 @@ export default {
     },
 
     trStyles (column) {
+      let style = {}
+      // 如果是树型结构，增加图标的padding-left
+      if (this.tree && column.name === this.treeField) style.paddingLeft = `${this.iconWidth}px`
       if (!this.nowrap) {
-        return {}
+        return style
       } else {
         let h = `${column.rowspan * this.rowHeight}px`
-        return {height: h, lineHeight: h}
+        style.height = h
+        style.lineHeight = h
+        return style
       }
     }
   }
@@ -99,7 +105,7 @@ export default {
   }
 
   .u-table-header-cell-title {
-    padding: 0 5px;
+    padding: 0 4px;
   }
 }
 </style>

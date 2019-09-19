@@ -232,7 +232,7 @@ export default {
   }
 
   .u-cell-text {
-    padding: 0 5px;
+    padding: 0 4px;
     word-wrap: break-word;
   }
 

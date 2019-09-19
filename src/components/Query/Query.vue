@@ -16,8 +16,10 @@
       <div class="line"></div>
     </template>
     <!-- 生成单行条件 -->
-    <Row v-if="!isShow && showLine === 1" class="u-layout-row">
-      <FormCell v-for="col in firstLayout" :col="col" :value="current_value" style="float:left;"
+    <Row v-if="!isShow && showLine === 1" class="u-layout-row" :style="firstLayoutStyle">
+      <FormCell v-for="col in firstLayout" class="u-query-firstlayout"
+        :col="col" 
+        :value="current_value" 
         :staticSuffix="staticSuffix"
         :field-style="col.style"
         :compact="true"
@@ -103,6 +105,9 @@ export default {
       default () {
         return {}
       }
+    },
+    firstLayoutAlign: {
+      default: 'left'
     },
     showSelected: {
       type: Boolean,
@@ -235,6 +240,10 @@ export default {
         fields.push(d)
       }
       return fields
+    },
+
+    firstLayoutStyle () {
+      return {'text-align': this.firstLayoutAlign}
     },
 
     rows () {
@@ -409,6 +418,10 @@ export default {
 
   .line {
     height: 1px;
+  }
+
+  .u-query-firstlayout {
+    display: inline-block;
   }
 
   &:before {
