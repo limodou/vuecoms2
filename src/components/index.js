@@ -23,6 +23,7 @@ import DatepickerRange from './DatepickerRange.vue'
 import UploaderFile from './UploaderFile.vue'
 import CardList from './CardList'
 import Validator from './validator'
+import FlatChoices from './FlatChoices.vue'
 
 const Components = {
   Box,
@@ -45,7 +46,8 @@ const Components = {
   DatepickerRange,
   // uTemplate,
   UploaderFile,
-  CardList
+  CardList,
+  FlatChoices
 }
 
 const install = function (Vue, options={}) {

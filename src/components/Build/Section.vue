@@ -77,10 +77,10 @@ export default {
 
   &:after {
     content: " ";
-    display: inline-block;
+    // display: inline-block;
     margin-right: 4px;
     line-height: 1;
-    font-family: SimSun;
+    // font-family: SimSun;
     font-size: 12px;
     color: black;
   }
