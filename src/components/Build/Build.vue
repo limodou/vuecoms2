@@ -239,7 +239,7 @@ export default {
     makeValidateResult () {
       for(let name of Object.keys(this.fields)) {
         let field = this.fields[name]
-        if (!this.validateResult[name] && !field.static) {
+        if (!this.validateResult[name] && !field.static || (this.validateResult[name] && (field.static || !field.requried))) {
           this.setFieldRule(name)
         }
       }
@@ -256,7 +256,12 @@ export default {
           rule.push(e_rule)
         }
       }
-      this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
+      if (rule.length > 0) {
+        if (!this.validateResult[name])
+          this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
+      }
+      else
+        delete this.validateResult[name]
     },
 
     clearValidateResult (validateResult, flag='') {
@@ -415,6 +420,13 @@ export default {
         this.makeFields()
         this.makeValidateResult()
         // this.mergeRules()
+      },
+      deep: true
+    },
+
+    fields: {
+      handler (val) {
+        this.makeValidateResult()
       },
       deep: true
     }

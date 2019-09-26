@@ -1,6 +1,7 @@
 export default {
   methods: {
     formatRule (rule, field) {
+      if (!rule) return
       let r = rule
       if (typeof rule === 'string') {
         r = {type: rule, fieldname: field.label}
