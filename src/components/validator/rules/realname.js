@@ -3,7 +3,7 @@ const ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/
 
 export default (rule, value, model) => {
 	let oldvalue = value
-	if (rule.trim) value = value.trim()
+	if (rule.trim && value) value = value.trim()
   if (!value) {
 		if (rule.required) return rule.makeError('required')
 		if (!oldvalue) return

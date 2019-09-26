@@ -3,7 +3,7 @@ const IPV6 = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,
 
 export default (rule, value, model) => {
 	let oldvalue = value
-	if (rule.trim) value = value.trim()
+	if (rule.trim && value) value = value.trim()
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
 		if (!oldvalue) return

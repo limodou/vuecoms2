@@ -250,7 +250,6 @@ export default {
       let r = [], name
       for (let row of this.layout) {
         let new_r = []
-        r.push(new_r)
         let span = 24 / row.length
 
         //重新计算col
@@ -264,6 +263,7 @@ export default {
           let width = 100 / 24 * span
           let f = this.f[name]
           if (!f) throw Error(`Can't find field ${name} in fields, please check if the name is not correct between layout and fields`)
+          if (f.hidden) continue
           let field = Object.assign({colspan: span,
             labelWidth: this.labelWidth,
             static: col.static || this.static,
@@ -271,6 +271,8 @@ export default {
 
           new_r.push(field)
         }
+        if (new_r.length > 0)
+          r.push(new_r)
       }
       return r
     }

@@ -258,6 +258,13 @@ describe('validator', function () {
     })
   })
 
+  it('Test number convert not required', function() {
+    let validator = new Validator({messages})
+    return validator.validate({n: ''}, {n: {type: 'number', positive: true, convert: true}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
   it('Test number convert negative', function() {
     let validator = new Validator({messages})
     return validator.validate({n: '-1'}, {n: {type: 'number', convert: true}}).then((res) => {
@@ -612,6 +619,14 @@ describe('validator', function () {
   it('Test zipcode', function() {
     let validator = new Validator({messages})
     return validator.validate({c: '100055'}, 
+      {c: {type: 'zipcode'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test zipcode empty', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: ''}, 
       {c: {type: 'zipcode'}}).then((res) => {
       expect(res).to.be.null
     })

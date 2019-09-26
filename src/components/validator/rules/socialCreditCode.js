@@ -18,7 +18,7 @@ const checkCRC = (code) => {
 }
 export default (rule, value, model) => {
 	let oldvalue = value
-	if (rule.trim) value = value.trim()
+	if (rule.trim && value) value = value.trim()
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
 		if (!oldvalue) return

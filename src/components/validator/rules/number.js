@@ -1,4 +1,9 @@
 export default (rule, value, model) => {
+	if (!value) {
+		if (rule.required) return rule.makeError('required')
+		return
+	}
+
 	if (rule.convert === true && typeof value !== "number") {
 		value = Number(value)
 	}

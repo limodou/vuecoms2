@@ -17881,12 +17881,12 @@ var UButtons_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UButtons = (UButtons_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Query/Query.vue?vue&type=template&id=32328d14&
-var Queryvue_type_template_id_32328d14_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-query"},[_c('form',{on:{"submit":_vm.handleSubmit}},[(_vm.showSelected && _vm.selected.length>0)?[_c('Row',{staticClass:"selectedRow"},[_c('Col',{attrs:{"span":"1"}},[_c('span',{staticClass:"selectedText"},[_vm._v("已选:")])]),_c('Col',{attrs:{"span":"22"}},_vm._l((_vm.selected),function(s){return _c('Tag',{key:s['name'],class:'selectedTag',attrs:{"type":"border","closable":"","name":s['name']},on:{"on-close":_vm.handleTagClose}},[_vm._v(_vm._s(s['label'])+": "+_vm._s(s['value'])+"\n        ")])}),1)],1),_c('div',{staticClass:"line"})]:_vm._e(),(!_vm.isShow && _vm.showLine === 1)?_c('Row',{staticClass:"u-layout-row",style:(_vm.firstLayoutStyle)},[_vm._l((_vm.firstLayout),function(col){return _c('FormCell',{staticClass:"u-query-firstlayout",attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"field-style":col.style,"compact":true,"root":"Query"}})}),_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],2):_vm._l((_vm.getRows(_vm.rows)),function(row,index){return _c('Row',{key:index,staticClass:"u-layout-row"},_vm._l((row),function(col){return _c('Col',{attrs:{"span":col.colspan}},[_c('FormCell',{attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"root":_vm.Query}})],1)}),1)}),(_vm.rows.length > 1 && _vm.showLine < _vm.rows.length)?_c('Row',{staticClass:"collapse-line"},[_c('span',{staticClass:"showMoreBtn",on:{"click":function($event){_vm.isShow = !_vm.isShow}}},[_vm._v("\n      "+_vm._s(_vm.isShow ? "隐藏" : "显示")+"\n      "),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShow),expression:"isShow"}],attrs:{"type":"ios-arrow-up"}}),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isShow),expression:"!isShow"}],attrs:{"type":"ios-arrow-down"}})],1)]):_vm._e(),(_vm.isShow || !_vm.isShow && _vm.showLine>1)?_c('Row',[_c('Col',{staticStyle:{"margin":"5px","text-align":"center"},attrs:{"span":"24"}},[_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],1)],1):_vm._e()],2)])}
-var Queryvue_type_template_id_32328d14_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Query/Query.vue?vue&type=template&id=5528c5b8&
+var Queryvue_type_template_id_5528c5b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-query"},[_c('form',{on:{"submit":_vm.handleSubmit}},[(_vm.showSelected && _vm.selected.length>0)?[_c('Row',{staticClass:"selectedRow"},[_c('Col',{attrs:{"span":"1"}},[_c('span',{staticClass:"selectedText"},[_vm._v("已选:")])]),_c('Col',{attrs:{"span":"22"}},_vm._l((_vm.selected),function(s){return _c('Tag',{key:s['name'],class:'selectedTag',attrs:{"type":"border","closable":"","name":s['name']},on:{"on-close":_vm.handleTagClose}},[_vm._v(_vm._s(s['label'])+": "+_vm._s(s['value'])+"\n        ")])}),1)],1),_c('div',{staticClass:"line"})]:_vm._e(),(!_vm.isShow && _vm.showLine === 1)?_c('Row',{staticClass:"u-layout-row",style:(_vm.firstLayoutStyle)},[_vm._l((_vm.firstLayout),function(col){return _c('FormCell',{staticClass:"u-query-firstlayout",attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"field-style":col.style,"compact":true,"root":"Query"}})}),_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],2):_vm._l((_vm.getRows(_vm.rows)),function(row,index){return _c('Row',{key:index,staticClass:"u-layout-row"},_vm._l((row),function(col){return _c('Col',{attrs:{"span":col.colspan}},[_c('FormCell',{attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"root":_vm.Query}})],1)}),1)}),(_vm.rows.length > 1 && _vm.showLine < _vm.rows.length)?_c('Row',{staticClass:"collapse-line"},[_c('span',{staticClass:"showMoreBtn",on:{"click":function($event){_vm.isShow = !_vm.isShow}}},[_vm._v("\n      "+_vm._s(_vm.isShow ? "隐藏" : "显示")+"\n      "),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShow),expression:"isShow"}],attrs:{"type":"ios-arrow-up"}}),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isShow),expression:"!isShow"}],attrs:{"type":"ios-arrow-down"}})],1)]):_vm._e(),(_vm.isShow || !_vm.isShow && _vm.showLine>1)?_c('Row',[_c('Col',{staticStyle:{"margin":"5px","text-align":"center"},attrs:{"span":"24"}},[_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],1)],1):_vm._e()],2)])}
+var Queryvue_type_template_id_5528c5b8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Query/Query.vue?vue&type=template&id=32328d14&
+// CONCATENATED MODULE: ./src/components/Query/Query.vue?vue&type=template&id=5528c5b8&
 
 // CONCATENATED MODULE: ./src/components/mixins/dict.js
 
@@ -18681,7 +18681,6 @@ var FormCell_component = Object(componentNormalizer["a" /* default */])(
         for (var _iterator6 = get_iterator_default()(this.layout), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
           var row = _step6.value;
           var new_r = [];
-          r.push(new_r);
           var span = 24 / row.length; //重新计算col
 
           var _iteratorNormalCompletion7 = true;
@@ -18702,6 +18701,7 @@ var FormCell_component = Object(componentNormalizer["a" /* default */])(
               var width = 100 / 24 * span;
               var f = this.f[name];
               if (!f) throw Error("Can't find field ".concat(name, " in fields, please check if the name is not correct between layout and fields"));
+              if (f.hidden) continue;
 
               var field = assign_default()({
                 colspan: span,
@@ -18725,6 +18725,8 @@ var FormCell_component = Object(componentNormalizer["a" /* default */])(
               }
             }
           }
+
+          if (new_r.length > 0) r.push(new_r);
         }
       } catch (err) {
         _didIteratorError6 = true;
@@ -18908,8 +18910,8 @@ var Queryvue_type_style_index_0_lang_less_ = __webpack_require__("a038");
 
 var Query_component = Object(componentNormalizer["a" /* default */])(
   Query_Queryvue_type_script_lang_js_,
-  Queryvue_type_template_id_32328d14_render,
-  Queryvue_type_template_id_32328d14_staticRenderFns,
+  Queryvue_type_template_id_5528c5b8_render,
+  Queryvue_type_template_id_5528c5b8_staticRenderFns,
   false,
   null,
   null,
@@ -23006,6 +23008,11 @@ function array_ref() {
 // CONCATENATED MODULE: ./src/components/validator/rules/number.js
 
 /* harmony default export */ var number = (function (rule, value, model) {
+  if (!value) {
+    if (rule.required) return rule.makeError('required');
+    return;
+  }
+
   if (rule.convert === true && typeof value !== "number") {
     value = Number(value);
   }
@@ -23119,7 +23126,7 @@ var ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/;
 var INTEGER = /^\d+$/;
 /* harmony default export */ var string = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23187,7 +23194,7 @@ var PATTERN = /^https?:\/\/\S+/; //const PATTERN = /^(?:(?:https?|ftp):\/\/)(?:\
 //const PATTERN = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
 
 /* harmony default export */ var rules_url = (function (rule, value, model) {
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23317,7 +23324,7 @@ var checkID = function checkID(val) {
 var MOBILE = /^1[3456789]\d{9}$/;
 /* harmony default export */ var mobile = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23332,7 +23339,7 @@ var MOBILE = /^1[3456789]\d{9}$/;
 var TELEPNONE = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
 /* harmony default export */ var telephone = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23348,7 +23355,7 @@ var IPV4 = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][
 var IPV6 = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
 /* harmony default export */ var ip = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23372,7 +23379,7 @@ var HZ = /^([\u4e00-\u9fa5\·]+)$/;
 var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 /* harmony default export */ var realname = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23404,7 +23411,7 @@ var ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/;
 var PASSWORD = "^(?=.*[a-zA-Z])(?=.*\\\d)(?=.*[~!@#$%^&*()_+`\\\-={}\\\[\\]:\\\";'<>?,.\\\/]).";
 /* harmony default export */ var rules_password = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
@@ -23476,7 +23483,7 @@ var socialCreditCode_checkCRC = function checkCRC(code) {
 
 /* harmony default export */ var socialCreditCode = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim) value = value.trim();
+  if (rule.trim && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');
