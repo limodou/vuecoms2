@@ -86,6 +86,12 @@ export default {
       default: () => []
     },
 
+    // 数据字典，可以用ref来引用，当field为字符串时，直接就是ref引用
+    datadict: {
+      type: Object,
+      default: () => {}
+    },
+
     labelWidth: {
       type: Number,
       default: 150
@@ -169,6 +175,8 @@ export default {
                 rules[c] = v.children[0][c].rule
               }
               validateRules[k] = {type: 'array', items: {type: 'object', props: rules}}
+            } else if (typeof v.children === 'function') {
+              validateRules[k] = {validate: v.children, fieldname: field.label}
             } else if (v.children instanceof Object) {
               let rules = {}
               for (let c of Object.keys(v.children)) {
@@ -176,8 +184,10 @@ export default {
               }
               validateRules[k] = {type: 'object', props: rules}
             }
-          } else
-            validateRules[k] = v.rule
+          } else {
+            if (v.rule && v.rule.length > 0)
+              validateRules[k] = v.rule
+          }
         }
       }
 
@@ -238,13 +248,15 @@ export default {
     //force表示是否强制
     makeValidateResult () {
       for(let name of Object.keys(this.fields)) {
-        let field = this.fields[name]
-        if (!this.validateResult[name] && !field.static || (this.validateResult[name] && (field.static || !field.requried))) {
-          this.setFieldRule(name)
-        }
+        // let field = this.fields[name]
+        // if (!this.validateResult[name] && !field.static || (this.validateResult[name] && (field.static || !field.requried))) {
+        this.setFieldRule(name)
+        // }
       }
     },
 
+    // 设置某个字段的校验规则，先清除直接设置的规则，然后根据field, rules来重构规则列表，再将未清除掉的规则放在最后面
+    // 当字段有static, hidden时，不生成规则
     setFieldRule (name) {
       let field = this.fields[name]
       let rule = this.getRule(field)
@@ -256,12 +268,21 @@ export default {
           rule.push(e_rule)
         }
       }
-      if (rule.length > 0) {
-        if (!this.validateResult[name])
-          this.$set(this.validateResult, name, {error: '', validateState: '', rule, field, fullfield: field.label})
+      let children
+      if (this.validateResult[name]) {
+        children = this.validateResult[name].children
       }
-      else
-        delete this.validateResult[name]
+
+      if (rule.length === 0) {
+        rule = []
+      }
+      // 如果存在原来的规则，则清除，但要保留用户直接设置的规则
+      this.$set(this.validateResult, name, {
+        error: '', 
+        validateState: '', 
+        rule, field, 
+        fullfield: field.label,
+        children})
     },
 
     clearValidateResult (validateResult, flag='') {
@@ -292,6 +313,12 @@ export default {
       this.validateRule(this.value, name, this.validateResult)
     },
 
+    findDataDict (name, field={}) {
+      let f = this.datadict[name]
+      if (!f) throw new Error(`Can't found field ${field} in datadict.`)
+      return Object.assign({}, f, field)
+    },
+
     makeFields () {
       let fs = {}
       for(let row of this.current) {
@@ -304,8 +331,16 @@ export default {
         if (!row.layout || row.layout && row.layout.length===0) {
           default_layout = []
         }
+        let row_fields = []
         for(let field of (row.fields || [])) {
+          if (typeof field === 'string') {
+            field = this.findDataDict(field)
+          } else {
+            if (field.ref)
+              field = this.findDataDict(field.ref, field)
+          }
           fs[field.name] = field
+          row_fields.push(field)
           if (field.static === undefined) this.$set(field, 'static', isStatic)
           if (field.hidden === undefined) this.$set(field, 'hidden', false)
           if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false) // 禁止Input确发onChange回调
@@ -316,6 +351,7 @@ export default {
             default_layout.push([field.name])
           }
         }
+        row.fields = row_fields
         if (default_layout) this.$set(row, 'layout', default_layout)
       }
       this.fields = fs

@@ -81,10 +81,10 @@ export default {
           let field = Object.assign({}, col, {
             component: col.component || 'FormCell',
             colspan: span,
-            labelWidth: this.labelWidth,
+            labelWidth: col.labelAlign || f.labelAlign || this.labelWidth,
             labelAlign: col.labelAlign || f.labelAlign || this.labelAlign,
-            static: col.static || this.static,
-            hidden: this.hidden || col.hidden,
+            static: col.static || f.static || this.static,
+            hidden: col.hidden || f.hidden || this.hidden
           }, f)
 
           // 处理自定义字段列表

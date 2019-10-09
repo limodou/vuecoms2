@@ -156,7 +156,7 @@ export default {
       'setComment', 'removeComment', 'getSelectedRows', 'getColumn', 'getDefaultRow',
       'makeRows', 'sendInputEvent', 'deselectAll', 'selectAll', 'select', 'deselect',
       'toggle', 'getComment', 'getClass', 'removeClass', 'setClass', 'addRow',
-      'addEditRow'),
+      'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow'),
 
     resize (width, height) {
       if (width) this.width = width
@@ -666,7 +666,7 @@ export default {
       handler (v) {
         for(let field of this.columns) {
           let choices = v[field.name]
-          if (choices) {
+          if (choices && field.editor) {
             setChoice(this, field.editor, choices)
           }
         }

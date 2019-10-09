@@ -10,6 +10,7 @@ export default {
       } else {
         r = Object.assign({fieldname: field.label}, rule)
       }
+      r._internal = true // 内部规则
       return r
     },
 
