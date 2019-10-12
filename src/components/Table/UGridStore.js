@@ -29,6 +29,7 @@ class Store {
       orderField: '', // 排序字段
       static: false, // 是否静态，如果true，则行编辑将禁止，不能进行行选择，可以执行setSelection()
       data: [],
+      sortMode: 'remote', // 排序方式，缺省为 remote， 支持 local
       multiSelect: false,
       clickSelect: false,  // 点击选中
       selectedRowClass: 'selected', // 选中行反显样式，可以设为指定类名

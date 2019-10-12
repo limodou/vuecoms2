@@ -58,6 +58,7 @@ import Emitter from '../mixins/emitter.js'
 import Cell from './UCell'
 import HeaderCell from './UHeaderCell'
 import Sortable from 'sortablejs'
+import List from '../utils/list.js'
 
 // let rowKey = 1
 let columnKey = 1
@@ -112,7 +113,7 @@ export default {
       'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth',
       'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData',
       'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow',
-      'columnHeaderAlign', 'columnAlign'
+      'columnHeaderAlign', 'columnAlign', 'sortMode', 'param'
     ),
 
     rows () {
@@ -205,7 +206,16 @@ export default {
         })
       }
 
-      for (let row of this.data) {
+      // 增加对本地排序的支持
+      let data = this.data
+      if (this.sortMode === 'local') {
+        if (this.param.sortField && this.param.sortDir) {
+          let sort = this.param.sortField
+          if (this.param.sortDir === 'desc') sort = '-' + sort
+          data = List.sort(this.data.slice(), sort)
+        }
+      }
+      for (let row of data) {
         processNode(row, null, rows)
       }
 
