@@ -67,8 +67,8 @@ export default {
   text-align: right;
   margin-right: 10px;
   vertical-align: top;
-  height: 28px;
-  line-height: 28px;
+  // height: 28px;
+  // line-height: 28px;
   font-weight: bold;
   margin-bottom: 0;
   padding-right: 10px;
@@ -89,8 +89,9 @@ export default {
 .u-layout-cell-field {
   display: table-cell;
   width: 2000px;
-  vertical-align: middle;
+  // vertical-align: middle;
   text-align: left;
+  position: relative;
   /* border-bottom: 1px solid #ccc; */
 
   .u-generic-input-text {

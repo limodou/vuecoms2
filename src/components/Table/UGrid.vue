@@ -577,6 +577,13 @@ export default {
       this.$refs.query.reset()
     },
 
+    clear () {
+      this.page = 1
+      this.start = 1
+      this.$set(this.param, 'page', 1)
+      this.store.states.data = []
+    },
+
     loadData (url, param) {
       let _url
       if (url instanceof Object) {
@@ -589,6 +596,7 @@ export default {
       // data 为数据行， others 为其它信息，如total
       const callback = (data, others) => {
         if (data) {
+          this.store.states.data = []
           this.store.states.data = this.makeRows(data)
         }
         if (others && (others instanceof Object)) {

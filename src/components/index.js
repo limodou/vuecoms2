@@ -5,6 +5,7 @@ import Query from './Query'
 import uSelect from './Select.vue'
 import uRadioGroup from './RadioGroup.vue'
 import uCheckboxGroup from './CheckboxGroup.vue'
+import uInput from './Input.vue'
 import {Build, uSection, FormCell, FormBlock} from './Build'
 import uText from './Text'
 import GenericInput from './Fields'
@@ -37,6 +38,7 @@ const Components = {
   Build,
   uSection,
   uText,
+  uInput,
   FormCell,
   FormBlock,
   GenericInput,
