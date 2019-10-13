@@ -1,5 +1,8 @@
 <template>
-  <Input v-bind="$attrs" :value="value" @input="handleInput" @on-blur="handleBlur" class="noborder">
+  <Input v-bind="$attrs" :value="value" 
+    :number="number"
+    :placeholder="placeholder"
+    @input="handleInput" @on-blur="handleBlur" class="noborder">
     <span v-if="prependText" slot="prepend">{{prependText}}</span>
     <span v-if="appendText" slot="append">{{appendText}}</span>
   </Input>
@@ -17,7 +20,13 @@ export default {
       type: String,
       default: ''
     },
-    value: {}
+    value: {},
+    number: {
+      default: false
+    },
+    placeholder: {
+      default: ''
+    }
   },
   methods: {
     handleInput(value) {

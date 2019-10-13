@@ -163,6 +163,7 @@ export default {
     async validate (callback) {
       let error = ''
       let validateRules = {}
+      this.clearValidateResult()
       for(let k of Object.keys(this.validateResult)) {
         let field = this.fields[k]
         let v = this.validateResult[k]
@@ -174,7 +175,17 @@ export default {
               for (let c of Object.keys(v.children[0])) {
                 rules[c] = v.children[0][c].rule
               }
-              validateRules[k] = {type: 'array', items: {type: 'object', props: rules}}
+              let new_rule = {type: 'array', items: {type: 'object', props: rules}}
+              for(let r of v.rule) {
+                if (r.type === 'array') {
+                  Object.assign(new_rule, r.rule)
+                }
+                if (r.required)
+                  new_rule.required = true
+                if (r.validate)
+                  new_rule.validate = r.validate
+              }
+              validateRules[k] = new_rule
             } else if (typeof v.children === 'function') {
               validateRules[k] = {validate: v.children, fieldname: field.label}
             } else if (v.children instanceof Object) {
@@ -225,8 +236,6 @@ export default {
             }
           }
         }
-      } else {
-        this.clearValidateResult()
       }
 
       if (callback) callback(error)

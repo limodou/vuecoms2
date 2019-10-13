@@ -67,6 +67,7 @@ export default {
   text-align: right;
   margin-right: 10px;
   vertical-align: top;
+  padding-top: 2px;
   // height: 28px;
   // line-height: 28px;
   font-weight: bold;

@@ -37,6 +37,6 @@ export default {
 
 <style lang="less">
 .u-generic-input-text {
-  padding: 1px 4px;
+  padding: 3px 4px;
 }
 </style>

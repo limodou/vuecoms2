@@ -14491,12 +14491,12 @@ var fieldMapping_getField = function getField(type) {
 };
 
 /* harmony default export */ var Fields_fieldMapping = (fieldMapping_getField);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Fields/StaticField.vue?vue&type=template&id=d96b7b04&
-var StaticFieldvue_type_template_id_d96b7b04_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.showTitle)?_c('div',{staticClass:"u-generic-input-text",class:_vm.classes,attrs:{"title":_vm.display},domProps:{"innerHTML":_vm._s(_vm.display)}}):_c('div',{staticClass:"u-generic-input-text",domProps:{"innerHTML":_vm._s(_vm.display)}})}
-var StaticFieldvue_type_template_id_d96b7b04_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Fields/StaticField.vue?vue&type=template&id=628def3c&
+var StaticFieldvue_type_template_id_628def3c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.showTitle)?_c('div',{staticClass:"u-generic-input-text",class:_vm.classes,attrs:{"title":_vm.display},domProps:{"innerHTML":_vm._s(_vm.display)}}):_c('div',{staticClass:"u-generic-input-text",domProps:{"innerHTML":_vm._s(_vm.display)}})}
+var StaticFieldvue_type_template_id_628def3c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Fields/StaticField.vue?vue&type=template&id=d96b7b04&
+// CONCATENATED MODULE: ./src/components/Fields/StaticField.vue?vue&type=template&id=628def3c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Fields/StaticField.vue?vue&type=script&lang=js&
 
@@ -14553,8 +14553,8 @@ var StaticFieldvue_type_style_index_0_lang_less_ = __webpack_require__("58c8");
 
 var StaticField_component = Object(componentNormalizer["a" /* default */])(
   Fields_StaticFieldvue_type_script_lang_js_,
-  StaticFieldvue_type_template_id_d96b7b04_render,
-  StaticFieldvue_type_template_id_d96b7b04_staticRenderFns,
+  StaticFieldvue_type_template_id_628def3c_render,
+  StaticFieldvue_type_template_id_628def3c_staticRenderFns,
   false,
   null,
   null,
@@ -20599,14 +20599,17 @@ var CheckboxGroup_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckboxGroup = (CheckboxGroup_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Input.vue?vue&type=template&id=5c77eebb&
-var Inputvue_type_template_id_5c77eebb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Input',_vm._b({staticClass:"noborder",attrs:{"value":_vm.value},on:{"input":_vm.handleInput,"on-blur":_vm.handleBlur}},'Input',_vm.$attrs,false),[(_vm.prependText)?_c('span',{attrs:{"slot":"prepend"},slot:"prepend"},[_vm._v(_vm._s(_vm.prependText))]):_vm._e(),(_vm.appendText)?_c('span',{attrs:{"slot":"append"},slot:"append"},[_vm._v(_vm._s(_vm.appendText))]):_vm._e()])}
-var Inputvue_type_template_id_5c77eebb_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Input.vue?vue&type=template&id=16568d48&
+var Inputvue_type_template_id_16568d48_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Input',_vm._b({staticClass:"noborder",attrs:{"value":_vm.value,"number":_vm.number,"placeholder":_vm.placeholder},on:{"input":_vm.handleInput,"on-blur":_vm.handleBlur}},'Input',_vm.$attrs,false),[(_vm.prependText)?_c('span',{attrs:{"slot":"prepend"},slot:"prepend"},[_vm._v(_vm._s(_vm.prependText))]):_vm._e(),(_vm.appendText)?_c('span',{attrs:{"slot":"append"},slot:"append"},[_vm._v(_vm._s(_vm.appendText))]):_vm._e()])}
+var Inputvue_type_template_id_16568d48_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Input.vue?vue&type=template&id=5c77eebb&
+// CONCATENATED MODULE: ./src/components/Input.vue?vue&type=template&id=16568d48&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Input.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -20625,7 +20628,13 @@ var Inputvue_type_template_id_5c77eebb_staticRenderFns = []
       type: String,
       default: ''
     },
-    value: {}
+    value: {},
+    number: {
+      default: false
+    },
+    placeholder: {
+      default: ''
+    }
   },
   methods: {
     handleInput: function handleInput(value) {
@@ -20652,8 +20661,8 @@ var Inputvue_type_style_index_0_lang_less_ = __webpack_require__("ab13");
 
 var Input_component = Object(componentNormalizer["a" /* default */])(
   components_Inputvue_type_script_lang_js_,
-  Inputvue_type_template_id_5c77eebb_render,
-  Inputvue_type_template_id_5c77eebb_staticRenderFns,
+  Inputvue_type_template_id_16568d48_render,
+  Inputvue_type_template_id_16568d48_staticRenderFns,
   false,
   null,
   null,
@@ -20662,12 +20671,12 @@ var Input_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Input = (Input_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=5dc31457&
-var Buildvue_type_template_id_5dc31457_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_5dc31457_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=50c92ec8&
+var Buildvue_type_template_id_50c92ec8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_50c92ec8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=5dc31457&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=50c92ec8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 
@@ -20837,7 +20846,7 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
       var _validate = _asyncToGenerator(
       /*#__PURE__*/
       regenerator_default.a.mark(function _callee(callback) {
-        var error, validateRules, _arr, _i, _k2, field, _v, rules, _arr5, _i5, c, _rules, _arr6, _i6, _c, res, _arr2, _i2, k, v, validateResult, i, _len, r, _arr3, _i3, k1, c_r, _arr4, _i4, _k, _c_r;
+        var error, validateRules, _arr, _i, _k2, field, _v, rules, _arr5, _i5, c, new_rule, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _r, _rules, _arr6, _i6, _c, res, _arr2, _i2, k, v, validateResult, i, _len, r, _arr3, _i3, k1, c_r, _arr4, _i4, _k, _c_r;
 
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -20845,61 +20854,142 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
               case 0:
                 error = '';
                 validateRules = {};
+                this.clearValidateResult();
                 _arr = keys_default()(this.validateResult);
+                _i = 0;
 
-                for (_i = 0; _i < _arr.length; _i++) {
-                  _k2 = _arr[_i];
-                  field = this.fields[_k2];
-                  _v = this.validateResult[_k2];
-
-                  if (field && !field.static && !field.hidden) {
-                    // 如果children为对象或数组，则合成object或array的校验规则模式
-                    if (_v.children) {
-                      if (is_array_default()(_v.children) && _v.children.length > 0) {
-                        rules = {};
-                        _arr5 = keys_default()(_v.children[0]);
-
-                        for (_i5 = 0; _i5 < _arr5.length; _i5++) {
-                          c = _arr5[_i5];
-                          rules[c] = _v.children[0][c].rule;
-                        }
-
-                        validateRules[_k2] = {
-                          type: 'array',
-                          items: {
-                            type: 'object',
-                            props: rules
-                          }
-                        };
-                      } else if (typeof _v.children === 'function') {
-                        validateRules[_k2] = {
-                          validate: _v.children,
-                          fieldname: field.label
-                        };
-                      } else if (_v.children instanceof Object) {
-                        _rules = {};
-                        _arr6 = keys_default()(_v.children);
-
-                        for (_i6 = 0; _i6 < _arr6.length; _i6++) {
-                          _c = _arr6[_i6];
-                          _rules[_c] = _v.children[_c].rule;
-                        }
-
-                        validateRules[_k2] = {
-                          type: 'object',
-                          props: _rules
-                        };
-                      }
-                    } else {
-                      if (_v.rule && _v.rule.length > 0) validateRules[_k2] = _v.rule;
-                    }
-                  }
+              case 5:
+                if (!(_i < _arr.length)) {
+                  _context.next = 45;
+                  break;
                 }
 
-                _context.next = 6;
+                _k2 = _arr[_i];
+                field = this.fields[_k2];
+                _v = this.validateResult[_k2];
+
+                if (!(field && !field.static && !field.hidden)) {
+                  _context.next = 42;
+                  break;
+                }
+
+                if (!_v.children) {
+                  _context.next = 41;
+                  break;
+                }
+
+                if (!(is_array_default()(_v.children) && _v.children.length > 0)) {
+                  _context.next = 38;
+                  break;
+                }
+
+                rules = {};
+                _arr5 = keys_default()(_v.children[0]);
+
+                for (_i5 = 0; _i5 < _arr5.length; _i5++) {
+                  c = _arr5[_i5];
+                  rules[c] = _v.children[0][c].rule;
+                }
+
+                new_rule = {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    props: rules
+                  }
+                };
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 19;
+
+                for (_iterator = get_iterator_default()(_v.rule); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  _r = _step.value;
+
+                  if (_r.type === 'array') {
+                    assign_default()(new_rule, _r.rule);
+                  }
+
+                  if (_r.required) new_rule.required = true;
+                  if (_r.validate) new_rule.validate = _r.validate;
+                }
+
+                _context.next = 27;
+                break;
+
+              case 23:
+                _context.prev = 23;
+                _context.t0 = _context["catch"](19);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
+
+              case 27:
+                _context.prev = 27;
+                _context.prev = 28;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 30:
+                _context.prev = 30;
+
+                if (!_didIteratorError) {
+                  _context.next = 33;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 33:
+                return _context.finish(30);
+
+              case 34:
+                return _context.finish(27);
+
+              case 35:
+                validateRules[_k2] = new_rule;
+                _context.next = 39;
+                break;
+
+              case 38:
+                if (typeof _v.children === 'function') {
+                  validateRules[_k2] = {
+                    validate: _v.children,
+                    fieldname: field.label
+                  };
+                } else if (_v.children instanceof Object) {
+                  _rules = {};
+                  _arr6 = keys_default()(_v.children);
+
+                  for (_i6 = 0; _i6 < _arr6.length; _i6++) {
+                    _c = _arr6[_i6];
+                    _rules[_c] = _v.children[_c].rule;
+                  }
+
+                  validateRules[_k2] = {
+                    type: 'object',
+                    props: _rules
+                  };
+                }
+
+              case 39:
+                _context.next = 42;
+                break;
+
+              case 41:
+                if (_v.rule && _v.rule.length > 0) validateRules[_k2] = _v.rule;
+
+              case 42:
+                _i++;
+                _context.next = 5;
+                break;
+
+              case 45:
+                _context.next = 47;
                 return this.$validator.validate(this.value, validateRules);
 
-              case 6:
+              case 47:
                 res = _context.sent;
 
                 if (res) {
@@ -20949,25 +21039,23 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
                       }
                     }
                   }
-                } else {
-                  this.clearValidateResult();
                 }
 
                 if (callback) callback(error);
 
                 if (!error) {
-                  _context.next = 11;
+                  _context.next = 52;
                   break;
                 }
 
                 throw error;
 
-              case 11:
+              case 52:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[19, 23, 27, 35], [28,, 30, 34]]);
       }));
 
       function validate(_x) {
@@ -21047,26 +21135,26 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
 
         if (r.children) {
           if (is_array_default()(r.children)) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
 
             try {
-              for (var _iterator = get_iterator_default()(r.children), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var r1 = _step.value;
+              for (var _iterator2 = get_iterator_default()(r.children), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var r1 = _step2.value;
                 this.clearValidateResult(r1, flag);
               }
             } catch (err) {
-              _didIteratorError = true;
-              _iteratorError = err;
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
                 }
               } finally {
-                if (_didIteratorError) {
-                  throw _iteratorError;
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
                 }
               }
             }
@@ -21093,13 +21181,13 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
     },
     makeFields: function makeFields() {
       var fs = {};
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator2 = get_iterator_default()(this.current), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var row = _step2.value;
+        for (var _iterator3 = get_iterator_default()(this.current), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var row = _step3.value;
           var isStatic = row.static === undefined ? false : row.static;
 
           if (row.name) {
@@ -21114,13 +21202,13 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
           }
 
           var row_fields = [];
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
 
           try {
-            for (var _iterator3 = get_iterator_default()(row.fields || []), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var field = _step3.value;
+            for (var _iterator4 = get_iterator_default()(row.fields || []), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              var field = _step4.value;
 
               if (typeof field === 'string') {
                 field = this.findDataDict(field);
@@ -21143,16 +21231,16 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
               }
             }
           } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
+              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                _iterator4.return();
               }
             } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
+              if (_didIteratorError4) {
+                throw _iteratorError4;
               }
             }
           }
@@ -21161,16 +21249,16 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
           if (default_layout) this.$set(row, 'layout', default_layout);
         }
       } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
+          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+            _iterator3.return();
           }
         } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
+          if (_didIteratorError3) {
+            throw _iteratorError3;
           }
         }
       }
@@ -21258,20 +21346,20 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
     choices: {
       immediate: true,
       handler: function handler() {
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
 
         try {
-          for (var _iterator4 = get_iterator_default()(this.current), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var row = _step4.value;
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+          for (var _iterator5 = get_iterator_default()(this.current), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var row = _step5.value;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-              for (var _iterator5 = get_iterator_default()(row.fields || []), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var field = _step5.value;
+              for (var _iterator6 = get_iterator_default()(row.fields || []), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                var field = _step6.value;
                 var choices = this.choices[field.name];
 
                 if (choices) {
@@ -21285,31 +21373,31 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
                 }
               }
             } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
+              _didIteratorError6 = true;
+              _iteratorError6 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                  _iterator5.return();
+                if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+                  _iterator6.return();
                 }
               } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
+                if (_didIteratorError6) {
+                  throw _iteratorError6;
                 }
               }
             }
           }
         } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-              _iterator4.return();
+            if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+              _iterator5.return();
             }
           } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
+            if (_didIteratorError5) {
+              throw _iteratorError5;
             }
           }
         }
@@ -21350,8 +21438,8 @@ var Buildvue_type_template_id_5dc31457_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_5dc31457_render,
-  Buildvue_type_template_id_5dc31457_staticRenderFns,
+  Buildvue_type_template_id_50c92ec8_render,
+  Buildvue_type_template_id_50c92ec8_staticRenderFns,
   false,
   null,
   null,
@@ -21360,12 +21448,12 @@ var Build_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Build = (Build_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=1d8b984a&
-var Sectionvue_type_template_id_1d8b984a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
-var Sectionvue_type_template_id_1d8b984a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=029540c0&
+var Sectionvue_type_template_id_029540c0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
+var Sectionvue_type_template_id_029540c0_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=1d8b984a&
+// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=029540c0&
 
 // CONCATENATED MODULE: ./src/components/Build/sectionMixin.js
 
@@ -21623,8 +21711,8 @@ var Sectionvue_type_style_index_0_lang_less_ = __webpack_require__("8425");
 
 var Section_component = Object(componentNormalizer["a" /* default */])(
   Build_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_1d8b984a_render,
-  Sectionvue_type_template_id_1d8b984a_staticRenderFns,
+  Sectionvue_type_template_id_029540c0_render,
+  Sectionvue_type_template_id_029540c0_staticRenderFns,
   false,
   null,
   null,
@@ -24021,7 +24109,7 @@ function () {
       var _validateRule = _asyncToGenerator(
       /*#__PURE__*/
       regenerator_default.a.mark(function _callee2(rule, fieldvalue, model) {
-        var rule_func, name;
+        var rule_func, validate_func, name, err;
         return regenerator_default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -24033,13 +24121,14 @@ function () {
                 } else if (typeof rule === 'function') {
                   rule_func = rule;
                 } else if (rule instanceof Object) {
+                  // Validate 独立校验
                   if (rule.validate && typeof rule.validate === 'function') {
                     name = 'custom';
-                    rule_func = rule.validate;
-                  } else {
-                    name = rule.type || 'any';
-                    rule_func = this.rules[name];
+                    validate_func = rule.validate;
                   }
+
+                  name = rule.type || 'any';
+                  rule_func = this.rules[name];
                 }
 
                 if (rule_func) {
@@ -24054,9 +24143,23 @@ function () {
                 return rule_func.call(this, rule, fieldvalue, model);
 
               case 5:
-                return _context2.abrupt("return", _context2.sent);
+                err = _context2.sent;
 
-              case 6:
+                if (!(!err && validate_func)) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                _context2.next = 9;
+                return validate_func.call(this, rule, fieldvalue, model);
+
+              case 9:
+                err = _context2.sent;
+
+              case 10:
+                return _context2.abrupt("return", err);
+
+              case 11:
               case "end":
                 return _context2.stop();
             }

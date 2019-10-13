@@ -218,16 +218,13 @@ describe('validator', function () {
     })
   })
 
-  it('Test array items', function() {
+  it('Test array items required', function() {
     let validator = new Validator({messages})
-    return validator.validate({a: [
-      {a: 1, b: 2},
-      {a: 1, b: 2}
-    ]}, {a: {type: 'array', items: {type: 'object', props: {
+    return validator.validate({a: []}, {a: {type: 'array', validate () {return 'TEST'}, items: {type: 'object', props: {
       a: 'number',
       b: 'number'
     }}}}).then((res) => {
-      expect(res).to.be.null
+      expect(res).to.eql({ a: "The \'a\' field is required!" })
     })
   })
 

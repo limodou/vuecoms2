@@ -119,6 +119,7 @@ export default class Validator {
    */
   async validateRule (rule, fieldvalue, model) {
     let rule_func
+    let validate_func
     let name
     // 获取字段名，可以是字符串，或对象。对象使用type属性
     if (typeof rule === 'string') {
@@ -127,20 +128,26 @@ export default class Validator {
     } else if (typeof rule === 'function') {
       rule_func = rule
     } else if (rule instanceof Object) {
+      // Validate 独立校验
       if (rule.validate && typeof rule.validate === 'function') {
         name = 'custom'
-        rule_func = rule.validate
-      } else {
-        name = rule.type || 'any'
-        rule_func = this.rules[name]
-      }
+        validate_func = rule.validate
+      } 
+      name = rule.type || 'any'
+      rule_func = this.rules[name]
     } 
     if (!rule_func) {
       throw new Error(`There is no rule found of type ${name} ${typeof(rule)}`)
     }
 
     // 调用validate方法，如果成功，返回 null，否则返回出错信息，可以包含{field}的占位符
-    return await rule_func.call(this, rule, fieldvalue, model)
+    let err
+    err = await rule_func.call(this, rule, fieldvalue, model)
+    // validate 当有错时再执行
+    if (!err && validate_func) {
+      err = await validate_func.call(this, rule, fieldvalue, model)
+    }
+    return err
   }
 
   /**
