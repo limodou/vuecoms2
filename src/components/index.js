@@ -25,6 +25,7 @@ import UploaderFile from './UploaderFile.vue'
 import CardList from './CardList'
 import Validator from './validator'
 import FlatChoices from './FlatChoices.vue'
+import showToast from './Toast'
 
 const Components = {
   Box,
@@ -62,6 +63,7 @@ const install = function (Vue, options={}) {
   let validator = new Validator(options.validatorOptions)
   Vue.prototype.$validator = validator
   Vue.prototype.$fileupload = fileupload
+  Vue.prototype.$toast = showToast
 }
 
 // auto install
