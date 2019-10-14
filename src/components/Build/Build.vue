@@ -70,6 +70,7 @@ export default {
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {}, //保存校验结果,
+      watchers: {}, // 保存根据状态生成的$watch结果，用于清除
     }
   },
   props: {
@@ -141,6 +142,14 @@ export default {
       default: 'horizontal'
     },
     boxOptions: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    // 状态对象，用于实现根据状态来改变field的hidden, static, required
+    // 它的格式为： {name: function()}
+    statusObject: {
       type: Object,
       default () {
         return {}
@@ -328,7 +337,71 @@ export default {
       return Object.assign({}, f, field)
     },
 
+    clearWatchers () {
+      for(let w in this.watchers) {
+        this.watchers[w].watcher()
+      }
+      this.watchers = {}
+    },
+
+    addWatch(name, field, type){
+      let item
+      let watchFunc
+      if (type === 'when') {
+        if (!Array.isArray(name) || name.length!==2 || 
+          ((typeof name[0] !== 'string') && (typeof name[0] !== 'function'))) throw new Error(`Watch object definition is not right, you should provide and Array like [name|function, function]`)
+        if (typeof name[0] === 'string') {
+          watchFunc = this.statusObject[name[0]]
+          if (!watchFunc)
+            throw new Error(`No status object name ${name[0]} defined for field ${field.label}(${field.name})`)
+        } else {
+          watchFunc = name[0]
+        }
+        item = {name: field.name, type: 'when', callback: name[1]}
+        name = name[0]
+      } else {
+        watchFunc = this.statusObject[name]
+        if (!watchFunc) 
+          throw new Error(`No status object name ${name} defined for field ${field.label}(${field.name})`)
+        item = {name: field.name, type}
+      }
+      if (!this.watchers[name]) this.watchers[name] = {
+        items: [], 
+        watcher: null,
+        func: watchFunc}
+      this.watchers[name].items.push(item)
+    },
+
+    initWatchers () {
+      for(let name in this.watchers) {
+        let item = this.watchers[name]
+        let watcher = this.$watch(item.func, (newVal, oldVal)=>{
+          for(let c of item.items) {
+            let field = this.fields[c.name]
+            switch(c.type) {
+              case 'hidden':
+                this.$set(field, 'hidden', !newVal)
+                break
+              case 'static':
+              case 'required':
+                this.$set(field, c.type, newVal)
+                break
+              case 'when':
+                if (c.callback)
+                  c.callback(newVal, field, this.value)
+            }
+          }
+        }, {
+          immediate: true
+        })
+        item.watcher = watcher
+      }
+    },
+
     makeFields () {
+      // 清除监听缓存
+      this.clearWatchers()
+
       let fs = {}
       for(let row of this.current) {
         let isStatic = row.static === undefined ? false : row.static
@@ -356,6 +429,12 @@ export default {
           if (field.options === undefined) this.$set(field, 'options', {})
           // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
           if (field.type === undefined) this.$set(field, 'type', 'str') //str
+          // 增加watch支持
+          if (field.showWhen) this.addWatch(field.showWhen, field, 'hidden')
+          if (field.staticWhen) this.addWatch(field.staticWhen, field, 'static')
+          if (field.requiredWhen) this.addWatch(field.requiredWhen, field, 'required')
+          // 增加通用监时的处理
+          if (field.when) this.addWatch(field.when, field, 'when')
           if (default_layout) {
             default_layout.push([field.name])
           }
@@ -364,6 +443,7 @@ export default {
         if (default_layout) this.$set(row, 'layout', default_layout)
       }
       this.fields = fs
+      this.initWatchers()
     },
 
     mergeErrors (errors) {

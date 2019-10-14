@@ -1,5 +1,13 @@
 <template>
   <Input v-bind="$attrs" :value="value" 
+    :autocomplete="autocomplete"
+    :disabled="disabled"
+    :maxlength="maxlength"
+    :autofocus="autofocus"
+    :readonly="readonly"
+    :type="type"
+    :size="size"
+    :clearable="clearable"
     :number="number"
     :placeholder="placeholder"
     @input="handleInput" @on-blur="handleBlur" class="noborder">
@@ -21,12 +29,16 @@ export default {
       default: ''
     },
     value: {},
-    number: {
-      default: false
-    },
-    placeholder: {
-      default: ''
-    }
+    number: {},
+    placeholder: {},
+    type: {},
+    size: {},
+    maxlength: {},
+    disabled: {},
+    readonly: {},
+    autofocus: {},
+    autocomplete: {},
+    clearable: {},
   },
   methods: {
     handleInput(value) {

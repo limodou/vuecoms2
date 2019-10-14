@@ -1,6 +1,6 @@
 <template>
-  <div class="u-toast">
-    <div class="u-toast-mask" @click="handleClick"></div>
+  <div class="u-toast" @click="handleClick">
+    <div class="u-toast-mask"></div>
     <div class="u-toast-wrap">
       <Alert :type="type" :show-icon="showIcon">
         {{title || content}}
