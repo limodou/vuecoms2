@@ -549,6 +549,38 @@ class Store {
     return row
   }
 
+  // 判断某条记录是否有子结点
+  hasChildren (row) {
+    return row[this.states.childrenField] && row[this.states.childrenField].length > 0
+  }
+  // 如果传了参数，则展开指定结点，否则全部展开
+  expand (row) {
+    if (row) {
+      if (this.hasChildren(row) && !row._expand) {
+        this.grid.$set(row, '_expand', true)
+      }
+    } else {
+      walkTree(this.states.data, (row)=>{
+        if (this.hasChildren(row) && !row._expand)
+        this.grid.$set(row, '_expand', true)
+      }, this.states.childrenField)
+    }
+  }
+
+  // 如果传了参数，则收起指定结点，否则全部收起
+  collapse (row) {
+    if (row) {
+      if (this.hasChildren(row) && row._expand) {
+        this.grid.$set(row, '_expand', false)
+      }
+    } else {
+      walkTree(this.states.data, (row)=>{
+        if (this.hasChildren(row) && row._expand)
+        this.grid.$set(row, '_expand', false)
+      }, this.states.childrenField)
+    }
+  }
+  
   addChildRow (row, parent, position) {
     return this.addRow(row, parent, position, true)
   }
@@ -621,7 +653,7 @@ class Store {
     var rows = []
     data.forEach(row => {
       let new_row = this.getDefaultRow(row, parent)
-      if (new_row[this.states.childrenField] && new_row[this.states.childrenField].length > 0) {
+      if (this.hasChildren(new_row)) {
         new_row['_loaded'] = true
         new_row[this.states.childrenField] = this.makeRows(new_row[this.states.childrenField])
       }

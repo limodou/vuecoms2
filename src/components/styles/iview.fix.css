@@ -13,3 +13,7 @@
   z-index: 100;
   color: #fff;
 }
+
+.u-layout-cell-field .ivu-checkbox-group {
+  padding-top: 2px;
+}

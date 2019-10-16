@@ -220,7 +220,17 @@ describe('validator', function () {
 
   it('Test array items required', function() {
     let validator = new Validator({messages})
-    return validator.validate({a: []}, {a: {type: 'array', validate () {return 'TEST'}, items: {type: 'object', props: {
+    return validator.validate({a: []}, {a: {type: 'array', required: true, items: {type: 'object', props: {
+      a: 'number',
+      b: 'number'
+    }}}}).then((res) => {
+      expect(res).to.eql({ a: "The \'a\' field is required!" })
+    })
+  })
+
+  it('Test array items norules', function() {
+    let validator = new Validator({messages})
+    return validator.validate({a: []}, {a: {type: 'array', required: true, items: {type: 'object', props: {
       a: 'number',
       b: 'number'
     }}}}).then((res) => {
@@ -377,7 +387,6 @@ describe('validator', function () {
   it('Test string pattern invalid', function() {
     let validator = new Validator({messages})
     return validator.validate({s: '12356a'}, {s: {type: 'string', pattern: '^[0-9]+$'}}).then((res) => {
-      console.log(res)
       expect(res).to.be.eql({s: "The 's' field fails to match the required pattern!"})
     })
   })

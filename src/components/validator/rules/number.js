@@ -16,11 +16,11 @@ export default (rule, value, model) => {
 		return rule.makeError("number")
 	}
 
-	if (rule.min && value < rule.min) {
+	if (rule.min !== undefined && value < rule.min) {
 		return rule.makeError("numberMin", rule.min, value)
 	}
 
-	if (rule.max && value > rule.max) {
+	if (rule.max !== undefined && value > rule.max) {
 		return rule.makeError("numberMax", rule.max, value)
 	}
 
@@ -29,12 +29,12 @@ export default (rule, value, model) => {
 	}
 
 	// Check fix value
-	if (rule.equal && value !== rule.equal) {
+	if (rule.equal !== undefined && value !== rule.equal) {
 		return rule.makeError("numberEqual", rule.equal, value)
 	}	
 
 	// Check not fix value
-	if (rule.notEqual && value === rule.notEqual) {
+	if (rule.notEqual !== undefined && value === rule.notEqual) {
 		return rule.makeError("numberNotEqual", rule.notEqual)
 	}	
 

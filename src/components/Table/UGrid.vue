@@ -156,7 +156,7 @@ export default {
       'setComment', 'removeComment', 'getSelectedRows', 'getColumn', 'getDefaultRow',
       'makeRows', 'sendInputEvent', 'deselectAll', 'selectAll', 'select', 'deselect',
       'toggle', 'getComment', 'getClass', 'removeClass', 'setClass', 'addRow',
-      'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow'),
+      'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow', 'expand', 'collapse'),
 
     resize (width, height) {
       if (width) this.width = width
