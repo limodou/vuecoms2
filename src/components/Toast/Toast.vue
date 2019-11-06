@@ -40,6 +40,9 @@ export default {
       if (this.onClose) {
         this.onClose()
       }
+    },
+    close () {
+      this.handleClick()
     }
   }
 }

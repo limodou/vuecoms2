@@ -14,6 +14,6 @@
   color: #fff;
 }
 
-.u-layout-cell-field .ivu-checkbox-group {
+.u-layout-cell-field .ivu-checkbox-group, .u-layout-cell-field .ivu-radio-group {
   padding-top: 2px;
 }

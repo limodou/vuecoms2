@@ -291,6 +291,7 @@ export const formatDate = function (d, fmt='yyyy/MM/dd') {
 export const deepCopy = function (data) {
   let o
 
+  if (!data) return data
   if (Array.isArray(data)) {
       o = []
   } else if (typeof data === 'function') {

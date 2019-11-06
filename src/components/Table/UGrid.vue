@@ -568,6 +568,8 @@ export default {
 
     go(page, opts) {
       this.page = page
+      if (opts && opts.pageSize)
+        this.pageSize = opts.pageSize
       this.start = (this.page - 1) * this.pageSize + 1
       this.$set(this.param, 'page', page)
       this.loadData(opts || {})

@@ -89,8 +89,9 @@ export default {
     handlePageSize (size) {
       this.limit = size
       this.$emit('on-page-size', size)
-      this.current = 1
-      this.$emit('on-page', 1)
+      // Fix 切换每页显示条数时，触发两次查询的BUG
+      // this.current = 1
+      // this.$emit('on-page', 1)
     },
 
     handlePageClick (page) {

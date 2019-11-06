@@ -1,6 +1,13 @@
 import Toast from './Toast.vue'
 
+let component
+
+// 当props不传参数时，可以直接关闭上一个实例
 function showToast (props) {
+  if (!props && component) {
+    component.close()
+    return
+  } 
   const Instance = new Vue({
     render (h) {
       return h(Toast, {
@@ -9,7 +16,7 @@ function showToast (props) {
     }
   });
 
-  const component = Instance.$mount()
+  component = Instance.$mount()
   document.body.appendChild(component.$el)
 }
 export default showToast
