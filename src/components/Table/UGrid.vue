@@ -534,6 +534,7 @@ export default {
           this.onDeleteRow.call(this, row, callback)
         } else {
           this.removeRow(row)
+          this.sendInputEvent()
         }
       }
 

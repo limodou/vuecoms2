@@ -14,7 +14,9 @@ const checkCRC = (code) => {
 	Array.from(code).forEach((v, index) => {
 		t += (weight[index] || 0) * map1[v]
 	})
-	return code[code.length-1] === map2[31-t%31]
+	let c = 31 - t % 31
+	if (c === 31) c = 0
+	return code[code.length-1] === map2[c]
 }
 export default (rule, value, model) => {
 	let oldvalue = value

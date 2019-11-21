@@ -1,5 +1,5 @@
 export default (rule, value, model) => {
-	if (value === undefined) {
+	if (value === undefined || value === '') {
 		if (rule.required) return rule.makeError('required')
 		return
 	}

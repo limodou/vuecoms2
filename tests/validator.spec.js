@@ -268,6 +268,7 @@ describe('validator', function () {
   it('Test number convert not required', function() {
     let validator = new Validator({messages})
     return validator.validate({n: ''}, {n: {type: 'number', positive: true, convert: true}}).then((res) => {
+      console.log(res)
       expect(res).to.be.null
     })
   })
@@ -601,6 +602,14 @@ describe('validator', function () {
   it('Test social credit code', function() {
     let validator = new Validator({messages})
     return validator.validate({c: '91350100M000100Y43'}, 
+      {c: {type: 'socialCreditCode'}}).then((res) => {
+      expect(res).to.be.null
+    })
+  })
+
+  it('Test social credit code 2', function() {
+    let validator = new Validator({messages})
+    return validator.validate({c: '915328005718956530'}, 
       {c: {type: 'socialCreditCode'}}).then((res) => {
       expect(res).to.be.null
     })

@@ -484,6 +484,7 @@ export default {
       let row = this.store.states.data.splice(el.oldIndex, 1)
       this.store.states.data.splice(el.newIndex, 0, row[0])
       this.dispatch('Grid', 'on-drag', {oldIndex:el.oldIndex, newIndex:el.newIndex})
+      this.store.sendInputEvent()
     }
   },
 

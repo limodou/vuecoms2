@@ -488,8 +488,14 @@ class Store {
   }
 
   // 更新行
-  updateRow (row) {
-    List.update(this.states.data, row, this.getKeyField(row))
+  updateRow (row, parent) {
+    let data
+    if (!row._parent && !parent){
+      data = this.states.data
+    } else {
+      data = (row._parent || parent)[this.states.childrenField]
+    }
+    List.update(data, row, this.getKeyField(row))
     return row
   }
 
@@ -529,13 +535,13 @@ class Store {
       }
       pos = this.getPosition(item, data)
     } else {
+      row._parent = item
       data = item[this.states.childrenField]
       if (!data) {
         this.grid.$set(item, this.states.childrenField, [])
         data = item[this.states.childrenField]
         this.grid.$set(item, '_loaded', true)
         this.grid.$set(item, '_expand', true)
-        row._parent = item
       }
       // 子结点，after为最后，before为最前
       if (position === 'after') pos = -1
@@ -717,7 +723,7 @@ class Store {
     switch (position) {
       case 'up':
         des = pos - 1
-        if (des < 0 && !row._parent && this.states.page > 1) {
+        if (this.pagination && des < 0 && !row._parent && this.states.page > 1) {
           this.states.afterLoadData = () => {
             let new_order = []
             let last = this.states.data[this.states.data.length-1]
@@ -734,7 +740,7 @@ class Store {
         break
       case 'down':
         des = pos + 1
-        if (des >= this.states.data.length && !row._parent && this.states.page < this.grid.$refs.pagination.pages) {
+        if (this.pagination && des >= this.states.data.length && !row._parent && this.states.page < this.grid.$refs.pagination.pages) {
           this.states.afterLoadData = () => {
             let new_order = []
             let last = this.states.data[0]
