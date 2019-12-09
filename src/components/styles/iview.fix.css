@@ -14,6 +14,10 @@
   color: #fff;
 }
 
-.u-layout-cell-field .ivu-checkbox-group, .u-layout-cell-field .ivu-radio-group {
-  padding-top: 2px;
+.u-layout-cell-field > .ivu-checkbox-group, .u-layout-cell-field > .ivu-radio-group {
+  padding-top: 3px;
+}
+
+.u-layout-cell-field > .ivu-checkbox {
+  padding-top: 6px;
 }

@@ -288,13 +288,15 @@ export const formatDate = function (d, fmt='yyyy/MM/dd') {
 }
 
 // deepCopy
-export const deepCopy = function (data) {
+export const deepCopy = function (data, clear=false) {
   let o
 
   if (!data) return data
   if (Array.isArray(data)) {
       o = []
   } else if (typeof data === 'function') {
+    return data
+  } else if (data instanceof Date) {
     return data
   } else if (data instanceof Object) {
       o = {}
@@ -304,11 +306,12 @@ export const deepCopy = function (data) {
 
   if (Array.isArray(data)) {
       for (let c of data) {
-          o.push(deepCopy(c))
+          o.push(deepCopy(c, clear))
       }
   } else if (data instanceof Object) {
       for (let i in data) {
-          o[i] = deepCopy(data[i])
+        if (!clear || clear && !i.startsWith('_') && !i.endsWith('_static'))
+          o[i] = deepCopy(data[i], clear)
       }
   }
   return o

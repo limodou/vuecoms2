@@ -559,4 +559,34 @@ export default {
     box-shadow: none;
 }
 
+.box.box-theme-simple {
+  border: none;
+  box-shadow: none;
+}
+.box.box-theme-simple .box-header.with-border {
+  border-bottom: none;
+}
+
+.box.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #1a1a1a;
+  padding-left: 15px;
+}
+.box.box-primary.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #3c8dbc;
+}
+.box.box-info.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #00c0ef;
+}
+.box.box-danger.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #dd4b39;
+}
+.box.box-warning.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #f39c12;
+}
+.box.box-success.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #00a65a;
+}
+.box.box-default.box-theme-simple .box-header .box-title > p {
+  border-left: 5px solid #1a1a1a;
+}
 </style>

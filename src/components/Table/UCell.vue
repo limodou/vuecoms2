@@ -25,7 +25,7 @@
       >
       </GenericInput>
       <Checkbox v-if="columnType === 'check' && checkable"
-        @click.prevent.native="handleCheckClick"
+        @click.prevent.stop.native="handleCheckClick"
         :value="Boolean(store.selected(col.row))"
         :indeterminate="col.row._indeterminate"
         ></Checkbox>
@@ -158,6 +158,7 @@ export default {
   methods: {
     ...mapMethod('getComment', 'getClass', 'setSelection', 'makeRows', 'checkSelectStatus'),
     handleCheckClick () {
+      console.log('checkclick')
       if (this.static) return
       this.store.toggle(this.col.row)
     },

@@ -81,7 +81,7 @@ export default {
           let field = Object.assign({}, col, {
             component: col.component || 'FormCell',
             colspan: span,
-            labelWidth: col.labelAlign || f.labelAlign || this.labelWidth,
+            labelWidth: col.labelWidth || f.labelWidth || this.labelWidth,
             labelAlign: col.labelAlign || f.labelAlign || this.labelAlign,
             static: col.static || f.static || this.static,
             hidden: col.hidden || f.hidden || this.hidden

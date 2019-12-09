@@ -64,7 +64,7 @@ export default {
   data () {
     return {
       originValue: deepCopy(this.value), // 保留初始值，用于reset
-      oldvalue: deepCopy(this.value),
+      oldvalue: deepCopy(this.value, true),
       current: deepCopy(this.data),
       fields: {},
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
@@ -487,6 +487,10 @@ export default {
       })
       // this.makeValidateResult(true)
       // this.mergeRules()
+    },
+
+    getData () {
+      return this.oldvalue
     }
   },
 
@@ -500,9 +504,11 @@ export default {
   watch: {
     value: {
       handler (newvalue) {
-        let v = deepCompare(newvalue, this.oldvalue, true)
+        let n = deepCopy(newvalue, true)
+        let v = deepCompare(n, this.oldvalue, true)
         if (!isEmpty(v)) {
-          this.oldvalue = deepCopy(newvalue)
+          this.oldvalue = n
+          this.$emit('input', n)
           for (let k in v) {
             let field = this.fields[k]
             if (field && field.onChange) {

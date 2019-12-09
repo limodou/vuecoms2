@@ -8,7 +8,7 @@ export default class RadioField extends Field {
 
   getStaticValue (value) {
     let v = ''
-    for (let c of this.options.choices) {
+    for (let c of (this.options.choices || [])) {
       if (c.value == value) {
         v = c.label
         break

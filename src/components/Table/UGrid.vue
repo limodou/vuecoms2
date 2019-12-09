@@ -30,7 +30,7 @@
         @scroll="handleScroll"
         ></u-table>
 
-      <u-table v-show="rightWidth && xscroll && !isScrollRight"
+      <u-table v-if="rightWidth && xscroll && !isScrollRight"
         :store="store"
         :width="rightWidth"
         :table-width="tableWidth"
@@ -56,7 +56,7 @@ import UTable from './UTable'
 import Store from './UGridStore'
 import Pagination from './pagination'
 import Buttons from './UButtons'
-import {mapState, mapMethod, copyDataRow, setChoice} from '../utils/utils.js'
+import {mapState, mapMethod, copyDataRow, setChoice, deepCopy} from '../utils/utils.js'
 import Emitter from '../mixins/emitter.js'
 import Query from '../Query'
 import debounce from 'lodash/debounce'
@@ -623,6 +623,10 @@ export default {
 
     handleQuerySubmit (data) {
       this.go(1, data)
+    },
+
+    getData () {
+      return deepCopy(this.store.states.data, true)
     }
   },
 
