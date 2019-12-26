@@ -268,7 +268,6 @@ describe('validator', function () {
   it('Test number convert not required', function() {
     let validator = new Validator({messages})
     return validator.validate({n: ''}, {n: {type: 'number', positive: true, convert: true}}).then((res) => {
-      console.log(res)
       expect(res).to.be.null
     })
   })
@@ -356,6 +355,21 @@ describe('validator', function () {
       expect(res).to.be.null
     })
   })
+
+    it('Test string max', function () {
+      let validator = new Validator({
+        messages
+      })
+      return validator.validate({
+        s: 'abc'
+      }, {
+        s: {
+          max: 2
+        }
+      }).then((res) => {
+        expect(res).to.eql({s: "The 's' field length must be less than or equal to 2 characters long!"})
+      })
+    })
 
   it('Test string empty trim', function() {
     let validator = new Validator({messages})

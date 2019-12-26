@@ -80,6 +80,7 @@ class Store {
       onCheckable: null, // 是否显示checkbox
       onSaveRow: null, // 保存行时调用 function (row, callback), callback(flag, data)
                        // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
+      onError: null, // 保存行时，校验出错时回调
       onSaveCol: null,  // 保存单元格时调用 function (value, callback), callback(flag, data)
                         // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
       onDeleteRow: null,// 删除行的确认 function (row, callback), callback(flag, data)
@@ -106,6 +107,7 @@ class Store {
       selected: {}, // 记录选中结果，可以跨页保存
       selectedRows: {},
       afterLoadData: null, // 在loadData之后的回调用于特殊场合，处理之后会清除，只会运行一次
+      oldParentWidth: 0, // 父元素的上次宽度
 
       // 分页相关参数
       prev: '上一页',

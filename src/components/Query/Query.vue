@@ -424,6 +424,10 @@ export default {
 
   .u-query-firstlayout {
     display: inline-block;
+    
+    &.u-layout-cell {
+      width: auto;
+    }
   }
 
   &:before {

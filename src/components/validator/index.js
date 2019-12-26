@@ -64,8 +64,11 @@ export default class Validator {
         ru = {type: ru}
       } else if (typeof ru === 'function') {
         ru = {validate: ru}
+      } else {
+        if (!ru.type && !ru.validate) ru.type = 'string'
       }
       let r = Object.assign({}, ru)
+      // 缺省校验类型设置为 string
 
       // 合并消息
       let messages = Object.assign({}, this.messages, ru.messages || {})

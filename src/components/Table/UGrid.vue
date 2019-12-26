@@ -1,70 +1,119 @@
 <template>
   <div class="u-grid-wrapper" :class="themeClass">
     <slot name="beforeQuery"></slot>
-    <Query ref="query" v-if="query" v-bind="query" @input="handleQuerySubmit" @on-query-change="handleQueryChange"></Query>
+    <Query
+      ref="query"
+      v-if="query"
+      v-bind="query"
+      @input="handleQuerySubmit"
+      @on-query-change="handleQueryChange"
+    ></Query>
     <slot name="afterQuery"></slot>
     <div class="u-grid-tools" slot="tools" v-if="buttons || rightButtons">
       <div class="u-grid-tools-left" v-if="buttons">
-        <Buttons ref="buttons" :buttons="buttons" :data="store" :target="this"></Buttons>
+        <Buttons
+          ref="buttons"
+          :buttons="buttons"
+          :data="store"
+          :target="this"
+        ></Buttons>
       </div>
       <div class="u-grid-tools-right" v-if="rightButtons">
-        <Buttons ref="rightButtons" :buttons="rightButtons" :data="store" :target="this"></Buttons>
+        <Buttons
+          ref="rightButtons"
+          :buttons="rightButtons"
+          :data="store"
+          :target="this"
+        ></Buttons>
       </div>
     </div>
     <slot name="beforeTable"></slot>
     <div class="u-grid">
-      <u-table v-if="leftWidth"
+      <u-table
+        v-if="leftWidth"
         :store="store"
         :width="leftWidth"
         :table-width="tableWidth"
         :table-class="leftTableClass"
         fixed="left"
-        ref="left">
+        ref="left"
+      >
       </u-table>
 
-      <u-table :store="store"
+      <u-table
+        :store="store"
         :width="gridWidth"
         :table-width="tableWidth"
         table-class="u-grid-body"
         ref="table"
         @scroll="handleScroll"
-        ></u-table>
+      ></u-table>
 
-      <u-table v-if="rightWidth && xscroll && !isScrollRight"
+      <u-table
+        v-if="rightWidth && xscroll && !isScrollRight"
         :store="store"
         :width="rightWidth"
         :table-width="tableWidth"
         :table-class="rightTableClass"
         fixed="right"
-        ref="right">
+        ref="right"
+      >
       </u-table>
 
-      <div class="column-dragger-guide" v-show="columnResizing" :style="columnDraggerStyles"></div>
-      <div ref="loading" class="loading" v-if="loadingText" v-show="loading" v-html="loadingText"></div>
+      <div
+        class="column-dragger-guide"
+        v-show="columnResizing"
+        :style="columnDraggerStyles"
+      ></div>
+      <div
+        ref="loading"
+        class="loading"
+        v-if="loadingText"
+        v-show="loading"
+        v-html="loadingText"
+      ></div>
     </div>
-    <Pagination ref="pagination" v-if="pagination && store.states.data.length > 0" :store="store.states"
+    <Pagination
+      ref="pagination"
+      v-if="pagination && store.states.data.length > 0"
+      :store="store.states"
       @on-page="handlePage"
-      @on-page-size="handlePageSize">
-      <Buttons ref="bottomButtons" v-if="buttomButtons" :buttons="bottomButtons" :target="this" :data="store"></Buttons>
+      @on-page-size="handlePageSize"
+    >
+      <Buttons
+        ref="bottomButtons"
+        v-if="buttomButtons"
+        :buttons="bottomButtons"
+        :target="this"
+        :data="store"
+      ></Buttons>
     </Pagination>
     <slot name="afterTable"></slot>
   </div>
 </template>
 
 <script>
-import UTable from './UTable'
-import Store from './UGridStore'
-import Pagination from './pagination'
-import Buttons from './UButtons'
-import {mapState, mapMethod, copyDataRow, setChoice, deepCopy} from '../utils/utils.js'
-import Emitter from '../mixins/emitter.js'
-import Query from '../Query'
-import debounce from 'lodash/debounce'
-import { addListener, removeListener } from 'resize-detector'
+import UTable from "./UTable";
+import Store from "./UGridStore";
+import Pagination from "./pagination";
+import Buttons from "./UButtons";
+import {
+  mapState,
+  mapMethod,
+  copyDataRow,
+  setChoice,
+  deepCopy,
+  findParent,
+  isEmpty
+} from "../utils/utils.js";
+import Emitter from "../mixins/emitter.js";
+import Query from "../Query";
+import debounce from "lodash/debounce";
+import { addListener, removeListener } from "resize-detector";
 
 export default {
-  name: 'Grid',
-  mixins: [ Emitter ],
+  name: "Grid",
+  mixins: [Emitter],
 
   components: {
     UTable,
@@ -73,623 +122,775 @@ export default {
     Query
   },
 
-  data () {
-    const store = new Store(this, this.data, this.value)
+  data() {
+    const store = new Store(this, this.data, this.value);
     return {
       store,
       autoloaded: false
-    }
+    };
   },
 
   props: {
     data: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     },
     value: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     // 用于选择控件设置choices
     choices: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     }
   },
 
   computed: {
-    ...mapState('columns', 'columnResizing', 'checkCol', 'indexCol',
-      'gridWidth', 'width', 'height', 'resizable', 'columnPosition', 'guiderHeight',
-      'defaultColWidth', 'leftWidth', 'rightWidth', 'checkColTitle', 'checkColWidth',
-      'indexColWidth', 'indexColTitle', 'scrollLeft', 'total', 'pageSizeOpts',
-      'pagination', 'loading', 'loadingText', 'loadingTop', 'loadingLeft',
-      'autoLoad', 'url', 'param', 'buttons', 'rightButtons', 'bottomButtons',
-      'selected', 'editMode', 'actionColumn', 'deleteRowConfirm',
-      'onSaveRow', 'onDeleteRow', 'onLoadData', 'query', 'theme', 'cellTitle',
-      'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo',
-      'onRowEditRender', 'static', 'xscroll', 'afterLoadData', 'multiHeaderSep',
-      'zebra'
+    ...mapState(
+      "columns",
+      "columnResizing",
+      "checkCol",
+      "indexCol",
+      "gridWidth",
+      "width",
+      "height",
+      "resizable",
+      "columnPosition",
+      "guiderHeight",
+      "defaultColWidth",
+      "leftWidth",
+      "rightWidth",
+      "checkColTitle",
+      "checkColWidth",
+      "indexColWidth",
+      "indexColTitle",
+      "scrollLeft",
+      "total",
+      "pageSizeOpts",
+      "pagination",
+      "loading",
+      "loadingText",
+      "loadingTop",
+      "loadingLeft",
+      "autoLoad",
+      "url",
+      "param",
+      "buttons",
+      "rightButtons",
+      "bottomButtons",
+      "selected",
+      "editMode",
+      "actionColumn",
+      "deleteRowConfirm",
+      "onSaveRow",
+      "onDeleteRow",
+      "onError",
+      "onLoadData",
+      "query",
+      "theme",
+      "cellTitle",
+      "isScrollRight",
+      "page",
+      "start",
+      "pageSize",
+      "nowrap",
+      "addAutoScrollTo",
+      "onRowEditRender",
+      "static",
+      "xscroll",
+      "afterLoadData",
+      "multiHeaderSep",
+      "zebra",
+      "oldParentWidth"
     ),
 
-    columnDraggerStyles () {
+    columnDraggerStyles() {
       return {
-        left: (this.columnPosition - 7) + 'px',
-        height: this.guiderHeight + 'px'
-      }
+        left: this.columnPosition - 7 + "px",
+        height: this.guiderHeight + "px"
+      };
     },
 
-    themeClass () {
-      return {[`theme-${this.theme}`]: this.theme, 'u-grid-zebra': this.zebra}
+    themeClass() {
+      return {
+        [`theme-${this.theme}`]: this.theme,
+        "u-grid-zebra": this.zebra
+      };
     },
 
-    tableWidth () {
-      let w = 0
-      this.columns.forEach(col => { w = col.hidden ? w : w + col.width })
-      return w
+    tableWidth() {
+      let w = 0;
+      this.columns.forEach(col => {
+        w = col.hidden ? w : w + col.width;
+      });
+      return w;
     },
 
-    leftTableClass () {
-      let cls = 'u-grid-body u-table-left'
+    leftTableClass() {
+      let cls = "u-grid-body u-table-left";
       if (this.scrollLeft) {
-        cls += ' dark'
+        cls += " dark";
       }
-      return cls
+      return cls;
     },
 
-    rightTableClass () {
-      let cls = 'u-grid-body u-table-right'
+    rightTableClass() {
+      let cls = "u-grid-body u-table-right";
       if (!this.isScrollRight) {
-        cls += ' dark'
+        cls += " dark";
       }
-      return cls
+      return cls;
     }
   },
 
   methods: {
-    ...mapMethod('getSelection', 'showLoading', 'setSelection', 'removeRow',
-      'setComment', 'removeComment', 'getSelectedRows', 'getColumn', 'getDefaultRow',
-      'makeRows', 'sendInputEvent', 'deselectAll', 'selectAll', 'select', 'deselect',
-      'toggle', 'getComment', 'getClass', 'removeClass', 'setClass', 'addRow',
-      'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow', 'expand', 'collapse'),
+    ...mapMethod(
+      "getSelection",
+      "showLoading",
+      "setSelection",
+      "removeRow",
+      "setComment",
+      "removeComment",
+      "getSelectedRows",
+      "getColumn",
+      "getDefaultRow",
+      "makeRows",
+      "sendInputEvent",
+      "deselectAll",
+      "selectAll",
+      "select",
+      "deselect",
+      "toggle",
+      "getComment",
+      "getClass",
+      "removeClass",
+      "setClass",
+      "addRow",
+      "addEditRow",
+      "updateRow",
+      "addChildRow",
+      "addEditChildRow",
+      "moveRow",
+      "expand",
+      "collapse"
+    ),
 
-    resize (width, height) {
-      if (width) this.width = width
-      if (this.width === 'auto') {
-        this.store.states.gridWidth = this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth
+    resize(width, height) {
+      if (width) this.width = width;
+      if (this.width === "auto") {
+        this.store.states.gridWidth =
+          this.$el.clientWidth === 0
+            ? this.$parent.$el.clientWidth
+            : this.$el.clientWidth;
       } else {
-        this.store.states.gridWidth = this.width
+        this.store.states.gridWidth = this.width;
       }
-      if (height) this.height = height
+      if (height) this.height = height;
 
       // if (!this.resizable) return
       // let parentWidth = this.$el.clientWidth
-      let cols = []
-      let w = this.gridWidth - 2
-      let hasLeftFixed = false
-      let hasRightFixed = false
-      let max_level = 0
+      let cols = [];
+      let w = this.gridWidth - 2;
+      let hasLeftFixed = false;
+      let hasRightFixed = false;
+      let max_level = 0;
 
       for (let col of this.columns) {
-        col.subs = col.title.split(this.multiHeaderSep)
-        max_level = Math.max(max_level, col.subs.length)
+        col.subs = col.title.split(this.multiHeaderSep);
+        max_level = Math.max(max_level, col.subs.length);
         if (col.width) {
-          w -= col.width
+          w -= col.width;
         } else {
-          cols.push(col)
+          cols.push(col);
         }
-        switch(col.fixed) {
-          case 'left':
-            hasLeftFixed = true
-            break
-          case 'right':
-            hasRightFixed = true
-            break
+        switch (col.fixed) {
+          case "left":
+            hasLeftFixed = true;
+            break;
+          case "right":
+            hasRightFixed = true;
+            break;
         }
       }
 
       if (cols.length > 0 && this.gridWidth) {
-        let len = cols.length
+        let len = cols.length;
 
         // 当总宽度小于实际宽度，未设宽度的列使用缺省最小宽度
-        let stepW = w / len
-        let lastW = w - (len - 1) * stepW
+        let stepW = w / len;
+        let lastW = w - (len - 1) * stepW;
         for (let i = 0; i < len; i++) {
           if (w > 0) {
             if (i === len - 1) {
-              cols[i].width = Math.max(lastW, this.defaultColWidth)
+              cols[i].width = Math.max(lastW, this.defaultColWidth);
             } else {
-              cols[i].width = Math.max(stepW, this.defaultColWidth)
+              cols[i].width = Math.max(stepW, this.defaultColWidth);
             }
           } else {
-            cols[i].width = this.defaultColWidth
+            cols[i].width = this.defaultColWidth;
           }
         }
       }
 
       // 处理左侧固定列
       if (hasLeftFixed || hasRightFixed) {
-        let leftCols = []
-        let rightCols = []
-        let restCols = []
-        this.store.states.leftWidth = 0
-        this.store.states.rightWidth = 0
+        let leftCols = [];
+        let rightCols = [];
+        let restCols = [];
+        this.store.states.leftWidth = 0;
+        this.store.states.rightWidth = 0;
 
         for (let i = 0, len = this.columns.length; i < len; i++) {
-          let col = this.columns[i]
+          let col = this.columns[i];
           if (
-              (col.fixed === 'left') || 
-              (hasLeftFixed && (
-                ( col.name === '__check_col__') || (col.name === '__index_col__')
-                )
-              )
-            ) {
-            col.fixed = 'left'
-            leftCols.push(col)
-            this.store.states.leftWidth += col.width
-          } else if (col.fixed === 'right') {
-            rightCols.push(col)
-            this.store.states.rightWidth += col.width
+            col.fixed === "left" ||
+            (hasLeftFixed &&
+              (col.name === "__check_col__" || col.name === "__index_col__"))
+          ) {
+            col.fixed = "left";
+            leftCols.push(col);
+            this.store.states.leftWidth += col.width;
+          } else if (col.fixed === "right") {
+            rightCols.push(col);
+            this.store.states.rightWidth += col.width;
           } else {
-            restCols.push(col)
+            restCols.push(col);
           }
         }
-        this.store.states.columns = leftCols.concat(restCols).concat(rightCols)
+        this.store.states.columns = leftCols.concat(restCols).concat(rightCols);
       }
-      this.store.states.drawColumns = this.parse_header(this.columns, max_level)
+      this.store.states.drawColumns = this.parse_header(
+        this.columns,
+        max_level
+      );
     },
 
-    parse_header (cols, max_level) {
+    parse_header(cols, max_level) {
       let columns = [], //保存每行的最后有效列
         columns_width = {}, //保存每行最右坐标
-        i, len, j, jj, col, jl,
+        i,
+        len,
+        j,
+        jj,
+        col,
+        jl,
         subs_len,
         path,
         rowspan, //每行平均层数，max_level/sub_len，如最大4层，当前总层数为2,则每行占两层
         colspan,
         parent, //上一层的结点为下一层的父结点
         new_col, //记录显示用的表头单元
-        left  //某层最左结点
+        left; //某层最左结点
 
-      if (!cols || cols.length === 0)
-        return []
+      if (!cols || cols.length === 0) return [];
 
       //初始化表头层
-      for (i = 0; i < max_level; i ++) {
-        columns[i] = []
-        columns_width[i] = 0
+      for (i = 0; i < max_level; i++) {
+        columns[i] = [];
+        columns_width[i] = 0;
       }
       //处理多级表头
-      for(let col of cols) {
-        subs_len = col.subs.length
-        rowspan = 1//Math.floor(max_level / subs_len)
-        for (j=0; j<subs_len; j++) {
-          path = col.subs[j]
-          new_col = Object.assign({}, col)
-          new_col.title = path.replace('%%', '/')
-          new_col.level = j
-          new_col.colspan = 1
-          new_col.col = col
+      for (let col of cols) {
+        subs_len = col.subs.length;
+        rowspan = 1; //Math.floor(max_level / subs_len)
+        for (j = 0; j < subs_len; j++) {
+          path = col.subs[j];
+          new_col = Object.assign({}, col);
+          new_col.title = path.replace("%%", "/");
+          new_col.level = j;
+          new_col.colspan = 1;
+          new_col.col = col;
           if (j == subs_len - 1) {
             //如果是最后一层，则rowspan为最大值减其余层
-            new_col.rowspan = max_level - (subs_len-1)*rowspan
-            new_col.leaf = true
+            new_col.rowspan = max_level - (subs_len - 1) * rowspan;
+            new_col.leaf = true;
           } else {
-            new_col.rowspan = rowspan
+            new_col.rowspan = rowspan;
           }
 
           //查找同层最左边的结点，判断是否title和rowspan一致
           //如果一致，进行合并，即colspan +1
           //如果不一致，则插入新的结点
           //对于一层以下的结点，还要看上一层是否同一个结点，如果是才合并，否则插入
-          if (columns[j].length > 0)
-            left = columns[j][columns[j].length-1]
+          if (columns[j].length > 0) left = columns[j][columns[j].length - 1];
           else {
-            left = null
+            left = null;
           }
 
           //进行合并的判断，当left不为null，并且标题，层级，并且位置小于当前位置
-          if (left && left.title === new_col.title && left.level === new_col.level) {
-            left.colspan ++
-            left.width += new_col.width
-            columns_width[j] += new_col.width
+          if (
+            left &&
+            left.title === new_col.title &&
+            left.level === new_col.level
+          ) {
+            left.colspan++;
+            left.width += new_col.width;
+            columns_width[j] += new_col.width;
             // left.leaf = false
           } else {
             //当new_col占多行时，将下层结点清空
-            columns[j].push(new_col)
-            new_col.left = columns_width[j]
-            columns_width[j] += new_col.width
-            for (jl=1; jl<new_col.rowspan; jl++) {
-              columns_width[j+jl] += new_col.width
+            columns[j].push(new_col);
+            new_col.left = columns_width[j];
+            columns_width[j] += new_col.width;
+            for (jl = 1; jl < new_col.rowspan; jl++) {
+              columns_width[j + jl] += new_col.width;
             }
           }
-          col.left = new_col.left
+          col.left = new_col.left;
         }
       }
-      return columns
+      return columns;
     },
 
-    getDefaultColumn (options) {
+    getDefaultColumn(options) {
       // 如果column设置了showTitle，则使用column的值，否则使用全局的cellTitle属性
-      let show
+      let show;
       if (this.cellTitle === undefined) {
-        show = true
+        show = true;
       } else {
-        show = this.cellTitle
+        show = this.cellTitle;
       }
       if (options.showTitle !== undefined) {
-        show = options.showTitle
+        show = options.showTitle;
       }
       // 如果column设置了showHeadreTitle，则使用column的值，否则使用全局的headerTitle属性
-      let headerShow
+      let headerShow;
       if (this.headerTitle === undefined) {
-        headerShow = true
+        headerShow = true;
       } else {
-        headerShow = this.headerTitle
+        headerShow = this.headerTitle;
       }
       if (options.showHeaderTitle !== undefined) {
-        headerShow = options.showHeaderTitle
+        headerShow = options.showHeaderTitle;
       }
-      return Object.assign({
-        name: 'title',
-        width: 0,
-        sortable: false,
-        align: '',
-        headerAlign: '',
-        hidden: false,
-        fixed: '',
-        resizable: true,
-        type: 'column',
-        editorOptions: {},
-        showTitle: show,
-        showHeaderTitle: headerShow,
-        html: true
-      }, options || {})
+      return Object.assign(
+        {
+          name: "title",
+          width: 0,
+          sortable: false,
+          align: "",
+          headerAlign: "",
+          hidden: false,
+          fixed: "",
+          resizable: true,
+          type: "column",
+          editorOptions: {},
+          showTitle: show,
+          showHeaderTitle: headerShow,
+          html: true
+        },
+        options || {}
+      );
     },
 
-    makeCols () {
-      var cols = []
+    makeCols() {
+      var cols = [];
 
-      let check_column
-      let index_column
+      let check_column;
+      let index_column;
       // 生成checkbox列
       if (this.checkCol) {
         check_column = this.getDefaultColumn({
-          name: '__check_col__',
-          type: 'check',
+          name: "__check_col__",
+          type: "check",
           resizable: false,
           width: this.checkColWidth,
           title: this.checkColTitle,
-          align: 'center',
-          fixed: ''
-        })
-        cols.push(check_column)
+          align: "center",
+          fixed: ""
+        });
+        cols.push(check_column);
       }
 
       // 生成序号列
       if (this.indexCol) {
         index_column = this.getDefaultColumn({
-          name: '__index_col__',
-          type: 'index',
+          name: "__index_col__",
+          type: "index",
           resizable: false,
           width: this.indexColWidth,
           title: this.indexColTitle,
-          align: 'center',
-          fixed: ''
-        })
-        cols.push(index_column)
+          align: "center",
+          fixed: ""
+        });
+        cols.push(index_column);
       }
 
       this.data.columns.forEach(col => {
         if (!col.hidden) {
-          if (col.name === '__check_col__'){
-            Object.assign(check_column, col)
-          } else if (col.name === '__index_col__') {
-            Object.assign(index_column, col)
+          if (col.name === "__check_col__") {
+            Object.assign(check_column, col);
+          } else if (col.name === "__index_col__") {
+            Object.assign(index_column, col);
           } else {
-            let d = this.getDefaultColumn(col)
+            let d = this.getDefaultColumn(col);
             // 增加行编辑操作列的render函数
-            if (this.editMode === 'row' && col.name === this.actionColumn) {
-              d.render = col.render || this.editActionRender
+            if (this.editMode === "row" && col.name === this.actionColumn) {
+              d.render = col.render || this.editActionRender;
             }
-            if (!d.title) d.title = d.name
+            if (!d.title) d.title = d.name;
             // 静态模式下，隐藏操作列
-            if (!this.static && col.name === this.actionColumn || col.name !== this.actionColumn)
-              cols.push(d)
+            if (
+              (!this.static && col.name === this.actionColumn) ||
+              col.name !== this.actionColumn
+            )
+              cols.push(d);
             // 处理format回调，如果是一个字符串，则转为函数
-            if (typeof col.format === 'string') {
-              let func_str = 'return ' + '`' + col.format + '`'
-              let func = new Function('value', 'column', 'row', func_str)
-              col._format = col.format
-              col.format = func
+            if (typeof col.format === "string") {
+              let func_str = "return " + "`" + col.format + "`";
+              let func = new Function("value", "column", "row", func_str);
+              col._format = col.format;
+              col.format = func;
             }
           }
         }
-      })
+      });
 
-      return cols
+      return cols;
     },
 
-    handleResize () {
-      this.store.states.columns = this.makeCols()
-      this.resize()
+    handleResize() {
+      this.store.states.columns = this.makeCols();
+      this.resize();
     },
 
-    handleScroll (left, top) {
+    handleScroll(left, top) {
       if (this.leftWidth) {
-        this.$refs.left.$refs.body.scrollTop = top
+        this.$refs.left.$refs.body.scrollTop = top;
       }
       if (this.rightWidth) {
-        this.$refs.right.$refs.body.scrollTop = top
+        this.$refs.right.$refs.body.scrollTop = top;
       }
     },
 
-    handlePage (page) {
-      this.go(page)
+    handlePage(page) {
+      this.go(page);
     },
 
-    handlePageSize (size) {
-      this.go(1, {pageSize: size})
+    handlePageSize(size) {
+      this.go(1, { pageSize: size });
     },
 
-    handleQueryChange (change) {
-      this.$emit('on-query-change', change)
+    handleQueryChange(change) {
+      this.$emit("on-query-change", change);
     },
 
     // 生成缺省的行编辑按钮
-    editActionRender (h, param) {
+    editActionRender(h, param) {
       if (this.onRowEditRender) {
-        let render = this.onRowEditRender(h, param.row)
-        if (render) return render        
+        let render = this.onRowEditRender(h, param.row);
+        if (render) return render;
       }
-      let cls = 'u-cell-text'
-      if (this.nowrap) cls += ' nowrap'
-      return h('div', {
-        'class': cls
-      },
-      [
-        this.defaultEditRender(h, param.row),
-        this.defaultDeleteRender(h, param.row)
-      ])
+      let cls = "u-cell-text";
+      if (this.nowrap) cls += " nowrap";
+      return h(
+        "div",
+        {
+          class: cls
+        },
+        [
+          this.defaultEditRender(h, param.row),
+          this.defaultDeleteRender(h, param.row)
+        ]
+      );
     },
 
-    defaultEditRender (h, row) {
-      return h('Button', {
-        props: {
-          type: 'primary',
-          size: 'small',
-          loading: row._saving
-        },
-        style: {
-            margin: '0 5px'
-        },
-        on: {
-            click: () => {
+    defaultEditRender(h, row) {
+      return h(
+        "Button",
+        {
+          props: {
+            type: "primary",
+            size: "small",
+            loading: row._saving
+          },
+          style: {
+            margin: "0 5px"
+          },
+          on: {
+            click: async () => {
               if (!row._editting) {
-                this.$set(row, '_editRow', Object.assign({}, row))
-                this.$set(row, '_editting', true)
+                this.$set(row, "_editRow", Object.assign({}, row));
+                this.$set(row, "_editting", true);
               } else {
-                this.$set(row, '_saving', true)
+                this.$set(row, "_saving", true);
                 if (this.onSaveRow) {
                   let callback = (flag, data) => {
-                    if (flag === 'ok') {
-                      copyDataRow(row, row._editRow)
-                      this.removeComment(row)
-                      this.$set(row, '_editting', !row._editting)
-                      this.$set(row, '_new', false) //保存之后，将_new置为false
-                      delete row._editRow
-                      this.sendInputEvent()
+                    if (flag === "ok") {
+                      copyDataRow(row, row._editRow);
+                      this.removeComment(row);
+                      this.$set(row, "_editting", !row._editting);
+                      this.$set(row, "_new", false); //保存之后，将_new置为false
+                      delete row._editRow;
+                      this.sendInputEvent();
                     } else {
-                      for(let key in data) {
-                        let v = data[key]
-                        this.setComment(row, key, v, 'error')
+                      for (let key in data) {
+                        let v = data[key];
+                        this.setComment(row, key, v, "error");
                       }
                     }
-                    this.$set(row, '_saving', false)
-                  }
-                  this.onSaveRow.call(this, row._editRow, callback, row)
+                    this.$set(row, "_saving", false);
+                  };
+                  // 校验错误
+                  let res = await this.validateRow(row._editRow);
+                  if (res) {
+                    for (let key in res) {
+                      let v = res[key];
+                      this.setComment(row, key, v, "error");
+                    }
+                    this.$set(row, "_saving", false);
+                    if (this.onError) {
+                      this.onError.call(this, res);
+                    }
+                  } else this.onSaveRow.call(this, row._editRow, callback, row);
                 } else {
-                  copyDataRow(row, row._editRow)
-                  delete row._editRow
-                  this.$set(row, '_editting', false)
-                  this.$set(row, '_saving', false)
-                  this.sendInputEvent()
+                  copyDataRow(row, row._editRow);
+                  delete row._editRow;
+                  this.$set(row, "_editting", false);
+                  this.$set(row, "_saving", false);
+                  this.sendInputEvent();
                 }
               }
             }
-        }
-      }, row._editting ? '保存' : '编辑')
+          }
+        },
+        row._editting ? "保存" : "编辑"
+      );
     },
 
-    defaultDeleteRender (h, row) {
+    // 校验某一行数据
+    async validateRow(row) {
+      let rules = {};
+      for (let c of this.store.states.columns) {
+        if (c.editor && c.editor instanceof Object && c.editor.rule) {
+          rules[c.name] = c.editor.rule;
+        }
+      }
+      let res;
+      if (!isEmpty(rules)) {
+        res = await this.$validator.validate(row, rules);
+      }
+      return res;
+    },
+
+    defaultDeleteRender(h, row) {
       let defaultDeleteFunc = () => {
         if (row._editting) {
-          this.$set(row, '_editting', false)
-          this.$delete(row, '_editRow')
-          this.removeComment(row)
+          this.$set(row, "_editting", false);
+          this.$delete(row, "_editRow");
+          this.removeComment(row);
           if (row._new) {
-            this.removeRow(row)
+            this.removeRow(row);
           }
-          return
+          return;
         }
 
         let callback = (flag, data) => {
-          if (flag === 'ok') {
-            this.removeRow(row)
-            this.sendInputEvent()
+          if (flag === "ok") {
+            this.removeRow(row);
+            this.sendInputEvent();
           } else {
-            for(let key in data) {
-              let v = data[key]
-              this.setComment(row, key, v, 'error')
+            for (let key in data) {
+              let v = data[key];
+              this.setComment(row, key, v, "error");
             }
-            this.$set(row, '_deleting', false)
+            this.$set(row, "_deleting", false);
           }
-        }
-        if (this.onDeleteRow){
-          this.onDeleteRow.call(this, row, callback)
+        };
+        if (this.onDeleteRow) {
+          this.onDeleteRow.call(this, row, callback);
         } else {
-          this.removeRow(row)
-          this.sendInputEvent()
+          this.removeRow(row);
+          this.sendInputEvent();
         }
-      }
+      };
 
-      let type = row._editting ? 'default' : 'error'
+      let type = row._editting ? "default" : "error";
 
-      return h('Button', {
-        style: {
-          margin: '0 5px'
-        },
-        props: {
-          type: type,
-          placement: 'top',
-          size: 'small',
-          loading: row._deleting
-        },
-        on: {
-          click: () => {
-            if (this.deleteRowConfirm && !row._editting) {
-              this.$Modal.confirm({
-                content: '请确认是否要删除本条记录？',
-                onOk: () => {
-                  defaultDeleteFunc()
-                }
-              })
-            } else {
-              defaultDeleteFunc()
+      return h(
+        "Button",
+        {
+          style: {
+            margin: "0 5px"
+          },
+          props: {
+            type: type,
+            placement: "top",
+            size: "small",
+            loading: row._deleting
+          },
+          on: {
+            click: () => {
+              if (this.deleteRowConfirm && !row._editting) {
+                this.$Modal.confirm({
+                  content: "请确认是否要删除本条记录？",
+                  onOk: () => {
+                    defaultDeleteFunc();
+                  }
+                });
+              } else {
+                defaultDeleteFunc();
+              }
             }
           }
-        }
-      }, row._editting ? '取消' : '删除')
+        },
+        row._editting ? "取消" : "删除"
+      );
     },
 
     go(page, opts) {
-      this.page = page
-      if (opts && opts.pageSize)
-        this.pageSize = opts.pageSize
-      this.start = (this.page - 1) * this.pageSize + 1
-      this.$set(this.param, 'page', page)
-      this.loadData(opts || {})
+      this.page = page;
+      if (opts && opts.pageSize) this.pageSize = opts.pageSize;
+      this.start = (this.page - 1) * this.pageSize + 1;
+      this.$set(this.param, "page", page);
+      this.loadData(opts || {});
     },
 
-    reset_query () {
-      this.$refs.query.reset()
+    reset_query() {
+      this.$refs.query.reset();
     },
 
-    clear () {
-      this.page = 1
-      this.start = 1
-      this.$set(this.param, 'page', 1)
-      this.store.states.data = []
+    clear() {
+      this.page = 1;
+      this.start = 1;
+      this.$set(this.param, "page", 1);
+      this.store.states.data = [];
     },
 
-    loadData (url, param) {
-      let _url
+    loadData(url, param) {
+      let _url;
       if (url instanceof Object) {
-        _url = this.url
-        param = url
+        _url = this.url;
+        param = url;
       } else {
-        _url = url || this.url
+        _url = url || this.url;
       }
-      Object.assign(this.param, param || {})
+      Object.assign(this.param, param || {});
       // data 为数据行， others 为其它信息，如total
       const callback = (data, others) => {
         if (data) {
-          this.store.states.data = []
-          this.store.states.data = this.makeRows(data)
+          this.store.states.data = [];
+          this.store.states.data = this.makeRows(data);
         }
-        if (others && (others instanceof Object)) {
-          this.store.mergeStates(others)
+        if (others && others instanceof Object) {
+          this.store.mergeStates(others);
         }
         if (this.afterLoadData) {
-          this.afterLoadData()
-          this.afterLoadData = null // 清除
+          this.afterLoadData();
+          this.afterLoadData = null; // 清除
         }
-        this.$nextTick( () => {
-          this.showLoading(false)
-          this.setSelection(this.selected)
-          this.sendInputEvent()
-        })
-      }
+        this.$nextTick(() => {
+          this.showLoading(false);
+          this.setSelection(this.selected);
+          this.sendInputEvent();
+        });
+      };
       if (this.onLoadData) {
-        this.showLoading(true)
-        this.onLoadData(_url, this.param, callback)
+        this.showLoading(true);
+        this.onLoadData(_url, this.param, callback);
       }
     },
 
-    handleQuerySubmit (data) {
-      this.go(1, data)
+    handleQuerySubmit(data) {
+      this.go(1, data);
     },
 
-    getData () {
-      return deepCopy(this.store.states.data, true)
+    getData() {
+      return deepCopy(this.store.states.data, true);
     }
   },
 
-  created () {
-    this.store.states.columns = this.makeCols()
-    this.store.states.data = this.makeRows(this.store.states.data)
+  created() {
+    this.store.states.columns = this.makeCols();
+    this.store.states.data = this.makeRows(this.store.states.data);
   },
 
-  mounted () {
-    this.resize()
-    window.addEventListener('resize', this.handleResize, true)
+  mounted() {
+    this.resize();
+    window.addEventListener("resize", this.handleResize, true);
 
     // 初始化query 的 param
     if (this.$refs.query && this.$refs.query.value)
-      this.param = Object.assign(this.param, this.$refs.query.value)
+      this.param = Object.assign(this.param, this.$refs.query.value);
 
     if (this.autoLoad) {
-      this.$nextTick( () => {
-        this.loadData()
-      })
+      this.$nextTick(() => {
+        this.loadData();
+      });
     }
-    this.oldParentWidth = this.$parent.$el.offsetWidth
+    this.oldParentWidth = this.$parent.$el.offsetWidth;
+    let self = this;
 
-    this.__resizeHandler = debounce(() => {
-      let width = this.$parent.$el.offsetWidth
-      if (width !== this.oldParentWidth) {
-        this.store.states.columns = this.makeCols()
-        this.resize()
-        this.oldParentWidth = width
+    this.__resizeHandler = debounce(
+      () => {
+        let parent = self.$parent.$el;
+        let p_width = parent.offsetWidth;
+        let width = p_width;
+        while (1) {
+          parent = parent.parentNode;
+          if (!parent || !parent.offsetWidth) break;
+          if (parent.offsetWidth < width) {
+            width = parent.offsetWidth;
+            break;
+          }
+          width = parent.offsetWidth;
+        }
+        width = Math.min(width, p_width);
+        if (width !== self.oldParentWidth) {
+          self.store.states.columns = self.makeCols();
+          self.resize(width);
+          self.oldParentWidth = width;
+        }
+      },
+      100,
+      { leading: true }
+    );
+    if (this.store.states.detectParentResize) {
+      let el = findParent(this, "Build");
+      if (!el) {
+        el = this.$parent.$el;
+      } else {
+        el = el.$el;
       }
-    }, 100, { leading: true })
-    if (this.store.states.detectParentResize)
-      addListener(this.$parent.$el, this.__resizeHandler)
-
+      addListener(el, this.__resizeHandler);
+      addListener(this.$parent.$el, this.__resizeHandler);
+    }
   },
 
-  destroy () {
-    removeListener(this.$parent.$el, this.__resizeHandler)
+  destroy() {
+    removeListener(this.$parent.$el, this.__resizeHandler);
   },
 
   watch: {
-    'data.columns': {
-      handler: function () {
-        this.store.states.columns = this.makeCols()
-        this.resize()
+    "data.columns": {
+      handler: function() {
+        this.store.states.columns = this.makeCols();
+        this.resize();
       },
       deep: true
     },
 
     choices: {
       immediate: true,
-      handler (v) {
-        for(let field of this.columns) {
-          let choices = v[field.name]
+      handler(v) {
+        for (let field of this.columns) {
+          let choices = v[field.name];
           if (choices && field.editor) {
-            setChoice(this, field.editor, choices)
+            setChoice(this, field.editor, choices);
           }
         }
         if (this.query && this.query.fields) {
-          for(let field of this.query.fields) {
-            let choices = v[field.name]
+          for (let field of this.query.fields) {
+            let choices = v[field.name];
             if (choices) {
-              setChoice(this, field, choices)
+              setChoice(this, field, choices);
             }
           }
         }
@@ -698,14 +899,14 @@ export default {
     },
 
     value: {
-      handler: function (value) {
-        this.store.states.data = this.makeRows(value || [])
+      handler: function(value) {
+        this.store.states.data = this.makeRows(value || []);
       },
       deep: true
     },
-    'store.states.static': function (value) {
-        this.store.states.columns = this.makeCols()
-        this.resize()
+    "store.states.static": function(value) {
+      this.store.states.columns = this.makeCols();
+      this.resize();
     }
     // 'store.states.data': {
     //   handler: function (value) {
@@ -714,12 +915,12 @@ export default {
     //   deep: true
     // }
   }
-}
+};
 </script>
 
 <style lang="less">
 .ivu-btn-group {
-  margin-right:3px;
+  margin-right: 3px;
 }
 
 label {
@@ -727,7 +928,6 @@ label {
 }
 
 .u-grid-wrapper {
-
   .u-grid-tools {
     margin-bottom: 5px;
     height: 25px;
@@ -738,17 +938,16 @@ label {
       height: 0;
       clear: both;
       overflow: hidden;
-      visibility: hidden
+      visibility: hidden;
     }
 
     .u-grid-tools-left {
-      float: left!important;
+      float: left !important;
     }
 
     .u-grid-tools-right {
-      float: right!important;
+      float: right !important;
     }
-
   }
 
   .u-grid {
@@ -779,7 +978,8 @@ label {
       z-index: 9999;
     }
 
-    .u-table-left, .u-table-right {
+    .u-table-left,
+    .u-table-right {
       position: absolute;
       top: 0;
       left: 0;
@@ -824,12 +1024,12 @@ label {
       }
       .u-table-body-scroll table tr td {
         border: none;
-        border-bottom: 1px solid #eee;        
+        border-bottom: 1px solid #eee;
       }
     }
   }
 }
-.u-grid-zebra .u-table-body-scroll table{
+.u-grid-zebra .u-table-body-scroll table {
   tr {
     background-color: #fff;
   }
@@ -841,11 +1041,9 @@ label {
       background-color: #ffefd5;
     }
 
-    &.hover{
-      background-color:#e1eff8;
+    &.hover {
+      background-color: #e1eff8;
     }
   }
 }
-
-
 </style>

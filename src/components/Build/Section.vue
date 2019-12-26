@@ -62,8 +62,14 @@ export default {
   }
 }
 
+.u-layout-cell {
+  display: table;
+  width: 100%;
+}
+
 .u-layout-cell-label {
   display: table-cell;
+  // float: left;
   text-align: right;
   margin-right: 10px;
   vertical-align: top;
@@ -89,7 +95,7 @@ export default {
 
 .u-layout-cell-field {
   display: table-cell;
-  width: 2000px;
+  width: 100%;
   // vertical-align: middle;
   text-align: left;
   position: relative;

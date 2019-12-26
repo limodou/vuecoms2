@@ -290,6 +290,19 @@ export const formatDate = function (d, fmt='yyyy/MM/dd') {
 // deepCopy
 export const deepCopy = function (data, clear=false) {
   let o
+  let clear_func
+
+  if (clear) {
+    if (clear === true) {
+      clear_func = (k, v) => {
+        return k.startsWith('_') || k.endsWith('_static')
+      }
+    } else if (typeof clear === 'function') {
+      clear_func = clear
+    } else {
+      throw new Error(`clear object ${clear} is not be supported, please check.`)
+    }
+  }
 
   if (!data) return data
   if (Array.isArray(data)) {
@@ -310,7 +323,7 @@ export const deepCopy = function (data, clear=false) {
       }
   } else if (data instanceof Object) {
       for (let i in data) {
-        if (!clear || clear && !i.startsWith('_') && !i.endsWith('_static'))
+        if (!clear_func || (clear_func && !clear_func(i, data[i])))
           o[i] = deepCopy(data[i], clear)
       }
   }

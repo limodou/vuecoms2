@@ -12777,13 +12777,62 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Box = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=55b8fed5&
-var UGridvue_type_template_id_55b8fed5_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e()],1):_vm._e(),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_55b8fed5_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=23161e0f&
+var UGridvue_type_template_id_23161e0f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e()],1):_vm._e(),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_23161e0f_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=55b8fed5&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=23161e0f&
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
+var regenerator = __webpack_require__("a34a");
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+
+// EXTERNAL MODULE: ./node_modules/regenerator-runtime/runtime.js
+var runtime = __webpack_require__("96cf");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
+var promise = __webpack_require__("795b");
+var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    promise_default.a.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new promise_default.a(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
 
@@ -12804,14 +12853,14 @@ var es6_string_fixed = __webpack_require__("d263");
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__("bd86");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0bcc1788&
-var UTablevue_type_template_id_0bcc1788_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0db02e8a&
+var UTablevue_type_template_id_0db02e8a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
 var _obj;
 return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:( _obj = {}, _obj[_vm.store.states.selectedRowClass] = _vm.store.states.selectedRowClass && _vm.store.selected(row.row), _obj.hover = _vm.hoverShow && _vm.hoverRowKey && row._rowKey==_vm.hoverRowKey, _obj ),style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){return _vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){return _vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{class:{'u-cell-last': col.last},style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed},on:{"click":function($event){return _vm.handleClick(col.row)}}})],1)}),0):_vm._e()}),0)])])])}
-var UTablevue_type_template_id_0bcc1788_staticRenderFns = []
+var UTablevue_type_template_id_0db02e8a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=0bcc1788&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=0db02e8a&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
 var es6_array_sort = __webpack_require__("55dd");
@@ -13242,6 +13291,20 @@ var formatDate = function formatDate(d) {
 var utils_deepCopy = function deepCopy(data) {
   var clear = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var o;
+  var clear_func;
+
+  if (clear) {
+    if (clear === true) {
+      clear_func = function clear_func(k, v) {
+        return k.startsWith('_') || k.endsWith('_static');
+      };
+    } else if (typeof clear === 'function') {
+      clear_func = clear;
+    } else {
+      throw new Error("clear object ".concat(clear, " is not be supported, please check."));
+    }
+  }
+
   if (!data) return data;
 
   if (is_array_default()(data)) {
@@ -13282,7 +13345,7 @@ var utils_deepCopy = function deepCopy(data) {
     }
   } else if (data instanceof Object) {
     for (var i in data) {
-      if (!clear || clear && !i.startsWith('_') && !i.endsWith('_static')) o[i] = deepCopy(data[i], clear);
+      if (!clear_func || clear_func && !clear_func(i, data[i])) o[i] = deepCopy(data[i], clear);
     }
   }
 
@@ -13657,16 +13720,7 @@ function () {
       var v;
       if (!direct) v = this.getStaticValue(value);else v = value;
       this.parent.$set(this.value, this.static_name, v);
-
-      if (this.labelField) {
-        if (typeof v === 'string') {
-          this.parent.$set(this.value, this.labelField, v);
-        } else if (v instanceof Object) {
-          if (v.label) {
-            this.parent.$set(this.value, this.labelField, v.label);
-          }
-        }
-      }
+      if (this.labelField) this.parent.$set(this.value, this.labelField, v);
     }
   }, {
     key: "setValue",
@@ -13702,8 +13756,7 @@ function () {
 
 
       if (this.labelField) {
-        // 只处理字符串的形式
-        if (typeof value === 'string') value = {
+        value = {
           label: self.value[this.labelField],
           value: value
         };
@@ -16369,8 +16422,6 @@ var columnKey = 1;
      * 行点击处理，如果clickSelect为true，则当前行选中
      */
     handleClick: function handleClick(row) {
-      console.log('click');
-
       if (this.clickSelect && !this.static) {
         this.store.toggle(row);
       }
@@ -16439,8 +16490,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_0bcc1788_render,
-  UTablevue_type_template_id_0bcc1788_staticRenderFns,
+  UTablevue_type_template_id_0db02e8a_render,
+  UTablevue_type_template_id_0db02e8a_staticRenderFns,
   false,
   null,
   null,
@@ -16449,10 +16500,6 @@ var UTable_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UTable = (UTable_component.exports);
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
-var promise = __webpack_require__("795b");
-var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/values.js
 var values = __webpack_require__("db0c");
 var values_default = /*#__PURE__*/__webpack_require__.n(values);
@@ -16594,6 +16641,8 @@ function () {
       onSaveRow: null,
       // 保存行时调用 function (row, callback), callback(flag, data)
       // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
+      onError: null,
+      // 保存行时，校验出错时回调
       onSaveCol: null,
       // 保存单元格时调用 function (value, callback), callback(flag, data)
       // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
@@ -16632,6 +16681,8 @@ function () {
       selectedRows: {},
       afterLoadData: null,
       // 在loadData之后的回调用于特殊场合，处理之后会清除，只会运行一次
+      oldParentWidth: 0,
+      // 父元素的上次宽度
       // 分页相关参数
       prev: '上一页',
       next: '下一页',
@@ -17997,12 +18048,12 @@ var UButtons_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UButtons = (UButtons_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Query/Query.vue?vue&type=template&id=5528c5b8&
-var Queryvue_type_template_id_5528c5b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-query"},[_c('form',{on:{"submit":_vm.handleSubmit}},[(_vm.showSelected && _vm.selected.length>0)?[_c('Row',{staticClass:"selectedRow"},[_c('Col',{attrs:{"span":"1"}},[_c('span',{staticClass:"selectedText"},[_vm._v("已选:")])]),_c('Col',{attrs:{"span":"22"}},_vm._l((_vm.selected),function(s){return _c('Tag',{key:s['name'],class:'selectedTag',attrs:{"type":"border","closable":"","name":s['name']},on:{"on-close":_vm.handleTagClose}},[_vm._v(_vm._s(s['label'])+": "+_vm._s(s['value'])+"\n        ")])}),1)],1),_c('div',{staticClass:"line"})]:_vm._e(),(!_vm.isShow && _vm.showLine === 1)?_c('Row',{staticClass:"u-layout-row",style:(_vm.firstLayoutStyle)},[_vm._l((_vm.firstLayout),function(col){return _c('FormCell',{staticClass:"u-query-firstlayout",attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"field-style":col.style,"compact":true,"root":"Query"}})}),_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],2):_vm._l((_vm.getRows(_vm.rows)),function(row,index){return _c('Row',{key:index,staticClass:"u-layout-row"},_vm._l((row),function(col){return _c('Col',{attrs:{"span":col.colspan}},[_c('FormCell',{attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"root":_vm.Query}})],1)}),1)}),(_vm.rows.length > 1 && _vm.showLine < _vm.rows.length)?_c('Row',{staticClass:"collapse-line"},[_c('span',{staticClass:"showMoreBtn",on:{"click":function($event){_vm.isShow = !_vm.isShow}}},[_vm._v("\n      "+_vm._s(_vm.isShow ? "隐藏" : "显示")+"\n      "),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShow),expression:"isShow"}],attrs:{"type":"ios-arrow-up"}}),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isShow),expression:"!isShow"}],attrs:{"type":"ios-arrow-down"}})],1)]):_vm._e(),(_vm.isShow || !_vm.isShow && _vm.showLine>1)?_c('Row',[_c('Col',{staticStyle:{"margin":"5px","text-align":"center"},attrs:{"span":"24"}},[_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],1)],1):_vm._e()],2)])}
-var Queryvue_type_template_id_5528c5b8_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Query/Query.vue?vue&type=template&id=92aad932&
+var Queryvue_type_template_id_92aad932_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-query"},[_c('form',{on:{"submit":_vm.handleSubmit}},[(_vm.showSelected && _vm.selected.length>0)?[_c('Row',{staticClass:"selectedRow"},[_c('Col',{attrs:{"span":"1"}},[_c('span',{staticClass:"selectedText"},[_vm._v("已选:")])]),_c('Col',{attrs:{"span":"22"}},_vm._l((_vm.selected),function(s){return _c('Tag',{key:s['name'],class:'selectedTag',attrs:{"type":"border","closable":"","name":s['name']},on:{"on-close":_vm.handleTagClose}},[_vm._v(_vm._s(s['label'])+": "+_vm._s(s['value'])+"\n        ")])}),1)],1),_c('div',{staticClass:"line"})]:_vm._e(),(!_vm.isShow && _vm.showLine === 1)?_c('Row',{staticClass:"u-layout-row",style:(_vm.firstLayoutStyle)},[_vm._l((_vm.firstLayout),function(col){return _c('FormCell',{staticClass:"u-query-firstlayout",attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"field-style":col.style,"compact":true,"root":"Query"}})}),_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],2):_vm._l((_vm.getRows(_vm.rows)),function(row,index){return _c('Row',{key:index,staticClass:"u-layout-row"},_vm._l((row),function(col){return _c('Col',{attrs:{"span":col.colspan}},[_c('FormCell',{attrs:{"col":col,"value":_vm.current_value,"staticSuffix":_vm.staticSuffix,"root":_vm.Query}})],1)}),1)}),(_vm.rows.length > 1 && _vm.showLine < _vm.rows.length)?_c('Row',{staticClass:"collapse-line"},[_c('span',{staticClass:"showMoreBtn",on:{"click":function($event){_vm.isShow = !_vm.isShow}}},[_vm._v("\n      "+_vm._s(_vm.isShow ? "隐藏" : "显示")+"\n      "),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShow),expression:"isShow"}],attrs:{"type":"ios-arrow-up"}}),_c('Icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isShow),expression:"!isShow"}],attrs:{"type":"ios-arrow-down"}})],1)]):_vm._e(),(_vm.isShow || !_vm.isShow && _vm.showLine>1)?_c('Row',[_c('Col',{staticStyle:{"margin":"5px","text-align":"center"},attrs:{"span":"24"}},[_c('Buttons',{attrs:{"buttons":_vm.btns,"size":_vm.btnSize}})],1)],1):_vm._e()],2)])}
+var Queryvue_type_template_id_92aad932_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Query/Query.vue?vue&type=template&id=5528c5b8&
+// CONCATENATED MODULE: ./src/components/Query/Query.vue?vue&type=template&id=92aad932&
 
 // CONCATENATED MODULE: ./src/components/mixins/dict.js
 
@@ -18053,51 +18104,6 @@ var FormCellvue_type_template_id_feb9977e_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/Build/FormCell.vue?vue&type=template&id=feb9977e&
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__("a34a");
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
-
-// EXTERNAL MODULE: ./node_modules/regenerator-runtime/runtime.js
-var runtime = __webpack_require__("96cf");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    promise_default.a.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new promise_default.a(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
 // CONCATENATED MODULE: ./src/components/Build/validateMixin.js
 
 
@@ -19029,8 +19035,8 @@ var Queryvue_type_style_index_0_lang_less_ = __webpack_require__("a038");
 
 var Query_component = Object(componentNormalizer["a" /* default */])(
   Query_Queryvue_type_script_lang_js_,
-  Queryvue_type_template_id_5528c5b8_render,
-  Queryvue_type_template_id_5528c5b8_staticRenderFns,
+  Queryvue_type_template_id_92aad932_render,
+  Queryvue_type_template_id_92aad932_staticRenderFns,
   false,
   null,
   null,
@@ -19384,6 +19390,50 @@ function resetTriggers(elem) {
 
 
 
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19447,7 +19497,7 @@ function resetTriggers(elem) {
 
 
 /* harmony default export */ var UGridvue_type_script_lang_js_ = ({
-  name: 'Grid',
+  name: "Grid",
   mixins: [emitter],
   components: {
     UTable: UTable,
@@ -19483,17 +19533,17 @@ function resetTriggers(elem) {
       }
     }
   },
-  computed: Object(objectSpread["a" /* default */])({}, mapState('columns', 'columnResizing', 'checkCol', 'indexCol', 'gridWidth', 'width', 'height', 'resizable', 'columnPosition', 'guiderHeight', 'defaultColWidth', 'leftWidth', 'rightWidth', 'checkColTitle', 'checkColWidth', 'indexColWidth', 'indexColTitle', 'scrollLeft', 'total', 'pageSizeOpts', 'pagination', 'loading', 'loadingText', 'loadingTop', 'loadingLeft', 'autoLoad', 'url', 'param', 'buttons', 'rightButtons', 'bottomButtons', 'selected', 'editMode', 'actionColumn', 'deleteRowConfirm', 'onSaveRow', 'onDeleteRow', 'onLoadData', 'query', 'theme', 'cellTitle', 'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo', 'onRowEditRender', 'static', 'xscroll', 'afterLoadData', 'multiHeaderSep', 'zebra'), {
+  computed: Object(objectSpread["a" /* default */])({}, mapState("columns", "columnResizing", "checkCol", "indexCol", "gridWidth", "width", "height", "resizable", "columnPosition", "guiderHeight", "defaultColWidth", "leftWidth", "rightWidth", "checkColTitle", "checkColWidth", "indexColWidth", "indexColTitle", "scrollLeft", "total", "pageSizeOpts", "pagination", "loading", "loadingText", "loadingTop", "loadingLeft", "autoLoad", "url", "param", "buttons", "rightButtons", "bottomButtons", "selected", "editMode", "actionColumn", "deleteRowConfirm", "onSaveRow", "onDeleteRow", "onError", "onLoadData", "query", "theme", "cellTitle", "isScrollRight", "page", "start", "pageSize", "nowrap", "addAutoScrollTo", "onRowEditRender", "static", "xscroll", "afterLoadData", "multiHeaderSep", "zebra", "oldParentWidth"), {
     columnDraggerStyles: function columnDraggerStyles() {
       return {
-        left: this.columnPosition - 7 + 'px',
-        height: this.guiderHeight + 'px'
+        left: this.columnPosition - 7 + "px",
+        height: this.guiderHeight + "px"
       };
     },
     themeClass: function themeClass() {
       var _ref;
 
-      return _ref = {}, Object(defineProperty["a" /* default */])(_ref, "theme-".concat(this.theme), this.theme), Object(defineProperty["a" /* default */])(_ref, 'u-grid-zebra', this.zebra), _ref;
+      return _ref = {}, Object(defineProperty["a" /* default */])(_ref, "theme-".concat(this.theme), this.theme), Object(defineProperty["a" /* default */])(_ref, "u-grid-zebra", this.zebra), _ref;
     },
     tableWidth: function tableWidth() {
       var w = 0;
@@ -19503,29 +19553,29 @@ function resetTriggers(elem) {
       return w;
     },
     leftTableClass: function leftTableClass() {
-      var cls = 'u-grid-body u-table-left';
+      var cls = "u-grid-body u-table-left";
 
       if (this.scrollLeft) {
-        cls += ' dark';
+        cls += " dark";
       }
 
       return cls;
     },
     rightTableClass: function rightTableClass() {
-      var cls = 'u-grid-body u-table-right';
+      var cls = "u-grid-body u-table-right";
 
       if (!this.isScrollRight) {
-        cls += ' dark';
+        cls += " dark";
       }
 
       return cls;
     }
   }),
-  methods: Object(objectSpread["a" /* default */])({}, mapMethod('getSelection', 'showLoading', 'setSelection', 'removeRow', 'setComment', 'removeComment', 'getSelectedRows', 'getColumn', 'getDefaultRow', 'makeRows', 'sendInputEvent', 'deselectAll', 'selectAll', 'select', 'deselect', 'toggle', 'getComment', 'getClass', 'removeClass', 'setClass', 'addRow', 'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow', 'expand', 'collapse'), {
+  methods: Object(objectSpread["a" /* default */])({}, mapMethod("getSelection", "showLoading", "setSelection", "removeRow", "setComment", "removeComment", "getSelectedRows", "getColumn", "getDefaultRow", "makeRows", "sendInputEvent", "deselectAll", "selectAll", "select", "deselect", "toggle", "getComment", "getClass", "removeClass", "setClass", "addRow", "addEditRow", "updateRow", "addChildRow", "addEditChildRow", "moveRow", "expand", "collapse"), {
     resize: function resize(width, height) {
       if (width) this.width = width;
 
-      if (this.width === 'auto') {
+      if (this.width === "auto") {
         this.store.states.gridWidth = this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth;
       } else {
         this.store.states.gridWidth = this.width;
@@ -19556,11 +19606,11 @@ function resetTriggers(elem) {
           }
 
           switch (_col.fixed) {
-            case 'left':
+            case "left":
               hasLeftFixed = true;
               break;
 
-            case 'right':
+            case "right":
               hasRightFixed = true;
               break;
           }
@@ -19610,11 +19660,11 @@ function resetTriggers(elem) {
         for (var _i = 0, _len = this.columns.length; _i < _len; _i++) {
           var col = this.columns[_i];
 
-          if (col.fixed === 'left' || hasLeftFixed && (col.name === '__check_col__' || col.name === '__index_col__')) {
-            col.fixed = 'left';
+          if (col.fixed === "left" || hasLeftFixed && (col.name === "__check_col__" || col.name === "__index_col__")) {
+            col.fixed = "left";
             leftCols.push(col);
             this.store.states.leftWidth += col.width;
-          } else if (col.fixed === 'right') {
+          } else if (col.fixed === "right") {
             rightCols.push(col);
             this.store.states.rightWidth += col.width;
           } else {
@@ -19670,7 +19720,7 @@ function resetTriggers(elem) {
           for (j = 0; j < subs_len; j++) {
             path = _col2.subs[j];
             new_col = assign_default()({}, _col2);
-            new_col.title = path.replace('%%', '/');
+            new_col.title = path.replace("%%", "/");
             new_col.level = j;
             new_col.colspan = 1;
             new_col.col = _col2;
@@ -19754,15 +19804,15 @@ function resetTriggers(elem) {
       }
 
       return assign_default()({
-        name: 'title',
+        name: "title",
         width: 0,
         sortable: false,
-        align: '',
-        headerAlign: '',
+        align: "",
+        headerAlign: "",
         hidden: false,
-        fixed: '',
+        fixed: "",
         resizable: true,
-        type: 'column',
+        type: "column",
         editorOptions: {},
         showTitle: show,
         showHeaderTitle: headerShow,
@@ -19778,13 +19828,13 @@ function resetTriggers(elem) {
 
       if (this.checkCol) {
         check_column = this.getDefaultColumn({
-          name: '__check_col__',
-          type: 'check',
+          name: "__check_col__",
+          type: "check",
           resizable: false,
           width: this.checkColWidth,
           title: this.checkColTitle,
-          align: 'center',
-          fixed: ''
+          align: "center",
+          fixed: ""
         });
         cols.push(check_column);
       } // 生成序号列
@@ -19792,28 +19842,28 @@ function resetTriggers(elem) {
 
       if (this.indexCol) {
         index_column = this.getDefaultColumn({
-          name: '__index_col__',
-          type: 'index',
+          name: "__index_col__",
+          type: "index",
           resizable: false,
           width: this.indexColWidth,
           title: this.indexColTitle,
-          align: 'center',
-          fixed: ''
+          align: "center",
+          fixed: ""
         });
         cols.push(index_column);
       }
 
       this.data.columns.forEach(function (col) {
         if (!col.hidden) {
-          if (col.name === '__check_col__') {
+          if (col.name === "__check_col__") {
             assign_default()(check_column, col);
-          } else if (col.name === '__index_col__') {
+          } else if (col.name === "__index_col__") {
             assign_default()(index_column, col);
           } else {
             var d = _this.getDefaultColumn(col); // 增加行编辑操作列的render函数
 
 
-            if (_this.editMode === 'row' && col.name === _this.actionColumn) {
+            if (_this.editMode === "row" && col.name === _this.actionColumn) {
               d.render = col.render || _this.editActionRender;
             }
 
@@ -19821,9 +19871,9 @@ function resetTriggers(elem) {
 
             if (!_this.static && col.name === _this.actionColumn || col.name !== _this.actionColumn) cols.push(d); // 处理format回调，如果是一个字符串，则转为函数
 
-            if (typeof col.format === 'string') {
-              var func_str = 'return ' + '`' + col.format + '`';
-              var func = new Function('value', 'column', 'row', func_str);
+            if (typeof col.format === "string") {
+              var func_str = "return " + "`" + col.format + "`";
+              var func = new Function("value", "column", "row", func_str);
               col._format = col.format;
               col.format = func;
             }
@@ -19854,7 +19904,7 @@ function resetTriggers(elem) {
       });
     },
     handleQueryChange: function handleQueryChange(change) {
-      this.$emit('on-query-change', change);
+      this.$emit("on-query-change", change);
     },
     // 生成缺省的行编辑按钮
     editActionRender: function editActionRender(h, param) {
@@ -19863,83 +19913,225 @@ function resetTriggers(elem) {
         if (render) return render;
       }
 
-      var cls = 'u-cell-text';
-      if (this.nowrap) cls += ' nowrap';
-      return h('div', {
-        'class': cls
+      var cls = "u-cell-text";
+      if (this.nowrap) cls += " nowrap";
+      return h("div", {
+        class: cls
       }, [this.defaultEditRender(h, param.row), this.defaultDeleteRender(h, param.row)]);
     },
     defaultEditRender: function defaultEditRender(h, row) {
       var _this2 = this;
 
-      return h('Button', {
+      return h("Button", {
         props: {
-          type: 'primary',
-          size: 'small',
+          type: "primary",
+          size: "small",
           loading: row._saving
         },
         style: {
-          margin: '0 5px'
+          margin: "0 5px"
         },
         on: {
-          click: function click() {
-            if (!row._editting) {
-              _this2.$set(row, '_editRow', assign_default()({}, row));
+          click: function () {
+            var _click = _asyncToGenerator(
+            /*#__PURE__*/
+            regenerator_default.a.mark(function _callee() {
+              var callback, res, key, v;
+              return regenerator_default.a.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      if (row._editting) {
+                        _context.next = 5;
+                        break;
+                      }
 
-              _this2.$set(row, '_editting', true);
-            } else {
-              _this2.$set(row, '_saving', true);
+                      _this2.$set(row, "_editRow", assign_default()({}, row));
 
-              if (_this2.onSaveRow) {
-                var callback = function callback(flag, data) {
-                  if (flag === 'ok') {
-                    copyDataRow(row, row._editRow);
+                      _this2.$set(row, "_editting", true);
 
-                    _this2.removeComment(row);
+                      _context.next = 19;
+                      break;
 
-                    _this2.$set(row, '_editting', !row._editting);
+                    case 5:
+                      _this2.$set(row, "_saving", true);
 
-                    _this2.$set(row, '_new', false); //保存之后，将_new置为false
+                      if (!_this2.onSaveRow) {
+                        _context.next = 14;
+                        break;
+                      }
+
+                      callback = function callback(flag, data) {
+                        if (flag === "ok") {
+                          copyDataRow(row, row._editRow);
+
+                          _this2.removeComment(row);
+
+                          _this2.$set(row, "_editting", !row._editting);
+
+                          _this2.$set(row, "_new", false); //保存之后，将_new置为false
 
 
-                    delete row._editRow;
+                          delete row._editRow;
 
-                    _this2.sendInputEvent();
-                  } else {
-                    for (var key in data) {
-                      var v = data[key];
+                          _this2.sendInputEvent();
+                        } else {
+                          for (var key in data) {
+                            var v = data[key];
 
-                      _this2.setComment(row, key, v, 'error');
-                    }
+                            _this2.setComment(row, key, v, "error");
+                          }
+                        }
+
+                        _this2.$set(row, "_saving", false);
+                      }; // 校验错误
+
+
+                      _context.next = 10;
+                      return _this2.validateRow(row._editRow);
+
+                    case 10:
+                      res = _context.sent;
+
+                      if (res) {
+                        for (key in res) {
+                          v = res[key];
+
+                          _this2.setComment(row, key, v, "error");
+                        }
+
+                        _this2.$set(row, "_saving", false);
+
+                        if (_this2.onError) {
+                          _this2.onError.call(_this2, res);
+                        }
+                      } else _this2.onSaveRow.call(_this2, row._editRow, callback, row);
+
+                      _context.next = 19;
+                      break;
+
+                    case 14:
+                      copyDataRow(row, row._editRow);
+                      delete row._editRow;
+
+                      _this2.$set(row, "_editting", false);
+
+                      _this2.$set(row, "_saving", false);
+
+                      _this2.sendInputEvent();
+
+                    case 19:
+                    case "end":
+                      return _context.stop();
                   }
+                }
+              }, _callee);
+            }));
 
-                  _this2.$set(row, '_saving', false);
-                };
+            function click() {
+              return _click.apply(this, arguments);
+            }
 
-                _this2.onSaveRow.call(_this2, row._editRow, callback, row);
-              } else {
-                copyDataRow(row, row._editRow);
-                delete row._editRow;
+            return click;
+          }()
+        }
+      }, row._editting ? "保存" : "编辑");
+    },
+    // 校验某一行数据
+    validateRow: function () {
+      var _validateRow = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee2(row) {
+        var rules, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, c, res;
 
-                _this2.$set(row, '_editting', false);
+        return regenerator_default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                rules = {};
+                _iteratorNormalCompletion3 = true;
+                _didIteratorError3 = false;
+                _iteratorError3 = undefined;
+                _context2.prev = 4;
 
-                _this2.$set(row, '_saving', false);
+                for (_iterator3 = get_iterator_default()(this.store.states.columns); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                  c = _step3.value;
 
-                _this2.sendInputEvent();
-              }
+                  if (c.editor && c.editor instanceof Object && c.editor.rule) {
+                    rules[c.name] = c.editor.rule;
+                  }
+                }
+
+                _context2.next = 12;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](4);
+                _didIteratorError3 = true;
+                _iteratorError3 = _context2.t0;
+
+              case 12:
+                _context2.prev = 12;
+                _context2.prev = 13;
+
+                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                  _iterator3.return();
+                }
+
+              case 15:
+                _context2.prev = 15;
+
+                if (!_didIteratorError3) {
+                  _context2.next = 18;
+                  break;
+                }
+
+                throw _iteratorError3;
+
+              case 18:
+                return _context2.finish(15);
+
+              case 19:
+                return _context2.finish(12);
+
+              case 20:
+                if (utils_isEmpty(rules)) {
+                  _context2.next = 24;
+                  break;
+                }
+
+                _context2.next = 23;
+                return this.$validator.validate(row, rules);
+
+              case 23:
+                res = _context2.sent;
+
+              case 24:
+                return _context2.abrupt("return", res);
+
+              case 25:
+              case "end":
+                return _context2.stop();
             }
           }
-        }
-      }, row._editting ? '保存' : '编辑');
-    },
+        }, _callee2, this, [[4, 8, 12, 20], [13,, 15, 19]]);
+      }));
+
+      function validateRow(_x) {
+        return _validateRow.apply(this, arguments);
+      }
+
+      return validateRow;
+    }(),
     defaultDeleteRender: function defaultDeleteRender(h, row) {
       var _this3 = this;
 
       var defaultDeleteFunc = function defaultDeleteFunc() {
         if (row._editting) {
-          _this3.$set(row, '_editting', false);
+          _this3.$set(row, "_editting", false);
 
-          _this3.$delete(row, '_editRow');
+          _this3.$delete(row, "_editRow");
 
           _this3.removeComment(row);
 
@@ -19951,7 +20143,7 @@ function resetTriggers(elem) {
         }
 
         var callback = function callback(flag, data) {
-          if (flag === 'ok') {
+          if (flag === "ok") {
             _this3.removeRow(row);
 
             _this3.sendInputEvent();
@@ -19959,10 +20151,10 @@ function resetTriggers(elem) {
             for (var key in data) {
               var v = data[key];
 
-              _this3.setComment(row, key, v, 'error');
+              _this3.setComment(row, key, v, "error");
             }
 
-            _this3.$set(row, '_deleting', false);
+            _this3.$set(row, "_deleting", false);
           }
         };
 
@@ -19975,22 +20167,22 @@ function resetTriggers(elem) {
         }
       };
 
-      var type = row._editting ? 'default' : 'error';
-      return h('Button', {
+      var type = row._editting ? "default" : "error";
+      return h("Button", {
         style: {
-          margin: '0 5px'
+          margin: "0 5px"
         },
         props: {
           type: type,
-          placement: 'top',
-          size: 'small',
+          placement: "top",
+          size: "small",
           loading: row._deleting
         },
         on: {
           click: function click() {
             if (_this3.deleteRowConfirm && !row._editting) {
               _this3.$Modal.confirm({
-                content: '请确认是否要删除本条记录？',
+                content: "请确认是否要删除本条记录？",
                 onOk: function onOk() {
                   defaultDeleteFunc();
                 }
@@ -20000,13 +20192,13 @@ function resetTriggers(elem) {
             }
           }
         }
-      }, row._editting ? '取消' : '删除');
+      }, row._editting ? "取消" : "删除");
     },
     go: function go(page, opts) {
       this.page = page;
       if (opts && opts.pageSize) this.pageSize = opts.pageSize;
       this.start = (this.page - 1) * this.pageSize + 1;
-      this.$set(this.param, 'page', page);
+      this.$set(this.param, "page", page);
       this.loadData(opts || {});
     },
     reset_query: function reset_query() {
@@ -20015,7 +20207,7 @@ function resetTriggers(elem) {
     clear: function clear() {
       this.page = 1;
       this.start = 1;
-      this.$set(this.param, 'page', 1);
+      this.$set(this.param, "page", 1);
       this.store.states.data = [];
     },
     loadData: function loadData(url, param) {
@@ -20078,7 +20270,7 @@ function resetTriggers(elem) {
     var _this5 = this;
 
     this.resize();
-    window.addEventListener('resize', this.handleResize, true); // 初始化query 的 param
+    window.addEventListener("resize", this.handleResize, true); // 初始化query 的 param
 
     if (this.$refs.query && this.$refs.query.value) this.param = assign_default()(this.param, this.$refs.query.value);
 
@@ -20089,26 +20281,53 @@ function resetTriggers(elem) {
     }
 
     this.oldParentWidth = this.$parent.$el.offsetWidth;
+    var self = this;
     this.__resizeHandler = debounce_default()(function () {
-      var width = _this5.$parent.$el.offsetWidth;
+      var parent = self.$parent.$el;
+      var p_width = parent.offsetWidth;
+      var width = p_width;
 
-      if (width !== _this5.oldParentWidth) {
-        _this5.store.states.columns = _this5.makeCols();
+      while (1) {
+        parent = parent.parentNode;
+        if (!parent || !parent.offsetWidth) break;
 
-        _this5.resize();
+        if (parent.offsetWidth < width) {
+          width = parent.offsetWidth;
+          break;
+        }
 
-        _this5.oldParentWidth = width;
+        width = parent.offsetWidth;
+      }
+
+      width = Math.min(width, p_width);
+
+      if (width !== self.oldParentWidth) {
+        self.store.states.columns = self.makeCols();
+        self.resize(width);
+        self.oldParentWidth = width;
       }
     }, 100, {
       leading: true
     });
-    if (this.store.states.detectParentResize) addListener(this.$parent.$el, this.__resizeHandler);
+
+    if (this.store.states.detectParentResize) {
+      var el = findParent(this, "Build");
+
+      if (!el) {
+        el = this.$parent.$el;
+      } else {
+        el = el.$el;
+      }
+
+      addListener(el, this.__resizeHandler);
+      addListener(this.$parent.$el, this.__resizeHandler);
+    }
   },
   destroy: function destroy() {
     removeListener(this.$parent.$el, this.__resizeHandler);
   },
   watch: {
-    'data.columns': {
+    "data.columns": {
       handler: function handler() {
         this.store.states.columns = this.makeCols();
         this.resize();
@@ -20118,13 +20337,13 @@ function resetTriggers(elem) {
     choices: {
       immediate: true,
       handler: function handler(v) {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator3 = get_iterator_default()(this.columns), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var _field = _step3.value;
+          for (var _iterator4 = get_iterator_default()(this.columns), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _field = _step4.value;
             var _choices = v[_field.name];
 
             if (_choices && _field.editor) {
@@ -20132,28 +20351,28 @@ function resetTriggers(elem) {
             }
           }
         } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-              _iterator3.return();
+            if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+              _iterator4.return();
             }
           } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
+            if (_didIteratorError4) {
+              throw _iteratorError4;
             }
           }
         }
 
         if (this.query && this.query.fields) {
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
 
           try {
-            for (var _iterator4 = get_iterator_default()(this.query.fields), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var field = _step4.value;
+            for (var _iterator5 = get_iterator_default()(this.query.fields), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var field = _step5.value;
               var choices = v[field.name];
 
               if (choices) {
@@ -20161,16 +20380,16 @@ function resetTriggers(elem) {
               }
             }
           } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
+              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                _iterator5.return();
               }
             } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
+              if (_didIteratorError5) {
+                throw _iteratorError5;
               }
             }
           }
@@ -20184,7 +20403,7 @@ function resetTriggers(elem) {
       },
       deep: true
     },
-    'store.states.static': function storeStatesStatic(value) {
+    "store.states.static": function storeStatesStatic(value) {
       this.store.states.columns = this.makeCols();
       this.resize();
     } // 'store.states.data': {
@@ -20212,8 +20431,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_55b8fed5_render,
-  UGridvue_type_template_id_55b8fed5_staticRenderFns,
+  UGridvue_type_template_id_23161e0f_render,
+  UGridvue_type_template_id_23161e0f_staticRenderFns,
   false,
   null,
   null,
@@ -20226,12 +20445,12 @@ var UGrid_component = Object(componentNormalizer["a" /* default */])(
 
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=66024990&
-var Selectvue_type_template_id_66024990_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
-var Selectvue_type_template_id_66024990_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=5eccd35c&
+var Selectvue_type_template_id_5eccd35c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging,"allow-create":_vm.allowCreate,"on-create-item":_vm.handleCreateItem},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
+var Selectvue_type_template_id_5eccd35c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=66024990&
+// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=5eccd35c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=script&lang=js&
 
@@ -20249,10 +20468,26 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ var Selectvue_type_script_lang_js_ = ({
-  name: 'uSelect',
+  name: "uSelect",
   data: function data() {
     var selectedValue = utils_formatChoices(this.value);
     var d = this.initValue(this.value);
@@ -20302,9 +20537,9 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
       type: String,
       default: function _default() {
         if (this.remote) {
-          return '请输入搜索';
+          return "请输入搜索";
         } else {
-          return '请选择';
+          return "请选择";
         }
       }
     },
@@ -20314,7 +20549,14 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
       default: false
     },
     onRenderLabel: {},
-    onChanging: {}
+    onChanging: {},
+    allowCreate: {
+      type: Boolean,
+      default: false
+    },
+    // 是否允许直接创建option 从4.0复制
+    onCreateItem: null // 创建回调函数，外部应创建出对应的option元素
+
   },
   mounted: function mounted() {
     this.fireSelected();
@@ -20324,9 +20566,9 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
       var v = this.getSelected();
 
       if (this.rich) {
-        this.$emit('input', v);
+        this.$emit("input", v);
       } else {
-        this.$emit('input', this.data);
+        this.$emit("input", this.data);
       }
     },
     handleRemote: function handleRemote(query) {
@@ -20356,7 +20598,7 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
         } else if (selected instanceof Object) {
           v = selected.label;
         } else {
-          v = selected || '';
+          v = selected || "";
         }
 
         this.$refs.select.selectedSingle = v;
@@ -20392,8 +20634,8 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
           v = [];
         } else {
           v = {
-            label: '',
-            value: ''
+            label: "",
+            value: ""
           };
         }
       } else {
@@ -20403,7 +20645,7 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
           s = [];
         } else {
           if (is_array_default()(this.selectedValue)) s = this.selectedValue;else s = [this.selectedValue];
-        } // v = findChoices((s || []).concat(this.$refs.select.options), this.data, this.multiple) 
+        } // v = findChoices((s || []).concat(this.$refs.select.options), this.data, this.multiple)
 
 
         v = utils_findChoices((s || []).concat(this.items), this.data, this.multiple);
@@ -20416,13 +20658,13 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
           if (is_array_default()(this.data)) {
             v = this.data.map(function (x) {
               return {
-                label: '',
+                label: "",
                 value: x
               };
             });
           } else {
             v = {
-              label: '',
+              label: "",
               value: this.data
             };
           }
@@ -20438,7 +20680,7 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
       if (this.multiple) {
         return this.selectedValue.map(function (x) {
           return x.label;
-        }).join(', ');
+        }).join(", ");
       } else {
         if (this.selectedValue instanceof Object) {
           return this.selectedValue.label;
@@ -20454,7 +20696,7 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
         if (this.multiple) {
           v = [];
         } else {
-          v = '';
+          v = "";
         }
       } else {
         if (is_array_default()(v)) {
@@ -20494,6 +20736,52 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
     renderLabel: function renderLabel(item) {
       if (this.onRenderLabel) return this.onRenderLabel(item);
       return item.label;
+    },
+    handleCreateItem: function handleCreateItem(query) {
+      var option = {
+        label: query,
+        value: query
+      };
+
+      if (this.onCreateItem) {
+        option = this.onCreateItem(query);
+      }
+
+      var found = false;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = get_iterator_default()(this.items), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var item = _step2.value;
+
+          if (item.value === query) {
+            found = true;
+            option = item;
+            break;
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      if (!found) {
+        this.items.push(option);
+      }
+
+      return option;
     }
   },
   watch: {
@@ -20514,7 +20802,7 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
     choices: {
       immediate: true,
       handler: function handler(v) {
-        if (typeof v !== 'function') {
+        if (typeof v !== "function") {
           this.items = utils_formatChoices(v);
         }
       },
@@ -20534,8 +20822,8 @@ var Selectvue_type_template_id_66024990_staticRenderFns = []
 
 var Select_component = Object(componentNormalizer["a" /* default */])(
   components_Selectvue_type_script_lang_js_,
-  Selectvue_type_template_id_66024990_render,
-  Selectvue_type_template_id_66024990_staticRenderFns,
+  Selectvue_type_template_id_5eccd35c_render,
+  Selectvue_type_template_id_5eccd35c_staticRenderFns,
   false,
   null,
   null,
@@ -20772,12 +21060,12 @@ var Input_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Input = (Input_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=b1addb1e&
-var Buildvue_type_template_id_b1addb1e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index+1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=d535b17c&
+var Buildvue_type_template_id_d535b17c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index + 1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_d535b17c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=b1addb1e&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=d535b17c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 
@@ -20842,12 +21130,21 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ var Buildvue_type_script_lang_js_ = ({
-  name: 'Build',
+  name: "Build",
   mixins: [dict, validateMixin],
   components: {
     Buttons: UButtons
@@ -20864,14 +21161,16 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       validating: false,
       validateResult: {},
       //保存校验结果,
-      watchers: {} // 保存根据状态生成的$watch结果，用于清除
+      watchers: {},
+      // 保存根据状态生成的$watch结果，用于清除
+      convertFields: [] // 存在数据预处理的字段列表
 
     };
   },
   props: {
     theme: {
       type: String,
-      default: 'default'
+      default: "default"
     },
     showBox: {
       type: Boolean,
@@ -20894,7 +21193,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
     },
     staticSuffix: {
       type: String,
-      default: '_static'
+      default: "_static"
     },
     value: {
       // 数据存放对象
@@ -20927,7 +21226,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
     buttons: {},
     labelDir: {
       type: String,
-      default: 'horizontal'
+      default: "horizontal"
     },
     boxOptions: {
       type: Object,
@@ -20949,7 +21248,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       if (is_array_default()(this.buttons)) return this.buttons;else return this.buttons.items;
     },
     btnSize: function btnSize() {
-      return this.buttons.size || 'default';
+      return this.buttons.size || "default";
     }
   },
   methods: {
@@ -20963,7 +21262,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                error = '';
+                error = "";
                 validateRules = {};
                 this.clearValidateResult();
                 _arr = keys_default()(this.validateResult);
@@ -21003,9 +21302,9 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
                 }
 
                 new_rule = {
-                  type: 'array',
+                  type: "array",
                   items: {
-                    type: 'object',
+                    type: "object",
                     props: rules
                   }
                 };
@@ -21017,7 +21316,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
                 for (_iterator = get_iterator_default()(_v.rule); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                   _r = _step.value;
 
-                  if (_r.type === 'array') {
+                  if (_r.type === "array") {
                     assign_default()(new_rule, _r.rule);
                   }
 
@@ -21064,7 +21363,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
                 break;
 
               case 38:
-                if (typeof _v.children === 'function') {
+                if (typeof _v.children === "function") {
                   validateRules[_k2] = {
                     validate: _v.children,
                     fieldname: field.label
@@ -21079,7 +21378,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
                   }
 
                   validateRules[_k2] = {
-                    type: 'object',
+                    type: "object",
                     props: _rules
                   };
                 }
@@ -21176,14 +21475,14 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       return validate;
     }(),
     setValidateResultKey: function setValidateResultKey(result, name, err) {
-      var flag = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'success';
+      var flag = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "success";
 
       if (err) {
-        this.$set(result[name], 'validateState', 'error');
-        this.$set(result[name], 'error', err);
+        this.$set(result[name], "validateState", "error");
+        this.$set(result[name], "error", err);
       } else {
-        this.$set(result[name], 'validateState', flag);
-        this.$set(result[name], 'error', '');
+        this.$set(result[name], "validateState", flag);
+        this.$set(result[name], "error", "");
       }
     },
     //生成校验结构
@@ -21225,8 +21524,8 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 
 
       this.$set(this.validateResult, name, {
-        error: '',
-        validateState: '',
+        error: "",
+        validateState: "",
         rule: rule,
         field: field,
         fullfield: field.label,
@@ -21234,14 +21533,14 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       });
     },
     clearValidateResult: function clearValidateResult(validateResult) {
-      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       if (!validateResult) validateResult = this.validateResult;
 
       var _arr8 = keys_default()(validateResult);
 
       for (var _i8 = 0; _i8 < _arr8.length; _i8++) {
         var k = _arr8[_i8];
-        this.setValidateResultKey(validateResult, k, '', flag);
+        this.setValidateResultKey(validateResult, k, "", flag);
         var r = validateResult[k];
 
         if (r.children) {
@@ -21301,10 +21600,10 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       var item;
       var watchFunc;
 
-      if (type === 'when') {
-        if (!is_array_default()(name) || name.length !== 2 || typeof name[0] !== 'string' && typeof name[0] !== 'function') throw new Error("Watch object definition is not right, you should provide and Array like [name|function, function]");
+      if (type === "when") {
+        if (!is_array_default()(name) || name.length !== 2 || typeof name[0] !== "string" && typeof name[0] !== "function") throw new Error("Watch object definition is not right, you should provide and Array like [name|function, function]");
 
-        if (typeof name[0] === 'string') {
+        if (typeof name[0] === "string") {
           watchFunc = this.statusObject[name[0]];
           if (!watchFunc) throw new Error("No status object name ".concat(name[0], " defined for field ").concat(field.label, "(").concat(field.name, ")"));
         } else {
@@ -21313,7 +21612,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 
         item = {
           name: field.name,
-          type: 'when',
+          type: "when",
           callback: name[1]
         };
         name = name[0];
@@ -21350,18 +21649,18 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
               var field = _this.fields[c.name];
 
               switch (c.type) {
-                case 'hidden':
-                  _this.$set(field, 'hidden', !newVal);
+                case "hidden":
+                  _this.$set(field, "hidden", !newVal);
 
                   break;
 
-                case 'static':
-                case 'required':
+                case "static":
+                case "required":
                   _this.$set(field, c.type, newVal);
 
                   break;
 
-                case 'when':
+                case "when":
                   if (c.callback) c.callback(newVal, field, _this.value);
               }
             }
@@ -21380,7 +21679,8 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
             }
           }
         }, {
-          immediate: true
+          immediate: true,
+          deep: true
         });
 
         item.watcher = watcher;
@@ -21423,7 +21723,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
             for (var _iterator5 = get_iterator_default()(row.fields || []), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
               var field = _step5.value;
 
-              if (typeof field === 'string') {
+              if (typeof field === "string") {
                 field = this.findDataDict(field);
               } else {
                 if (field.ref) field = this.findDataDict(field.ref, field);
@@ -21431,23 +21731,28 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 
               fs[field.name] = field;
               row_fields.push(field);
-              if (field.static === undefined) this.$set(field, 'static', isStatic);
-              if (field.hidden === undefined) this.$set(field, 'hidden', false);
-              if (field.enableOnChange === undefined) this.$set(field, 'enableOnChange', false); // 禁止Input确发onChange回调
+              if (field.static === undefined) this.$set(field, "static", isStatic);
+              if (field.hidden === undefined) this.$set(field, "hidden", false);
+              if (field.enableOnChange === undefined) this.$set(field, "enableOnChange", false); // 禁止Input确发onChange回调
 
-              if (field.options === undefined) this.$set(field, 'options', {}); // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
+              if (field.options === undefined) this.$set(field, "options", {}); // if (field.options.choices === undefined) this.$set(field.options, 'choices', [])
 
-              if (field.type === undefined) this.$set(field, 'type', 'str'); //str
+              if (field.type === undefined) this.$set(field, "type", "str"); //str
               // 增加watch支持
 
-              if (field.showWhen) this.addWatch(field.showWhen, field, 'hidden');
-              if (field.staticWhen) this.addWatch(field.staticWhen, field, 'static');
-              if (field.requiredWhen) this.addWatch(field.requiredWhen, field, 'required'); // 增加通用监时的处理
+              if (field.showWhen) this.addWatch(field.showWhen, field, "hidden");
+              if (field.staticWhen) this.addWatch(field.staticWhen, field, "static");
+              if (field.requiredWhen) this.addWatch(field.requiredWhen, field, "required"); // 增加通用监时的处理
 
-              if (field.when) this.addWatch(field.when, field, 'when');
+              if (field.when) this.addWatch(field.when, field, "when");
 
               if (default_layout) {
                 default_layout.push([field.name]);
+              } // 处理有转换函数的字段
+
+
+              if (field.inputConvert || field.outputConvert || field.mapConvert) {
+                this.convertFields.push(field);
               }
             }
           } catch (err) {
@@ -21466,7 +21771,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
           }
 
           row.fields = row_fields;
-          if (default_layout) this.$set(row, 'layout', default_layout);
+          if (default_layout) this.$set(row, "layout", default_layout);
         }
       } catch (err) {
         _didIteratorError4 = true;
@@ -21488,20 +21793,20 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
     },
     mergeErrors: function mergeErrors(errors) {
       for (var k in this.errors) {
-        this.$set(this.validateResult[k], 'error', this.errors[k]);
-        this.$set(this.validateResult[k], 'validateState', 'error');
+        this.$set(this.validateResult[k], "error", this.errors[k]);
+        this.$set(this.validateResult[k], "validateState", "error");
       }
     },
     setChoices: function setChoices(name, choices) {
       var field = this.fields[name];
 
       if (!field.options) {
-        this.$set(field, 'options', {
+        this.$set(field, "options", {
           choices: choices,
-          type: 'select'
+          type: "select"
         });
       } else {
-        this.$set(field.options, 'choices', choices);
+        this.$set(field.options, "choices", choices);
       }
     },
     // 合并rules
@@ -21532,9 +21837,100 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
       }); // this.makeValidateResult(true)
       // this.mergeRules()
     },
+    // 数据准备，可以根据某些规则进行数据加工
+    // 支持两种模式
+    // 1. 函数，执行后对字段值进行替换 (value, field, alldata)
+    // 2. 对象，收集对应的字段值生成新的对象并替换原字段值
+    processInputConvert: function processInputConvert(v) {
+      var _iteratorNormalCompletion6 = true;
+      var _didIteratorError6 = false;
+      var _iteratorError6 = undefined;
+
+      try {
+        for (var _iterator6 = get_iterator_default()(this.convertFields), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+          var f = _step6.value;
+
+          if (typeof f.inputConvert === "function") {
+            v[f.name] = f.inputConvert(v[f.name], f, v);
+          } else if (f.mapConvert instanceof Object) {
+            v[f.name] = {};
+
+            for (var k in f.mapConvert) {
+              v[f.name][k] = v[f.mapConvert[k]];
+            }
+          } else {
+            throw new Error("Not support this format of inputConvert or mapConvert ".concat(f));
+          }
+        }
+      } catch (err) {
+        _didIteratorError6 = true;
+        _iteratorError6 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+            _iterator6.return();
+          }
+        } finally {
+          if (_didIteratorError6) {
+            throw _iteratorError6;
+          }
+        }
+      }
+
+      return v;
+    },
+    // 数据输出，可以根据规则输出字段内容
+    // v 是目标对象， source 是原数据对象
+    processOutputConvert: function processOutputConvert(v, source) {
+      var _iteratorNormalCompletion7 = true;
+      var _didIteratorError7 = false;
+      var _iteratorError7 = undefined;
+
+      try {
+        for (var _iterator7 = get_iterator_default()(this.convertFields), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+          var f = _step7.value;
+
+          if (typeof f.outputConvert === "function") {
+            v[f.name] = f.outputConvert(source[f.name], f, source);
+          } else if (f.mapConvert instanceof Object && source[f.name] instanceof Object) {
+            for (var k in f.mapConvert) {
+              v[f.mapConvert[k]] = source[f.name][k];
+            }
+          } else {
+            throw new Error("Not support this format of inputConvert or mapConvert ".concat(f));
+          }
+        }
+      } catch (err) {
+        _didIteratorError7 = true;
+        _iteratorError7 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+            _iterator7.return();
+          }
+        } finally {
+          if (_didIteratorError7) {
+            throw _iteratorError7;
+          }
+        }
+      }
+    },
     getData: function getData() {
-      return this.oldvalue;
-    }
+      var _this3 = this;
+
+      // 如果字段设置了keep为false，则字段不输出
+      var v = utils_deepCopy(this.oldvalue, function (k, v) {
+        return !_this3.fields[k] || _this3.fields[k].keep === false;
+      });
+      this.processOutputConvert(v, this.oldvalue);
+      return v;
+    } // setData (v) {
+    //   let r = this.processInputConvert(v)
+    //   for (let k in r) {
+    //     this.$set(this.value, k, r[k])
+    //   }
+    // }
+
   },
   created: function created() {
     this.makeFields();
@@ -21550,7 +21946,7 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 
         if (!utils_isEmpty(v)) {
           this.oldvalue = n;
-          this.$emit('input', n);
+          this.$emit("input", n);
 
           for (var k in v) {
             var field = this.fields[k];
@@ -21572,58 +21968,58 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
     choices: {
       immediate: true,
       handler: function handler() {
-        var _iteratorNormalCompletion6 = true;
-        var _didIteratorError6 = false;
-        var _iteratorError6 = undefined;
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
 
         try {
-          for (var _iterator6 = get_iterator_default()(this.current), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-            var row = _step6.value;
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+          for (var _iterator8 = get_iterator_default()(this.current), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var row = _step8.value;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-              for (var _iterator7 = get_iterator_default()(row.fields || []), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                var field = _step7.value;
+              for (var _iterator9 = get_iterator_default()(row.fields || []), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                var field = _step9.value;
                 var choices = this.choices[field.name];
 
                 if (choices) {
                   if (!field.options) {
-                    this.$set(field, 'options', {
+                    this.$set(field, "options", {
                       choices: choices
                     });
                   } else {
-                    this.$set(field.options, 'choices', choices);
+                    this.$set(field.options, "choices", choices);
                   }
                 }
               }
             } catch (err) {
-              _didIteratorError7 = true;
-              _iteratorError7 = err;
+              _didIteratorError9 = true;
+              _iteratorError9 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
-                  _iterator7.return();
+                if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
+                  _iterator9.return();
                 }
               } finally {
-                if (_didIteratorError7) {
-                  throw _iteratorError7;
+                if (_didIteratorError9) {
+                  throw _iteratorError9;
                 }
               }
             }
           }
         } catch (err) {
-          _didIteratorError6 = true;
-          _iteratorError6 = err;
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-              _iterator6.return();
+            if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
+              _iterator8.return();
             }
           } finally {
-            if (_didIteratorError6) {
-              throw _iteratorError6;
+            if (_didIteratorError8) {
+              throw _iteratorError8;
             }
           }
         }
@@ -21664,8 +22060,8 @@ var Buildvue_type_template_id_b1addb1e_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_b1addb1e_render,
-  Buildvue_type_template_id_b1addb1e_staticRenderFns,
+  Buildvue_type_template_id_d535b17c_render,
+  Buildvue_type_template_id_d535b17c_staticRenderFns,
   false,
   null,
   null,
@@ -21674,12 +22070,12 @@ var Build_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Build = (Build_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=029540c0&
-var Sectionvue_type_template_id_029540c0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
-var Sectionvue_type_template_id_029540c0_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=21566c02&
+var Sectionvue_type_template_id_21566c02_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:j,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validateResult":_vm.validateResult,"labelDir":_vm.labelDir,"staticSuffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
+var Sectionvue_type_template_id_21566c02_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=029540c0&
+// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=21566c02&
 
 // CONCATENATED MODULE: ./src/components/Build/sectionMixin.js
 
@@ -21937,8 +22333,8 @@ var Sectionvue_type_style_index_0_lang_less_ = __webpack_require__("8425");
 
 var Section_component = Object(componentNormalizer["a" /* default */])(
   Build_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_029540c0_render,
-  Sectionvue_type_template_id_029540c0_staticRenderFns,
+  Sectionvue_type_template_id_21566c02_render,
+  Sectionvue_type_template_id_21566c02_staticRenderFns,
   false,
   null,
   null,
@@ -24202,9 +24598,12 @@ function () {
                   ru = {
                     validate: ru
                   };
+                } else {
+                  if (!ru.type && !ru.validate) ru.type = 'string';
                 }
 
-                r = assign_default()({}, ru); // 合并消息
+                r = assign_default()({}, ru); // 缺省校验类型设置为 string
+                // 合并消息
 
                 messages = assign_default()({}, this.messages, ru.messages || {});
                 if (!r.fieldname) r.fieldname = field;
