@@ -576,7 +576,7 @@ export default {
     getData() {
       // 如果字段设置了keep为false，则字段不输出
       let v = deepCopy(this.oldvalue, (k, v) => {
-        return !this.fields[k] || this.fields[k].keep === false;
+        return this.fields[k] && this.fields[k].keep === false;
       });
       this.processOutputConvert(v, this.oldvalue);
       return v;
