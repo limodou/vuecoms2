@@ -79,7 +79,7 @@ export default {
   methods: {
     handleButtonClick (btn) {
       if (btn.onClick) {
-        btn.onClick.call(this, this.target, this.data, btn)
+        btn.onClick(this.target, this.data, btn)
       }
     },
     collectButtons () {

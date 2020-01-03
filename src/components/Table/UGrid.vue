@@ -533,7 +533,7 @@ export default {
             let d = this.getDefaultColumn(col);
             // 增加行编辑操作列的render函数
             if (this.editMode === "row" && col.name === this.actionColumn) {
-              d.render = col.render || this.editActionRender;
+              d.render = this.editActionRender(col.render);
             }
             if (!d.title) d.title = d.name;
             // 静态模式下，隐藏操作列
@@ -583,23 +583,29 @@ export default {
     },
 
     // 生成缺省的行编辑按钮
-    editActionRender(h, param) {
-      if (this.onRowEditRender) {
-        let render = this.onRowEditRender(h, param.row);
-        if (render) return render;
+    editActionRender(render) {
+      return (h, param) => {
+        if (!render || param.row._editting) {
+          if (this.onRowEditRender) {
+            let render = this.onRowEditRender(h, param.row);
+            if (render) return render;
+          }
+          let cls = "u-cell-text";
+          if (this.nowrap) cls += " nowrap";
+          return h(
+            "div",
+            {
+              class: cls
+            },
+            [
+              this.defaultEditRender(h, param.row),
+              this.defaultDeleteRender(h, param.row)
+            ]
+          );
+        } else {
+          return render(h, param)
+        }
       }
-      let cls = "u-cell-text";
-      if (this.nowrap) cls += " nowrap";
-      return h(
-        "div",
-        {
-          class: cls
-        },
-        [
-          this.defaultEditRender(h, param.row),
-          this.defaultDeleteRender(h, param.row)
-        ]
-      );
     },
 
     defaultEditRender(h, row) {
@@ -647,7 +653,7 @@ export default {
                     }
                     this.$set(row, "_saving", false);
                     if (this.onError) {
-                      this.onError.call(res);
+                      this.onError(res);
                     }
                   } else this.onSaveRow(row._editRow, callback, row);
                 } else {
@@ -705,7 +711,7 @@ export default {
           }
         };
         if (this.onDeleteRow) {
-          this.onDeleteRow.call(row, callback);
+          this.onDeleteRow(row, callback);
         } else {
           this.removeRow(row);
           this.sendInputEvent();
