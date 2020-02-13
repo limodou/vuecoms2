@@ -80,7 +80,7 @@ export default {
       validating: false,
       validateResult: {}, //保存校验结果,
       watchers: {}, // 保存根据状态生成的$watch结果，用于清除
-      convertFields: [] // 存在数据预处理的字段列表
+      convertFields: {} // 存在数据预处理的字段列表
     };
   },
   props: {
@@ -477,7 +477,7 @@ export default {
 
           // 处理有转换函数的字段
           if (field.inputConvert || field.outputConvert || field.mapConvert) {
-            this.convertFields.push(field);
+            this.convertFields[field.name] = field;
           }
         }
         row.fields = row_fields;
@@ -535,13 +535,14 @@ export default {
     // 1. 函数，执行后对字段值进行替换 (value, field, alldata)
     // 2. 对象，收集对应的字段值生成新的对象并替换原字段值
     processInputConvert(v) {
-      for (let f of this.convertFields) {
+      for (let key in this.convertFields) {
+        let f = this.convertFields[key]
         if (typeof f.inputConvert === "function") {
-          v[f.name] = f.inputConvert(v[f.name], f, v);
+          v[key] = f.inputConvert(v[key], f, v);
         } else if (f.mapConvert instanceof Object) {
-          v[f.name] = {};
+          v[key] = {};
           for (let k in f.mapConvert) {
-            v[f.name][k] = v[f.mapConvert[k]];
+            v[key][k] = v[f.mapConvert[k]];
           }
         } else {
           throw new Error(
@@ -555,15 +556,16 @@ export default {
     // 数据输出，可以根据规则输出字段内容
     // v 是目标对象， source 是原数据对象
     processOutputConvert(v, source) {
-      for (let f of this.convertFields) {
+      for (let key in this.convertFields) {
+        let f = this.convertFields[key]
         if (typeof f.outputConvert === "function") {
-          v[f.name] = f.outputConvert(source[f.name], f, source);
+          v[key] = f.outputConvert(source[key], f, source);
         } else if (
           f.mapConvert instanceof Object &&
-          source[f.name] instanceof Object
+          source[key] instanceof Object
         ) {
           for (let k in f.mapConvert) {
-            v[f.mapConvert[k]] = source[f.name][k];
+            v[f.mapConvert[k]] = source[key][k];
           }
         } else {
           throw new Error(

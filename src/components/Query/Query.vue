@@ -364,8 +364,10 @@ export default {
         this.merge_object(this.current_value, this.defaultValue)
     },
     handleClick(btn){
+      this.value._query_btn = 'submit'
       if (btn.name === 'reset') {
         this.reset()
+        this.value._query_btn = 'reset'
       }
       this.handleSubmit()
     },

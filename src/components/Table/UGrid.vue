@@ -562,10 +562,10 @@ export default {
     },
 
     handleScroll(left, top) {
-      if (this.leftWidth) {
+      if (this.leftWidth && this.$refs.left) {
         this.$refs.left.$refs.body.scrollTop = top;
       }
-      if (this.rightWidth) {
+      if (this.rightWidth && this.$refs.right) {
         this.$refs.right.$refs.body.scrollTop = top;
       }
     },
