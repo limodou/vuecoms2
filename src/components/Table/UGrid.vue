@@ -104,7 +104,8 @@ import {
   setChoice,
   deepCopy,
   findParent,
-  isEmpty
+  isEmpty,
+  getWH
 } from "../utils/utils.js";
 import Emitter from "../mixins/emitter.js";
 import Query from "../Query";
@@ -126,8 +127,13 @@ export default {
     const store = new Store(this, this.data, this.value);
     return {
       store,
-      autoloaded: false
+      autoloaded: false,
+      btns: {}
     };
+  },
+
+  provide () {
+    return {managerElement: this}
   },
 
   props: {
@@ -603,9 +609,9 @@ export default {
             ]
           );
         } else {
-          return render(h, param)
+          return render(h, param);
         }
-      }
+      };
     },
 
     defaultEditRender(h, row) {
@@ -836,8 +842,8 @@ export default {
 
     this.__resizeHandler = debounce(
       () => {
-        let parent = self.$parent.$el;
-        let p_width = parent.offsetWidth;
+        let parent = self.$el.parentNode;
+        let p_width = getWH(parent, "width");
         let width = p_width;
         while (1) {
           parent = parent.parentNode;
@@ -866,7 +872,7 @@ export default {
         el = el.$el;
       }
       addListener(el, this.__resizeHandler);
-      addListener(this.$parent.$el, this.__resizeHandler);
+      addListener(self.$el.parentNode, this.__resizeHandler);
     }
   },
 

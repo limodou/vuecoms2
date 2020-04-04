@@ -2,21 +2,21 @@
   <component v-if="boxComponent" :is="boxComponent" :title="title" v-bind="boxOptions" class="u-layout" :class="themeClasses">
     <Row v-for="(row, i) in rows" class="u-layout-row" :key="i">
       <Col v-for="(col, j) in row" :span="col.colspan" :key="j">
-        <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validateResult="validateResult"
-          :labelDir="labelDir"
-          :staticSuffix="staticSuffix" root="Build" :fields="col.fields"></component>
+        <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validate-result="validateResult"
+          :label-dir="labelDir" :label-align="labelAlign"
+          :static-suffix="staticSuffix" root="Build" :fields="col.fields"></component>
       </Col>
     </Row>
-    <Row v-if="buttons" slot="footer">
+    <Row v-if="buttons" slot="footer" class="u-build-buttons">
       <Buttons :buttons="btns" :data="value" :size="size" :target="$parent"></Buttons>
     </Row>
   </component>
   <div v-else class="u-layout" :class="themeClasses">
     <Row v-for="(row, i) in rows" class="u-layout-row" :key="i">
       <Col v-for="(col, j) in row" :span="col.colspan" :key="j">
-        <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validateResult="validateResult" 
-          :labelDir="labelDir"
-          :staticSuffix="staticSuffix" :root="Build" :fields="col.fields"></component>
+        <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validate-result="validateResult" 
+          :label-dir="labelDir" :label-align="labelAlign"
+          :static-suffix="staticSuffix" :root="Build" :fields="col.fields"></component>
       </Col>
     </Row>
   </div>
@@ -77,7 +77,7 @@ export default {
   // height: 28px;
   // line-height: 28px;
   font-weight: bold;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   padding-right: 10px;
   padding-left: 10px;
   font-size: 14px;

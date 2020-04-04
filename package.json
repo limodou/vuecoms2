@@ -19,6 +19,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.4",
     "resize-detector": "^0.2.0",
+    "vtip": "^1.0.6",
     "vue": "^2.6.10"
   },
   "devDependencies": {

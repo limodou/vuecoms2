@@ -38,6 +38,7 @@
               :value="value"
               :labelWidth="item.labelWidth || labelWidth"
               :labelDir="item.labelDir || labelDir"
+              :labelAlign="item.labelAlign || labelAlign"
               :staticSuffix="staticSuffix"
               :validateResult="validateResult"
               :ref="item.name"
@@ -49,9 +50,9 @@
 
     <div slot="footer" class="u-build-header"></div>
 
-    <Row v-if="buttons" slot="buttons">
+    <Row v-if="buttons" ref = 'buttons' slot="buttons" class="u-build-buttons">
       <Buttons
-        :buttons="btns"
+        :buttons="buttonList"
         :data="value"
         :size="btnSize"
         :target="this"
@@ -76,12 +77,16 @@ export default {
       oldvalue: deepCopy(this.value, true),
       current: deepCopy(this.data),
       fields: {},
+      btns: {}, // 保存按钮数据
       rows: {}, // 每段索引,key为每段name值，如果没有则不插入
       validating: false,
       validateResult: {}, //保存校验结果,
       watchers: {}, // 保存根据状态生成的$watch结果，用于清除
       convertFields: {} // 存在数据预处理的字段列表
     };
+  },
+  provide () {
+    return {managerElement: this}
   },
   props: {
     theme: {
@@ -150,6 +155,10 @@ export default {
       type: String,
       default: "horizontal"
     },
+    labelAlign: {
+      type: String,
+      default: "right"
+    },
     boxOptions: {
       type: Object,
       default() {
@@ -167,7 +176,7 @@ export default {
   },
 
   computed: {
-    btns() {
+    buttonList() {
       if (Array.isArray(this.buttons)) return this.buttons;
       else return this.buttons.items;
     },
@@ -178,12 +187,26 @@ export default {
   },
 
   methods: {
-    async validate(callback) {
+    /** 校验处理
+     * options 原来是callback，现在可以支持对象或 callback 函数
+     * 如果是对象，则可以在其中定义 callback 回调，fields 表示要校验的字段列表
+     */
+    async validate(options={}) {
       let error = "";
       let validateRules = {};
-      this.clearValidateResult();
+      let callback
+      let fields = null
+      if (typeof options === 'function') {
+        callback = options
+      } else {
+        callback = options.callback
+        fields = options.fields
+      }
+      this.clearValidateResult(null, '', fields);
       for (let k of Object.keys(this.validateResult)) {
         let field = this.fields[k];
+        // 增加对是否校验字符列表的检查，如果存在，且不在列表中，则不校验
+        if (fields && fields.indexOf(k) === -1) continue
         let v = this.validateResult[k];
         if (field && !field.static && !field.hidden) {
           // 如果children为对象或数组，则合成object或array的校验规则模式
@@ -321,9 +344,13 @@ export default {
       });
     },
 
-    clearValidateResult(validateResult, flag = "") {
+    /** 清除校验结果
+     * 如果传入了 fields，则只清除 fields 中的数据，否则无 fields 时，全部清除
+     */
+    clearValidateResult(validateResult, flag = "", fields) {
       if (!validateResult) validateResult = this.validateResult;
       for (let k of Object.keys(validateResult)) {
+        if (fields && fields.indexOf(k) === -1) continue
         this.setValidateResultKey(validateResult, k, "", flag);
         let r = validateResult[k];
         if (r.children) {

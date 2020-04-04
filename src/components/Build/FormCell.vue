@@ -4,7 +4,7 @@
       {{col.label}}
       <i class="ivu-icon ivu-icon-ios-information-circle-outline" v-if="col.info" :title="col.info"></i>
     </label>
-    <div class="u-layout-cell-field" :style="fieldStyle">
+    <div class="u-layout-cell-field" :style="fstyle">
       <GenericInput v-bind="col" :value="value"
         :staticSuffix="staticSuffix"
         :validate-result="validateResult"
@@ -35,6 +35,10 @@ export default {
     labelDir: {
       type: String,
       default: 'horizontal'
+    },
+    labelAlign: {
+      type: String,
+      default: 'right'
     },
     validateResult: {
       type: Object,
@@ -68,7 +72,7 @@ export default {
       if (this.compact) return {}
 
       let s = {minWidth: `${this.col.labelWidth}px`}
-      switch (this.col.labelAlign) {
+      switch (this.col.labelAlign || this.labelAlign) {
         case 'left':
           s['textAlign'] = 'left'
           break
@@ -79,7 +83,7 @@ export default {
           s['display'] = 'block'
           break
       }
-      if (this.labelDir == 'vertical') {
+      if (this.col.labelDir === 'vertical' || !this.col.labelDir && this.labelDir === 'vertical') {
         s['textAlign'] = 'left'
         s['display'] = 'block'
       }
@@ -93,6 +97,12 @@ export default {
         this.$set(this.validateResult[this.col.name], 'error', v)
       }
     },
+    fstyle () {
+      if (this.col.labelDir === 'vertical' || !this.col.labelDir && this.labelDir === 'vertical') {
+        return Object.assign({}, this.fieldStyle, {display: 'block'})
+      }
+      return this.fieldStyle
+    }
     // validateState: {
     //   get () {
     //     return this.validateResult[this.col.name].validateState
