@@ -158,7 +158,6 @@ export default {
   methods: {
     ...mapMethod('getComment', 'getClass', 'setSelection', 'makeRows', 'checkSelectStatus'),
     handleCheckClick () {
-      console.log('checkclick')
       if (this.static) return
       this.store.toggle(this.col.row)
     },
