@@ -1,7 +1,13 @@
-import {isEmpty, findParent, deepCompare} from '../utils/utils'
+import {
+  isEmpty,
+  findParent,
+  deepCompare,
+  getType,
+  formatDate
+} from '../utils/utils'
 
 export default class Field {
-  constructor (parent, options) {
+  constructor(parent, options) {
     this.field = options
     this.parent = parent //记录父结点
     this.component = options.type //底层组件名,缺省使用type,后续定义的组件可以重定义这个值
@@ -20,7 +26,7 @@ export default class Field {
     this.multiple = options.multiple
     this.showError = options.showError
     this.format = options.format
-    this.from = options.from  //从value转为控件属性值的方法
+    this.from = options.from //从value转为控件属性值的方法
     this.to = options.to //从控件值转为value值的方法
     this.staticSuffix = options.staticSuffix
     this.static_name = `${this.name}${this.staticSuffix}`
@@ -31,40 +37,49 @@ export default class Field {
   }
 
   //处理静态字段
-  getStaticValue (value) {
-    let v = (value === undefined || value === null) ? '' : value + ''
+  getStaticValue(value) {
+    let v = ''
+    if (value) {
+      const _type = getType(value)
+      if (_type === 'object') {
+        return value.label || ''
+      } else if (_type === 'date') {
+        return formatDate(value)
+      }
+      return value + ''
+    }
     return v
   }
 
-  setStaticValue (value, direct=false) {
+  setStaticValue(value, direct = false) {
     let v
     if (!direct)
       v = this.getStaticValue(value)
     else
-       v = value
+      v = value
     this.parent.$set(this.value, this.static_name, v)
-    if (this.labelField) 
+    if (this.labelField)
       this.parent.$set(this.value, this.labelField, v)
   }
 
-  setValue (v) {
+  setValue(v) {
     this.parent.$set(this.value, this.name, v)
   }
 
-  convert_value (value) {
+  convert_value(value) {
     //如果是多选，但是value不是数据组，则进行转换
     if (this.multiple) {
       if (!Array.isArray(value))
         return []
-      else 
+      else
         return value.slice()
     }
     return value
   }
 
-  beforeRender (props) {}
+  beforeRender(props) {}
 
-  render (h, ctx) {
+  render(h, ctx) {
     let self = ctx.props
     let value = self.value[self.name]
     // 增加options是函数时的处理
@@ -74,10 +89,17 @@ export default class Field {
     }
     // 处理select的labelField
     if (this.labelField) {
-      value = {label: self.value[this.labelField], value: value}
-    } 
+      value = {
+        label: self.value[this.labelField],
+        value: value
+      }
+    }
 
-    let props = Object.assign({}, this.defaultOptions, {value, validateResult: this.validateResult, field: this.field}, opts)
+    let props = Object.assign({}, this.defaultOptions, {
+      value,
+      validateResult: this.validateResult,
+      field: this.field
+    }, opts)
     let events = {
       input: (x) => {
         x = this.convert_value(x)
@@ -93,10 +115,14 @@ export default class Field {
           // if (this.events.indexOf('input') > -1 && (old_value !== undefined || 
           //   ctx.parent.validateResult && ctx.parent.validateResult[self.name] && ctx.parent.validateResult[self.name].error) ) {
           if (this.events.indexOf('input') > -1) {
-                ctx.listeners['on-validate'] && ctx.listeners['on-validate']()
+            ctx.listeners['on-validate'] && ctx.listeners['on-validate']()
           }
           // 触发on-field-change事件
-          let v = {name: self.name, old: self.value[self.name], value: x}
+          let v = {
+            name: self.name,
+            old: self.value[self.name],
+            value: x
+          }
           let p = findParent(ctx.parent, self.root)
           if (p)
             p.$emit('on-field-change', v)
@@ -119,7 +145,7 @@ export default class Field {
         ctx.listeners['on-validate'] && ctx.listeners['on-validate']()
       }
     }
-    for(let e_name of this.events) {
+    for (let e_name of this.events) {
       if (e_name === 'input') continue
       events[e_name] = function (...args) {
         ctx.listeners['on-validate'] && ctx.listeners['on-validate']()

@@ -1,4 +1,5 @@
 const HZ = /^([\u4e00-\u9fa5\·]+)$/
+const EN = /^([a-zA-Z\.\s]+)$/
 const ALL = /^([\u4e00-\u9fa5\·]+|[a-zA-Z\.\s]+)$/
 
 export default (rule, value, model) => {
@@ -11,6 +12,9 @@ export default (rule, value, model) => {
 
   if (rule.hz && !HZ.test(value)) {
     return rule.makeError('realnameHZ')
+  }
+  if (rule.en && !EN.test(value)) {
+    return rule.makeError('realnameEN')
   }
   if(!ALL.test(value)) {
     return rule.makeError('realname')

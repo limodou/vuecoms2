@@ -7,7 +7,6 @@ export default {
   props: {
     name: {},
     type: {
-      type: String, // editor类型
       default: 'str'
     },
     value: {},  // 值

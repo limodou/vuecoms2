@@ -661,7 +661,11 @@ export default {
                     if (this.onError) {
                       this.onError(res);
                     }
-                  } else this.onSaveRow(row._editRow, callback, row);
+                  } else {
+                    // 增加获取干净数据的处理 2020/04/08
+                    let cleanData = deepCopy(row._editRow, true)
+                    this.onSaveRow(cleanData, callback, row);
+                  }
                 } else {
                   copyDataRow(row, row._editRow);
                   delete row._editRow;

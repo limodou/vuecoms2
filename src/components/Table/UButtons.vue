@@ -18,12 +18,7 @@
           >
             {{ btn.label }}
           </Button>
-          <component
-            v-else
-            :is="btn.component"
-            v-bind="btn.props"
-            v-on="btn.on"
-          ></component>
+          <component v-else :is="btn.component" v-bind="btn.props" v-on="btn.on"></component>
         </template>
       </template>
     </ButtonGroup>
@@ -31,23 +26,23 @@
 </template>
 
 <script>
-import { ButtonGroup, Button, Icon } from "iview";
+import { ButtonGroup, Button, Icon } from 'iview';
 
 export default {
-  name: "Buttons",
+  name: 'Buttons',
 
   components: {
     ButtonGroup,
     Button,
-    Icon
+    Icon,
   },
 
-  inject: ["managerElement"],
+  inject: { managerElement: { default: null } },
 
   data() {
     return {
       disabled: false,
-      btns: {}
+      btns: {},
     };
   },
 
@@ -56,8 +51,8 @@ export default {
     data: {},
     target: {},
     size: {
-      default: "small"
-    }
+      default: 'small',
+    },
   },
 
   computed: {
@@ -68,7 +63,7 @@ export default {
 
     btnSize() {
       return this.buttons.size || this.size;
-    }
+    },
 
     // btngroups () {
     //   let v = []
@@ -107,12 +102,12 @@ export default {
             if (rootButtons) {
               rootButtons[b.name] = b;
             }
-            this.$set(b, "loading", b.loading || false);
+            this.$set(b, 'loading', b.loading || false);
           }
         }
       }
       this.btns = btns;
-    }
+    },
   },
 
   mounted() {
@@ -123,10 +118,10 @@ export default {
     buttons: {
       handler() {
         this.collectButtons();
-      }
+      },
     },
-    deep: true
-  }
+    deep: true,
+  },
 };
 </script>
 

@@ -288,7 +288,7 @@ export const formatDate = function (d, fmt='yyyy/MM/dd') {
 }
 
 // deepCopy
-export const deepCopy = function (data, clear=false) {
+export const deepCopy = function (data, clear=false, cache=[]) {
   let o
   let clear_func
 
@@ -317,14 +317,19 @@ export const deepCopy = function (data, clear=false) {
       return data
   }
 
+  if (cache.indexOf(data) > -1) {
+    return data
+  }
+  // 用于判断循环引用
+  cache.push(data)
   if (Array.isArray(data)) {
       for (let c of data) {
-          o.push(deepCopy(c, clear))
+          o.push(deepCopy(c, clear, cache))
       }
   } else if (data instanceof Object) {
       for (let i in data) {
         if (!clear_func || (clear_func && !clear_func(i, data[i])))
-          o[i] = deepCopy(data[i], clear)
+          o[i] = deepCopy(data[i], clear, cache)
       }
   }
   return o
@@ -558,4 +563,12 @@ export function getWH(el, name) {
     val -= parseFloat(style["padding" + a]) || 0;
   }
   return val;
+}
+
+export const getType = (obj) => {
+  let type = typeof obj;
+  if (type != "object") {
+    return type;
+  }
+  return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1').toLowerCase();
 }

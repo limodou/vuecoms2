@@ -209,7 +209,7 @@ export default {
     },
     checkCellStatic (col, row) {
       let static_flag = (col.column.fixed !== this.fixed || col.column.editor.static || !col.row._editting)
-      if (col.row._editting && col.column.editor && col.column.editor.onEnableEdit && !col.column.editor.onEnableEdit(row[col.name], col, row))
+      if (col.row._editting && col.column.editor && col.column.editor.onEnableEdit && !col.column.editor.onEnableEdit(row[col.column.name], col.column, row))
         static_flag = true
       return static_flag
     }
