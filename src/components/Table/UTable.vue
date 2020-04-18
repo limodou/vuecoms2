@@ -527,7 +527,7 @@ export default {
       height: 100%;
       overflow: hidden;
       position: relative;
-      background-color: #eee;
+      // background-color: #eee;
 
       table{
         border-collapse: separate;

@@ -11,20 +11,10 @@
     <slot name="afterQuery"></slot>
     <div class="u-grid-tools" slot="tools" v-if="buttons || rightButtons">
       <div class="u-grid-tools-left" v-if="buttons">
-        <Buttons
-          ref="buttons"
-          :buttons="buttons"
-          :data="store"
-          :target="this"
-        ></Buttons>
+        <Buttons ref="buttons" :buttons="buttons" :data="store" :target="this"></Buttons>
       </div>
       <div class="u-grid-tools-right" v-if="rightButtons">
-        <Buttons
-          ref="rightButtons"
-          :buttons="rightButtons"
-          :data="store"
-          :target="this"
-        ></Buttons>
+        <Buttons ref="rightButtons" :buttons="rightButtons" :data="store" :target="this"></Buttons>
       </div>
     </div>
     <slot name="beforeTable"></slot>
@@ -60,11 +50,7 @@
       >
       </u-table>
 
-      <div
-        class="column-dragger-guide"
-        v-show="columnResizing"
-        :style="columnDraggerStyles"
-      ></div>
+      <div class="column-dragger-guide" v-show="columnResizing" :style="columnDraggerStyles"></div>
       <div
         ref="loading"
         class="loading"
@@ -93,10 +79,10 @@
 </template>
 
 <script>
-import UTable from "./UTable";
-import Store from "./UGridStore";
-import Pagination from "./pagination";
-import Buttons from "./UButtons";
+import UTable from './UTable';
+import Store from './UGridStore';
+import Pagination from './pagination';
+import Buttons from './UButtons';
 import {
   mapState,
   mapMethod,
@@ -105,22 +91,22 @@ import {
   deepCopy,
   findParent,
   isEmpty,
-  getWH
-} from "../utils/utils.js";
-import Emitter from "../mixins/emitter.js";
-import Query from "../Query";
-import debounce from "lodash/debounce";
-import { addListener, removeListener } from "resize-detector";
+  getWH,
+} from '../utils/utils.js';
+import Emitter from '../mixins/emitter.js';
+import Query from '../Query';
+import debounce from 'lodash/debounce';
+import { addListener, removeListener } from 'resize-detector';
 
 export default {
-  name: "Grid",
+  name: 'Grid',
   mixins: [Emitter],
 
   components: {
     UTable,
     Pagination,
     Buttons,
-    Query
+    Query,
   },
 
   data() {
@@ -128,12 +114,12 @@ export default {
     return {
       store,
       autoloaded: false,
-      btns: {}
+      btns: {},
     };
   },
 
-  provide () {
-    return {managerElement: this}
+  provide() {
+    return { managerElement: this };
   },
 
   props: {
@@ -141,93 +127,93 @@ export default {
       type: Object,
       default() {
         return {};
-      }
+      },
     },
     value: {
       type: Array,
       default() {
         return [];
-      }
+      },
     },
     // 用于选择控件设置choices
     choices: {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
 
   computed: {
     ...mapState(
-      "columns",
-      "columnResizing",
-      "checkCol",
-      "indexCol",
-      "gridWidth",
-      "width",
-      "height",
-      "resizable",
-      "columnPosition",
-      "guiderHeight",
-      "defaultColWidth",
-      "leftWidth",
-      "rightWidth",
-      "checkColTitle",
-      "checkColWidth",
-      "indexColWidth",
-      "indexColTitle",
-      "scrollLeft",
-      "total",
-      "pageSizeOpts",
-      "pagination",
-      "loading",
-      "loadingText",
-      "loadingTop",
-      "loadingLeft",
-      "autoLoad",
-      "url",
-      "param",
-      "buttons",
-      "rightButtons",
-      "bottomButtons",
-      "selected",
-      "editMode",
-      "actionColumn",
-      "deleteRowConfirm",
-      "onSaveRow",
-      "onDeleteRow",
-      "onError",
-      "onLoadData",
-      "query",
-      "theme",
-      "cellTitle",
-      "isScrollRight",
-      "page",
-      "start",
-      "pageSize",
-      "nowrap",
-      "addAutoScrollTo",
-      "onRowEditRender",
-      "static",
-      "xscroll",
-      "afterLoadData",
-      "multiHeaderSep",
-      "zebra",
-      "oldParentWidth"
+      'columns',
+      'columnResizing',
+      'checkCol',
+      'indexCol',
+      'gridWidth',
+      'width',
+      'height',
+      'resizable',
+      'columnPosition',
+      'guiderHeight',
+      'defaultColWidth',
+      'leftWidth',
+      'rightWidth',
+      'checkColTitle',
+      'checkColWidth',
+      'indexColWidth',
+      'indexColTitle',
+      'scrollLeft',
+      'total',
+      'pageSizeOpts',
+      'pagination',
+      'loading',
+      'loadingText',
+      'loadingTop',
+      'loadingLeft',
+      'autoLoad',
+      'url',
+      'param',
+      'buttons',
+      'rightButtons',
+      'bottomButtons',
+      'selected',
+      'editMode',
+      'actionColumn',
+      'deleteRowConfirm',
+      'onSaveRow',
+      'onDeleteRow',
+      'onError',
+      'onLoadData',
+      'query',
+      'theme',
+      'cellTitle',
+      'isScrollRight',
+      'page',
+      'start',
+      'pageSize',
+      'nowrap',
+      'addAutoScrollTo',
+      'onRowEditRender',
+      'static',
+      'xscroll',
+      'afterLoadData',
+      'multiHeaderSep',
+      'zebra',
+      'oldParentWidth'
     ),
 
     columnDraggerStyles() {
       return {
-        left: this.columnPosition - 7 + "px",
-        height: this.guiderHeight + "px"
+        left: this.columnPosition - 7 + 'px',
+        height: this.guiderHeight + 'px',
       };
     },
 
     themeClass() {
       return {
         [`theme-${this.theme}`]: this.theme,
-        "u-grid-zebra": this.zebra
+        'u-grid-zebra': this.zebra,
       };
     },
 
@@ -240,61 +226,59 @@ export default {
     },
 
     leftTableClass() {
-      let cls = "u-grid-body u-table-left";
+      let cls = 'u-grid-body u-table-left';
       if (this.scrollLeft) {
-        cls += " dark";
+        cls += ' dark';
       }
       return cls;
     },
 
     rightTableClass() {
-      let cls = "u-grid-body u-table-right";
+      let cls = 'u-grid-body u-table-right';
       if (!this.isScrollRight) {
-        cls += " dark";
+        cls += ' dark';
       }
       return cls;
-    }
+    },
   },
 
   methods: {
     ...mapMethod(
-      "getSelection",
-      "showLoading",
-      "setSelection",
-      "removeRow",
-      "setComment",
-      "removeComment",
-      "getSelectedRows",
-      "getColumn",
-      "getDefaultRow",
-      "makeRows",
-      "sendInputEvent",
-      "deselectAll",
-      "selectAll",
-      "select",
-      "deselect",
-      "toggle",
-      "getComment",
-      "getClass",
-      "removeClass",
-      "setClass",
-      "addRow",
-      "addEditRow",
-      "updateRow",
-      "addChildRow",
-      "addEditChildRow",
-      "moveRow",
-      "expand",
-      "collapse"
+      'getSelection',
+      'showLoading',
+      'setSelection',
+      'removeRow',
+      'setComment',
+      'removeComment',
+      'getSelectedRows',
+      'getColumn',
+      'getDefaultRow',
+      'makeRows',
+      'sendInputEvent',
+      'deselectAll',
+      'selectAll',
+      'select',
+      'deselect',
+      'toggle',
+      'getComment',
+      'getClass',
+      'removeClass',
+      'setClass',
+      'addRow',
+      'addEditRow',
+      'updateRow',
+      'addChildRow',
+      'addEditChildRow',
+      'moveRow',
+      'expand',
+      'collapse'
     ),
 
     resize(width, height) {
       if (width) this.width = width;
-      if (this.width === "auto") {
+      if (this.width === 'auto') {
         this.store.states.gridWidth =
-          this.$el.clientWidth === 0
-            ? this.$parent.$el.clientWidth
-            : this.$el.clientWidth;
+          this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth;
       } else {
         this.store.states.gridWidth = this.width;
       }
@@ -317,10 +301,10 @@ export default {
           cols.push(col);
         }
         switch (col.fixed) {
-          case "left":
+          case 'left':
             hasLeftFixed = true;
             break;
-          case "right":
+          case 'right':
             hasRightFixed = true;
             break;
         }
@@ -356,14 +340,13 @@ export default {
         for (let i = 0, len = this.columns.length; i < len; i++) {
           let col = this.columns[i];
           if (
-            col.fixed === "left" ||
-            (hasLeftFixed &&
-              (col.name === "__check_col__" || col.name === "__index_col__"))
+            col.fixed === 'left' ||
+            (hasLeftFixed && (col.name === '__check_col__' || col.name === '__index_col__'))
           ) {
-            col.fixed = "left";
+            col.fixed = 'left';
             leftCols.push(col);
             this.store.states.leftWidth += col.width;
-          } else if (col.fixed === "right") {
+          } else if (col.fixed === 'right') {
             rightCols.push(col);
             this.store.states.rightWidth += col.width;
           } else {
@@ -372,10 +355,7 @@ export default {
         }
         this.store.states.columns = leftCols.concat(restCols).concat(rightCols);
       }
-      this.store.states.drawColumns = this.parse_header(
-        this.columns,
-        max_level
-      );
+      this.store.states.drawColumns = this.parse_header(this.columns, max_level);
     },
 
     parse_header(cols, max_level) {
@@ -409,7 +389,7 @@ export default {
         for (j = 0; j < subs_len; j++) {
           path = col.subs[j];
           new_col = Object.assign({}, col);
-          new_col.title = path.replace("%%", "/");
+          new_col.title = path.replace('%%', '/');
           new_col.level = j;
           new_col.colspan = 1;
           new_col.col = col;
@@ -431,11 +411,7 @@ export default {
           }
 
           //进行合并的判断，当left不为null，并且标题，层级，并且位置小于当前位置
-          if (
-            left &&
-            left.title === new_col.title &&
-            left.level === new_col.level
-          ) {
+          if (left && left.title === new_col.title && left.level === new_col.level) {
             left.colspan++;
             left.width += new_col.width;
             columns_width[j] += new_col.width;
@@ -478,19 +454,19 @@ export default {
       }
       return Object.assign(
         {
-          name: "title",
+          name: 'title',
           width: 0,
           sortable: false,
-          align: "",
-          headerAlign: "",
+          align: '',
+          headerAlign: '',
           hidden: false,
-          fixed: "",
+          fixed: '',
           resizable: true,
-          type: "column",
+          type: 'column',
           editorOptions: {},
           showTitle: show,
           showHeaderTitle: headerShow,
-          html: true
+          html: true,
         },
         options || {}
       );
@@ -504,13 +480,13 @@ export default {
       // 生成checkbox列
       if (this.checkCol) {
         check_column = this.getDefaultColumn({
-          name: "__check_col__",
-          type: "check",
+          name: '__check_col__',
+          type: 'check',
           resizable: false,
           width: this.checkColWidth,
           title: this.checkColTitle,
-          align: "center",
-          fixed: ""
+          align: 'center',
+          fixed: '',
         });
         cols.push(check_column);
       }
@@ -518,40 +494,37 @@ export default {
       // 生成序号列
       if (this.indexCol) {
         index_column = this.getDefaultColumn({
-          name: "__index_col__",
-          type: "index",
+          name: '__index_col__',
+          type: 'index',
           resizable: false,
           width: this.indexColWidth,
           title: this.indexColTitle,
-          align: "center",
-          fixed: ""
+          align: 'center',
+          fixed: '',
         });
         cols.push(index_column);
       }
 
       this.data.columns.forEach(col => {
         if (!col.hidden) {
-          if (col.name === "__check_col__") {
+          if (col.name === '__check_col__') {
             Object.assign(check_column, col);
-          } else if (col.name === "__index_col__") {
+          } else if (col.name === '__index_col__') {
             Object.assign(index_column, col);
           } else {
             let d = this.getDefaultColumn(col);
             // 增加行编辑操作列的render函数
-            if (this.editMode === "row" && col.name === this.actionColumn) {
+            if (this.editMode === 'row' && col.name === this.actionColumn) {
               d.render = this.editActionRender(col.render);
             }
             if (!d.title) d.title = d.name;
             // 静态模式下，隐藏操作列
-            if (
-              (!this.static && col.name === this.actionColumn) ||
-              col.name !== this.actionColumn
-            )
+            if ((!this.static && col.name === this.actionColumn) || col.name !== this.actionColumn)
               cols.push(d);
             // 处理format回调，如果是一个字符串，则转为函数
-            if (typeof col.format === "string") {
-              let func_str = "return " + "`" + col.format + "`";
-              let func = new Function("value", "column", "row", func_str);
+            if (typeof col.format === 'string') {
+              let func_str = 'return ' + '`' + col.format + '`';
+              let func = new Function('value', 'column', 'row', func_str);
               col._format = col.format;
               col.format = func;
             }
@@ -585,7 +558,7 @@ export default {
     },
 
     handleQueryChange(change) {
-      this.$emit("on-query-change", change);
+      this.$emit('on-query-change', change);
     },
 
     // 生成缺省的行编辑按钮
@@ -596,17 +569,14 @@ export default {
             let render = this.onRowEditRender(h, param.row);
             if (render) return render;
           }
-          let cls = "u-cell-text";
-          if (this.nowrap) cls += " nowrap";
+          let cls = 'u-cell-text';
+          if (this.nowrap) cls += ' nowrap';
           return h(
-            "div",
+            'div',
             {
-              class: cls
+              class: cls,
             },
-            [
-              this.defaultEditRender(h, param.row),
-              this.defaultDeleteRender(h, param.row)
-            ]
+            [this.defaultEditRender(h, param.row), this.defaultDeleteRender(h, param.row)]
           );
         } else {
           return render(h, param);
@@ -616,68 +586,68 @@ export default {
 
     defaultEditRender(h, row) {
       return h(
-        "Button",
+        'Button',
         {
           props: {
-            type: "primary",
-            size: "small",
-            loading: row._saving
+            type: 'primary',
+            size: 'small',
+            loading: row._saving,
           },
           style: {
-            margin: "0 5px"
+            margin: '0 5px',
           },
           on: {
             click: async () => {
               if (!row._editting) {
-                this.$set(row, "_editRow", Object.assign({}, row));
-                this.$set(row, "_editting", true);
+                this.$set(row, '_editRow', Object.assign({}, row));
+                this.$set(row, '_editting', true);
               } else {
-                this.$set(row, "_saving", true);
+                this.$set(row, '_saving', true);
                 if (this.onSaveRow) {
                   let callback = (flag, data) => {
-                    if (flag === "ok") {
+                    if (flag === 'ok') {
                       copyDataRow(row, row._editRow);
                       this.removeComment(row);
-                      this.$set(row, "_editting", !row._editting);
-                      this.$set(row, "_new", false); //保存之后，将_new置为false
+                      this.$set(row, '_editting', !row._editting);
+                      this.$set(row, '_new', false); //保存之后，将_new置为false
                       delete row._editRow;
                       this.sendInputEvent();
                     } else {
                       for (let key in data) {
                         let v = data[key];
-                        this.setComment(row, key, v, "error");
+                        this.setComment(row, key, v, 'error');
                       }
                     }
-                    this.$set(row, "_saving", false);
+                    this.$set(row, '_saving', false);
                   };
                   // 校验错误
                   let res = await this.validateRow(row._editRow);
                   if (res) {
                     for (let key in res) {
                       let v = res[key];
-                      this.setComment(row, key, v, "error");
+                      this.setComment(row, key, v, 'error');
                     }
-                    this.$set(row, "_saving", false);
+                    this.$set(row, '_saving', false);
                     if (this.onError) {
                       this.onError(res);
                     }
                   } else {
                     // 增加获取干净数据的处理 2020/04/08
-                    let cleanData = deepCopy(row._editRow, true)
+                    let cleanData = deepCopy(row._editRow, true);
                     this.onSaveRow(cleanData, callback, row);
                   }
                 } else {
                   copyDataRow(row, row._editRow);
                   delete row._editRow;
-                  this.$set(row, "_editting", false);
-                  this.$set(row, "_saving", false);
+                  this.$set(row, '_editting', false);
+                  this.$set(row, '_saving', false);
                   this.sendInputEvent();
                 }
               }
-            }
-          }
+            },
+          },
         },
-        row._editting ? "保存" : "编辑"
+        row._editting ? '保存' : '编辑'
       );
     },
 
@@ -699,8 +669,8 @@ export default {
     defaultDeleteRender(h, row) {
       let defaultDeleteFunc = () => {
         if (row._editting) {
-          this.$set(row, "_editting", false);
-          this.$delete(row, "_editRow");
+          this.$set(row, '_editting', false);
+          this.$delete(row, '_editRow');
           this.removeComment(row);
           if (row._new) {
             this.removeRow(row);
@@ -709,15 +679,15 @@ export default {
         }
 
         let callback = (flag, data) => {
-          if (flag === "ok") {
+          if (flag === 'ok') {
             this.removeRow(row);
             this.sendInputEvent();
           } else {
             for (let key in data) {
               let v = data[key];
-              this.setComment(row, key, v, "error");
+              this.setComment(row, key, v, 'error');
             }
-            this.$set(row, "_deleting", false);
+            this.$set(row, '_deleting', false);
           }
         };
         if (this.onDeleteRow) {
@@ -728,36 +698,36 @@ export default {
         }
       };
 
-      let type = row._editting ? "default" : "error";
+      let type = row._editting ? 'default' : 'error';
 
       return h(
-        "Button",
+        'Button',
         {
           style: {
-            margin: "0 5px"
+            margin: '0 5px',
           },
           props: {
             type: type,
-            placement: "top",
-            size: "small",
-            loading: row._deleting
+            placement: 'top',
+            size: 'small',
+            loading: row._deleting,
           },
           on: {
             click: () => {
               if (this.deleteRowConfirm && !row._editting) {
                 this.$Modal.confirm({
-                  content: "请确认是否要删除本条记录？",
+                  content: '请确认是否要删除本条记录？',
                   onOk: () => {
                     defaultDeleteFunc();
-                  }
+                  },
                 });
               } else {
                 defaultDeleteFunc();
               }
-            }
-          }
+            },
+          },
         },
-        row._editting ? "取消" : "删除"
+        row._editting ? '取消' : '删除'
       );
     },
 
@@ -765,7 +735,7 @@ export default {
       this.page = page;
       if (opts && opts.pageSize) this.pageSize = opts.pageSize;
       this.start = (this.page - 1) * this.pageSize + 1;
-      this.$set(this.param, "page", page);
+      this.$set(this.param, 'page', page);
       this.loadData(opts || {});
     },
 
@@ -776,7 +746,7 @@ export default {
     clear() {
       this.page = 1;
       this.start = 1;
-      this.$set(this.param, "page", 1);
+      this.$set(this.param, 'page', 1);
       this.store.states.data = [];
     },
 
@@ -820,7 +790,7 @@ export default {
 
     getData() {
       return deepCopy(this.store.states.data, true);
-    }
+    },
   },
 
   created() {
@@ -830,7 +800,7 @@ export default {
 
   mounted() {
     this.resize();
-    window.addEventListener("resize", this.handleResize, true);
+    window.addEventListener('resize', this.handleResize, true);
 
     // 初始化query 的 param
     if (this.$refs.query && this.$refs.query.value)
@@ -847,7 +817,7 @@ export default {
     this.__resizeHandler = debounce(
       () => {
         let parent = self.$el.parentNode;
-        let p_width = getWH(parent, "width");
+        let p_width = getWH(parent, 'width');
         let width = p_width;
         while (1) {
           parent = parent.parentNode;
@@ -869,7 +839,7 @@ export default {
       { leading: true }
     );
     if (this.store.states.detectParentResize) {
-      let el = findParent(this, "Build");
+      let el = findParent(this, 'Build');
       if (!el) {
         el = this.$parent.$el;
       } else {
@@ -885,12 +855,12 @@ export default {
   },
 
   watch: {
-    "data.columns": {
+    'data.columns': {
       handler: function() {
         this.store.states.columns = this.makeCols();
         this.resize();
       },
-      deep: true
+      deep: true,
     },
 
     choices: {
@@ -911,26 +881,26 @@ export default {
           }
         }
       },
-      deep: true
+      deep: true,
     },
 
     value: {
       handler: function(value) {
         this.store.states.data = this.makeRows(value || []);
       },
-      deep: true
+      deep: true,
     },
-    "store.states.static": function(value) {
+    'store.states.static': function(value) {
       this.store.states.columns = this.makeCols();
       this.resize();
-    }
+    },
     // 'store.states.data': {
     //   handler: function (value) {
     //     this.$emit('input', value)
     //   },
     //   deep: true
     // }
-  }
+  },
 };
 </script>
 
@@ -949,7 +919,7 @@ label {
     height: 25px;
 
     &:after {
-      content: "";
+      content: '';
       display: block;
       height: 0;
       clear: both;
@@ -1033,14 +1003,33 @@ label {
   &.theme-simple {
     .u-table {
       border: none;
-      .u-table-header-wrapper .u-table-header-scroll table.u-table-header th {
-        border: none;
-        border-bottom: 1px solid #eee;
+      .u-table-header-wrapper {
         background-color: #eee;
+
+        .u-table-header-scroll table.u-table-header th {
+          border: none;
+          border-bottom: 1px solid #eee;
+        }
       }
       .u-table-body-scroll table tr td {
         border: none;
         border-bottom: 1px solid #eee;
+      }
+    }
+  }
+  &.theme-mini {
+    .u-table {
+      border: none;
+      .u-table-header-wrapper {
+        background-color: transparent;
+
+        .u-table-header-scroll table.u-table-header th {
+          border: none;
+          border-bottom: 1px solid #eee;
+        }
+      }
+      .u-table-body-scroll table tr td {
+        border: none;
       }
     }
   }
@@ -1049,7 +1038,7 @@ label {
   tr {
     background-color: #fff;
   }
-  @nth: ~"nth-child(2n)";
+  @nth: ~'nth-child(2n)';
   tr:@{nth} {
     background-color: #f8f8f8;
 

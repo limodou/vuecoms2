@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("iview"));
+		module.exports = factory(require("iview"), require("Vue"));
 	else if(typeof define === 'function' && define.amd)
-		define(["iview"], factory);
+		define(["iview", "Vue"], factory);
 	else if(typeof exports === 'object')
-		exports["vuecoms2"] = factory(require("iview"));
+		exports["vuecoms2"] = factory(require("iview"), require("Vue"));
 	else
-		root["vuecoms2"] = factory(root["iview"]);
-})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE__3955__) {
+		root["vuecoms2"] = factory(root["iview"], root["Vue"]);
+})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE__3955__, __WEBPACK_EXTERNAL_MODULE__8bbf__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1011,6 +1011,17 @@ module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
 
+
+/***/ }),
+
+/***/ "20ce":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_10_oneOf_1_0_node_modules_css_loader_index_js_ref_10_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_oneOf_1_2_node_modules_less_loader_dist_cjs_js_ref_10_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("91b0");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_10_oneOf_1_0_node_modules_css_loader_index_js_ref_10_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_oneOf_1_2_node_modules_less_loader_dist_cjs_js_ref_10_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_10_oneOf_1_0_node_modules_css_loader_index_js_ref_10_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_oneOf_1_2_node_modules_less_loader_dist_cjs_js_ref_10_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_10_oneOf_1_0_node_modules_css_loader_index_js_ref_10_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_oneOf_1_2_node_modules_less_loader_dist_cjs_js_ref_10_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -6646,6 +6657,13 @@ module.exports = {
 
 /***/ }),
 
+/***/ "8bbf":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
+
+/***/ }),
+
 /***/ "8bc4":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6720,6 +6738,13 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 module.exports = __webpack_require__("35e8");
 
+
+/***/ }),
+
+/***/ "91b0":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -12816,7 +12841,7 @@ var componentNormalizer = __webpack_require__("2877");
 
 /* normalize component */
 
-var component = Object(componentNormalizer["a" /* default */])(
+var Box_component = Object(componentNormalizer["a" /* default */])(
   components_Boxvue_type_script_lang_js_,
   Boxvue_type_template_id_6ff0b841_render,
   staticRenderFns,
@@ -12827,13 +12852,13 @@ var component = Object(componentNormalizer["a" /* default */])(
   
 )
 
-/* harmony default export */ var Box = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=34e9a750&
-var UGridvue_type_template_id_34e9a750_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e()],1):_vm._e(),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_34e9a750_staticRenderFns = []
+/* harmony default export */ var Box = (Box_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=454a4f59&
+var UGridvue_type_template_id_454a4f59_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e()],1):_vm._e(),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_454a4f59_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=34e9a750&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=454a4f59&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -12904,14 +12929,14 @@ var es6_string_fixed = __webpack_require__("d263");
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__("bd86");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=0db02e8a&
-var UTablevue_type_template_id_0db02e8a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=6607d27a&
+var UTablevue_type_template_id_6607d27a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){
 var _obj;
 return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:( _obj = {}, _obj[_vm.store.states.selectedRowClass] = _vm.store.states.selectedRowClass && _vm.store.selected(row.row), _obj.hover = _vm.hoverShow && _vm.hoverRowKey && row._rowKey==_vm.hoverRowKey, _obj ),style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){return _vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){return _vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{class:{'u-cell-last': col.last},style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed},on:{"click":function($event){return _vm.handleClick(col.row)}}})],1)}),0):_vm._e()}),0)])])])}
-var UTablevue_type_template_id_0db02e8a_staticRenderFns = []
+var UTablevue_type_template_id_6607d27a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=0db02e8a&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=6607d27a&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
 var es6_array_sort = __webpack_require__("55dd");
@@ -16604,8 +16629,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_0db02e8a_render,
-  UTablevue_type_template_id_0db02e8a_staticRenderFns,
+  UTablevue_type_template_id_6607d27a_render,
+  UTablevue_type_template_id_6607d27a_staticRenderFns,
   false,
   null,
   null,
@@ -19566,20 +19591,6 @@ function resetTriggers(elem) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -19590,7 +19601,7 @@ function resetTriggers(elem) {
 
 
 /* harmony default export */ var UGridvue_type_script_lang_js_ = ({
-  name: "Grid",
+  name: 'Grid',
   mixins: [emitter],
   components: {
     UTable: UTable,
@@ -19632,17 +19643,17 @@ function resetTriggers(elem) {
       }
     }
   },
-  computed: Object(objectSpread["a" /* default */])({}, mapState("columns", "columnResizing", "checkCol", "indexCol", "gridWidth", "width", "height", "resizable", "columnPosition", "guiderHeight", "defaultColWidth", "leftWidth", "rightWidth", "checkColTitle", "checkColWidth", "indexColWidth", "indexColTitle", "scrollLeft", "total", "pageSizeOpts", "pagination", "loading", "loadingText", "loadingTop", "loadingLeft", "autoLoad", "url", "param", "buttons", "rightButtons", "bottomButtons", "selected", "editMode", "actionColumn", "deleteRowConfirm", "onSaveRow", "onDeleteRow", "onError", "onLoadData", "query", "theme", "cellTitle", "isScrollRight", "page", "start", "pageSize", "nowrap", "addAutoScrollTo", "onRowEditRender", "static", "xscroll", "afterLoadData", "multiHeaderSep", "zebra", "oldParentWidth"), {
+  computed: Object(objectSpread["a" /* default */])({}, mapState('columns', 'columnResizing', 'checkCol', 'indexCol', 'gridWidth', 'width', 'height', 'resizable', 'columnPosition', 'guiderHeight', 'defaultColWidth', 'leftWidth', 'rightWidth', 'checkColTitle', 'checkColWidth', 'indexColWidth', 'indexColTitle', 'scrollLeft', 'total', 'pageSizeOpts', 'pagination', 'loading', 'loadingText', 'loadingTop', 'loadingLeft', 'autoLoad', 'url', 'param', 'buttons', 'rightButtons', 'bottomButtons', 'selected', 'editMode', 'actionColumn', 'deleteRowConfirm', 'onSaveRow', 'onDeleteRow', 'onError', 'onLoadData', 'query', 'theme', 'cellTitle', 'isScrollRight', 'page', 'start', 'pageSize', 'nowrap', 'addAutoScrollTo', 'onRowEditRender', 'static', 'xscroll', 'afterLoadData', 'multiHeaderSep', 'zebra', 'oldParentWidth'), {
     columnDraggerStyles: function columnDraggerStyles() {
       return {
-        left: this.columnPosition - 7 + "px",
-        height: this.guiderHeight + "px"
+        left: this.columnPosition - 7 + 'px',
+        height: this.guiderHeight + 'px'
       };
     },
     themeClass: function themeClass() {
       var _ref;
 
-      return _ref = {}, Object(defineProperty["a" /* default */])(_ref, "theme-".concat(this.theme), this.theme), Object(defineProperty["a" /* default */])(_ref, "u-grid-zebra", this.zebra), _ref;
+      return _ref = {}, Object(defineProperty["a" /* default */])(_ref, "theme-".concat(this.theme), this.theme), Object(defineProperty["a" /* default */])(_ref, 'u-grid-zebra', this.zebra), _ref;
     },
     tableWidth: function tableWidth() {
       var w = 0;
@@ -19652,29 +19663,29 @@ function resetTriggers(elem) {
       return w;
     },
     leftTableClass: function leftTableClass() {
-      var cls = "u-grid-body u-table-left";
+      var cls = 'u-grid-body u-table-left';
 
       if (this.scrollLeft) {
-        cls += " dark";
+        cls += ' dark';
       }
 
       return cls;
     },
     rightTableClass: function rightTableClass() {
-      var cls = "u-grid-body u-table-right";
+      var cls = 'u-grid-body u-table-right';
 
       if (!this.isScrollRight) {
-        cls += " dark";
+        cls += ' dark';
       }
 
       return cls;
     }
   }),
-  methods: Object(objectSpread["a" /* default */])({}, mapMethod("getSelection", "showLoading", "setSelection", "removeRow", "setComment", "removeComment", "getSelectedRows", "getColumn", "getDefaultRow", "makeRows", "sendInputEvent", "deselectAll", "selectAll", "select", "deselect", "toggle", "getComment", "getClass", "removeClass", "setClass", "addRow", "addEditRow", "updateRow", "addChildRow", "addEditChildRow", "moveRow", "expand", "collapse"), {
+  methods: Object(objectSpread["a" /* default */])({}, mapMethod('getSelection', 'showLoading', 'setSelection', 'removeRow', 'setComment', 'removeComment', 'getSelectedRows', 'getColumn', 'getDefaultRow', 'makeRows', 'sendInputEvent', 'deselectAll', 'selectAll', 'select', 'deselect', 'toggle', 'getComment', 'getClass', 'removeClass', 'setClass', 'addRow', 'addEditRow', 'updateRow', 'addChildRow', 'addEditChildRow', 'moveRow', 'expand', 'collapse'), {
     resize: function resize(width, height) {
       if (width) this.width = width;
 
-      if (this.width === "auto") {
+      if (this.width === 'auto') {
         this.store.states.gridWidth = this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth;
       } else {
         this.store.states.gridWidth = this.width;
@@ -19705,11 +19716,11 @@ function resetTriggers(elem) {
           }
 
           switch (_col.fixed) {
-            case "left":
+            case 'left':
               hasLeftFixed = true;
               break;
 
-            case "right":
+            case 'right':
               hasRightFixed = true;
               break;
           }
@@ -19759,11 +19770,11 @@ function resetTriggers(elem) {
         for (var _i = 0, _len = this.columns.length; _i < _len; _i++) {
           var col = this.columns[_i];
 
-          if (col.fixed === "left" || hasLeftFixed && (col.name === "__check_col__" || col.name === "__index_col__")) {
-            col.fixed = "left";
+          if (col.fixed === 'left' || hasLeftFixed && (col.name === '__check_col__' || col.name === '__index_col__')) {
+            col.fixed = 'left';
             leftCols.push(col);
             this.store.states.leftWidth += col.width;
-          } else if (col.fixed === "right") {
+          } else if (col.fixed === 'right') {
             rightCols.push(col);
             this.store.states.rightWidth += col.width;
           } else {
@@ -19819,7 +19830,7 @@ function resetTriggers(elem) {
           for (j = 0; j < subs_len; j++) {
             path = _col2.subs[j];
             new_col = assign_default()({}, _col2);
-            new_col.title = path.replace("%%", "/");
+            new_col.title = path.replace('%%', '/');
             new_col.level = j;
             new_col.colspan = 1;
             new_col.col = _col2;
@@ -19903,15 +19914,15 @@ function resetTriggers(elem) {
       }
 
       return assign_default()({
-        name: "title",
+        name: 'title',
         width: 0,
         sortable: false,
-        align: "",
-        headerAlign: "",
+        align: '',
+        headerAlign: '',
         hidden: false,
-        fixed: "",
+        fixed: '',
         resizable: true,
-        type: "column",
+        type: 'column',
         editorOptions: {},
         showTitle: show,
         showHeaderTitle: headerShow,
@@ -19927,13 +19938,13 @@ function resetTriggers(elem) {
 
       if (this.checkCol) {
         check_column = this.getDefaultColumn({
-          name: "__check_col__",
-          type: "check",
+          name: '__check_col__',
+          type: 'check',
           resizable: false,
           width: this.checkColWidth,
           title: this.checkColTitle,
-          align: "center",
-          fixed: ""
+          align: 'center',
+          fixed: ''
         });
         cols.push(check_column);
       } // 生成序号列
@@ -19941,28 +19952,28 @@ function resetTriggers(elem) {
 
       if (this.indexCol) {
         index_column = this.getDefaultColumn({
-          name: "__index_col__",
-          type: "index",
+          name: '__index_col__',
+          type: 'index',
           resizable: false,
           width: this.indexColWidth,
           title: this.indexColTitle,
-          align: "center",
-          fixed: ""
+          align: 'center',
+          fixed: ''
         });
         cols.push(index_column);
       }
 
       this.data.columns.forEach(function (col) {
         if (!col.hidden) {
-          if (col.name === "__check_col__") {
+          if (col.name === '__check_col__') {
             assign_default()(check_column, col);
-          } else if (col.name === "__index_col__") {
+          } else if (col.name === '__index_col__') {
             assign_default()(index_column, col);
           } else {
             var d = _this.getDefaultColumn(col); // 增加行编辑操作列的render函数
 
 
-            if (_this.editMode === "row" && col.name === _this.actionColumn) {
+            if (_this.editMode === 'row' && col.name === _this.actionColumn) {
               d.render = _this.editActionRender(col.render);
             }
 
@@ -19970,9 +19981,9 @@ function resetTriggers(elem) {
 
             if (!_this.static && col.name === _this.actionColumn || col.name !== _this.actionColumn) cols.push(d); // 处理format回调，如果是一个字符串，则转为函数
 
-            if (typeof col.format === "string") {
-              var func_str = "return " + "`" + col.format + "`";
-              var func = new Function("value", "column", "row", func_str);
+            if (typeof col.format === 'string') {
+              var func_str = 'return ' + '`' + col.format + '`';
+              var func = new Function('value', 'column', 'row', func_str);
               col._format = col.format;
               col.format = func;
             }
@@ -20003,7 +20014,7 @@ function resetTriggers(elem) {
       });
     },
     handleQueryChange: function handleQueryChange(change) {
-      this.$emit("on-query-change", change);
+      this.$emit('on-query-change', change);
     },
     // 生成缺省的行编辑按钮
     editActionRender: function editActionRender(render) {
@@ -20017,9 +20028,9 @@ function resetTriggers(elem) {
             if (_render) return _render;
           }
 
-          var cls = "u-cell-text";
-          if (_this2.nowrap) cls += " nowrap";
-          return h("div", {
+          var cls = 'u-cell-text';
+          if (_this2.nowrap) cls += ' nowrap';
+          return h('div', {
             class: cls
           }, [_this2.defaultEditRender(h, param.row), _this2.defaultDeleteRender(h, param.row)]);
         } else {
@@ -20030,14 +20041,14 @@ function resetTriggers(elem) {
     defaultEditRender: function defaultEditRender(h, row) {
       var _this3 = this;
 
-      return h("Button", {
+      return h('Button', {
         props: {
-          type: "primary",
-          size: "small",
+          type: 'primary',
+          size: 'small',
           loading: row._saving
         },
         style: {
-          margin: "0 5px"
+          margin: '0 5px'
         },
         on: {
           click: function () {
@@ -20054,15 +20065,15 @@ function resetTriggers(elem) {
                         break;
                       }
 
-                      _this3.$set(row, "_editRow", assign_default()({}, row));
+                      _this3.$set(row, '_editRow', assign_default()({}, row));
 
-                      _this3.$set(row, "_editting", true);
+                      _this3.$set(row, '_editting', true);
 
                       _context.next = 19;
                       break;
 
                     case 5:
-                      _this3.$set(row, "_saving", true);
+                      _this3.$set(row, '_saving', true);
 
                       if (!_this3.onSaveRow) {
                         _context.next = 14;
@@ -20070,14 +20081,14 @@ function resetTriggers(elem) {
                       }
 
                       callback = function callback(flag, data) {
-                        if (flag === "ok") {
+                        if (flag === 'ok') {
                           copyDataRow(row, row._editRow);
 
                           _this3.removeComment(row);
 
-                          _this3.$set(row, "_editting", !row._editting);
+                          _this3.$set(row, '_editting', !row._editting);
 
-                          _this3.$set(row, "_new", false); //保存之后，将_new置为false
+                          _this3.$set(row, '_new', false); //保存之后，将_new置为false
 
 
                           delete row._editRow;
@@ -20087,11 +20098,11 @@ function resetTriggers(elem) {
                           for (var key in data) {
                             var v = data[key];
 
-                            _this3.setComment(row, key, v, "error");
+                            _this3.setComment(row, key, v, 'error');
                           }
                         }
 
-                        _this3.$set(row, "_saving", false);
+                        _this3.$set(row, '_saving', false);
                       }; // 校验错误
 
 
@@ -20105,10 +20116,10 @@ function resetTriggers(elem) {
                         for (key in res) {
                           v = res[key];
 
-                          _this3.setComment(row, key, v, "error");
+                          _this3.setComment(row, key, v, 'error');
                         }
 
-                        _this3.$set(row, "_saving", false);
+                        _this3.$set(row, '_saving', false);
 
                         if (_this3.onError) {
                           _this3.onError(res);
@@ -20127,9 +20138,9 @@ function resetTriggers(elem) {
                       copyDataRow(row, row._editRow);
                       delete row._editRow;
 
-                      _this3.$set(row, "_editting", false);
+                      _this3.$set(row, '_editting', false);
 
-                      _this3.$set(row, "_saving", false);
+                      _this3.$set(row, '_saving', false);
 
                       _this3.sendInputEvent();
 
@@ -20148,7 +20159,7 @@ function resetTriggers(elem) {
             return click;
           }()
         }
-      }, row._editting ? "保存" : "编辑");
+      }, row._editting ? '保存' : '编辑');
     },
     // 校验某一行数据
     validateRow: function () {
@@ -20242,9 +20253,9 @@ function resetTriggers(elem) {
 
       var defaultDeleteFunc = function defaultDeleteFunc() {
         if (row._editting) {
-          _this4.$set(row, "_editting", false);
+          _this4.$set(row, '_editting', false);
 
-          _this4.$delete(row, "_editRow");
+          _this4.$delete(row, '_editRow');
 
           _this4.removeComment(row);
 
@@ -20256,7 +20267,7 @@ function resetTriggers(elem) {
         }
 
         var callback = function callback(flag, data) {
-          if (flag === "ok") {
+          if (flag === 'ok') {
             _this4.removeRow(row);
 
             _this4.sendInputEvent();
@@ -20264,10 +20275,10 @@ function resetTriggers(elem) {
             for (var key in data) {
               var v = data[key];
 
-              _this4.setComment(row, key, v, "error");
+              _this4.setComment(row, key, v, 'error');
             }
 
-            _this4.$set(row, "_deleting", false);
+            _this4.$set(row, '_deleting', false);
           }
         };
 
@@ -20280,22 +20291,22 @@ function resetTriggers(elem) {
         }
       };
 
-      var type = row._editting ? "default" : "error";
-      return h("Button", {
+      var type = row._editting ? 'default' : 'error';
+      return h('Button', {
         style: {
-          margin: "0 5px"
+          margin: '0 5px'
         },
         props: {
           type: type,
-          placement: "top",
-          size: "small",
+          placement: 'top',
+          size: 'small',
           loading: row._deleting
         },
         on: {
           click: function click() {
             if (_this4.deleteRowConfirm && !row._editting) {
               _this4.$Modal.confirm({
-                content: "请确认是否要删除本条记录？",
+                content: '请确认是否要删除本条记录？',
                 onOk: function onOk() {
                   defaultDeleteFunc();
                 }
@@ -20305,13 +20316,13 @@ function resetTriggers(elem) {
             }
           }
         }
-      }, row._editting ? "取消" : "删除");
+      }, row._editting ? '取消' : '删除');
     },
     go: function go(page, opts) {
       this.page = page;
       if (opts && opts.pageSize) this.pageSize = opts.pageSize;
       this.start = (this.page - 1) * this.pageSize + 1;
-      this.$set(this.param, "page", page);
+      this.$set(this.param, 'page', page);
       this.loadData(opts || {});
     },
     reset_query: function reset_query() {
@@ -20320,7 +20331,7 @@ function resetTriggers(elem) {
     clear: function clear() {
       this.page = 1;
       this.start = 1;
-      this.$set(this.param, "page", 1);
+      this.$set(this.param, 'page', 1);
       this.store.states.data = [];
     },
     loadData: function loadData(url, param) {
@@ -20383,7 +20394,7 @@ function resetTriggers(elem) {
     var _this6 = this;
 
     this.resize();
-    window.addEventListener("resize", this.handleResize, true); // 初始化query 的 param
+    window.addEventListener('resize', this.handleResize, true); // 初始化query 的 param
 
     if (this.$refs.query && this.$refs.query.value) this.param = assign_default()(this.param, this.$refs.query.value);
 
@@ -20397,7 +20408,7 @@ function resetTriggers(elem) {
     var self = this;
     this.__resizeHandler = debounce_default()(function () {
       var parent = self.$el.parentNode;
-      var p_width = getWH(parent, "width");
+      var p_width = getWH(parent, 'width');
       var width = p_width;
 
       while (1) {
@@ -20424,7 +20435,7 @@ function resetTriggers(elem) {
     });
 
     if (this.store.states.detectParentResize) {
-      var el = findParent(this, "Build");
+      var el = findParent(this, 'Build');
 
       if (!el) {
         el = this.$parent.$el;
@@ -20440,7 +20451,7 @@ function resetTriggers(elem) {
     removeListener(this.$parent.$el, this.__resizeHandler);
   },
   watch: {
-    "data.columns": {
+    'data.columns': {
       handler: function handler() {
         this.store.states.columns = this.makeCols();
         this.resize();
@@ -20516,7 +20527,7 @@ function resetTriggers(elem) {
       },
       deep: true
     },
-    "store.states.static": function storeStatesStatic(value) {
+    'store.states.static': function storeStatesStatic(value) {
       this.store.states.columns = this.makeCols();
       this.resize();
     } // 'store.states.data': {
@@ -20544,8 +20555,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_34e9a750_render,
-  UGridvue_type_template_id_34e9a750_staticRenderFns,
+  UGridvue_type_template_id_454a4f59_render,
+  UGridvue_type_template_id_454a4f59_staticRenderFns,
   false,
   null,
   null,
@@ -25302,18 +25313,559 @@ function showToast(props) {
     return;
   }
 
-  var Instance = new Vue({
+  var Component = Vue.extend({
     render: function render(h) {
       return h(Toast, {
         props: props
       });
     }
   });
+  var Instance = new Component();
   components_Toast_component = Instance.$mount();
   document.body.appendChild(components_Toast_component.$el);
 }
 
 /* harmony default export */ var components_Toast = (showToast);
+// EXTERNAL MODULE: external "Vue"
+var external_Vue_ = __webpack_require__("8bbf");
+var external_Vue_default = /*#__PURE__*/__webpack_require__.n(external_Vue_);
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=template&id=7acb6a20&
+var Dialogvue_type_template_id_7acb6a20_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-dialog"},[_c('Modal',{attrs:{"title":_vm.title,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"loading":_vm.loading,"draggable":_vm.draggable},on:{"on-ok":_vm.handleOk,"on-cancel":_vm.handleCancel},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},[_c(_vm.component,_vm._g(_vm._b({ref:_vm.name,tag:"component"},'component',_vm.props,false),_vm.on)),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}})],1):_vm._e()],1)],1)}
+var Dialogvue_type_template_id_7acb6a20_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=template&id=7acb6a20&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var Dialogvue_type_script_lang_js_ = ({
+  name: 'u-dialog',
+  props: {
+    component: {},
+    title: {
+      type: String,
+      default: ''
+    },
+    props: {},
+    on: {},
+    name: {},
+    onOk: {},
+    onCancel: {},
+    buttons: {},
+    buttonSize: {
+      default: 'default'
+    },
+    width: {},
+    closable: {},
+    maskClosable: {},
+    draggable: {
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      show: true,
+      loading: true
+    };
+  },
+  methods: {
+    handleOk: function () {
+      var _handleOk = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee() {
+        var _this = this;
+
+        var res;
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!this.onOk) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 3;
+                return this.onOk.call(this);
+
+              case 3:
+                res = _context.sent;
+                if (res) this.close();else {
+                  this.loading = false;
+                  this.$nextTick(function () {
+                    return _this.loading = true;
+                  });
+                }
+                _context.next = 8;
+                break;
+
+              case 7:
+                this.close();
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleOk() {
+        return _handleOk.apply(this, arguments);
+      }
+
+      return handleOk;
+    }(),
+    handleCancel: function () {
+      var _handleCancel = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee2() {
+        return regenerator_default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!this.onCancel) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                _context2.next = 3;
+                return this.onCancel.call(this);
+
+              case 3:
+                this.close();
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleCancel() {
+        return _handleCancel.apply(this, arguments);
+      }
+
+      return handleCancel;
+    }(),
+    close: function close() {
+      this.show = false;
+      this.$root.$el.remove();
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=script&lang=js&
+ /* harmony default export */ var Dialog_Dialogvue_type_script_lang_js_ = (Dialogvue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./src/components/Dialog/Dialog.vue?vue&type=style&index=0&lang=less&
+var Dialogvue_type_style_index_0_lang_less_ = __webpack_require__("20ce");
+
+// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Dialog_component = Object(componentNormalizer["a" /* default */])(
+  Dialog_Dialogvue_type_script_lang_js_,
+  Dialogvue_type_template_id_7acb6a20_render,
+  Dialogvue_type_template_id_7acb6a20_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var Dialog = (Dialog_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=52a23ef0&
+var Loading_Dialogvue_type_template_id_52a23ef0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',{attrs:{"title":_vm.title,"loading":_vm.loading,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"draggable":_vm.draggable},on:{"on-cancel":_vm.handleClose,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
+var Loading_Dialogvue_type_template_id_52a23ef0_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=52a23ef0&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var Loading_Dialogvue_type_script_lang_js_ = ({
+  props: {
+    title: String,
+    onOk: {},
+    buttons: {},
+    buttonSize: {
+      default: 'default'
+    },
+    width: {},
+    closable: {},
+    maskClosable: {},
+    draggable: {
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      show: true,
+      loading: true
+    };
+  },
+  methods: {
+    handleClose: function handleClose() {
+      this.close();
+    },
+    close: function close() {
+      this.$root.$el.remove();
+    },
+    handleOk: function () {
+      var _handleOk = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee() {
+        var _this = this;
+
+        var res;
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+
+                if (!this.onOk) {
+                  _context.next = 20;
+                  break;
+                }
+
+                _context.prev = 2;
+                _context.next = 5;
+                return this.onOk();
+
+              case 5:
+                res = _context.sent;
+                _context.next = 15;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](2);
+                console.log(_context.t0);
+                this.$Message.error(_context.t0);
+                this.loading = false;
+                this.show = true;
+                return _context.abrupt("return");
+
+              case 15:
+                if (res) {
+                  _context.next = 20;
+                  break;
+                }
+
+                this.loading = false;
+                this.show = true;
+                this.$nextTick(function () {
+                  _this.loading = true;
+                });
+                return _context.abrupt("return");
+
+              case 20:
+                this.handleClose();
+
+              case 21:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[2, 8]]);
+      }));
+
+      function handleOk() {
+        return _handleOk.apply(this, arguments);
+      }
+
+      return handleOk;
+    }()
+  }
+});
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=script&lang=js&
+ /* harmony default export */ var Dialog_Loading_Dialogvue_type_script_lang_js_ = (Loading_Dialogvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue
+
+
+
+
+
+/* normalize component */
+
+var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
+  Dialog_Loading_Dialogvue_type_script_lang_js_,
+  Loading_Dialogvue_type_template_id_52a23ef0_render,
+  Loading_Dialogvue_type_template_id_52a23ef0_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var Loading_Dialog = (Loading_Dialog_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=0e7de3c3&
+var Confirm_Dialogvue_type_template_id_0e7de3c3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loading-dialog',{attrs:{"title":_vm.title,"on-ok":_vm.handleOk,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"draggable":_vm.draggable,"buttons":_vm.buttons,"buttonSize":_vm.buttonSize}},[_c(_vm.component,_vm._g(_vm._b({ref:"build",tag:"componet",attrs:{"value":_vm.current}},'componet',_vm.props,false),_vm.on))],1)}
+var Confirm_Dialogvue_type_template_id_0e7de3c3_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=0e7de3c3&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=script&lang=js&
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var Confirm_Dialogvue_type_script_lang_js_ = ({
+  props: {
+    title: String,
+    component: {},
+    // 调用表单，传给它一个 value
+    props: {},
+    on: {},
+    value: {},
+    buttons: {},
+    buttonSize: {
+      default: 'default'
+    },
+    onOk: {},
+    width: {},
+    closable: {},
+    maskClosable: {},
+    draggable: {
+      default: false
+    }
+  },
+  data: function data() {
+    var data = assign_default()({}, this.value);
+
+    return {
+      current: data
+    };
+  },
+  methods: {
+    handleOk: function () {
+      var _handleOk = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee() {
+        var data;
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+
+                if (!this.$refs.build.validate) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _context.next = 4;
+                return this.$refs.build.validate();
+
+              case 4:
+                _context.next = 7;
+                break;
+
+              case 6:
+                console.log('validate not defined in build');
+
+              case 7:
+                if (!this.$refs.build.getData) {
+                  _context.next = 15;
+                  break;
+                }
+
+                data = assign_default()({}, this.$refs.build.getData());
+
+                if (!this.onOk) {
+                  _context.next = 13;
+                  break;
+                }
+
+                _context.next = 12;
+                return this.onOk(data, this.current);
+
+              case 12:
+                return _context.abrupt("return", _context.sent);
+
+              case 13:
+                _context.next = 16;
+                break;
+
+              case 15:
+                console.log('getData not defined in build');
+
+              case 16:
+                return _context.abrupt("return", true);
+
+              case 19:
+                _context.prev = 19;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+                this.$Message.error(_context.t0);
+
+              case 23:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 19]]);
+      }));
+
+      function handleOk() {
+        return _handleOk.apply(this, arguments);
+      }
+
+      return handleOk;
+    }()
+  }
+});
+// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=script&lang=js&
+ /* harmony default export */ var Dialog_Confirm_Dialogvue_type_script_lang_js_ = (Confirm_Dialogvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue
+
+
+
+
+
+/* normalize component */
+
+var Confirm_Dialog_component = Object(componentNormalizer["a" /* default */])(
+  Dialog_Confirm_Dialogvue_type_script_lang_js_,
+  Confirm_Dialogvue_type_template_id_0e7de3c3_render,
+  Confirm_Dialogvue_type_template_id_0e7de3c3_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var Confirm_Dialog = (Confirm_Dialog_component.exports);
+// CONCATENATED MODULE: ./src/components/Dialog/index.js
+
+
+
+
+
+var components = {
+  Dialog: Dialog,
+  LoadingDialog: Loading_Dialog,
+  ConfirmDialog: Confirm_Dialog
+};
+
+function showModal(dialog_component, props) {
+  if (dialog_component && dialog_component instanceof Object) {
+    props = dialog_component;
+    dialog_component = Dialog;
+  }
+
+  var Component = external_Vue_default.a.extend({
+    render: function render(h) {
+      return h(dialog_component, {
+        props: props
+      });
+    }
+  });
+  var Instance = new Component();
+  var component = Instance.$mount();
+  document.body.appendChild(component.$el);
+  return component;
+}
+
+function showConfirmModal(props) {
+  var Component = external_Vue_default.a.extend({
+    render: function render(h) {
+      return h(Confirm_Dialog, {
+        props: props
+      });
+    }
+  });
+  var Instance = new Component();
+  var component = Instance.$mount();
+  document.body.appendChild(component.$el);
+  return component;
+}
+
+var Dialog_install = function install(Vue) {
+  if (install.installed) return;
+
+  for (var name in components) {
+    Vue.component(name, components[name]);
+  }
+
+  Vue.prototype.$Dialog = showModal;
+  Vue.prototype.$ConfirmDialog = showConfirmModal;
+};
+
+/* harmony default export */ var components_Dialog = ({
+  install: Dialog_install
+});
 // CONCATENATED MODULE: ./src/components/index.js
 
 
@@ -25321,7 +25873,6 @@ function showToast(props) {
 
 
 
- // import Uploader from './uploader'
 
 
 
@@ -25334,13 +25885,8 @@ function showToast(props) {
 
 
 
- // import Chart from './EChart'
-// import CKEditor from './Editor/CKEditor'
-// import TinyMce from './Editor/TinyMce'
 
- //third-party plugin
-// import uTemplate from "v-runtime-template"
-// import VueScrollTo from 'vue-scrollto'
+
 
 
 
@@ -25352,22 +25898,17 @@ var Components = {
   Grid: UGrid,
   Buttons: UButtons,
   Query: components_Query,
-  // Uploader,
   uSelect: Select,
   uRadioGroup: RadioGroup,
   uCheckboxGroup: CheckboxGroup,
   Build: Build,
-  uSection: Section,
   uText: Text,
   uInput: Input,
+  uSection: Section,
   FormCell: FormCell,
   FormBlock: FormBlock,
   GenericInput: Fields,
-  // Chart,
-  //   ckeditor: CKEditor
-  // tinymce: TinyMce,
   DatepickerRange: DatepickerRange,
-  // uTemplate,
   UploaderFile: UploaderFile,
   CardList: components_CardList,
   FlatChoices: FlatChoices
@@ -25387,21 +25928,21 @@ var components_install = function install(Vue) {
   Vue.prototype.$validator = validator;
   Vue.prototype.$fileupload = fileupload;
   Vue.prototype.$toast = components_Toast;
+  components_Dialog.install(Vue);
 }; // auto install
 
 
 if (typeof window !== 'undefined' && window.Vue) {
   components_install(window.Vue);
-} // window.VueScrollTo = VueScrollTo;
+}
 
-
-/* harmony default export */ var components = (Object(objectSpread["a" /* default */])({
+/* harmony default export */ var src_components = (Object(objectSpread["a" /* default */])({
   install: components_install
 }, Components));
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (components);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src_components);
 
 
 

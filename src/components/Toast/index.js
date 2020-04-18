@@ -8,14 +8,15 @@ function showToast (props) {
     component.$children[0].close()
     return
   } 
-  const Instance = new Vue({
-    render (h) {
+  const Component = Vue.extend({
+    render(h) {
       return h(Toast, {
-          props: props
+        props: props
       })
     }
   });
 
+  const Instance = new Component()
   component = Instance.$mount()
   document.body.appendChild(component.$el)
 }
