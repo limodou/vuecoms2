@@ -261,6 +261,7 @@ export default {
       'deselect',
       'toggle',
       'getComment',
+      'clearRowComment',
       'getClass',
       'removeClass',
       'setClass',
@@ -613,6 +614,7 @@ export default {
                       delete row._editRow;
                       this.sendInputEvent();
                     } else {
+                      this.clearRowComment(row)
                       for (let key in data) {
                         let v = data[key];
                         this.setComment(row, key, v, 'error');

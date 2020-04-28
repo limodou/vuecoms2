@@ -98,6 +98,10 @@ export default {
       type: Boolean,
       default: false
     },
+    labelInValue: {
+      type: Boolean,
+      default: false
+    },
     onRenderLabel: {},
     onChanging: {},
     allowCreate: {
@@ -114,7 +118,7 @@ export default {
   methods: {
     handleInput() {
       let v = this.getSelected();
-      if (this.rich) {
+      if (this.rich || this.labelInValue) {
         this.$emit("input", v);
       } else {
         this.$emit("input", this.data);

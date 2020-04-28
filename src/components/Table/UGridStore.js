@@ -178,36 +178,36 @@ class Store {
       let selected = 0
       let result
       for(let c of data) {
-        if (c._selectable) {
-          // 处理子结点
-          if (c[this.states.childrenField] && c[this.states.childrenField].length > 0) {
-            result = _f(c[this.states.childrenField])
-            console.log(c, result)
-            c._indeterminate = false
-            if (this.states.checkStrictly) {
-              if (this.selected(c)) selected ++
-            } else {
-              if (result.total === result.selected && result.total > 0) {
-                c._checked = true
-                if (!this.states.checkStrictly)
-                  this._select(c)
-                selected ++
-              } else {
-                c._checked = false
-                // 不销定check则取消选中
-                if (!this.states.checkStrictly)
-                  this._deselect(c)
-                if (result.selected)
-                  c._indeterminate = true
-              }
-            }
-            total += result.total + 1
-            selected += result.selected  
-        } else {
-            if (this.selected(c)) {
+        // 处理子结点
+        if (c[this.states.childrenField] && c[this.states.childrenField].length > 0) {
+          result = _f(c[this.states.childrenField])
+          console.log(c, result)
+          c._indeterminate = false
+          if (this.states.checkStrictly) {
+            if (this.selected(c)) selected ++
+          } else {
+            if (result.total === result.selected && result.total > 0) {
+              c._checked = true
+              if (!this.states.checkStrictly)
+                this._select(c)
               selected ++
+            } else {
+              c._checked = false
+              // 不销定check则取消选中
+              if (!this.states.checkStrictly)
+                this._deselect(c)
+              if (result.selected)
+                c._indeterminate = true
             }
-            total ++
+          }
+          total += result.total + 1
+          selected += result.selected  
+        } else {
+          if (c._checkable) {
+            if (this.selected(c)) {
+              selected++
+            }
+            total++
           }
         }
       }
@@ -436,6 +436,12 @@ class Store {
       r = this.grid.$set(this.states.comments, key, {})
     }
     this.grid.$set(r, col, {content:content, type:type})
+  }
+
+  clearRowComment(row) {
+    for (let col of this.states.columns) {
+      this.removeComment(row, col)
+    }
   }
 
   removeComment (row, column) {
