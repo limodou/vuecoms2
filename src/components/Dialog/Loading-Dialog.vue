@@ -3,7 +3,7 @@
     :title="title"
     v-model="show"
     :loading="loading"
-    @on-cancel="handleClose"
+    @on-cancel="handleCancel"
     @on-ok="handleOk"
     :width="width"
     :closable="closable"
@@ -22,6 +22,7 @@ export default {
   props: {
     title: String,
     onOk: {},
+    onCancel: {},
     buttons: {},
     buttonSize: {
       default: 'default',
@@ -40,7 +41,10 @@ export default {
     };
   },
   methods: {
-    handleClose() {
+    async handleCancel() {
+      if (this.onCancel) {
+        await this.onCancel.call(this);
+      }
       this.close();
     },
     close() {

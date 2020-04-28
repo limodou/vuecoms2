@@ -1,17 +1,27 @@
 import Box from './Box.vue'
-import {Grid, Buttons} from './Table'
+import {
+  Grid,
+  Buttons
+} from './Table'
 import Query from './Query'
 import uSelect from './Select.vue'
 import uRadioGroup from './RadioGroup.vue'
 import uCheckboxGroup from './CheckboxGroup.vue'
 import uInput from './Input.vue'
-import {Build, uSection, FormCell, FormBlock} from './Build'
+import {
+  Build,
+  uSection,
+  FormCell,
+  FormBlock
+} from './Build'
 import uText from './Text'
 import GenericInput from './Fields'
 import './styles/iview.fix.css'
 import './styles/common.css'
 import List from "./utils/list.js"
-import {findParent} from "./utils/utils.js"
+import {
+  findParent
+} from "./utils/utils.js"
 import fileupload from './utils/fileupload.js'
 import DatepickerRange from './DatepickerRange.vue'
 import UploaderFile from './UploaderFile.vue'
@@ -42,8 +52,9 @@ const Components = {
   FlatChoices
 }
 
-const install = function (Vue, options={}) {
+const install = function (Vue, options = {}) {
   if (install.installed) return;
+
   Object.keys(Components).forEach((name) => {
     Vue.component(name, Components[name])
   })

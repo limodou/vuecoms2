@@ -3,7 +3,7 @@
     <div class="u-toast-mask"></div>
     <div class="u-toast-wrap">
       <Alert :type="type" :show-icon="showIcon">
-        {{title || content}}
+        {{ title || content }}
         <span v-if="title && content" slot="desc" v-html="content"></span>
       </Alert>
     </div>
@@ -15,37 +15,41 @@ export default {
   name: 'u-toast',
   props: {
     title: {
-      type:String,
-      default: ''
+      type: String,
+      default: '',
     },
     content: {
       type: String,
-      default: ''
+      default: '',
     },
     type: {},
     showIcon: {},
     onClose: {},
     delay: {
-      default: 2000
-    }
+      default: 2000,
+    },
   },
-  mounted () {
+  mounted() {
+    this.loaded = true
     if (this.delay) {
-      setTimeout(this.handleClick, this.delay)
+      setTimeout(this.handleClick, this.delay);
     }
   },
   methods: {
-    handleClick () {
-      this.$root.$el.remove()
-      if (this.onClose) {
-        this.onClose()
+    handleClick() {
+      if (this.loaded) {
+        this.$root.$el.remove();
+        if (this.onClose) {
+          this.onClose();
+          this.loaded = false
+        }
       }
     },
-    close () {
-      this.handleClick()
-    }
-  }
-}
+    close() {
+      this.handleClick();
+    },
+  },
+};
 </script>
 
 <style lang="less">
@@ -78,9 +82,9 @@ export default {
     // color: #000;
   }
 
-  .ivu-alert, .ivu-alert-desc {
+  .ivu-alert,
+  .ivu-alert-desc {
     font-size: 14px;
   }
 }
-
 </style>

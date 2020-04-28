@@ -817,6 +817,7 @@ export default {
     this.__resizeHandler = debounce(
       () => {
         let parent = self.$el.parentNode;
+        if (!parent) return
         let p_width = getWH(parent, 'width');
         let width = p_width;
         while (1) {

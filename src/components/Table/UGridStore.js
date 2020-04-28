@@ -403,6 +403,7 @@ class Store {
       this.deselect(i, true)
       this.states.total -= 1
     }
+    this.sendInputEvent()
   }
 
   getKey (row, column) {
@@ -498,6 +499,7 @@ class Store {
       data = (row._parent || parent)[this.states.childrenField]
     }
     List.update(data, row, this.getKeyField(row))
+    this.sendInputEvent()
     return row
   }
 
@@ -554,6 +556,7 @@ class Store {
     else
       List.insert(data, pos, row)
     this.states.total += 1
+    this.sendInputEvent()
     return row
   }
 
@@ -765,6 +768,7 @@ class Store {
         break
     }
     this._move(d, pos, des, row)
+    this.sendInputEvent()
   }
 }
 

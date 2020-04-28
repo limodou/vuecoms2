@@ -2,6 +2,7 @@
   <loading-dialog
     :title="title"
     :on-ok="handleOk"
+    :on-cancel="onCancel"
     :width="width"
     :closable="closable"
     :mask-closable="maskClosable"
@@ -9,32 +10,35 @@
     :buttons="buttons"
     :buttonSize="buttonSize"
   >
-    <componet ref="build" :is="component" :value="current" v-bind="props" v-on="on"></componet>
+    <componet ref="name" :is="component" :value="current" v-bind="props" v-on="on"></componet>
   </loading-dialog>
 </template>
 
 <script>
+import { deepCopy } from '../utils/utils.js';
 export default {
   props: {
     title: String,
     component: {}, // 调用表单，传给它一个 value
     props: {},
     on: {},
+    name: {},
     value: {},
     buttons: {},
     buttonSize: {
-      default: 'default'
+      default: 'default',
     },
     onOk: {},
+    onCancel: {},
     width: {},
     closable: {},
     maskClosable: {},
     draggable: {
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
-    const data = Object.assign({}, this.value);
+    const data = deepCopy(this.value);
     return { current: data };
   },
   methods: {
@@ -43,23 +47,23 @@ export default {
         if (this.$refs.build.validate) {
           await this.$refs.build.validate();
         } else {
-          console.log('validate not defined in build')
+          console.log('validate not defined in build');
         }
         // 保存前的数据转换
         if (this.$refs.build.getData) {
-          let data = Object.assign({}, this.$refs.build.getData());
+          let data = this.$refs.build.getData()
           if (this.onOk) {
             return await this.onOk(data, this.current);
           }
         } else {
-          console.log('getData not defined in build')
+          console.log('getData not defined in build');
         }
         return true; // 返回 true 才真正关闭窗口
       } catch (err) {
         console.log(err);
         this.$Message.error(err);
       }
-    }
-  }
+    },
+  },
 };
 </script>
