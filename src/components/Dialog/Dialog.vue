@@ -11,7 +11,7 @@
       :loading="loading"
       :draggable="draggable"
     >
-      <component :ref="name" :is="component" v-bind="props" v-on="on"></component>
+      <component :is="component" v-bind="props" v-on="on"></component>
       <div slot="footer" v-if="buttons">
         <Buttons ref="buttons" :buttons="buttons" :target="this" :size="buttonSize"></Buttons>
       </div>
@@ -30,7 +30,6 @@ export default {
     },
     props: {},
     on: {},
-    name: {},
     onOk: {},
     onCancel: {},
     buttons: {},

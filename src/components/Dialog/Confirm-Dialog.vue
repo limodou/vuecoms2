@@ -10,7 +10,7 @@
     :buttons="buttons"
     :buttonSize="buttonSize"
   >
-    <componet ref="name" :is="component" :value="current" v-bind="props" v-on="on"></componet>
+    <componet ref="build" :is="component" :value="current" v-bind="props" v-on="on"></componet>
   </loading-dialog>
 </template>
 
@@ -22,7 +22,6 @@ export default {
     component: {}, // 调用表单，传给它一个 value
     props: {},
     on: {},
-    name: {},
     value: {},
     buttons: {},
     buttonSize: {

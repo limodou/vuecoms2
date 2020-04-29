@@ -181,27 +181,30 @@ class Store {
         // 处理子结点
         if (c[this.states.childrenField] && c[this.states.childrenField].length > 0) {
           result = _f(c[this.states.childrenField])
-          console.log(c, result)
-          c._indeterminate = false
-          if (this.states.checkStrictly) {
-            if (this.selected(c)) selected ++
-          } else {
-            if (result.total === result.selected && result.total > 0) {
-              c._checked = true
-              if (!this.states.checkStrictly)
-                this._select(c)
-              selected ++
+          total = result.total
+          selected = result.selected
+          if (c._checkable) {
+            console.log(c, result)
+            c._indeterminate = false
+            if (this.states.checkStrictly) {
+              if (this.selected(c)) selected++
             } else {
-              c._checked = false
-              // 不销定check则取消选中
-              if (!this.states.checkStrictly)
-                this._deselect(c)
-              if (result.selected)
-                c._indeterminate = true
+              if (result.total === result.selected && result.total > 0) {
+                c._checked = true
+                if (!this.states.checkStrictly)
+                  this._select(c)
+                selected++
+              } else {
+                c._checked = false
+                // 不销定check则取消选中
+                if (!this.states.checkStrictly)
+                  this._deselect(c)
+                if (result.selected)
+                  c._indeterminate = true
+              }
             }
+            total ++
           }
-          total += result.total + 1
-          selected += result.selected  
         } else {
           if (c._checkable) {
             if (this.selected(c)) {
@@ -359,7 +362,7 @@ class Store {
         return true
       }
       let id = row[this.states.idField]
-      index = s.indexOf(id+'')
+      index = s.indexOf(id)
       if (index > -1) {
         if(this._select(row, force)) {
           indeterminate = true
