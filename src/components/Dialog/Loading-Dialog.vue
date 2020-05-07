@@ -72,7 +72,7 @@ export default {
           return;
         }
       }
-      this.handleClose();
+      this.close();
     },
   },
 };

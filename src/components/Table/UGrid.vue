@@ -607,7 +607,7 @@ export default {
                 if (this.onSaveRow) {
                   let callback = (flag, data) => {
                     if (flag === 'ok') {
-                      copyDataRow(row, row._editRow);
+                      copyDataRow(row, Object.assign(row._editRow, data));
                       this.removeComment(row);
                       this.$set(row, '_editting', !row._editting);
                       this.$set(row, '_new', false); //保存之后，将_new置为false
