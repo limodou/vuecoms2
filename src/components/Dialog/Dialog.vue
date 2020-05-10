@@ -2,14 +2,10 @@
   <div class="u-dialog">
     <Modal
       v-model="show"
-      :title="title"
       @on-ok="handleOk"
       @on-cancel="handleCancel"
-      :width="width"
-      :closable="closable"
-      :mask-closable="maskClosable"
       :loading="loading"
-      :draggable="draggable"
+      v-bind="$attrs"
     >
       <component :is="component" v-bind="props" v-on="on"></component>
       <div slot="footer" v-if="buttons">
@@ -24,10 +20,6 @@ export default {
   name: 'u-dialog',
   props: {
     component: {},
-    title: {
-      type: String,
-      default: '',
-    },
     props: {},
     on: {},
     onOk: {},
@@ -35,12 +27,6 @@ export default {
     buttons: {},
     buttonSize: {
       default: 'default',
-    },
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false,
     },
   },
   data() {

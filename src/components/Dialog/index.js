@@ -17,7 +17,7 @@ function showModal(dialog_component, props) {
   const Component = Vue.extend({
     render(h) {
       return h(dialog_component, {
-        props: props
+        attrs: props
       })
     }
   });
@@ -31,7 +31,7 @@ function showConfirmModal(props) {
   const Component = Vue.extend({
     render(h) {
       return h(ConfirmDialog, {
-        props: props
+        attrs: props
       })
     }
   });

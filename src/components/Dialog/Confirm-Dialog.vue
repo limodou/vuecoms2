@@ -1,14 +1,10 @@
 <template>
   <loading-dialog
-    :title="title"
     :on-ok="handleOk"
     :on-cancel="onCancel"
-    :width="width"
-    :closable="closable"
-    :mask-closable="maskClosable"
-    :draggable="draggable"
     :buttons="buttons"
     :buttonSize="buttonSize"
+    v-bind="$attrs"
   >
     <componet ref="build" :is="component" :value="current" v-bind="props" v-on="on"></componet>
   </loading-dialog>
@@ -18,7 +14,6 @@
 import { deepCopy } from '../utils/utils.js';
 export default {
   props: {
-    title: String,
     component: {}, // 调用表单，传给它一个 value
     props: {},
     on: {},
@@ -29,15 +24,10 @@ export default {
     },
     onOk: {},
     onCancel: {},
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false,
-    },
   },
   data() {
-    const data = deepCopy(this.value);
+    // 复制数据，去除临时数据
+    const data = deepCopy(this.value, true);
     return { current: data };
   },
   methods: {
@@ -50,9 +40,9 @@ export default {
         }
         // 保存前的数据转换
         if (this.$refs.build.getData) {
-          let data = this.$refs.build.getData()
+          let data = this.$refs.build.getData();
           if (this.onOk) {
-            return await this.onOk(data, this.current);
+            return await this.onOk(data,  Object.assign({}, this.value, data));
           }
         } else {
           console.log('getData not defined in build');

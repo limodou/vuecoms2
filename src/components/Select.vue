@@ -108,7 +108,10 @@ export default {
       type: Boolean,
       default: false,
     }, // 是否允许直接创建option 从4.0复制
-    onCreateItem: null // 创建回调函数，外部应创建出对应的option元素
+    onCreateItem: null, // 创建回调函数，外部应创建出对应的option元素
+    autoLoad: { 
+      default: false
+    } // 当值为空时，且 remote 为 true 时，是否自动按空来查询后台
   },
 
   mounted() {
@@ -167,6 +170,10 @@ export default {
           }
         } else {
           this.setSelected(this.selectedValue);
+        }
+      } else {
+        if (this.autoLoad && this.remote) {
+          this.handleRemote('')
         }
       }
     },

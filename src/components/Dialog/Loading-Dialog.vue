@@ -1,14 +1,10 @@
 <template>
   <Modal
-    :title="title"
     v-model="show"
     :loading="loading"
     @on-cancel="handleCancel"
     @on-ok="handleOk"
-    :width="width"
-    :closable="closable"
-    :mask-closable="maskClosable"
-    :draggable="draggable"
+    v-bind="$attrs"
   >
     <slot></slot>
     <div slot="footer" v-if="buttons">
@@ -20,18 +16,11 @@
 <script>
 export default {
   props: {
-    title: String,
     onOk: {},
     onCancel: {},
     buttons: {},
     buttonSize: {
       default: 'default',
-    },
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false,
     },
   },
   data() {

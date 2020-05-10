@@ -20600,12 +20600,12 @@ var UGrid_component = Object(componentNormalizer["a" /* default */])(
 
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=175aba5c&
-var Selectvue_type_template_id_175aba5c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging,"allow-create":_vm.allowCreate,"on-create-item":_vm.handleCreateItem},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
-var Selectvue_type_template_id_175aba5c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=6ef6b58a&
+var Selectvue_type_template_id_6ef6b58a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging,"allow-create":_vm.allowCreate,"on-create-item":_vm.handleCreateItem},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
+var Selectvue_type_template_id_6ef6b58a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=175aba5c&
+// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=6ef6b58a&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=script&lang=js&
 
@@ -20714,8 +20714,12 @@ var Selectvue_type_template_id_175aba5c_staticRenderFns = []
       default: false
     },
     // 是否允许直接创建option 从4.0复制
-    onCreateItem: null // 创建回调函数，外部应创建出对应的option元素
+    onCreateItem: null,
+    // 创建回调函数，外部应创建出对应的option元素
+    autoLoad: {
+      default: false // 当值为空时，且 remote 为 true 时，是否自动按空来查询后台
 
+    }
   },
   mounted: function mounted() {
     this.fireSelected();
@@ -20782,6 +20786,10 @@ var Selectvue_type_template_id_175aba5c_staticRenderFns = []
           }
         } else {
           this.setSelected(this.selectedValue);
+        }
+      } else {
+        if (this.autoLoad && this.remote) {
+          this.handleRemote('');
         }
       }
     },
@@ -20981,8 +20989,8 @@ var Selectvue_type_template_id_175aba5c_staticRenderFns = []
 
 var Select_component = Object(componentNormalizer["a" /* default */])(
   components_Selectvue_type_script_lang_js_,
-  Selectvue_type_template_id_175aba5c_render,
-  Selectvue_type_template_id_175aba5c_staticRenderFns,
+  Selectvue_type_template_id_6ef6b58a_render,
+  Selectvue_type_template_id_6ef6b58a_staticRenderFns,
   false,
   null,
   null,
@@ -25370,12 +25378,12 @@ function showToast(props) {
 var external_Vue_ = __webpack_require__("8bbf");
 var external_Vue_default = /*#__PURE__*/__webpack_require__.n(external_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=template&id=58a93270&
-var Dialogvue_type_template_id_58a93270_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-dialog"},[_c('Modal',{attrs:{"title":_vm.title,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"loading":_vm.loading,"draggable":_vm.draggable},on:{"on-ok":_vm.handleOk,"on-cancel":_vm.handleCancel},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},[_c(_vm.component,_vm._g(_vm._b({tag:"component"},'component',_vm.props,false),_vm.on)),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}})],1):_vm._e()],1)],1)}
-var Dialogvue_type_template_id_58a93270_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=template&id=f724cfe0&
+var Dialogvue_type_template_id_f724cfe0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-dialog"},[_c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-ok":_vm.handleOk,"on-cancel":_vm.handleCancel},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({tag:"component"},'component',_vm.props,false),_vm.on)),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}})],1):_vm._e()],1)],1)}
+var Dialogvue_type_template_id_f724cfe0_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=template&id=58a93270&
+// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=template&id=f724cfe0&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=script&lang=js&
 
@@ -25398,18 +25406,10 @@ var Dialogvue_type_template_id_58a93270_staticRenderFns = []
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ var Dialogvue_type_script_lang_js_ = ({
   name: 'u-dialog',
   props: {
     component: {},
-    title: {
-      type: String,
-      default: ''
-    },
     props: {},
     on: {},
     onOk: {},
@@ -25417,12 +25417,6 @@ var Dialogvue_type_template_id_58a93270_staticRenderFns = []
     buttons: {},
     buttonSize: {
       default: 'default'
-    },
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false
     }
   },
   data: function data() {
@@ -25534,8 +25528,8 @@ var Dialogvue_type_style_index_0_lang_less_ = __webpack_require__("20ce");
 
 var Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Dialogvue_type_script_lang_js_,
-  Dialogvue_type_template_id_58a93270_render,
-  Dialogvue_type_template_id_58a93270_staticRenderFns,
+  Dialogvue_type_template_id_f724cfe0_render,
+  Dialogvue_type_template_id_f724cfe0_staticRenderFns,
   false,
   null,
   null,
@@ -25544,12 +25538,12 @@ var Dialog_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Dialog = (Dialog_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=73d25b5a&
-var Loading_Dialogvue_type_template_id_73d25b5a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',{attrs:{"title":_vm.title,"loading":_vm.loading,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"draggable":_vm.draggable},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
-var Loading_Dialogvue_type_template_id_73d25b5a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=d90807ec&
+var Loading_Dialogvue_type_template_id_d90807ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
+var Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=73d25b5a&
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=d90807ec&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=script&lang=js&
 
@@ -25570,24 +25564,13 @@ var Loading_Dialogvue_type_template_id_73d25b5a_staticRenderFns = []
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ var Loading_Dialogvue_type_script_lang_js_ = ({
   props: {
-    title: String,
     onOk: {},
     onCancel: {},
     buttons: {},
     buttonSize: {
       default: 'default'
-    },
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false
     }
   },
   data: function data() {
@@ -25713,8 +25696,8 @@ var Loading_Dialogvue_type_template_id_73d25b5a_staticRenderFns = []
 
 var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Loading_Dialogvue_type_script_lang_js_,
-  Loading_Dialogvue_type_template_id_73d25b5a_render,
-  Loading_Dialogvue_type_template_id_73d25b5a_staticRenderFns,
+  Loading_Dialogvue_type_template_id_d90807ec_render,
+  Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns,
   false,
   null,
   null,
@@ -25723,21 +25706,18 @@ var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Loading_Dialog = (Loading_Dialog_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=d12052aa&
-var Confirm_Dialogvue_type_template_id_d12052aa_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loading-dialog',{attrs:{"title":_vm.title,"on-ok":_vm.handleOk,"on-cancel":_vm.onCancel,"width":_vm.width,"closable":_vm.closable,"mask-closable":_vm.maskClosable,"draggable":_vm.draggable,"buttons":_vm.buttons,"buttonSize":_vm.buttonSize}},[_c(_vm.component,_vm._g(_vm._b({ref:"build",tag:"componet",attrs:{"value":_vm.current}},'componet',_vm.props,false),_vm.on))],1)}
-var Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=3133409c&
+var Confirm_Dialogvue_type_template_id_3133409c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loading-dialog',_vm._b({attrs:{"on-ok":_vm.handleOk,"on-cancel":_vm.onCancel,"buttons":_vm.buttons,"buttonSize":_vm.buttonSize}},'loading-dialog',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({ref:"build",tag:"componet",attrs:{"value":_vm.current}},'componet',_vm.props,false),_vm.on))],1)}
+var Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=d12052aa&
+// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=3133409c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=script&lang=js&
 
 
 
-//
-//
-//
-//
+
 //
 //
 //
@@ -25753,7 +25733,6 @@ var Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns = []
 
 /* harmony default export */ var Confirm_Dialogvue_type_script_lang_js_ = ({
   props: {
-    title: String,
     component: {},
     // 调用表单，传给它一个 value
     props: {},
@@ -25764,16 +25743,11 @@ var Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns = []
       default: 'default'
     },
     onOk: {},
-    onCancel: {},
-    width: {},
-    closable: {},
-    maskClosable: {},
-    draggable: {
-      default: false
-    }
+    onCancel: {}
   },
   data: function data() {
-    var data = utils_deepCopy(this.value);
+    // 复制数据，去除临时数据
+    var data = utils_deepCopy(this.value, true);
     return {
       current: data
     };
@@ -25819,7 +25793,7 @@ var Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns = []
                 }
 
                 _context.next = 12;
-                return this.onOk(data, this.current);
+                return this.onOk(data, assign_default()({}, this.value, data));
 
               case 12:
                 return _context.abrupt("return", _context.sent);
@@ -25868,8 +25842,8 @@ var Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns = []
 
 var Confirm_Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Confirm_Dialogvue_type_script_lang_js_,
-  Confirm_Dialogvue_type_template_id_d12052aa_render,
-  Confirm_Dialogvue_type_template_id_d12052aa_staticRenderFns,
+  Confirm_Dialogvue_type_template_id_3133409c_render,
+  Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns,
   false,
   null,
   null,
@@ -25899,7 +25873,7 @@ function showModal(dialog_component, props) {
   var Component = external_Vue_default.a.extend({
     render: function render(h) {
       return h(dialog_component, {
-        props: props
+        attrs: props
       });
     }
   });
@@ -25913,7 +25887,7 @@ function showConfirmModal(props) {
   var Component = external_Vue_default.a.extend({
     render: function render(h) {
       return h(Confirm_Dialog, {
-        props: props
+        attrs: props
       });
     }
   });
