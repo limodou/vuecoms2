@@ -15309,6 +15309,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
   group: function group(list, field) {
     var group_field_name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'label';
     var children_field_name = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'items';
+    var visit = arguments.length > 4 ? arguments[4] : undefined;
     var result = [],
         result_pos = {},
         func;
@@ -15331,9 +15332,11 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
           items[children_field_name] = [];
           result.push(items);
           result_pos[key] = items;
+          if (visit) visit('group', items);
         }
 
         items[children_field_name].push(item);
+        if (visit) visit('item', item);
       }
     } catch (err) {
       _didIteratorError7 = true;
