@@ -13,7 +13,7 @@ export default {
       let item = list[i]
       for (let j = 0, _len_j = items.length; j < _len_j; j++) {
         if (item[idField] == items[j][idField]) {
-          let row = Object.assign({}, item, items[j])
+          let row = Object.assign(item, items[j])
           list.splice(i, 1, row)
           items.splice(j, 1)
           updated.push(row)

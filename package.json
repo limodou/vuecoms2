@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.3.4",
+    "iviewcoms": "^3.4.0",
     "resize-detector": "^0.2.0",
     "vue": "^2.6.10"
   },
@@ -32,7 +33,6 @@
     "chai": "^4.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
-    "iview": "file:../iview",
     "karma": "^4.2.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.0.0",

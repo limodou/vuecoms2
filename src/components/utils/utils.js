@@ -93,6 +93,7 @@ export const copyDataRow = function (s, o) {
       s[name] = o[name]
     }
   }
+  return s
 }
 
 export const isDate = function (str)
