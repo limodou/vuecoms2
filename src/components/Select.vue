@@ -252,13 +252,13 @@ export default {
       if (this.onRenderLabel) return this.onRenderLabel(item);
       return item.label;
     },
-    handleCreateItem(query) {
+    async handleCreateItem(query) {
       var option = {
         label: query,
         value: query
       };
       if (this.onCreateItem) {
-        option = this.onCreateItem(query);
+        option = await this.onCreateItem(query);
       }
       let found = false;
       for (let item of this.items) {
