@@ -1,7 +1,7 @@
 <template>
   <component v-if="boxComponent" :is="boxComponent" :title="title" v-bind="boxOptions" class="u-layout" :class="themeClasses">
     <Row v-for="(row, i) in rows" class="u-layout-row" :key="i">
-      <Col v-for="(col, j) in row" :span="col.colspan" :key="j">
+      <Col v-for="(col, j) in row" :span="col.colspan" :key="col._id">
         <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validate-result="validateResult"
           :label-dir="labelDir" :label-align="labelAlign"
           :static-suffix="staticSuffix" root="Build" :fields="col.fields"></component>
@@ -13,7 +13,7 @@
   </component>
   <div v-else class="u-layout" :class="themeClasses">
     <Row v-for="(row, i) in rows" class="u-layout-row" :key="i">
-      <Col v-for="(col, j) in row" :span="col.colspan" :key="j">
+      <Col v-for="(col, j) in row" :span="col.colspan" :key="col._id">
         <component v-if="!col.hidden" :is="col.component" :col="col" :value="value" :validate-result="validateResult" 
           :label-dir="labelDir" :label-align="labelAlign"
           :static-suffix="staticSuffix" :root="Build" :fields="col.fields"></component>

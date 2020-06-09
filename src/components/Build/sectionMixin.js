@@ -1,4 +1,5 @@
 import List from '../utils/list.js'
+let id = 1
 
 export default {
   props: {
@@ -97,8 +98,10 @@ export default {
             }
           }
           
-          if (!field.hidden)
+          if (!field.hidden) {
+            field._id = id++
             new_r.push(field)
+          }
         }
         if (new_r.length > 0)
           r.push(new_r)
