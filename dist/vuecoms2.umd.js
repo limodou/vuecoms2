@@ -14673,9 +14673,9 @@ function (_Field) {
       var v = '';
 
       if (value) {
-        v = '<i class="ivu-icon ivu-icon-android-checkbox-outline"></i>';
+        v = '<i class="ivu-icon ivu-icon-ios-checkbox-outline"></i>';
       } else {
-        v = '<i class="ivu-icon ivu-icon-android-checkbox-outline-blank"></i>';
+        v = '<i class="ivu-icon ivu-icon-ios-square-outline"></i>';
       }
 
       return v;
@@ -20615,14 +20615,17 @@ var UGrid_component = Object(componentNormalizer["a" /* default */])(
 
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=6ef6b58a&
-var Selectvue_type_template_id_6ef6b58a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging,"allow-create":_vm.allowCreate,"on-create-item":_vm.handleCreateItem},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
-var Selectvue_type_template_id_6ef6b58a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=template&id=7dd1f061&
+var Selectvue_type_template_id_7dd1f061_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Select',{ref:"select",attrs:{"multiple":_vm.multiple,"clearable":_vm.clearable,"filterable":_vm.filterable,"transfer":_vm.transfer,"remote":_vm.remote,"placeholder":_vm.placeholder,"disabled":_vm.disabled,"loading":_vm.loading,"remote-method":_vm.handleRemote,"on-changing":_vm.onChanging,"allow-create":_vm.allowCreate,"on-create-item":_vm.handleCreateItem},on:{"input":_vm.handleInput},model:{value:(_vm.data),callback:function ($$v) {_vm.data=$$v},expression:"data"}},_vm._l((_vm.items),function(item){return _c('Option',{key:item.value + item.label,attrs:{"value":item.value,"label":item.label}},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.renderLabel(item))}})])}),1)}
+var Selectvue_type_template_id_7dd1f061_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=6ef6b58a&
+// CONCATENATED MODULE: ./src/components/Select.vue?vue&type=template&id=7dd1f061&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Select.vue?vue&type=script&lang=js&
+
+
+
 
 
 //
@@ -20919,52 +20922,117 @@ var Selectvue_type_template_id_6ef6b58a_staticRenderFns = []
       if (this.onRenderLabel) return this.onRenderLabel(item);
       return item.label;
     },
-    handleCreateItem: function handleCreateItem(query) {
-      var option = {
-        label: query,
-        value: query
-      };
+    handleCreateItem: function () {
+      var _handleCreateItem = _asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee(query) {
+        var option, found, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, item;
 
-      if (this.onCreateItem) {
-        option = this.onCreateItem(query);
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                option = {
+                  label: query,
+                  value: query
+                };
+
+                if (!this.onCreateItem) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _context.next = 4;
+                return this.onCreateItem(query);
+
+              case 4:
+                option = _context.sent;
+
+              case 5:
+                found = false;
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context.prev = 9;
+                _iterator2 = get_iterator_default()(this.items);
+
+              case 11:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context.next = 20;
+                  break;
+                }
+
+                item = _step2.value;
+
+                if (!(item.value === query)) {
+                  _context.next = 17;
+                  break;
+                }
+
+                found = true;
+                option = item;
+                return _context.abrupt("break", 20);
+
+              case 17:
+                _iteratorNormalCompletion2 = true;
+                _context.next = 11;
+                break;
+
+              case 20:
+                _context.next = 26;
+                break;
+
+              case 22:
+                _context.prev = 22;
+                _context.t0 = _context["catch"](9);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context.t0;
+
+              case 26:
+                _context.prev = 26;
+                _context.prev = 27;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 29:
+                _context.prev = 29;
+
+                if (!_didIteratorError2) {
+                  _context.next = 32;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 32:
+                return _context.finish(29);
+
+              case 33:
+                return _context.finish(26);
+
+              case 34:
+                if (!found) {
+                  this.items.push(option);
+                }
+
+                return _context.abrupt("return", option);
+
+              case 36:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[9, 22, 26, 34], [27,, 29, 33]]);
+      }));
+
+      function handleCreateItem(_x) {
+        return _handleCreateItem.apply(this, arguments);
       }
 
-      var found = false;
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = get_iterator_default()(this.items), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var item = _step2.value;
-
-          if (item.value === query) {
-            found = true;
-            option = item;
-            break;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      if (!found) {
-        this.items.push(option);
-      }
-
-      return option;
-    }
+      return handleCreateItem;
+    }()
   },
   watch: {
     value: {
@@ -21004,8 +21072,8 @@ var Selectvue_type_template_id_6ef6b58a_staticRenderFns = []
 
 var Select_component = Object(componentNormalizer["a" /* default */])(
   components_Selectvue_type_script_lang_js_,
-  Selectvue_type_template_id_6ef6b58a_render,
-  Selectvue_type_template_id_6ef6b58a_staticRenderFns,
+  Selectvue_type_template_id_7dd1f061_render,
+  Selectvue_type_template_id_7dd1f061_staticRenderFns,
   false,
   null,
   null,
@@ -24230,7 +24298,7 @@ var ALPHADASH_PATTERN = /^[a-zA-Z0-9_-]+$/;
 var INTEGER = /^\d+$/;
 /* harmony default export */ var string = (function (rule, value, model) {
   var oldvalue = value;
-  if (rule.trim && value) value = value.trim();
+  if ((rule.trim || rule.trim === undefined) && value) value = value.trim();
 
   if (!value) {
     if (rule.required) return rule.makeError('required');

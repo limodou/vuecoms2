@@ -9,9 +9,9 @@ export default class CheckboxField extends Field {
   getStaticValue (value) {
     let v = ''
     if (value) {
-      v = '<i class="ivu-icon ivu-icon-android-checkbox-outline"></i>'
+      v = '<i class="ivu-icon ivu-icon-ios-checkbox-outline"></i>'
     } else {
-      v = '<i class="ivu-icon ivu-icon-android-checkbox-outline-blank"></i>'
+      v = '<i class="ivu-icon ivu-icon-ios-square-outline"></i>'
     }
     return v
   }

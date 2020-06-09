@@ -6,7 +6,7 @@ const INTEGER = /^\d+$/
 
 export default (rule, value, model) => {
 	let oldvalue = value
-	if (rule.trim && value) value = value.trim()
+	if ((rule.trim || rule.trim === undefined) && value) value = value.trim()
 
 	if (!value) {
 		if (rule.required) return rule.makeError('required')
