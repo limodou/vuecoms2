@@ -285,7 +285,7 @@ export const formatDate = function (d, fmt='yyyy/MM/dd') {
   let minute = d.getMinutes() < 10 ? `0${d.getMinutes()}` : `${d.getMinutes()}`
   let second = d.getSeconds() < 10 ? `0${d.getSeconds()}` : `${d.getSeconds()}`
   return fmt.replace('yyyy', year).replace('MM', mon).replace('dd', day)
-    .replace('hh', hour).replace('mm', minute).replace('ss', second)
+    .replace('hh', hour).replace('HH', hour).replace('mm', minute).replace('ss', second)
 }
 
 // deepCopy

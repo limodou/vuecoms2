@@ -13359,7 +13359,7 @@ var formatDate = function formatDate(d) {
   var hour = d.getHours() < 10 ? "0".concat(d.getHours()) : "".concat(d.getHours());
   var minute = d.getMinutes() < 10 ? "0".concat(d.getMinutes()) : "".concat(d.getMinutes());
   var second = d.getSeconds() < 10 ? "0".concat(d.getSeconds()) : "".concat(d.getSeconds());
-  return fmt.replace('yyyy', year).replace('MM', mon).replace('dd', day).replace('hh', hour).replace('mm', minute).replace('ss', second);
+  return fmt.replace('yyyy', year).replace('MM', mon).replace('dd', day).replace('hh', hour).replace('HH', hour).replace('mm', minute).replace('ss', second);
 }; // deepCopy
 
 var utils_deepCopy = function deepCopy(data) {
@@ -14227,7 +14227,7 @@ function (_Field) {
       if (this.options.convert === false) return x;
 
       if (x instanceof Date) {
-        return formatDate(x, 'yyyy/MM/dd');
+        return formatDate(x, this.options.format || 'yyyy/MM/dd');
       }
 
       if (isDate(x)) {
@@ -14277,7 +14277,7 @@ function (_Field) {
       if (this.options.convert === false) return x;
 
       if (x instanceof Date) {
-        return formatDate(x, 'yyyy/MM/dd hh:mm:ss');
+        return formatDate(x, this.options.format || 'yyyy/MM/dd HH:mm:ss');
       }
 
       if (isDate(x)) {
@@ -21321,12 +21321,12 @@ var Input_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Input = (Input_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=0f0b57b1&
-var Buildvue_type_template_id_0f0b57b1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index + 1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"labelAlign":item.labelAlign || _vm.labelAlign,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{ref:"buttons",staticClass:"u-build-buttons",attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.buttonList,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
-var Buildvue_type_template_id_0f0b57b1_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=template&id=bff70a02&
+var Buildvue_type_template_id_bff70a02_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-build"},[_c('div',{staticClass:"u-build-header",attrs:{"slot":"header"},slot:"header"}),_c('div',{staticClass:"u-build-body"},[(_vm.theme === 'default')?[_vm._l((_vm.current),function(item,index){return [(!item.hidden)?_c(item.component || 'uSection',_vm._b({key:index,ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()]})]:_vm._e(),(_vm.theme === 'tab')?[_c('Tabs',{attrs:{"value":"section_1"}},_vm._l((_vm.current),function(item,index){return _c('TabPane',{key:index,attrs:{"label":item.title,"name":("section_" + (index + 1))}},[(!item.hidden)?_c(item.component || 'uSection',_vm._b({ref:item.name,refInFor:true,tag:"component",attrs:{"boxComponent":_vm.showBox ? item.boxComponent : '',"boxOptions":_vm.getBoxOptions(item),"value":_vm.value,"labelWidth":item.labelWidth || _vm.labelWidth,"labelDir":item.labelDir || _vm.labelDir,"labelAlign":item.labelAlign || _vm.labelAlign,"staticSuffix":_vm.staticSuffix,"validateResult":_vm.validateResult}},'component',item,false)):_vm._e()],1)}),1)]:_vm._e()],2),_c('div',{staticClass:"u-build-header",attrs:{"slot":"footer"},slot:"footer"}),(_vm.buttons)?_c('Row',{ref:"buttons",staticClass:"u-build-buttons",attrs:{"slot":"buttons"},slot:"buttons"},[_c('Buttons',{attrs:{"buttons":_vm.buttonList,"data":_vm.value,"size":_vm.btnSize,"target":this}})],1):_vm._e()],1)}
+var Buildvue_type_template_id_bff70a02_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=0f0b57b1&
+// CONCATENATED MODULE: ./src/components/Build/Build.vue?vue&type=template&id=bff70a02&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Build.vue?vue&type=script&lang=js&
 
@@ -22243,7 +22243,6 @@ var Buildvue_type_template_id_0f0b57b1_staticRenderFns = []
     this.makeValidateResult(); // this.mergeRules()
 
     this.mergeErrors();
-    this.reset();
   },
   watch: {
     value: {
@@ -22338,8 +22337,6 @@ var Buildvue_type_template_id_0f0b57b1_staticRenderFns = []
         this.current = utils_deepCopy(newdata);
         this.makeFields();
         this.makeValidateResult(); // this.mergeRules()
-
-        this.reset();
       },
       deep: true
     },
@@ -22369,8 +22366,8 @@ var Buildvue_type_template_id_0f0b57b1_staticRenderFns = []
 
 var Build_component = Object(componentNormalizer["a" /* default */])(
   Build_Buildvue_type_script_lang_js_,
-  Buildvue_type_template_id_0f0b57b1_render,
-  Buildvue_type_template_id_0f0b57b1_staticRenderFns,
+  Buildvue_type_template_id_bff70a02_render,
+  Buildvue_type_template_id_bff70a02_staticRenderFns,
   false,
   null,
   null,
