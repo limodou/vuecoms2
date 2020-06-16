@@ -1,10 +1,14 @@
 import List from '../utils/list.js'
-import {uuid, walkTree, isEmpty} from '../utils/utils.js'
+import {
+  uuid,
+  walkTree,
+  isEmpty
+} from '../utils/utils.js'
 
 let rowKey = 1
 
 class Store {
-  constructor (grid, options, value) {
+  constructor(grid, options, value) {
     this.grid = grid
     this.states = {
       columns: [],
@@ -31,7 +35,7 @@ class Store {
       data: [],
       sortMode: 'remote', // 排序方式，缺省为 remote， 支持 local
       multiSelect: false,
-      clickSelect: false,  // 点击选中
+      clickSelect: false, // 点击选中
       selectedRowClass: 'selected', // 选中行反显样式，可以设为指定类名
       resizable: true, // 是否表头列可以调整大小
       draggable: false,
@@ -42,8 +46,7 @@ class Store {
       autoLoad: true, // 是否自动装入数据
       parseUrl: true, // 是否从URL解析查询参数
       url: '', // 访问后台的URL
-      param: {
-      }, // 访问后台的URL所带参数
+      param: {}, // 访问后台的URL所带参数
       buttons: null,
       zebra: true,
       rightButtons: null,
@@ -79,15 +82,15 @@ class Store {
       onDeselect: null, // 在取消选择行前执行，返回为True，则允许取消选中
       onCheckable: null, // 是否显示checkbox
       onSaveRow: null, // 保存行时调用 function (row, callback), callback(flag, data)
-                       // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
+      // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
       onError: null, // 保存行时，校验出错时回调
-      onSaveCol: null,  // 保存单元格时调用 function (value, callback), callback(flag, data)
-                        // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
-      onDeleteRow: null,// 删除行的确认 function (row, callback), callback(flag, data)
+      onSaveCol: null, // 保存单元格时调用 function (value, callback), callback(flag, data)
+      // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
+      onDeleteRow: null, // 删除行的确认 function (row, callback), callback(flag, data)
       onRowEditRender: null, // 判断某行编辑列重定义 function (h, row) 返回 null 表示使用缺省的编辑render，
-                              // 否则应返回一个自定义的render, h为create函数
-      onMove: null,// 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
-                   // 需要定义idField，返回为true，表示成功，否则不进行排序
+      // 否则应返回一个自定义的render, h为create函数
+      onMove: null, // 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
+      // 需要定义idField，返回为true，表示成功，否则不进行排序
 
       // 内部变量
       drawColumns: [], // 用于绘制的表头
@@ -115,7 +118,7 @@ class Store {
       first: '',
       last: '',
       start: 1,
-      total: 0,       // 总条数
+      total: 0, // 总条数
       pageSizeOpts: [10, 20, 30, 40, 50], // 每页条数选项
       pagination: false, // 是否显示分页信息，缺省为 false
       page: 1,
@@ -143,17 +146,21 @@ class Store {
     }
   }
 
-  selected (row) {
-    let id = row[this.states.idField] || row._rowKey
+  getRowId(row) {
+    return row[this.states.idField] || row._rowKey
+  }
+
+  selected(row) {
+    let id = this.getRowId(row)
     return this.states.selected[id + '']
   }
 
-  toggle (row, force=false) {
+  toggle(row, force = false) {
     if (this.selected(row)) this.deselect(row, force)
     else this.select(row, force)
   }
 
-  _select (row, force=false) {
+  _select(row, force = false) {
     let selectable = true
     let checkable = true
     if (!force && this.states.onSelect) {
@@ -163,7 +170,7 @@ class Store {
       checkable = this.states.onCheckable(row, true)
     }
     if (selectable && checkable) {
-      let id = row[this.states.idField] || row._rowKey
+      let id = this.getRowId(row)
       this.grid.$set(this.states.selected, id, id)
       this.grid.$set(this.states.selectedRows, id, row)
     }
@@ -171,13 +178,13 @@ class Store {
     return selectable && checkable
   }
 
-  checkSelectStatus () {
+  checkSelectStatus() {
     const _f = (data) => {
       // 检查父结点的选中状态
       let total = 0
       let selected = 0
       let result
-      for(let c of data) {
+      for (let c of data) {
         // 处理子结点
         if (c[this.states.childrenField] && c[this.states.childrenField].length > 0) {
           result = _f(c[this.states.childrenField])
@@ -203,7 +210,7 @@ class Store {
                   c._indeterminate = true
               }
             }
-            total ++
+            total++
           }
         } else {
           if (c._checkable) {
@@ -229,11 +236,11 @@ class Store {
       this.states.checkAll = false
       if (result.selected > 0) this.states.indeterminate = true
     }
-}
+  }
 
-  select (row, force=false) {
+  select(row, force = false) {
     if (this._select(row, force)) {
-      if (!this.states.multiSelect){
+      if (!this.states.multiSelect) {
         this.deselectAll()
         this._select(row, force)
       } else {
@@ -254,9 +261,9 @@ class Store {
     }
   }
 
-  selectAll (force=false) {
+  selectAll(force = false) {
     let rows = []
-    walkTree(this.states.data, (row)=>{
+    walkTree(this.states.data, (row) => {
       if (this._select(row, force)) {
         rows.push(row)
       }
@@ -266,7 +273,7 @@ class Store {
     this.grid.$emit('on-selected-all', rows)
   }
 
-  _deselect (row, force=false) {
+  _deselect(row, force = false) {
     let deselectable = true
     if (!force && this.states.onDeselect) {
       deselectable = this.states.onDeselect(row)
@@ -274,14 +281,14 @@ class Store {
       deselectable = this.states.onSelect(row, false)
     }
     if (deselectable) {
-      let id = row[this.states.idField] || row._rowKey
+      let id = this.getRowId(row)
       this.grid.$delete(this.states.selected, id)
       this.grid.$delete(this.states.selectedRows, id)
     }
     return deselectable
   }
 
-  deselect (row, force=false) {
+  deselect(row, force = false) {
     if (this._deselect(row, force)) {
       if (!this.states.checkStrictly) {
         let data = row[this.states.childrenField]
@@ -299,10 +306,10 @@ class Store {
     }
   }
 
-  deselectAll (force=false) {
+  deselectAll(force = false) {
     let rows = []
     const callback = (row) => {
-      if (this._deselect(row)){
+      if (this._deselect(row)) {
         rows.push(row)
       }
     }
@@ -322,7 +329,7 @@ class Store {
     this.grid.$emit('on-deselected-all', rows)
   }
 
-  getSelection () {
+  getSelection() {
     let s = []
     for (let c in this.states.selected) {
       s.push(c)
@@ -330,11 +337,11 @@ class Store {
     return s
   }
 
-  getSelectedRows () {
+  getSelectedRows() {
     return Object.values(this.states.selectedRows)
   }
 
-  setSelection (selection, force=true) {
+  setSelection(selection, force = true) {
     // if (Array.isArray(selection)) {
     //   for(let c of selection) {
     //     this.grid.$set(this.states.selected, c, c)
@@ -357,14 +364,14 @@ class Store {
     let checkAll = true
     let indeterminate = false
     const callback = (row) => {
-      if (s.length === 0){
+      if (s.length === 0) {
         checkAll = false
         return true
       }
       let id = row[this.states.idField]
       index = s.indexOf(id)
       if (index > -1) {
-        if(this._select(row, force)) {
+        if (this._select(row, force)) {
           indeterminate = true
         }
         s.splice(index, 1)
@@ -375,7 +382,7 @@ class Store {
     walkTree(this.states.data, callback)
 
     // 处理剩余数据
-    for(let c of s) {
+    for (let c of s) {
       this.grid.$set(this.states.selected, c, c)
     }
 
@@ -385,7 +392,7 @@ class Store {
     }
   }
 
-  showLoading (loading=true, text='') {
+  showLoading(loading = true, text = '') {
     this.states.loading = loading
     if (text) {
       this.states.loadingText = text
@@ -393,23 +400,23 @@ class Store {
   }
 
   //编辑完成后， 发送事件
-  sendInputEvent () {
+  sendInputEvent() {
     this.grid.$emit('input', this.states.data)
   }
 
-  removeRow (row) {
+  removeRow(row) {
     let d
     if (!row._parent) d = this.states.data
     else d = row._parent[this.states.childrenField]
     let removed = List.remove(d, row, this.getKeyField(row))
-    for(let i of removed) {
+    for (let i of removed) {
       this.deselect(i, true)
       this.states.total -= 1
     }
     this.sendInputEvent()
   }
 
-  getKey (row, column) {
+  getKey(row, column) {
     let key, col
     if (typeof row === 'object') {
       key = row._rowKey
@@ -421,24 +428,36 @@ class Store {
     } else {
       col = column
     }
-    return {key, col}
+    return {
+      key,
+      col
+    }
   }
 
 
-  getComment (row, column) {
-    let {key, col} = this.getKey(row, column)
+  getComment(row, column) {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.comments[key]
     if (!r) return ''
     return r[col]
   }
 
-  setComment (row, column, content, type='info') {
-    let {key, col} = this.getKey(row, column)
+  setComment(row, column, content, type = 'info') {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.comments[key]
     if (!r) {
       r = this.grid.$set(this.states.comments, key, {})
     }
-    this.grid.$set(r, col, {content:content, type:type})
+    this.grid.$set(r, col, {
+      content: content,
+      type: type
+    })
   }
 
   clearRowComment(row) {
@@ -447,8 +466,11 @@ class Store {
     }
   }
 
-  removeComment (row, column) {
-    let {key, col} = this.getKey(row, column)
+  removeComment(row, column) {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.comments[key]
     if (r) {
       if (!col) {
@@ -459,15 +481,21 @@ class Store {
     }
   }
 
-  getClass (row, column) {
-    let {key, col} = this.getKey(row, column)
+  getClass(row, column) {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.classes[key]
     if (!r) return ''
     return r[col]
   }
 
-  setClass (row, column, name) {
-    let {key, col} = this.getKey(row, column)
+  setClass(row, column, name) {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.classes[key]
     if (!r) {
       r = this.grid.$set(this.states.classes, key, {})
@@ -475,8 +503,11 @@ class Store {
     this.grid.$set(r, col, name)
   }
 
-  removeClass (row, column) {
-    let {key, col} = this.getKey(row, column)
+  removeClass(row, column) {
+    let {
+      key,
+      col
+    } = this.getKey(row, column)
     let r = this.states.classes[key]
     if (r) {
       if (!col) {
@@ -487,7 +518,7 @@ class Store {
     }
   }
 
-  getKeyField (row) {
+  getKeyField(row) {
     let key
     if (row[this.states.idField]) {
       key = this.states.idField
@@ -500,9 +531,9 @@ class Store {
   }
 
   // 更新行
-  updateRow (row, parent) {
+  updateRow(row, parent) {
     let data
-    if (!row._parent && !parent){
+    if (!row._parent && !parent) {
       data = this.states.data
     } else {
       data = (row._parent || parent)[this.states.childrenField]
@@ -512,7 +543,7 @@ class Store {
     return row
   }
 
-  getPosition (row, list) {
+  getPosition(row, list) {
     if (!row || !list || list && list.length === 0) return -1
     return List.index(list, row, this.getKeyField(row))
   }
@@ -520,11 +551,11 @@ class Store {
   // 新加记录有一个 _new 属性
   // parent 用于处理添加子结点
   // position = 'before', 'after'
-  addRow (row, item, position='after', isChild=false) {
+  addRow(row, item, position = 'after', isChild = false) {
     let pos, data
     if (!row || isEmpty(row)) {
       row = this.getDefaultRow()
-      for(let c of this.states.columns) {
+      for (let c of this.states.columns) {
         let v = ''
         if (c.type === 'column') {
           row[c.name] = ''
@@ -533,13 +564,10 @@ class Store {
     } else {
       row = this.getDefaultRow(row)
     }
-    // if (!row[this.states.idField]) {
-    //   row[this.states.idField] = uuid()
-    // }
-    if (!item){
+    if (!item) {
       data = this.states.data
       pos = -1
-    } else if(!isChild) {
+    } else if (!isChild) {
       data = item._parent
       if (data) {
         data = data[this.states.childrenField]
@@ -570,46 +598,48 @@ class Store {
   }
 
   // 判断某条记录是否有子结点
-  hasChildren (row) {
+  hasChildren(row) {
     return row[this.states.childrenField] && row[this.states.childrenField].length > 0
   }
   // 如果传了参数，则展开指定结点，否则全部展开
-  expand (row) {
+  expand(row) {
     if (row) {
       if (this.hasChildren(row) && !row._expand) {
         this.grid.$set(row, '_expand', true)
       }
     } else {
-      walkTree(this.states.data, (row)=>{
+      walkTree(this.states.data, (row) => {
         if (this.hasChildren(row) && !row._expand)
-        this.grid.$set(row, '_expand', true)
+          this.grid.$set(row, '_expand', true)
       }, this.states.childrenField)
     }
   }
 
   // 如果传了参数，则收起指定结点，否则全部收起
-  collapse (row) {
+  collapse(row) {
     if (row) {
       if (this.hasChildren(row) && row._expand) {
         this.grid.$set(row, '_expand', false)
       }
     } else {
-      walkTree(this.states.data, (row)=>{
+      walkTree(this.states.data, (row) => {
         if (this.hasChildren(row) && row._expand)
-        this.grid.$set(row, '_expand', false)
+          this.grid.$set(row, '_expand', false)
       }, this.states.childrenField)
     }
   }
-  
-  addChildRow (row, parent, position) {
+
+  addChildRow(row, parent, position) {
     return this.addRow(row, parent, position, true)
   }
   /* 生成新的可编辑行
    options 为滚动属性
   */
-  addEditRow (row, parent, position, isChild=false) {
+  addEditRow(row, parent, position, isChild = false) {
     if (!row || isEmpty(row)) {
-      row = {_new: true}
+      row = {
+        _new: true
+      }
     } else {
       row['_new'] = true
     }
@@ -619,11 +649,11 @@ class Store {
     return n_row
   }
 
-  addEditChildRow (row, parent, position) {
+  addEditChildRow(row, parent, position) {
     return this.addEditRow(row, parent, position, true)
   }
 
-  mergeStates (o) {
+  mergeStates(o) {
     for (let name in o) {
       if (this.states.hasOwnProperty(name)) {
         this.grid.$set(this.states, name, o[name])
@@ -632,14 +662,14 @@ class Store {
   }
 
   // 获得指定表头字段
-  getColumn (name) {
+  getColumn(name) {
     for (let col of this.states.columns) {
       if (col.name === name) return col
     }
   }
 
   /* 设置查询相关的参数，分别回填到对应的 page, pageSize, query 中作为初始值 */
-  setParam (p) {
+  setParam(p) {
     if (!p) return
     if (p.hasOwnProperty('page')) {
       this.states.page = p.page
@@ -654,7 +684,7 @@ class Store {
       this.states.query.value = Object.assign({}, p)
   }
 
-  getDefaultRow (row={}, parent) {
+  getDefaultRow(row = {}, parent) {
     return Object.assign({
       _hover: false,
       _selectable: true, // 可被选中
@@ -669,8 +699,9 @@ class Store {
     }, row)
   }
 
-  makeRows (data, parent) {
-    var rows = []
+  makeRows(data, parent) {
+    let rows = []
+    let selectedRows = []
     data.forEach(row => {
       let new_row = this.getDefaultRow(row, parent)
       if (this.hasChildren(new_row)) {
@@ -678,11 +709,18 @@ class Store {
         new_row[this.states.childrenField] = this.makeRows(new_row[this.states.childrenField])
       }
       rows.push(new_row)
+      // 处理选中
+
+      let id = this.getRowId(new_row)
+      if (this.states.selected[id]) {
+        selectedRows[id] = new_row
+      }
     })
+    this.states.selectedRows = selectedRows
     return rows
   }
 
-  _callOnMove (order) {
+  _callOnMove(order) {
     return new Promise((resolve, reject) => {
       if (this.states.onMove) {
         const callback = (result) => {
@@ -709,10 +747,13 @@ class Store {
       begin = des
       end = pos
     }
-    let new_order = List.reorder(data, pos, des, {idField: _id, orderField: _order})
+    let new_order = List.reorder(data, pos, des, {
+      idField: _id,
+      orderField: _order
+    })
     this._callOnMove(new_order).then(() => {
-      for(let i=begin, _len=end; i<=_len && i<data.length; i++) {
-        for(let j=0, _len_j=new_order.length; j<_len_j; j++) {
+      for (let i = begin, _len = end; i <= _len && i < data.length; i++) {
+        for (let j = 0, _len_j = new_order.length; j < _len_j; j++) {
           if (new_order[j][this.states.idField] === data[i][this.states.idField]) {
             data[i][_order] = new_order[j][_order]
             break
@@ -720,13 +761,13 @@ class Store {
         }
       }
       row = data.splice(pos, 1)
-      data.splice(des, 0, row[0])  
+      data.splice(des, 0, row[0])
     })
   }
 
   // 移动元素位置
   // position up, down, first, last
-  moveRow (row, position) {
+  moveRow(row, position) {
     let d, des // 目标位置
     let _id = this.states.idField
     let _order = this.states.orderField
@@ -740,12 +781,18 @@ class Store {
         if (this.pagination && des < 0 && !row._parent && this.states.page > 1) {
           this.states.afterLoadData = () => {
             let new_order = []
-            let last = this.states.data[this.states.data.length-1]
-            new_order.push({[_id]:row[_id], [_order]:last[_order]})
-            new_order.push({[_id]:last[_id], [_order]:row[_order]})
+            let last = this.states.data[this.states.data.length - 1]
+            new_order.push({
+              [_id]: row[_id],
+              [_order]: last[_order]
+            })
+            new_order.push({
+              [_id]: last[_id],
+              [_order]: row[_order]
+            })
             this._callOnMove(new_order).then(() => {
               row[_order] = last[_order]
-              this.states.data.splice(this.states.data.length-1, 1, row)
+              this.states.data.splice(this.states.data.length - 1, 1, row)
             })
           }
           this.grid.go(this.states.page - 1)
@@ -758,8 +805,14 @@ class Store {
           this.states.afterLoadData = () => {
             let new_order = []
             let last = this.states.data[0]
-            new_order.push({[_id]:row[_id], [_order]:last[_order]})
-            new_order.push({[_id]:last[_id], [_order]:row[_order]})
+            new_order.push({
+              [_id]: row[_id],
+              [_order]: last[_order]
+            })
+            new_order.push({
+              [_id]: last[_id],
+              [_order]: row[_order]
+            })
             this._callOnMove(new_order).then(() => {
               row[_order] = last[_order]
               this.states.data.splice(0, 1, row)

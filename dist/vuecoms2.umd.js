@@ -16864,9 +16864,14 @@ function () {
   }
 
   Object(createClass["a" /* default */])(Store, [{
+    key: "getRowId",
+    value: function getRowId(row) {
+      return row[this.states.idField] || row._rowKey;
+    }
+  }, {
     key: "selected",
     value: function selected(row) {
-      var id = row[this.states.idField] || row._rowKey;
+      var id = this.getRowId(row);
       return this.states.selected[id + ''];
     }
   }, {
@@ -16891,7 +16896,7 @@ function () {
       }
 
       if (selectable && checkable) {
-        var id = row[this.states.idField] || row._rowKey;
+        var id = this.getRowId(row);
         this.grid.$set(this.states.selected, id, id);
         this.grid.$set(this.states.selectedRows, id, row);
       }
@@ -17048,7 +17053,7 @@ function () {
       }
 
       if (deselectable) {
-        var id = row[this.states.idField] || row._rowKey;
+        var id = this.getRowId(row);
         this.grid.$delete(this.states.selected, id);
         this.grid.$delete(this.states.selectedRows, id);
       }
@@ -17475,10 +17480,7 @@ function () {
         }
       } else {
         row = this.getDefaultRow(row);
-      } // if (!row[this.states.idField]) {
-      //   row[this.states.idField] = uuid()
-      // }
-
+      }
 
       if (!item) {
         data = this.states.data;
@@ -17667,6 +17669,7 @@ function () {
       var _this9 = this;
 
       var rows = [];
+      var selectedRows = [];
       data.forEach(function (row) {
         var new_row = _this9.getDefaultRow(row, parent);
 
@@ -17675,8 +17678,15 @@ function () {
           new_row[_this9.states.childrenField] = _this9.makeRows(new_row[_this9.states.childrenField]);
         }
 
-        rows.push(new_row);
+        rows.push(new_row); // 处理选中
+
+        var id = _this9.getRowId(new_row);
+
+        if (_this9.states.selected[id]) {
+          selectedRows[id] = new_row;
+        }
       });
+      this.states.selectedRows = selectedRows;
       return rows;
     }
   }, {
