@@ -25,7 +25,7 @@
       <li class="ivu-btn ivu-btn-text ivu-btn-small page-input">
       跳至
         <input type="text" ref='page' :value="current" :size="inputSize" @keypress.enter="handleEnter"
-        @keyup="handleKeyUp" @input="handleInput">
+        @keyup="handleKeyUp" @input="handleInput" @focus="handleFocus">
       页
       </li>
     </ul>
@@ -115,25 +115,31 @@ export default {
     },
 
     handleKeyUp (event) {
-      let n = parseInt(event.key)
       var keycode = event.which
-      if (!isNaN(n) || (event.ctrlKey && (keycode == 88 || keycode == 89 || keycode == 90) ||
+      let val = /\d+/.test(event.key)
+      if (val || (event.ctrlKey && (keycode == 88 || keycode == 89 || keycode == 90) ||
           event.keyCode === 46 || event.keyCode ===8)) {
-          // this.handleInput(event)
-      } else
+          this.handleInput(event)
+      } else {
         event.preventDefault()
+      }
     },
 
     handleInput (event) {
       let value = event.target.value
-      let val = parseInt(value)
-      if (isNaN(val)) {
+      let val = /\d+/.test(value)
+      if (!val) {
         value = '1'
+        this.$refs.page.value = value
         this.current = 1
       } else {
-        this.current = val
+        this.current = parseInt(value)
       }
       this.inputSize = value.length + 2
+    },
+
+    handleFocus () {
+      this.$refs.page.select()
     }
   },
 
