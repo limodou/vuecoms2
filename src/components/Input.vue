@@ -2,6 +2,7 @@
   <Input
     v-if="!isStatic"
     v-bind="$attrs"
+    v-on="$listeners"
     :value="value"
     :autocomplete="autocomplete"
     :disabled="disabled"

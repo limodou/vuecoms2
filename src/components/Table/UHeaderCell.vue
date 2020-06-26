@@ -2,8 +2,11 @@
   <div class="u-header-cell">
     <div v-if="column.type === 'column'" class="u-table-header-header-cell" :style="trStyles(column)">
 
-      <div class="u-table-header-cell-title" :class="{nowrap:nowrap}" v-html="column.title" :title="title"></div>
-
+      <div class="u-table-header-cell-title" :class="{nowrap:nowrap}">
+        <span v-html="column.title" :title="title"></span>
+        <Filterable v-if="column.filterable && column.leaf" :store="store" :column="column"></Filterable>
+      </div>
+      
       <Sort v-if="column.sortable && column.leaf" :store="store" :column="column"></Sort>
 
       <div v-if="resizable && column.resizable && column.leaf" class="u-table-header-cell-resizer"
@@ -30,6 +33,7 @@
 <script>
 import {html2text, mapState} from '../utils/utils.js'
 import Sort from './USort'
+import Filterable from './UFilter'
 
 export default {
   name: 'UHCell',
@@ -38,7 +42,8 @@ export default {
     store: Object
   },
   components: {
-    Sort
+    Sort,
+    Filterable
   },
 
   computed: {

@@ -1,19 +1,19 @@
 <template>
   <div class="pagination">
     <ul>
-      <li v-if="store.first" :title="store.first" class="ivu-btn ivu-btn-default ivu-btn-small" :class="{'disabled':!hasFirst}">
+      <li v-if="store.first" :title="store.first" class="ivu-btn ivu-btn-default" :class="{'disabled':!hasFirst, [sizeClass]: true}">
         <a @click.prevent="handlePageClick(1)">{{store.first}}</a>
       </li>
-      <li v-if="store.prev" :title="store.prev" class="ivu-btn ivu-btn-default ivu-btn-small" :class="{'disabled':!hasPrev}">
+      <li v-if="store.prev" :title="store.prev" class="ivu-btn ivu-btn-default" :class="{'disabled':!hasPrev, [sizeClass]: true}">
         <a @click.prevent="handlePageClick(current-1)">{{store.prev}}</a>
       </li>
-      <li v-if="store.next" :title="store.next" class="ivu-btn ivu-btn-default ivu-btn-small" :class="{'disabled':!hasNext}">
+      <li v-if="store.next" :title="store.next" class="ivu-btn ivu-btn-default" :class="{'disabled':!hasNext, [sizeClass]: true}">
         <a @click.prevent="handlePageClick(current+1)">{{store.next}}</a>
       </li>
-      <li v-if="store.last" :title="store.last" class="ivu-btn ivu-btn-default ivu-btn-small" :class="{'disabled':!hasLast}">
+      <li v-if="store.last" :title="store.last" class="ivu-btn ivu-btn-default" :class="{'disabled':!hasLast, [sizeClass]: true}">
         <a @click.prevent="handlePageClick(pages)">{{store.last}}</a>
       </li>
-      <Dropdown class="ivu-btn ivu-btn-default ivu-btn-small" @on-click="handlePageSize" transfer>
+      <Dropdown class="ivu-btn ivu-btn-default" :class="sizeClass" @on-click="handlePageSize" transfer>
         <a>
           {{limit}}条/页
           <Icon type="ios-arrow-down"></Icon>
@@ -22,7 +22,7 @@
             <DropdownItem v-for="x in store.pageSizeOpts" :key="x" :name="x">{{x}}条/页</DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      <li class="ivu-btn ivu-btn-text ivu-btn-small page-input">
+      <li class="ivu-btn ivu-btn-text page-input" :class="sizeClass">
       跳至
         <input type="text" ref='page' :value="current" :size="inputSize" @keypress.enter="handleEnter"
         @keyup="handleKeyUp" @input="handleInput" @focus="handleFocus">
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import {clickoutside} from '../utils/utils.js'
 import Emitter from '../mixins/emitter.js'
 
 export default {
@@ -50,8 +49,6 @@ export default {
       inputSize: 3
     }
   },
-
-  directives: { clickoutside },
 
   props: {
     store: Object
@@ -82,7 +79,16 @@ export default {
       } else {
         return {display: 'none'}
       }
+    },
+
+    pageBtnSize () {
+      return this.store.pageBtnSize
+    },
+
+    sizeClass () {
+      return `ivu-btn-${this.pageBtnSize}`
     }
+
   },
 
   methods: {
@@ -209,6 +215,12 @@ export default {
       font-size: 12px;
       text-align: center;
     }
+  }
+
+  .ivu-btn-default.page-input input {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
   }
 }
 </style>

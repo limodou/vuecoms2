@@ -11,10 +11,22 @@
     <slot name="afterQuery"></slot>
     <div class="u-grid-tools" slot="tools" v-if="buttons || rightButtons">
       <div class="u-grid-tools-left" v-if="buttons">
-        <Buttons ref="buttons" :buttons="buttons" :data="store" :target="this"></Buttons>
+        <Buttons
+          ref="buttons"
+          :size="buttonSize"
+          :buttons="buttons"
+          :data="store"
+          :target="this"
+        ></Buttons>
       </div>
       <div class="u-grid-tools-right" v-if="rightButtons">
-        <Buttons ref="rightButtons" :buttons="rightButtons" :data="store" :target="this"></Buttons>
+        <Buttons
+          ref="rightButtons"
+          :size="buttonSize"
+          :buttons="rightButtons"
+          :data="store"
+          :target="this"
+        ></Buttons>
       </div>
     </div>
     <slot name="beforeTable"></slot>
@@ -69,11 +81,24 @@
       <Buttons
         ref="bottomButtons"
         v-if="buttomButtons"
+        :size="buttonSize"
         :buttons="bottomButtons"
         :target="this"
         :data="store"
       ></Buttons>
+      <slot name="tools"></slot>
     </Pagination>
+    <div v-else class="no-pagination">
+      <Buttons
+        ref="bottomButtons"
+        v-if="buttomButtons"
+        :size="buttonSize"
+        :buttons="bottomButtons"
+        :target="this"
+        :data="store"
+      ></Buttons>
+      <slot name="tools"></slot>
+    </div>
     <slot name="afterTable"></slot>
   </div>
 </template>
@@ -177,6 +202,7 @@ export default {
       'buttons',
       'rightButtons',
       'bottomButtons',
+      'buttonSize',
       'selected',
       'editMode',
       'actionColumn',
@@ -200,7 +226,7 @@ export default {
       'afterLoadData',
       'multiHeaderSep',
       'zebra',
-      'oldParentWidth'
+      'oldParentWidth',
     ),
 
     columnDraggerStyles() {
@@ -458,6 +484,7 @@ export default {
           name: 'title',
           width: 0,
           sortable: false,
+          filterable: false,
           align: '',
           headerAlign: '',
           hidden: false,
@@ -614,7 +641,7 @@ export default {
                       delete row._editRow;
                       this.sendInputEvent();
                     } else {
-                      this.clearRowComment(row)
+                      this.clearRowComment(row);
                       for (let key in data) {
                         let v = data[key];
                         this.setComment(row, key, v, 'error');
@@ -819,7 +846,7 @@ export default {
     this.__resizeHandler = debounce(
       () => {
         let parent = self.$el.parentNode;
-        if (!parent) return
+        if (!parent) return;
         let p_width = getWH(parent, 'width');
         let width = p_width;
         while (1) {
@@ -903,6 +930,13 @@ export default {
     //   },
     //   deep: true
     // }
+
+    'store.states.filterValue': {
+      deep: true,
+      handler (newVal) {
+        this.go(1, newVal)
+      }
+    }
   },
 };
 </script>

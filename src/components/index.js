@@ -30,6 +30,8 @@ import Validator from './validator'
 import FlatChoices from './FlatChoices.vue'
 import showToast from './Toast'
 import Dialog from './Dialog'
+import FlatSelect from './FlatSelect.vue'
+import config from './config'
 
 const Components = {
   Box,
@@ -49,7 +51,8 @@ const Components = {
   DatepickerRange,
   UploaderFile,
   CardList,
-  FlatChoices
+  FlatChoices,
+  FlatSelect
 }
 
 const install = function (Vue, options = {}) {
@@ -64,6 +67,7 @@ const install = function (Vue, options = {}) {
   Vue.prototype.$validator = validator
   Vue.prototype.$fileupload = fileupload
   Vue.prototype.$toast = showToast
+  Vue.prototype.$vuecomsConfig = config
 
   Dialog.install(Vue)
 }

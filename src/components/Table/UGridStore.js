@@ -4,13 +4,15 @@ import {
   walkTree,
   isEmpty
 } from '../utils/utils.js'
+import config from '../config'
+let settings = config.grid.base
 
 let rowKey = 1
 
 class Store {
   constructor(grid, options, value) {
     this.grid = grid
-    this.states = {
+    this.states = Object.assign({
       columns: [],
       rowHeight: 34,
       minColWidth: 5,
@@ -51,6 +53,7 @@ class Store {
       zebra: true,
       rightButtons: null,
       bottomButtons: null,
+      buttonSize: 'small',
       comments: {}, // 记录单元格的注释，形式为 {row_id: {col_name:comment}}
       classes: {}, // 记录单元格的class
       combineCols: [], // 单元格合并列名
@@ -111,6 +114,9 @@ class Store {
       selectedRows: {},
       afterLoadData: null, // 在loadData之后的回调用于特殊场合，处理之后会清除，只会运行一次
       oldParentWidth: 0, // 父元素的上次宽度
+      filterValue: {}, // 过滤相关的数据
+      filterImmediate: true, // 是否在操作过滤时立即返回结果，还是显示一个确定按钮
+      filterOkText: '确定', // 显示过滤器确定按钮的文本
 
       // 分页相关参数
       prev: '上一页',
@@ -122,8 +128,9 @@ class Store {
       pageSizeOpts: [10, 20, 30, 40, 50], // 每页条数选项
       pagination: false, // 是否显示分页信息，缺省为 false
       page: 1,
-      pageSize: 10
-    }
+      pageSize: 10,
+      pageBtnSize: 'small'
+    }, settings)
 
     for (let name in options) {
       if (options.hasOwnProperty(name) && this.states.hasOwnProperty(name)) {
