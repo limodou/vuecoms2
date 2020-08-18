@@ -32,7 +32,7 @@
             v-if="!row.row._hidden"
             :style="bodyTrStyle"
             :key="row._rowKey"
-            :class="{[store.states.selectedRowClass]:store.states.selectedRowClass && store.selected(row.row), hover:hoverShow && hoverRowKey && row._rowKey==hoverRowKey}"
+            :class="rowClass(row.row)"
             @mouseenter="handleTrMouseEnter(row.row)"
             @mouseleave="handleTrMouseLeave(row.row)"
             >
@@ -113,7 +113,8 @@ export default {
       'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth',
       'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData',
       'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow',
-      'columnHeaderAlign', 'columnAlign', 'sortMode', 'param'
+      'columnHeaderAlign', 'columnAlign', 'sortMode', 'param',
+      'selectedRowClass', 'onRowClass'
     ),
 
     rows () {
@@ -355,6 +356,20 @@ export default {
           this.calWidth(this.dragging_col, this.dragging_col_new_width, oldWidth)
         })
       }
+    },
+
+    rowClass (row) {
+      let cls = {}
+      if (this.selectedRowClass && this.store.selected(row)){
+        cls[this.selectedRowClass] = true
+      }
+      if (this.hoverShow && this.hoverRowKey && row._rowKey==this.hoverRowKey) {
+        cls.hover = true
+      }
+      if (this.onRowClass && this.onRowClass(row)) {
+        cls[this.onRowClass(row)] = true
+      }
+      return cls
     },
 
     calWidth (col, newWidth, width) {

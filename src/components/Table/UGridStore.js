@@ -85,6 +85,7 @@ class Store {
       onDeselect: null, // 在取消选择行前执行，返回为True，则允许取消选中
       onCheckable: null, // 是否显示checkbox
       onSaveRow: null, // 保存行时调用 function (row, callback), callback(flag, data)
+      onRowClass: null, // 定制行的 class
       // flag 为 'ok'表示成功，data 为最后的数据 'error'表示有错误, data为出错信息
       onError: null, // 保存行时，校验出错时回调
       onSaveCol: null, // 保存单元格时调用 function (value, callback), callback(flag, data)
@@ -421,6 +422,15 @@ class Store {
       this.states.total -= 1
     }
     this.sendInputEvent()
+    // 增加当无数据时的向前翻页或刷新的处理
+    if (this.states.data.length === 0) {
+      let pages = Math.ceil(this.states.total / this.states.pageSize)
+      if (this.states.page < pages) {
+        this.grid.loadData()
+      } else if (this.states.page > 1) {
+        this.grid.go(this.states.page - 1)
+      }
+    }
   }
 
   getKey(row, column) {
@@ -574,6 +584,9 @@ class Store {
     if (!item) {
       data = this.states.data
       pos = -1
+      if (position === 'before') {
+        pos = 0
+      }
     } else if (!isChild) {
       data = item._parent
       if (data) {
@@ -708,7 +721,7 @@ class Store {
 
   makeRows(data, parent) {
     let rows = []
-    let selectedRows = []
+    let selectedRows = {}
     data.forEach(row => {
       let new_row = this.getDefaultRow(row, parent)
       if (this.hasChildren(new_row)) {

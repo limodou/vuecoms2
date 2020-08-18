@@ -6,6 +6,7 @@
       v-for="item of choices"
       v-bind="item"
       :key="item.value + ',' + item.label"
+      @click="handleClick(item)"
     >
       <Icon
         type="ios-checkmark"
@@ -14,7 +15,7 @@
         v-if="isSelected(item)"
       />
       <i v-else class="icon"></i>
-      <span @click="handleClick(item)" :title="item.label">{{ item.label }}</span>
+      <span :title="item.label">{{ item.label }}</span>
     </div>
   </div>
 </template>

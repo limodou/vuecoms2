@@ -128,11 +128,23 @@ export default {
   }
 }
 
-.u-layout-required {
+.u-layout-required.u-layout-cell-right {
   .u-layout-cell-label:before {
     content: "*";
     display: inline-block;
     margin-right: 4px;
+    line-height: 1;
+    font-family: SimSun;
+    font-size: 12px;
+    color: #ed3f14;
+  }
+}
+
+.u-layout-required.u-layout-cell-left {
+  .u-layout-cell-label:after {
+    content: "*";
+    display: inline-block;
+    margin-left: 4px;
     line-height: 1;
     font-family: SimSun;
     font-size: 12px;

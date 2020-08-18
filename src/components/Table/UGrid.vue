@@ -612,6 +612,21 @@ export default {
       };
     },
 
+    async validateRow(row) {
+      let res = await this._validateRow(row._editRow);
+      if (res) {
+        for (let key in res) {
+          let v = res[key];
+          this.setComment(row, key, v, 'error');
+        }
+        this.$set(row, '_saving', false);
+        if (this.onError) {
+          this.onError(res);
+        }
+      }
+      return res
+    },
+
     defaultEditRender(h, row) {
       return h(
         'Button',
@@ -631,6 +646,12 @@ export default {
                 this.$set(row, '_editting', true);
               } else {
                 this.$set(row, '_saving', true);
+                // 校验错误
+                let res = await this.validateRow(row);
+                if (res) {
+                  return
+                }
+
                 if (this.onSaveRow) {
                   let callback = (flag, data) => {
                     if (flag === 'ok') {
@@ -649,22 +670,9 @@ export default {
                     }
                     this.$set(row, '_saving', false);
                   };
-                  // 校验错误
-                  let res = await this.validateRow(row._editRow);
-                  if (res) {
-                    for (let key in res) {
-                      let v = res[key];
-                      this.setComment(row, key, v, 'error');
-                    }
-                    this.$set(row, '_saving', false);
-                    if (this.onError) {
-                      this.onError(res);
-                    }
-                  } else {
-                    // 增加获取干净数据的处理 2020/04/08
-                    let cleanData = deepCopy(row._editRow, true);
-                    this.onSaveRow(cleanData, callback, row);
-                  }
+                  // 增加获取干净数据的处理 2020/04/08
+                  let cleanData = deepCopy(row._editRow, true);
+                  this.onSaveRow(cleanData, callback, row);
                 } else {
                   this.updateRow(copyDataRow(row, row._editRow));
                   delete row._editRow;
@@ -681,7 +689,7 @@ export default {
     },
 
     // 校验某一行数据
-    async validateRow(row) {
+    async _validateRow(row) {
       let rules = {};
       for (let c of this.store.states.columns) {
         if (c.editor && c.editor instanceof Object && c.editor.rule) {
@@ -768,8 +776,12 @@ export default {
       this.loadData(opts || {});
     },
 
-    reset_query() {
+    reset_query(value) {
       this.$refs.query.reset();
+      if (value) {
+        this.$refs.query.setValue(value)
+        Object.assign(this.param, value)
+      }
     },
 
     clear() {

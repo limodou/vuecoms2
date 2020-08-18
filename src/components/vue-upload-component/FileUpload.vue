@@ -328,7 +328,7 @@ export default {
   methods: {
 
     // 清空
-    clear() {
+    clear(emit=false) {
       if (this.files.length) {
         let files = this.files
         this.files = []
@@ -340,9 +340,11 @@ export default {
         this.maps = {}
 
         // 事件
-        this.emitInput()
-        for (let i = 0; i < files.length; i++) {
-          this.emitFile(undefined, files[i])
+        if (emit){
+          this.emitInput()
+          for (let i = 0; i < files.length; i++) {
+            this.emitFile(undefined, files[i])
+          }
         }
       }
       return true

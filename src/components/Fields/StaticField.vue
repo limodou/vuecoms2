@@ -23,7 +23,7 @@ export default {
     },
     title () {
       let showTitle = this.showTitle
-      if (showTitle) {
+      if (showTitle && typeof this.display === 'string') {
         if (typeof showTitle === 'function') {
           //调用原始值及format值
           return showTitle(this.value, this.display)

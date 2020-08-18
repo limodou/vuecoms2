@@ -524,7 +524,7 @@ export default {
     setChoices(name, choices) {
       let field = this.fields[name];
       if (!field.options) {
-        this.$set(field, "options", { choices, type: "select" });
+        this.$set(field, "options", { choices });
       } else {
         this.$set(field.options, "choices", choices);
       }
@@ -651,31 +651,31 @@ export default {
       deep: true
     },
 
-    choices: {
-      immediate: true,
-      handler() {
-        for (let row of this.current) {
-          for (let field of row.fields || []) {
-            let choices = this.choices[field.name];
-            if (choices) {
-              if (!field.options) {
-                this.$set(field, "options", { choices: choices });
-              } else {
-                this.$set(field.options, "choices", choices);
-              }
-            }
-          }
-        }
-      },
-      deep: true
-    },
-
     data: {
       handler(newdata) {
         this.current = deepCopy(newdata);
         this.makeFields();
         this.makeValidateResult();
         // this.mergeRules()
+      },
+      deep: true
+    },
+
+    choices: {
+      immediate: true,
+      handler() {
+        for (let row of this.data) {
+          for (let field of row.fields || []) {
+            let choices = this.choices[field.name];
+            if (choices) {
+              if (!field.options) {
+                this.$set(field, "options", { choices });
+              } else {
+                this.$set(field.options, "choices", choices);
+              }
+            }
+          }
+        }
       },
       deep: true
     },

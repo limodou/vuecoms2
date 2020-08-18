@@ -19,7 +19,7 @@ export default class Validator {
    *
    * @param {Object} value 待校验的整个数据对象
    * @param {Object} rules 待校验的规则，一般为单个字段规则，可以是多个。
-   *            {name: 'type', name: {type: 'number'}, name: ['type', {type: 'number'}]}
+   *            {name: 'type'}, name: {type: 'number'}, name: ['type', {type: 'number'}]}
    * @param {Object} [fields={}] 字段名映射，针对rules中涉及的字段名，在显示时可以使用这个映射来显示对应的中文名，格式为：{name: 中文}
    * @returns Promise，errors，为空表示无错误
    * @memberof Validator
@@ -59,6 +59,13 @@ export default class Validator {
       rules = [rule]
     }
 
+    // 合并消息
+    let messages = Object.assign({}, this.messages)
+    for (let ru of rules) {
+      if (ru instanceof Object && ru.messages) {
+        Object.assign(messages, ru.messages || {})
+      }
+    }
     for(let ru of rules) {
       if (typeof ru === 'string') {
         ru = {type: ru}
@@ -70,8 +77,6 @@ export default class Validator {
       let r = Object.assign({}, ru)
       // 缺省校验类型设置为 string
 
-      // 合并消息
-      let messages = Object.assign({}, this.messages, ru.messages || {})
       if (!r.fieldname) r.fieldname = field
       r.field = field
       r.makeError = this.makeError(messages, r.fieldname)

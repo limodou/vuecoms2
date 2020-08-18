@@ -438,6 +438,9 @@ export default {
       this.merge_object(this.value, this.current_value);
       this.$emit('input', this.value);
     },
+    setValue(value) {
+      this.current_value = value
+    }
   },
 };
 </script>
