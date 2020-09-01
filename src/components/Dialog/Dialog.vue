@@ -51,6 +51,7 @@ export default {
     },
     close() {
       this.show = false;
+      this.$root.$destroy()
       this.$root.$el.remove();
     },
   },

@@ -37,6 +37,7 @@ export default {
       this.close();
     },
     close() {
+      this.$root.$destroy()
       this.$root.$el.remove();
     },
     async handleOk() {

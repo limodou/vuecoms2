@@ -25892,12 +25892,12 @@ function showToast(props) {
 var external_Vue_ = __webpack_require__("8bbf");
 var external_Vue_default = /*#__PURE__*/__webpack_require__.n(external_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=template&id=f724cfe0&
-var Dialogvue_type_template_id_f724cfe0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-dialog"},[_c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-ok":_vm.handleOk,"on-cancel":_vm.handleCancel},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({tag:"component"},'component',_vm.props,false),_vm.on)),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}})],1):_vm._e()],1)],1)}
-var Dialogvue_type_template_id_f724cfe0_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=template&id=5590fdab&
+var Dialogvue_type_template_id_5590fdab_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-dialog"},[_c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-ok":_vm.handleOk,"on-cancel":_vm.handleCancel},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({tag:"component"},'component',_vm.props,false),_vm.on)),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}})],1):_vm._e()],1)],1)}
+var Dialogvue_type_template_id_5590fdab_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=template&id=f724cfe0&
+// CONCATENATED MODULE: ./src/components/Dialog/Dialog.vue?vue&type=template&id=5590fdab&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Dialog.vue?vue&type=script&lang=js&
 
@@ -26022,6 +26022,7 @@ var Dialogvue_type_template_id_f724cfe0_staticRenderFns = []
     }(),
     close: function close() {
       this.show = false;
+      this.$root.$destroy();
       this.$root.$el.remove();
     }
   }
@@ -26042,8 +26043,8 @@ var Dialogvue_type_style_index_0_lang_less_ = __webpack_require__("20ce");
 
 var Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Dialogvue_type_script_lang_js_,
-  Dialogvue_type_template_id_f724cfe0_render,
-  Dialogvue_type_template_id_f724cfe0_staticRenderFns,
+  Dialogvue_type_template_id_5590fdab_render,
+  Dialogvue_type_template_id_5590fdab_staticRenderFns,
   false,
   null,
   null,
@@ -26052,12 +26053,12 @@ var Dialog_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Dialog = (Dialog_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=d90807ec&
-var Loading_Dialogvue_type_template_id_d90807ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
-var Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"381d5604-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=c22bb9b6&
+var Loading_Dialogvue_type_template_id_c22bb9b6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
+var Loading_Dialogvue_type_template_id_c22bb9b6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=d90807ec&
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=c22bb9b6&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=script&lang=js&
 
@@ -26128,6 +26129,7 @@ var Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns = []
       return handleCancel;
     }(),
     close: function close() {
+      this.$root.$destroy();
       this.$root.$el.remove();
     },
     handleOk: function () {
@@ -26210,8 +26212,8 @@ var Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns = []
 
 var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Loading_Dialogvue_type_script_lang_js_,
-  Loading_Dialogvue_type_template_id_d90807ec_render,
-  Loading_Dialogvue_type_template_id_d90807ec_staticRenderFns,
+  Loading_Dialogvue_type_template_id_c22bb9b6_render,
+  Loading_Dialogvue_type_template_id_c22bb9b6_staticRenderFns,
   false,
   null,
   null,
