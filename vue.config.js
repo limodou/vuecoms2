@@ -11,12 +11,19 @@ module.exports = {
       const terserOptions = terserWebpackPlugin.options.terserOptions
       terserOptions.compress["drop_console"] = true
     }
-    Object.assign(config, {externals: {
-      vue: 'Vue',
-      vuex: 'Vuex',
-      'vue-router': 'VueRouter',
-      iview: 'iview'
-    }})
+    Object.assign(config, {
+      externals: {
+        vue: {
+          root: 'Vue',
+          commonjs: 'vue',
+          commonjs2: 'vue',
+          amd: 'vue'
+        },
+        vuex: 'Vuex',
+        'vue-router': 'VueRouter',
+        iview: 'iview'
+      }
+    })
   },
   transpileDependencies: ['resize-detector'],
   lintOnSave: false
