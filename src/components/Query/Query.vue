@@ -151,7 +151,7 @@ export default {
     },
     parseUrl: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     buttons: {
       type: Array,
