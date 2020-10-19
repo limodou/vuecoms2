@@ -298,7 +298,8 @@ export default {
       'addEditChildRow',
       'moveRow',
       'expand',
-      'collapse'
+      'collapse',
+      'isEditing'
     ),
 
     resize(width, height) {

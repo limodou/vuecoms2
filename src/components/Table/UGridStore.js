@@ -648,6 +648,18 @@ class Store {
     }
   }
 
+  // 返回是否存在处理于行编辑状态的行，如果有返回 true
+  isEditing() {
+    let flag = false
+    walkTree(this.states.data, (row) => {
+      if (row._editting) {
+        flag = true
+        return true
+      }
+    }, this.states.childrenField)
+    return flag
+  }
+
   addChildRow(row, parent, position) {
     return this.addRow(row, parent, position, true)
   }
@@ -852,6 +864,5 @@ class Store {
     this.sendInputEvent()
   }
 }
-
 
 export default Store

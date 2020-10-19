@@ -6,9 +6,9 @@
       :style="trStyles(column)"
     >
       <HeaderCellRender
-        v-if="col.column.headerRender"
-        :render="col.column.headerRender"
-        :column="col.column"
+        v-if="column.headerRender"
+        :render="column.headerRender"
+        :column="column"
       ></HeaderCellRender>
 
       <template v-else>
