@@ -20,7 +20,7 @@ export default {
     onCancel: {},
     buttons: {},
     buttonSize: {
-      default: 'default',
+      default: "default",
     },
   },
   data() {
@@ -37,7 +37,8 @@ export default {
       this.close();
     },
     close() {
-      this.$root.$destroy()
+      this.show = false;
+      this.$root.$destroy();
       this.$root.$el.remove();
     },
     async handleOk() {
