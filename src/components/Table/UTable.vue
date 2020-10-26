@@ -36,13 +36,13 @@
             @mouseenter="handleTrMouseEnter(row.row)"
             @mouseleave="handleTrMouseLeave(row.row)"
             >
-            <td v-for="(col, col_index) in row.columns"
-              :style="cellStyles(col.column)"
-              :rowspan="col.rowspan"
-              :colspan="col.colspan"
-              :class="{'u-cell-last': col.last}">
-              <Cell :store="store" :col="col" :row_index="row_index" @click="handleClick(col.row)" :fixed="fixed"></Cell>
-            </td>
+              <td v-for="(col, col_index) in row.columns"
+                :style="cellStyles(col.column)"
+                :rowspan="col.rowspan"
+                :colspan="col.colspan"
+                :class="{'u-cell-last': col.last}">
+                <Cell :store="store" :col="col" :row_index="row_index" @click="handleClick(col.row)" :fixed="fixed"></Cell>
+              </td>
           </tr>
         </tbody>
       </table>
@@ -114,7 +114,7 @@ export default {
       'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData',
       'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow',
       'columnHeaderAlign', 'columnAlign', 'sortMode', 'param',
-      'selectedRowClass', 'onRowClass'
+      'selectedRowClass', 'onRowClass', 'colspan', 'colspanDelimeter'
     ),
 
     rows () {
@@ -170,8 +170,25 @@ export default {
       }
 
       const processRow = (new_row) => {
+        let last_colspan
+        let colspans = {}
+        if (this.colspan) {
+          for(let c1 of this.columns){
+            // 判断是否横向合并
+            if (new_row.row[c1.name] === this.colspanDelimeter) {
+              if (last_colspan) {
+                colspans[last_colspan] ++
+                colspans[c1.name] = 0
+              }
+            } else {
+              colspans[c1.name] = 1
+              last_colspan = c1.name
+            }
+          }
+        }
+
         this.columns.forEach( (col, j) => {
-          let item = {value: new_row.row[col.name], rowspan: 1, colspan: 1,
+          let item = {value: new_row.row[col.name], rowspan: 1, colspan: colspans[col.name] === undefined ? 1 : colspans[col.name],
           column: col, row: new_row.row/*, _columnKey: ++columnKey*/}
 
           // 不需要合并
@@ -179,6 +196,7 @@ export default {
             new_row.columns.push(item)
           } else {
             // 非合并字段
+            if (item.colspan === 0) return
             c = index[j]
             if (!c) {
               new_row.columns.push(item)
@@ -189,7 +207,7 @@ export default {
                 c.last_columns.push(item)
               } else {
                 // 检查是否相同
-                if (_col.value === item.value) {
+                if (_col.value === item.value && _col.colspan === item.colspan) {
                   _col.rowspan ++
                 } else {
                   c.last_columns.splice(c.index)

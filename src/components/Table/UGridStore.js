@@ -64,6 +64,9 @@ class Store {
       noDataHeight: 40, //无数据显示的高度
       // addAutoScrollTo: true, //行编辑在添加新行时，自动滚动到新加行
       detectParentResize: true,
+      // 增加单元格横向合并
+      colspan: false,
+      colspanDelimeter: '--',
 
       // tree 相关的参数
       tree: false, // 是否treegrid

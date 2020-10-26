@@ -12969,12 +12969,12 @@ var es6_string_fixed = __webpack_require__("d263");
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__("bd86");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=95fa2e1c&
-var UTablevue_type_template_id_95fa2e1c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:_vm.rowClass(row.row),style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){return _vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){return _vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{class:{'u-cell-last': col.last},style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed},on:{"click":function($event){return _vm.handleClick(col.row)}}})],1)}),0):_vm._e()}),0)])])])}
-var UTablevue_type_template_id_95fa2e1c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UTable.vue?vue&type=template&id=6e280966&
+var UTablevue_type_template_id_6e280966_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-table",class:[_vm.tableClass, _vm.height==='auto' ? 'auto-height' : ''],style:(_vm.wrapStyles)},[(_vm.headerShow)?_c('div',{staticClass:"u-table-header-wrapper"},[_c('div',{ref:"header",staticClass:"u-table-header-scroll",style:(_vm.headerScrollStyles),on:{"scroll":_vm.handleHeaderScroll}},[_c('table',{staticClass:"u-table-header",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column,index){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('thead',_vm._l((_vm.drawColumns),function(cols){return _c('tr',{style:(_vm.headerTrStyle)},_vm._l((cols),function(column,index){return _c('th',{style:(_vm.thStyles(column)),attrs:{"rowspan":column.rowspan,"colspan":column.colspan}},[_c('HeaderCell',{attrs:{"store":_vm.store,"column":column}})],1)}),0)}),0)])])]):_vm._e(),_c('div',{ref:"body",staticClass:"u-table-body-scroll",style:(_vm.bodyStyles),on:{"scroll":_vm.handleBodyScroll}},[(_vm.data.length===0 && !_vm.fixed)?_c('div',{staticClass:"u-table-no-data",style:(_vm.noDataStyles)},[_vm._v(_vm._s(_vm.noData))]):_vm._e(),_c('table',{directives:[{name:"show",rawName:"v-show",value:(_vm.data.length>0),expression:"data.length>0"}],ref:"content",style:(_vm.tableStyles),attrs:{"cellspaceing":"0","cellpadding":"0","border":"0"}},[_c('colgroup',_vm._l((_vm.columns),function(column){return _c('col',{style:(_vm.getColumnStyle(column))})}),0),_c('tbody',{ref:"table_body"},_vm._l((_vm.rows),function(row,row_index){return (!row.row._hidden)?_c('tr',{key:row._rowKey,ref:"rows",refInFor:true,class:_vm.rowClass(row.row),style:(_vm.bodyTrStyle),on:{"mouseenter":function($event){return _vm.handleTrMouseEnter(row.row)},"mouseleave":function($event){return _vm.handleTrMouseLeave(row.row)}}},_vm._l((row.columns),function(col,col_index){return _c('td',{class:{'u-cell-last': col.last},style:(_vm.cellStyles(col.column)),attrs:{"rowspan":col.rowspan,"colspan":col.colspan}},[_c('Cell',{attrs:{"store":_vm.store,"col":col,"row_index":row_index,"fixed":_vm.fixed},on:{"click":function($event){return _vm.handleClick(col.row)}}})],1)}),0):_vm._e()}),0)])])])}
+var UTablevue_type_template_id_6e280966_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=95fa2e1c&
+// CONCATENATED MODULE: ./src/components/Table/UTable.vue?vue&type=template&id=6e280966&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.sort.js
 var es6_array_sort = __webpack_require__("55dd");
@@ -16312,7 +16312,7 @@ var columnKey = 1;
       default: ''
     }
   },
-  computed: Object(objectSpread["a" /* default */])({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow', 'columnHeaderAlign', 'columnAlign', 'sortMode', 'param', 'selectedRowClass', 'onRowClass'), {
+  computed: Object(objectSpread["a" /* default */])({}, mapState('data', 'nowrap', 'selected', 'idField', 'columns', 'hscroll', 'xscroll', 'rowHeight', 'height', 'columnResizing', 'clickSelect', 'checkAll', 'start', 'resizable', 'minColWidth', 'multiSelect', 'drawColumns', 'combineCols', 'draggable', 'leftWidth', 'rightWidth', 'tree', 'parentField', 'expandField', 'defaultExpanded', 'noData', 'noDataHeight', 'childrenField', 'hoverRowKey', 'headerShow', 'hoverShow', 'columnHeaderAlign', 'columnAlign', 'sortMode', 'param', 'selectedRowClass', 'onRowClass', 'colspan', 'colspanDelimeter'), {
     rows: function rows() {
       var _this = this;
 
@@ -16399,11 +16399,50 @@ var columnKey = 1;
       };
 
       var processRow = function processRow(new_row) {
+        var last_colspan;
+        var colspans = {};
+
+        if (_this.colspan) {
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
+
+          try {
+            for (var _iterator2 = get_iterator_default()(_this.columns), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var c1 = _step2.value;
+
+              // 判断是否横向合并
+              if (new_row.row[c1.name] === _this.colspanDelimeter) {
+                if (last_colspan) {
+                  colspans[last_colspan]++;
+                  colspans[c1.name] = 0;
+                }
+              } else {
+                colspans[c1.name] = 1;
+                last_colspan = c1.name;
+              }
+            }
+          } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                _iterator2.return();
+              }
+            } finally {
+              if (_didIteratorError2) {
+                throw _iteratorError2;
+              }
+            }
+          }
+        }
+
         _this.columns.forEach(function (col, j) {
           var item = {
             value: new_row.row[col.name],
             rowspan: 1,
-            colspan: 1,
+            colspan: colspans[col.name] === undefined ? 1 : colspans[col.name],
             column: col,
             row: new_row.row
             /*, _columnKey: ++columnKey*/
@@ -16415,6 +16454,7 @@ var columnKey = 1;
             new_row.columns.push(item);
           } else {
             // 非合并字段
+            if (item.colspan === 0) return;
             c = index[j];
 
             if (!c) {
@@ -16427,7 +16467,7 @@ var columnKey = 1;
                 c.last_columns.push(item);
               } else {
                 // 检查是否相同
-                if (_col.value === item.value) {
+                if (_col.value === item.value && _col.colspan === item.colspan) {
                   _col.rowspan++;
                 } else {
                   c.last_columns.splice(c.index);
@@ -16457,62 +16497,16 @@ var columnKey = 1;
         }
       }
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = get_iterator_default()(data), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var row = _step2.value;
-          processNode(row, null, rows);
-        } // 增加对每列最后单元格的判断
-
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
       var _iteratorNormalCompletion3 = true;
       var _didIteratorError3 = false;
       var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator3 = get_iterator_default()(last_columns_set), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var line = _step3.value;
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
+        for (var _iterator3 = get_iterator_default()(data), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var row = _step3.value;
+          processNode(row, null, rows);
+        } // 增加对每列最后单元格的判断
 
-          try {
-            for (var _iterator4 = get_iterator_default()(line), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var _c = _step4.value;
-              _c.last = true;
-            }
-          } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
-              }
-            } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
-              }
-            }
-          }
-        }
       } catch (err) {
         _didIteratorError3 = true;
         _iteratorError3 = err;
@@ -16524,6 +16518,52 @@ var columnKey = 1;
         } finally {
           if (_didIteratorError3) {
             throw _iteratorError3;
+          }
+        }
+      }
+
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
+
+      try {
+        for (var _iterator4 = get_iterator_default()(last_columns_set), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var line = _step4.value;
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
+
+          try {
+            for (var _iterator5 = get_iterator_default()(line), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var _c = _step5.value;
+              _c.last = true;
+            }
+          } catch (err) {
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                _iterator5.return();
+              }
+            } finally {
+              if (_didIteratorError5) {
+                throw _iteratorError5;
+              }
+            }
+          }
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+            _iterator4.return();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
           }
         }
       }
@@ -16705,23 +16745,23 @@ var columnKey = 1;
       var i;
       var first = true;
       var last_columns_set = [];
-      var _iteratorNormalCompletion5 = true;
-      var _didIteratorError5 = false;
-      var _iteratorError5 = undefined;
+      var _iteratorNormalCompletion6 = true;
+      var _didIteratorError6 = false;
+      var _iteratorError6 = undefined;
 
       try {
         var _loop = function _loop() {
-          var cc = _step5.value;
+          var cc = _step6.value;
           var last_columns = [];
           last_columns_set.push(last_columns);
           i = 0;
-          var _iteratorNormalCompletion6 = true;
-          var _didIteratorError6 = false;
-          var _iteratorError6 = undefined;
+          var _iteratorNormalCompletion7 = true;
+          var _didIteratorError7 = false;
+          var _iteratorError7 = undefined;
 
           try {
             var _loop2 = function _loop2() {
-              var c = _step6.value;
+              var c = _step7.value;
 
               _this4.columns.forEach(function (col, j) {
                 if (col.name === c) {
@@ -16736,39 +16776,39 @@ var columnKey = 1;
               });
             };
 
-            for (var _iterator6 = get_iterator_default()(cc), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            for (var _iterator7 = get_iterator_default()(cc), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
               _loop2();
             }
           } catch (err) {
-            _didIteratorError6 = true;
-            _iteratorError6 = err;
+            _didIteratorError7 = true;
+            _iteratorError7 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-                _iterator6.return();
+              if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                _iterator7.return();
               }
             } finally {
-              if (_didIteratorError6) {
-                throw _iteratorError6;
+              if (_didIteratorError7) {
+                throw _iteratorError7;
               }
             }
           }
         };
 
-        for (var _iterator5 = get_iterator_default()(this.combineCols), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+        for (var _iterator6 = get_iterator_default()(this.combineCols), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
           _loop();
         }
       } catch (err) {
-        _didIteratorError5 = true;
-        _iteratorError5 = err;
+        _didIteratorError6 = true;
+        _iteratorError6 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-            _iterator5.return();
+          if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+            _iterator6.return();
           }
         } finally {
-          if (_didIteratorError5) {
-            throw _iteratorError5;
+          if (_didIteratorError6) {
+            throw _iteratorError6;
           }
         }
       }
@@ -16909,8 +16949,8 @@ var UTablevue_type_style_index_0_lang_less_ = __webpack_require__("e6ba");
 
 var UTable_component = Object(componentNormalizer["a" /* default */])(
   Table_UTablevue_type_script_lang_js_,
-  UTablevue_type_template_id_95fa2e1c_render,
-  UTablevue_type_template_id_95fa2e1c_staticRenderFns,
+  UTablevue_type_template_id_6e280966_render,
+  UTablevue_type_template_id_6e280966_staticRenderFns,
   false,
   null,
   null,
@@ -17040,6 +17080,9 @@ function () {
       //无数据显示的高度
       // addAutoScrollTo: true, //行编辑在添加新行时，自动滚动到新加行
       detectParentResize: true,
+      // 增加单元格横向合并
+      colspan: false,
+      colspanDelimeter: '--',
       // tree 相关的参数
       tree: false,
       // 是否treegrid
