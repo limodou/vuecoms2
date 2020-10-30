@@ -211,6 +211,8 @@ export default {
       'onDeleteRow',
       'onError',
       'onLoadData',
+      'onEditing',
+      'onCancelEdit',
       'query',
       'theme',
       'cellTitle',
@@ -645,6 +647,7 @@ export default {
               if (!row._editting) {
                 this.$set(row, '_editRow', Object.assign({}, row));
                 this.$set(row, '_editting', true);
+                if (this.onEditing) this.onEditing(row)
               } else {
                 this.$set(row, '_saving', true);
                 // 校验错误
@@ -707,6 +710,7 @@ export default {
     defaultDeleteRender(h, row) {
       let defaultDeleteFunc = () => {
         if (row._editting) {
+          if (this.onCancelEdit) this.onCancelEdit(row)
           this.$set(row, '_editting', false);
           this.$delete(row, '_editRow');
           this.removeComment(row);

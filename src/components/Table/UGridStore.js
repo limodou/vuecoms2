@@ -97,6 +97,8 @@ class Store {
       // 否则应返回一个自定义的render, h为create函数
       onMove: null, // 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
       // 需要定义idField，返回为true，表示成功，否则不进行排序
+      onEditing: null, // 进入行编辑状态回调 function(row)，包括点击内置的编辑按钮和调用 addEditRow 方法
+      onCancelEdit: null, // 点击内置的删除按钮时的回调 function(row)
 
       // 内部变量
       drawColumns: [], // 用于绘制的表头
@@ -680,6 +682,7 @@ class Store {
     let n_row = this.addRow(row, parent, position, isChild)
     this.grid.$set(n_row, '_editRow', Object.assign({}, n_row))
     this.grid.$set(n_row, '_editting', true)
+    if (this.states.onEditing) this.states.onEditing(n_row)
     return n_row
   }
 
