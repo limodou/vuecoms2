@@ -98,6 +98,7 @@ class Store {
       onMove: null, // 表格行移动时，如果需要与后台通讯，可以定义onMove，将需要修改的排序信息返回给后台，参数是 [{idfield: orderNo}]
       // 需要定义idField，返回为true，表示成功，否则不进行排序
       onEditing: null, // 进入行编辑状态回调 function(row)，包括点击内置的编辑按钮和调用 addEditRow 方法
+      onBeforeEditing: null, // 当点击内置的编辑按钮时，先执行这个判断，如果返回 true 表示可以继续，否则不能编辑
       onCancelEdit: null, // 点击内置的删除按钮时的回调 function(row)
 
       // 内部变量
@@ -672,6 +673,10 @@ class Store {
    options 为滚动属性
   */
   addEditRow(row, parent, position, isChild = false) {
+    if (this.states.onBeforeEditing) {
+      let ret = this.states.onBeforeEditing(row)
+      if (!ret) return
+    }
     if (!row || isEmpty(row)) {
       row = {
         _new: true

@@ -211,6 +211,7 @@ export default {
       'onDeleteRow',
       'onError',
       'onLoadData',
+      'onBeforeEditing',
       'onEditing',
       'onCancelEdit',
       'query',
@@ -645,6 +646,10 @@ export default {
           on: {
             click: async () => {
               if (!row._editting) {
+                if (this.onBeforeEditing) {
+                  let ret = this.onBeforeEditing(row)
+                  if (!ret) return
+                }
                 this.$set(row, '_editRow', Object.assign({}, row));
                 this.$set(row, '_editting', true);
                 if (this.onEditing) this.onEditing(row)
