@@ -1,6 +1,6 @@
 <template>
-  <RadioGroup v-model="data" @input="handleInput">
-    <Radio v-for="item in items" :label="item.value" :key="item.label+item.value">{{ item.label }}</Radio>
+  <RadioGroup v-model="data" @input="handleInput" :size="size" :vertical="vertical">
+    <Radio v-for="item in items" :label="item.value" :key="item.label+item.value" :disabled="item.disabled">{{ item.label }}</Radio>
   </RadioGroup>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     return {data: this.value, items: []}
   },
   props: [
-    'value', 'choices'
+    'value', 'choices', 'size', 'vertical'
   ],
 
   methods: {

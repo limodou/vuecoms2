@@ -21,6 +21,7 @@
       :value="item.value"
       :key="item.value + item.label"
       :label="item.label"
+      :disabled="item.disabled"
     >
       <span v-html="renderLabel(item)"></span>
     </Option>

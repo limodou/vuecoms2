@@ -1,6 +1,6 @@
 <template>
-  <CheckboxGroup v-model="data" @input="handleInput">
-    <Checkbox v-for="item in items" :label="item.value">{{ item.label }}</Checkbox>
+  <CheckboxGroup v-model="data" @input="handleInput" :size="size">
+    <Checkbox v-for="item in items" :label="item.value" :key="item.value" :disabled="item.disabled">{{ item.label }}</Checkbox>
   </CheckboxGroup>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     return {data: this.value, items: []}
   },
   props: [
-    'value', 'choices'
+    'value', 'choices', 'size'
   ],
 
   methods: {
