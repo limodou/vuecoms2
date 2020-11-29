@@ -12,22 +12,22 @@ export default (rule, value, model) => {
     let range
     let expected
     let type
-    if (rule.min && rule.max) {
-      range = `{${rule.min},${rule.max}}$`
-      expected = `${rule.min}-${rule.max}`
+    let length = value.length
+    if (rule.min && rule.max && (length<rule.min || length>rule.max)) {
       type = 'passwordRange'
-    } else if (rule.min) {
-      range = `{${rule.min},}$`
+      return rule.makeError(type, expected)
+    } else if (rule.min && length<rule.min) {
       expected = rule.min
       type = 'passwordMin'
-    } else if (rule.max) {
-      range = `{,${rule.max}}$`
+      return rule.makeError(type, expected)
+    } else if (rule.max && length > rule.max) {
       expected = rule.max
       type = 'passwordMax'
-    } else if (rule.range) {
-      range = `{${rule.range[0]},${rule.range[1]}}$`
+      return rule.makeError(type, expected)
+    } else if (rule.range && (length < rule.range[0] || length > rule.range[1])) {
       expected = `${rule.range[0]}-${rule.range[1]}`
       type = 'passwordRange'
+      return rule.makeError(type, expected)
     } else {
       range = '*$'
       type = 'password'

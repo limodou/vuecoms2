@@ -49,8 +49,9 @@ export default {
 }
 .u-layout-row {
   min-height: 34px;
-  padding-bottom: 4px;
-  margin-bottom: 12px;
+  // padding-bottom: 4px;
+  margin-bottom: 20px;
+  zoom: 1;
 
   &:after {
     content: "";
@@ -157,8 +158,11 @@ export default {
     display: block;
     color: #ed3f14;
     font-size: 12px;
-    margin-top: 5px;
-    margin-left: 2px;
+    // margin-top: 5px;
+    // margin-left: 2px;
+    position: absolute;
+    bottom: -20px;
+    left: 2px;
   }
 
   .ivu-input, .ivu-select-selection, .vue-treeselect__control {
