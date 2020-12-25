@@ -99,7 +99,9 @@ export default {
           }
           
           if (!field.hidden) {
-            field._id = id++
+            if (!field.id){
+              field.id = id++
+            }
             new_r.push(field)
           }
         }

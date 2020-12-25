@@ -22899,12 +22899,12 @@ var Build_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Build = (Build_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=fc920e48&
-var Sectionvue_type_template_id_fc920e48_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:col._id,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validate-result":_vm.validateResult,"label-dir":_vm.labelDir,"label-align":_vm.labelAlign,"static-suffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{staticClass:"u-build-buttons",attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:col._id,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validate-result":_vm.validateResult,"label-dir":_vm.labelDir,"label-align":_vm.labelAlign,"static-suffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
-var Sectionvue_type_template_id_fc920e48_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Build/Section.vue?vue&type=template&id=20323e64&
+var Sectionvue_type_template_id_20323e64_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.boxComponent)?_c(_vm.boxComponent,_vm._b({tag:"component",staticClass:"u-layout",class:_vm.themeClasses,attrs:{"title":_vm.title}},'component',_vm.boxOptions,false),[_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:col.id,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validate-result":_vm.validateResult,"label-dir":_vm.labelDir,"label-align":_vm.labelAlign,"static-suffix":_vm.staticSuffix,"root":"Build","fields":col.fields}}):_vm._e()],1)}),1)}),(_vm.buttons)?_c('Row',{staticClass:"u-build-buttons",attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{attrs:{"buttons":_vm.btns,"data":_vm.value,"size":_vm.size,"target":_vm.$parent}})],1):_vm._e()],2):_c('div',{staticClass:"u-layout",class:_vm.themeClasses},_vm._l((_vm.rows),function(row,i){return _c('Row',{key:i,staticClass:"u-layout-row"},_vm._l((row),function(col,j){return _c('Col',{key:col.id,attrs:{"span":col.colspan}},[(!col.hidden)?_c(col.component,{tag:"component",attrs:{"col":col,"value":_vm.value,"validate-result":_vm.validateResult,"label-dir":_vm.labelDir,"label-align":_vm.labelAlign,"static-suffix":_vm.staticSuffix,"root":_vm.Build,"fields":col.fields}}):_vm._e()],1)}),1)}),1)}
+var Sectionvue_type_template_id_20323e64_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=fc920e48&
+// CONCATENATED MODULE: ./src/components/Build/Section.vue?vue&type=template&id=20323e64&
 
 // CONCATENATED MODULE: ./src/components/Build/sectionMixin.js
 
@@ -23059,7 +23059,10 @@ var sectionMixin_id = 1;
               }
 
               if (!field.hidden) {
-                field._id = sectionMixin_id++;
+                if (!field.id) {
+                  field.id = sectionMixin_id++;
+                }
+
                 new_r.push(field);
               }
             }
@@ -23166,8 +23169,8 @@ var Sectionvue_type_style_index_0_lang_less_ = __webpack_require__("8425");
 
 var Section_component = Object(componentNormalizer["a" /* default */])(
   Build_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_fc920e48_render,
-  Sectionvue_type_template_id_fc920e48_staticRenderFns,
+  Sectionvue_type_template_id_20323e64_render,
+  Sectionvue_type_template_id_20323e64_staticRenderFns,
   false,
   null,
   null,
@@ -26187,12 +26190,12 @@ var Dialog_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Dialog = (Dialog_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=7a3d1094&
-var Loading_Dialogvue_type_template_id_7a3d1094_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
-var Loading_Dialogvue_type_template_id_7a3d1094_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=21e9ea5c&
+var Loading_Dialogvue_type_template_id_21e9ea5c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Modal',_vm._b({attrs:{"loading":_vm.loading},on:{"on-cancel":_vm.handleCancel,"on-ok":_vm.handleOk},model:{value:(_vm.show),callback:function ($$v) {_vm.show=$$v},expression:"show"}},'Modal',_vm.$attrs,false),[_vm._t("default"),(_vm.buttons)?_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('Buttons',{ref:"buttons",attrs:{"buttons":_vm.buttons,"target":this,"size":_vm.buttonSize}},[_vm._v("返回")])],1):_vm._e()],2)}
+var Loading_Dialogvue_type_template_id_21e9ea5c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=7a3d1094&
+// CONCATENATED MODULE: ./src/components/Dialog/Loading-Dialog.vue?vue&type=template&id=21e9ea5c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Loading-Dialog.vue?vue&type=script&lang=js&
 
@@ -26214,6 +26217,7 @@ var Loading_Dialogvue_type_template_id_7a3d1094_staticRenderFns = []
 //
 //
 /* harmony default export */ var Loading_Dialogvue_type_script_lang_js_ = ({
+  inheritAttrs: false,
   props: {
     onOk: {},
     onCancel: {},
@@ -26347,8 +26351,8 @@ var Loading_Dialogvue_type_template_id_7a3d1094_staticRenderFns = []
 
 var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Loading_Dialogvue_type_script_lang_js_,
-  Loading_Dialogvue_type_template_id_7a3d1094_render,
-  Loading_Dialogvue_type_template_id_7a3d1094_staticRenderFns,
+  Loading_Dialogvue_type_template_id_21e9ea5c_render,
+  Loading_Dialogvue_type_template_id_21e9ea5c_staticRenderFns,
   false,
   null,
   null,
@@ -26357,12 +26361,12 @@ var Loading_Dialog_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Loading_Dialog = (Loading_Dialog_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=3133409c&
-var Confirm_Dialogvue_type_template_id_3133409c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loading-dialog',_vm._b({attrs:{"on-ok":_vm.handleOk,"on-cancel":_vm.onCancel,"buttons":_vm.buttons,"buttonSize":_vm.buttonSize}},'loading-dialog',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({ref:"build",tag:"componet",attrs:{"value":_vm.current}},'componet',_vm.props,false),_vm.on))],1)}
-var Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=7926b74e&
+var Confirm_Dialogvue_type_template_id_7926b74e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('loading-dialog',_vm._b({attrs:{"on-ok":_vm.handleOk,"on-cancel":_vm.onCancel,"buttons":_vm.buttons,"buttonSize":_vm.buttonSize}},'loading-dialog',_vm.$attrs,false),[_c(_vm.component,_vm._g(_vm._b({ref:"build",tag:"componet",attrs:{"value":_vm.current}},'componet',_vm.props,false),_vm.on))],1)}
+var Confirm_Dialogvue_type_template_id_7926b74e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=3133409c&
+// CONCATENATED MODULE: ./src/components/Dialog/Confirm-Dialog.vue?vue&type=template&id=7926b74e&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Dialog/Confirm-Dialog.vue?vue&type=script&lang=js&
 
@@ -26383,6 +26387,7 @@ var Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns = []
 //
 
 /* harmony default export */ var Confirm_Dialogvue_type_script_lang_js_ = ({
+  inheritAttrs: false,
   props: {
     component: {},
     // 调用表单，传给它一个 value
@@ -26493,8 +26498,8 @@ var Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns = []
 
 var Confirm_Dialog_component = Object(componentNormalizer["a" /* default */])(
   Dialog_Confirm_Dialogvue_type_script_lang_js_,
-  Confirm_Dialogvue_type_template_id_3133409c_render,
-  Confirm_Dialogvue_type_template_id_3133409c_staticRenderFns,
+  Confirm_Dialogvue_type_template_id_7926b74e_render,
+  Confirm_Dialogvue_type_template_id_7926b74e_staticRenderFns,
   false,
   null,
   null,

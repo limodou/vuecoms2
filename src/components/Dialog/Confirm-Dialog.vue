@@ -13,6 +13,7 @@
 <script>
 import { deepCopy } from '../utils/utils.js';
 export default {
+  inheritAttrs: false,
   props: {
     component: {}, // 调用表单，传给它一个 value
     props: {},
