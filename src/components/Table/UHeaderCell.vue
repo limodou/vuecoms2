@@ -96,14 +96,22 @@ export default {
       if (this.static) return;
       let result;
       if (this.indeterminate) {
-        this.store.selectAll();
+        this.store.selectAll(true);
+        // 增加 onSelectAll 的事件回调
+        if (this.store.states.onSelectAll) {
+          this.store.states.onSelectAll(true)
+        }
         return;
       }
       this.checkAll = !this.checkAll;
       if (this.checkAll) {
-        this.store.selectAll();
+        this.store.selectAll(true);
       } else {
-        this.store.deselectAll();
+        this.store.deselectAll(true);
+      }
+      // 增加 onSelectAll 的事件回调
+      if (this.store.states.onSelectAll) {
+        this.store.states.onSelectAll(this.checkAll)
       }
     },
 

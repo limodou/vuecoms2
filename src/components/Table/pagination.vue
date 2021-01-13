@@ -122,7 +122,7 @@ export default {
 
     handleKeyUp (event) {
       var keycode = event.which
-      let val = /\d+/.test(event.key)
+      let val = /^\d+$/.test(event.key)
       if (val || (event.ctrlKey && (keycode == 88 || keycode == 89 || keycode == 90) ||
           event.keyCode === 46 || event.keyCode ===8)) {
           this.handleInput(event)
@@ -133,7 +133,7 @@ export default {
 
     handleInput (event) {
       let value = event.target.value
-      let val = /\d+/.test(value)
+      let val = /^\d+$/.test(value)
       if (!val) {
         value = '1'
         this.$refs.page.value = value

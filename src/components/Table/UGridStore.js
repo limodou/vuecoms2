@@ -84,6 +84,7 @@ class Store {
       // 回调
       onLoadData: null, // 装入数据回调函数，将传入 function (url, param, callback)，当树型结构时，会传入parent字段
       onSelect: null, // 在选择行前执行，返回为True，则允许选中
+      onSelectAll: null, // 全选事件回调，如果定义了，则在全选或全不选中，不会再调用 onSelect 回调
       onDeselect: null, // 在取消选择行前执行，返回为True，则允许取消选中
       onCheckable: null, // 是否显示checkbox
       onSaveRow: null, // 保存行时调用 function (row, callback), callback(flag, data)
@@ -322,7 +323,7 @@ class Store {
   deselectAll(force = false) {
     let rows = []
     const callback = (row) => {
-      if (this._deselect(row)) {
+      if (this._deselect(row, force)) {
         rows.push(row)
       }
     }
