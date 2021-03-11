@@ -742,11 +742,20 @@ class Store {
     }, row)
   }
 
+  // selectedRows 先恢复成以前的版本,这样识别记录只能通过唯一标识
   makeRows(data, parent) {
     let rows = []
-    let selectedRows = {}
+    // redo 
+    // let selectedRows = {}
     data.forEach(row => {
       let new_row = this.getDefaultRow(row, parent)
+      for (let k in this.states.selectedRows) {
+        let row = this.states.selectedRows[k]
+        if (row[this.states.idField] === new_row[this.states.idField]) {
+          new_row._rowKey = row._rowKey
+          break
+        }
+      }
       if (this.hasChildren(new_row)) {
         new_row['_loaded'] = true
         new_row[this.states.childrenField] = this.makeRows(new_row[this.states.childrenField])
@@ -754,12 +763,13 @@ class Store {
       rows.push(new_row)
       // 处理选中
 
-      let id = this.getRowId(new_row)
-      if (this.states.selected[id]) {
-        selectedRows[id] = new_row
-      }
+      // redo
+      // let id = this.getRowId(new_row)
+      // if (this.states.selected[id]) {
+      //   selectedRows[id] = new_row
+      // }
     })
-    this.states.selectedRows = selectedRows
+    // this.states.selectedRows = selectedRows
     return rows
   }
 

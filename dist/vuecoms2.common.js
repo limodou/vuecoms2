@@ -18064,16 +18064,27 @@ function () {
         _rowKey: rowKey++,
         _parent: parent
       }, row);
-    }
+    } // selectedRows 先恢复成以前的版本,这样识别记录只能通过唯一标识
+
   }, {
     key: "makeRows",
     value: function makeRows(data, parent) {
       var _this9 = this;
 
-      var rows = [];
-      var selectedRows = {};
+      var rows = []; // redo 
+      // let selectedRows = {}
+
       data.forEach(function (row) {
         var new_row = _this9.getDefaultRow(row, parent);
+
+        for (var k in _this9.states.selectedRows) {
+          var _row = _this9.states.selectedRows[k];
+
+          if (_row[_this9.states.idField] === new_row[_this9.states.idField]) {
+            new_row._rowKey = _row._rowKey;
+            break;
+          }
+        }
 
         if (_this9.hasChildren(new_row)) {
           new_row['_loaded'] = true;
@@ -18081,14 +18092,13 @@ function () {
         }
 
         rows.push(new_row); // 处理选中
+        // redo
+        // let id = this.getRowId(new_row)
+        // if (this.states.selected[id]) {
+        //   selectedRows[id] = new_row
+        // }
+      }); // this.states.selectedRows = selectedRows
 
-        var id = _this9.getRowId(new_row);
-
-        if (_this9.states.selected[id]) {
-          selectedRows[id] = new_row;
-        }
-      });
-      this.states.selectedRows = selectedRows;
       return rows;
     }
   }, {
