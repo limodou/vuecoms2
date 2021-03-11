@@ -24052,12 +24052,12 @@ var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UploaderFile = (UploaderFile_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=557a8561&
-var CardListvue_type_template_id_557a8561_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),(_vm.store.data.length === 0 && !_vm.store.loading)?_c('div',[_vm._t("nodata",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.data.length === 0 && _vm.store.loading)?_c('div',[_vm._t("loading",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.loadingText)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{"data":_vm.store.data})],2):[_vm._t("default",null,{"data":_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
-var CardListvue_type_template_id_557a8561_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=template&id=010e76ed&
+var CardListvue_type_template_id_010e76ed_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-card-list"},[_vm._t("beforeQuery"),(_vm.store.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.store.query,false)):_vm._e(),_vm._t("beforeList"),(_vm.store.data.length === 0 && !_vm.store.loading)?_c('div',[_vm._t("nodata",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.nodata)}})])],2):_vm._e(),(_vm.store.data.length === 0 && _vm.store.loading)?_c('div',[_vm._t("loading",[_c('div',{staticClass:"ivu-spin",domProps:{"innerHTML":_vm._s(_vm.store.loadingText)}})])],2):_vm._e(),(_vm.store.scroll)?_c('Scroll',{attrs:{"on-reach-bottom":_vm.handleReachBottom}},[_vm._t("default",null,{"data":_vm.store.data})],2):[_vm._t("default",null,{"data":_vm.store.data}),(_vm.store.pagination && _vm.store.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[_c('Buttons',{ref:"bottomButtons",attrs:{"buttons":_vm.store.bottomButtons,"target":this}})],1):_vm._e()],_vm._t("afterList")],2)}
+var CardListvue_type_template_id_010e76ed_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=557a8561&
+// CONCATENATED MODULE: ./src/components/CardList/CardList.vue?vue&type=template&id=010e76ed&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CardList/CardList.vue?vue&type=script&lang=js&
 
@@ -24093,6 +24093,15 @@ var CardListvue_type_template_id_557a8561_staticRenderFns = []
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -24130,6 +24139,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       query: null,
       pagination: true,
       pageSize: 10,
+      pageBtnSize: "small",
       total: 0,
       start: 1,
       data: [],
@@ -24138,15 +24148,15 @@ var CardListvue_type_script_lang_js_rowKey = 1;
         pageSize: 10
       },
       page: 1,
-      prev: '上一页',
-      next: '下一页',
+      prev: "上一页",
+      next: "下一页",
       pageSizeOpts: [10, 20, 30],
       autoLoad: true,
       onLoadData: null,
       bottomButtons: [],
       loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
-      nodata: '暂无数据',
+      nodata: "暂无数据",
       scroll: false,
       // 是否无限滚动,
       toEnd: false // 是否到头（用于滚动模式）
@@ -24181,7 +24191,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       var _this2 = this;
 
       this.$nextTick(function () {
-        _this2.$set(_this2.store.param, 'page', page);
+        _this2.$set(_this2.store.param, "page", page);
 
         _this2.store.page = page;
         _this2.store.start = (page - 1) * _this2.store.pageSize + 1;
@@ -24193,7 +24203,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       var _this3 = this;
 
       this.$nextTick(function () {
-        _this3.$set(_this3.store.param, 'pageSize', size);
+        _this3.$set(_this3.store.param, "pageSize", size);
 
         _this3.store.pageSize = size;
         _this3.store.start = (_this3.store.page - 1) * size + 1;
@@ -24202,7 +24212,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       });
     },
     handleQueryChange: function handleQueryChange(change) {
-      this.$emit('on-query-change', change);
+      this.$emit("on-query-change", change);
     },
     handleReachBottom: function handleReachBottom() {
       if (!this.store.scroll) {
@@ -24252,7 +24262,7 @@ var CardListvue_type_script_lang_js_rowKey = 1;
           _this4.$nextTick(function () {
             _this4.showLoading(false);
 
-            _this4.$emit('input', _this4.store.data);
+            _this4.sendInputEvent();
 
             resolve(data);
           });
@@ -24276,12 +24286,12 @@ var CardListvue_type_script_lang_js_rowKey = 1;
       this.store.page = 1;
       this.store.start = 1;
       this.store.data = [];
-      this.$set(this.store.param, 'page', 1);
+      this.$set(this.store.param, "page", 1);
       this.loadData();
     },
     showLoading: function showLoading() {
       var loading = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       this.store.loading = loading;
 
       if (text) {
@@ -24325,6 +24335,63 @@ var CardListvue_type_script_lang_js_rowKey = 1;
           }
         }
       }
+    },
+    getPosition: function getPosition(row, list) {
+      if (!row || !list || list && list.length === 0) return -1;
+      return list.indexOf(row);
+    },
+    // 新加记录有一个 _new 属性
+    // parent 用于处理添加子结点
+    // position = 'before', 'after'
+    addRow: function addRow(row, item) {
+      var position = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "after";
+      var pos, data;
+
+      if (!item) {
+        data = this.store.data;
+        pos = -1;
+
+        if (position === "before") {
+          pos = 0;
+        }
+      } else {
+        pos = this.getPosition(item, this.store.data);
+      }
+
+      if (position === "after") utils_list.add(data, row, pos);else utils_list.insert(data, pos, row);
+      this.store.total += 1;
+      this.sendInputEvent();
+      return row;
+    },
+    sendInputEvent: function sendInputEvent() {
+      this.$emit("input", this.store.data);
+    },
+    removeRow: function removeRow(row) {
+      var d;
+      d = this.store.data;
+      var index = this.getPosition(row, this.store.data);
+      var deleted = d.splice(index, 1);
+      this.store.total -= 1;
+      this.sendInputEvent(); // 增加当无数据时的向前翻页或刷新的处理
+
+      if (this.store.data.length === 0) {
+        var pages = Math.ceil(this.store.total / this.store.pageSize);
+
+        if (this.store.page < pages) {
+          this.loadData();
+        } else if (this.store.page > 1) {
+          this.go(this.store.page - 1);
+        }
+      }
+
+      return deleted;
+    },
+    updateRow: function updateRow(row, newRow) {
+      var d;
+      d = this.store.data;
+      var index = this.getPosition(row, this.store.data);
+      var deleted = d.splice(index, 1, newRow);
+      this.sendInputEvent();
     }
   },
   watch: {
@@ -24383,8 +24450,8 @@ var CardListvue_type_script_lang_js_rowKey = 1;
 
 var CardList_component = Object(componentNormalizer["a" /* default */])(
   CardList_CardListvue_type_script_lang_js_,
-  CardListvue_type_template_id_557a8561_render,
-  CardListvue_type_template_id_557a8561_staticRenderFns,
+  CardListvue_type_template_id_010e76ed_render,
+  CardListvue_type_template_id_010e76ed_staticRenderFns,
   false,
   null,
   null,

@@ -1,9 +1,14 @@
 <template>
-  <div class="u-card-list" >
+  <div class="u-card-list">
     <slot name="beforeQuery"></slot>
-    <Query ref="query" v-if="store.query" v-bind="store.query" 
-      @input="handleQuerySubmit" 
-      @on-query-change="handleQueryChange"></Query>
+    <Query
+      ref="query"
+      v-if="store.query"
+      v-bind="store.query"
+      @input="handleQuerySubmit"
+      @on-query-change="handleQueryChange"
+    ></Query>
+    <slot name="beforeList"></slot>
     <div v-if="store.data.length === 0 && !store.loading">
       <slot name="nodata"><div v-html="store.nodata" class="ivu-spin"></div></slot>
     </div>
@@ -15,10 +20,13 @@
     </Scroll>
     <template v-else>
       <slot :data="store.data"></slot>
-      <Pagination ref="pagination" v-if="store.pagination && store.data.length > 0"
+      <Pagination
+        ref="pagination"
+        v-if="store.pagination && store.data.length > 0"
         :store="store"
         @on-page="handlePage"
-        @on-page-size="handlePageSize">
+        @on-page-size="handlePageSize"
+      >
         <Buttons ref="bottomButtons" :buttons="store.bottomButtons" :target="this"></Buttons>
       </Pagination>
     </template>
@@ -27,222 +35,279 @@
 </template>
 
 <script>
-import Pagination from '../Table/pagination'
-import Buttons from '../Table/UButtons'
-import Query from '../Query'
-import {setChoice, deepCopy, deepCompare} from '../utils/utils.js'
+import List from "../utils/list.js";
+import Pagination from "../Table/pagination";
+import Buttons from "../Table/UButtons";
+import Query from "../Query";
+import { setChoice, deepCopy, deepCompare } from "../utils/utils.js";
 
-let rowKey = 1
+let rowKey = 1;
 
 export default {
   props: {
     config: {
       type: Object,
-      default () {
-        return {}
-      }
+      default() {
+        return {};
+      },
     },
     value: {
       type: Array,
-      default () {
-        return []
-      }
+      default() {
+        return [];
+      },
     },
     // 用于选择控件设置choices
     choices: {
       type: Object,
-      default () {
-        return {}
-      }
-    }
+      default() {
+        return {};
+      },
+    },
   },
 
   components: {
     Pagination,
     Buttons,
-    Query
+    Query,
   },
 
-  data () {
+  data() {
     let _default = {
       query: null,
       pagination: true,
       pageSize: 10,
+      pageBtnSize: "small",
       total: 0,
       start: 1,
       data: [],
       param: {
         page: 1,
-        pageSize: 10
+        pageSize: 10,
       },
       page: 1,
-      prev: '上一页',
-      next: '下一页',
+      prev: "上一页",
+      next: "下一页",
       pageSizeOpts: [10, 20, 30],
       autoLoad: true,
       onLoadData: null,
       bottomButtons: [],
       loadingText: '<i class="ivu-load-loop ivu-icon ivu-icon-ios-loading"></i> 正在装入...',
       loading: false,
-      nodata: '暂无数据',
+      nodata: "暂无数据",
       scroll: false, // 是否无限滚动,
-      toEnd: false // 是否到头（用于滚动模式）
-    }
-    let d = Object.assign(_default, this.config)
-    return {store: d, old_param: {}}
+      toEnd: false, // 是否到头（用于滚动模式）
+    };
+    let d = Object.assign(_default, this.config);
+    return { store: d, old_param: {} };
   },
 
   mounted() {
     // 初始化query 的 param
-    this.store.param = {page: this.store.page, pageSize: this.store.pageSize}
+    this.store.param = { page: this.store.page, pageSize: this.store.pageSize };
     if (this.$refs.query && this.$refs.query.value)
-      this.store.param = Object.assign(this.store.param, this.$refs.query.value)
+      this.store.param = Object.assign(this.store.param, this.$refs.query.value);
 
     if (this.store.autoLoad) {
-      this.$nextTick( () => {
-        this.loadData()
-      })
+      this.$nextTick(() => {
+        this.loadData();
+      });
     }
   },
 
   methods: {
-    handlePage (page) {
-      this.$nextTick( () => {
-        this.$set(this.store.param, 'page', page)
-        this.store.page = page
-        this.store.start = (page - 1) * this.store.pageSize + 1
-        this.loadData()
-      })
+    handlePage(page) {
+      this.$nextTick(() => {
+        this.$set(this.store.param, "page", page);
+        this.store.page = page;
+        this.store.start = (page - 1) * this.store.pageSize + 1;
+        this.loadData();
+      });
     },
 
-    handlePageSize (size) {
-      this.$nextTick( () => {
-        this.$set(this.store.param, 'pageSize', size)
-        this.store.pageSize = size
-        this.store.start = (this.store.page - 1) * size + 1
-        this.loadData()
-      })
+    handlePageSize(size) {
+      this.$nextTick(() => {
+        this.$set(this.store.param, "pageSize", size);
+        this.store.pageSize = size;
+        this.store.start = (this.store.page - 1) * size + 1;
+        this.loadData();
+      });
     },
 
-    handleQueryChange (change) {
-      this.$emit('on-query-change', change)
+    handleQueryChange(change) {
+      this.$emit("on-query-change", change);
     },
 
-    handleReachBottom () {
-      if (!this.store.scroll){
+    handleReachBottom() {
+      if (!this.store.scroll) {
         if (this.store.param.page + 1 <= Math.ceil(this.store.total / this.store.pageSize)) {
-          this.store.param.page = this.store.param.page + 1
-          this.store.page = this.store.param.page
+          this.store.param.page = this.store.param.page + 1;
+          this.store.page = this.store.param.page;
         }
       } else {
-        this.store.param.page = this.store.param.page + 1
-        this.store.page = this.store.param.page
+        this.store.param.page = this.store.param.page + 1;
+        this.store.page = this.store.param.page;
       }
-      return this.loadData()
+      return this.loadData();
     },
 
     go(page) {
-      this.$refs.pagination.go(page)
+      this.$refs.pagination.go(page);
     },
 
-    loadData (param) {
+    loadData(param) {
       return new Promise((resolve, reject) => {
-        Object.assign(this.store.param, param || {})
+        Object.assign(this.store.param, param || {});
         // 比较除page之外的值，如果有变化则有两种处理
         // 1. 清空数据列表
         // 2. 重置page = 1
-        let args = deepCopy(this.store.param)
-        delete args.page
-        let same = deepCompare(args, this.old_param)
+        let args = deepCopy(this.store.param);
+        delete args.page;
+        let same = deepCompare(args, this.old_param);
         // data 为数据行， others 为其它信息，如total
         const callback = (data, others) => {
           if (data) {
             if (!this.store.scroll || !same) {
-              this.store.data = []
+              this.store.data = [];
             }
-            this.addRows(data)
-            this.old_param = args
+            this.addRows(data);
+            this.old_param = args;
           }
           // 可以有 total , toEnd
-          if (others && (others instanceof Object)) {
-            this.mergeStates(others)
+          if (others && others instanceof Object) {
+            this.mergeStates(others);
           }
-          this.$nextTick( () => {
-            this.showLoading(false)
-            this.$emit('input', this.store.data)
-            resolve(data)
-          })
-        }
+          this.$nextTick(() => {
+            this.showLoading(false);
+            this.sendInputEvent();
+            resolve(data);
+          });
+        };
         if (this.store.onLoadData) {
-          this.showLoading(true)
+          this.showLoading(true);
           if (!same) {
-            this.store.param.page = 1
-            this.store.page = 1
-            this.store.start = 1
+            this.store.param.page = 1;
+            this.store.page = 1;
+            this.store.start = 1;
           }
-          this.store.onLoadData(this.store.param, callback)
+          this.store.onLoadData(this.store.param, callback);
         }
-      })
+      });
     },
 
-    handleQuerySubmit (data) {
-      this.store.param = Object.assign(this.store.param, data)
-      this.store.page = 1
-      this.store.start = 1
-      this.store.data = []
-      this.$set(this.store.param, 'page', 1)
-      this.loadData()
+    handleQuerySubmit(data) {
+      this.store.param = Object.assign(this.store.param, data);
+      this.store.page = 1;
+      this.store.start = 1;
+      this.store.data = [];
+      this.$set(this.store.param, "page", 1);
+      this.loadData();
     },
 
-    showLoading (loading=true, text='') {
-      this.store.loading = loading
+    showLoading(loading = true, text = "") {
+      this.store.loading = loading;
       if (text) {
-        this.store.loadingText = text
+        this.store.loadingText = text;
       }
     },
 
-    mergeStates (o) {
+    mergeStates(o) {
       for (let name in o) {
         if (this.store.hasOwnProperty(name)) {
-          this.$set(this.store, name, o[name])
+          this.$set(this.store, name, o[name]);
         }
       }
     },
 
-    addRows (rows) {
+    addRows(rows) {
       if (!Array.isArray(rows)) {
-        rows = [rows]
+        rows = [rows];
       }
       for (let r of rows) {
-        this.store.data.push(Object.assign({_rowKey: rowKey ++}, r))
+        this.store.data.push(Object.assign({ _rowKey: rowKey++ }, r));
       }
-    }
+    },
+
+    getPosition(row, list) {
+      if (!row || !list || (list && list.length === 0)) return -1;
+      return list.indexOf(row);
+    },
+
+    // 新加记录有一个 _new 属性
+    // parent 用于处理添加子结点
+    // position = 'before', 'after'
+    addRow(row, item, position = "after") {
+      let pos, data;
+      if (!item) {
+        data = this.store.data;
+        pos = -1;
+        if (position === "before") {
+          pos = 0;
+        }
+      } else {
+        pos = this.getPosition(item, this.store.data);
+      }
+      if (position === "after") List.add(data, row, pos);
+      else List.insert(data, pos, row);
+      this.store.total += 1;
+      this.sendInputEvent();
+      return row;
+    },
+
+    sendInputEvent() {
+      this.$emit("input", this.store.data);
+    },
+
+    removeRow(row) {
+      let d;
+      d = this.store.data;
+      let index = this.getPosition(row, this.store.data);
+      let deleted = d.splice(index, 1);
+      this.store.total -= 1;
+      this.sendInputEvent();
+      // 增加当无数据时的向前翻页或刷新的处理
+      if (this.store.data.length === 0) {
+        let pages = Math.ceil(this.store.total / this.store.pageSize);
+        if (this.store.page < pages) {
+          this.loadData();
+        } else if (this.store.page > 1) {
+          this.go(this.store.page - 1);
+        }
+      }
+      return deleted;
+    },
+
+    updateRow(row, newRow) {
+      let d;
+      d = this.store.data;
+      let index = this.getPosition(row, this.store.data);
+      let deleted = d.splice(index, 1, newRow);
+      this.sendInputEvent();
+    },
   },
-  
+
   watch: {
     choices: {
       immediate: true,
-      handler (v) {
+      handler(v) {
         if (this.store.query) {
-          for(let field of this.store.query.fields) {
-            let choices = v[field.name]
+          for (let field of this.store.query.fields) {
+            let choices = v[field.name];
             if (choices) {
-              setChoice(this, field, choices)
+              setChoice(this, field, choices);
             }
           }
         }
       },
-      deep: true
+      deep: true,
     },
 
     value: {
-      handler: function (value) {
-        this.store.data = value
+      handler: function(value) {
+        this.store.data = value;
       },
-      deep: true
+      deep: true,
     },
-
-
-  }
-}
+  },
+};
 </script>
