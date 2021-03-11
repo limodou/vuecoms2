@@ -8936,12 +8936,12 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=48b659dd&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.className},[_vm._t("default"),_c('label',{attrs:{"for":_vm.inputId || _vm.name}}),_c('input-file',{ref:"file"})],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=046cbcfc&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.className},[_vm._t("default"),_c('label',{attrs:{"for":_vm.inputId || _vm.name},on:{"click":_vm.handleClick}}),_c('input-file',{ref:"file"})],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=48b659dd&
+// CONCATENATED MODULE: ./src/components/vue-upload-component/FileUpload.vue?vue&type=template&id=046cbcfc&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/date/now.js
 var now = __webpack_require__("0a0d");
@@ -9717,11 +9717,13 @@ var component = Object(componentNormalizer["a" /* default */])(
 //
 //
 //
+//
+//
 
 
 var CHUNK_DEFAULT_OPTIONS = {
   headers: {},
-  action: '',
+  action: "",
   minSize: 1048576,
   maxActive: 3,
   maxRetries: 5,
@@ -9737,12 +9739,16 @@ var CHUNK_DEFAULT_OPTIONS = {
     },
     name: {
       type: String,
-      default: 'file'
+      default: "file"
     },
     accept: {
       type: String
     },
     capture: {},
+    // 是否手工触发
+    manual: {
+      default: false
+    },
     multiple: {
       type: Boolean
     },
@@ -9812,7 +9818,8 @@ var CHUNK_DEFAULT_OPTIONS = {
       default: function _default() {
         return CHUNK_DEFAULT_OPTIONS;
       }
-    }
+    },
+    onBeforeOpen: {}
   },
   data: function data() {
     return {
@@ -9834,18 +9841,18 @@ var CHUNK_DEFAULT_OPTIONS = {
    * @return {[type]} [description]
    */
   mounted: function mounted() {
-    var input = document.createElement('input');
-    input.type = 'file';
+    var input = document.createElement("input");
+    input.type = "file";
     input.multiple = true; // html5 特征
 
     if (window.FormData && input.files) {
       // 上传目录特征
-      if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
+      if (typeof input.webkitdirectory === "boolean" || typeof input.directory === "boolean") {
         this.features.directory = true;
       } // 拖拽特征
 
 
-      if (this.features.html5 && typeof input.ondrop !== 'undefined') {
+      if (this.features.html5 && typeof input.ondrop !== "undefined") {
         this.features.drop = true;
       }
     } else {
@@ -9910,7 +9917,7 @@ var CHUNK_DEFAULT_OPTIONS = {
       return assign_default()(CHUNK_DEFAULT_OPTIONS, this.chunk);
     },
     className: function className() {
-      return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
+      return ["file-uploads", this.features.html5 ? "file-uploads-html5" : "file-uploads-html4", this.features.directory && this.directory ? "file-uploads-directory" : undefined, this.features.drop && this.drop ? "file-uploads-drop" : undefined];
     }
   },
   watch: {
@@ -9967,7 +9974,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         var files = this.files;
         this.files = []; // 清除input value
 
-        this.$refs.file.$el.value = ''; // 定位
+        this.$refs.file.$el.value = ""; // 定位
 
         this.maps = {}; // 事件
 
@@ -9988,7 +9995,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         return false;
       }
 
-      if (Object(esm_typeof["a" /* default */])(id) === 'object') {
+      if (Object(esm_typeof["a" /* default */])(id) === "object") {
         return this.maps[id.id] || false;
       }
 
@@ -10014,7 +10021,7 @@ var CHUNK_DEFAULT_OPTIONS = {
           file = {
             file: file,
             size: file.size,
-            name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
+            name: file.webkitRelativePath || file.relativePath || file.name || "unknown",
             type: file.type
           };
         }
@@ -10024,9 +10031,9 @@ var CHUNK_DEFAULT_OPTIONS = {
         if (file.fileObject === false) {// false
         } else if (file.fileObject) {
           fileObject = true;
-        } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
+        } else if (typeof Element !== "undefined" && file.el instanceof Element) {
           fileObject = true;
-        } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
+        } else if (typeof Blob !== "undefined" && file.file instanceof Blob) {
           fileObject = true;
         }
 
@@ -10034,17 +10041,17 @@ var CHUNK_DEFAULT_OPTIONS = {
           file = Object(objectSpread["a" /* default */])({
             fileObject: true,
             size: -1,
-            name: 'Filename',
-            type: '',
+            name: "Filename",
+            type: "",
             active: false,
-            error: '',
+            error: "",
             success: false,
             putAction: this.putAction,
             postAction: this.postAction,
             timeout: this.timeout
           }, file, {
             response: {},
-            progress: '0.00',
+            progress: "0.00",
             // 只读
             speed: 0 // 只读
             // xhr: false,                // 只读
@@ -10132,7 +10139,7 @@ var CHUNK_DEFAULT_OPTIONS = {
           });
         }
       } else {
-        var names = el.value.replace(/\\/g, '/').split('/');
+        var names = el.value.replace(/\\/g, "/").split("/");
         delete el.__vuex__;
         files.push({
           name: names[names.length - 1],
@@ -10203,7 +10210,7 @@ var CHUNK_DEFAULT_OPTIONS = {
     getEntry: function getEntry(entry) {
       var _this2 = this;
 
-      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       return new promise_default.a(function (resolve, reject) {
         if (entry.isFile) {
           entry.file(function (file) {
@@ -10229,7 +10236,7 @@ var CHUNK_DEFAULT_OPTIONS = {
                   return readEntries();
                 }
 
-                _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
+                _this2.getEntry(entries[i], path + entry.name + "/").then(function (results) {
                   files.push.apply(files, _toConsumableArray(results));
                   forEach(i + 1);
                 });
@@ -10280,7 +10287,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         var index = files.indexOf(file);
 
         if (index === -1) {
-          console.error('remove', file);
+          console.error("remove", file);
           return false;
         }
 
@@ -10304,7 +10311,7 @@ var CHUNK_DEFAULT_OPTIONS = {
 
 
         if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
-          newFile.error = 'abort';
+          newFile.error = "abort";
         }
 
         if (this.emitFilter(newFile, file)) {
@@ -10315,7 +10322,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         var index = files.indexOf(file);
 
         if (index === -1) {
-          console.error('update', file);
+          console.error("update", file);
           return false;
         }
 
@@ -10335,7 +10342,7 @@ var CHUNK_DEFAULT_OPTIONS = {
     // 预处理 事件 过滤器
     emitFilter: function emitFilter(newFile, oldFile) {
       var isPrevent = false;
-      this.$emit('input-filter', newFile, oldFile, function () {
+      this.$emit("input-filter", newFile, oldFile, function () {
         isPrevent = true;
         return isPrevent;
       });
@@ -10343,7 +10350,7 @@ var CHUNK_DEFAULT_OPTIONS = {
     },
     // 处理后 事件 分发
     emitFile: function emitFile(newFile, oldFile) {
-      this.$emit('input-file', newFile, oldFile);
+      this.$emit("input-file", newFile, oldFile);
 
       if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
         this.uploading++; // 激活
@@ -10411,19 +10418,19 @@ var CHUNK_DEFAULT_OPTIONS = {
         }
       }
 
-      this.$emit('input', files);
+      this.$emit("input", files);
     },
     // 上传
     upload: function upload(id) {
       var file = this.get(id); // 被删除
 
       if (!file) {
-        return promise_default.a.reject('not_exists');
+        return promise_default.a.reject("not_exists");
       } // 不是文件对象
 
 
       if (!file.fileObject) {
-        return promise_default.a.reject('file_object');
+        return promise_default.a.reject("file_object");
       } // 有错误直接响应
 
 
@@ -10439,27 +10446,27 @@ var CHUNK_DEFAULT_OPTIONS = {
 
       var extensions = this.extensions;
 
-      if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
-        if (Object(esm_typeof["a" /* default */])(extensions) !== 'object' || !(extensions instanceof RegExp)) {
-          if (typeof extensions === 'string') {
-            extensions = extensions.split(',').map(function (value) {
+      if (extensions && (extensions.length || typeof extensions.length === "undefined")) {
+        if (Object(esm_typeof["a" /* default */])(extensions) !== "object" || !(extensions instanceof RegExp)) {
+          if (typeof extensions === "string") {
+            extensions = extensions.split(",").map(function (value) {
               return value.trim();
             }).filter(function (value) {
               return value;
             });
           }
 
-          extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
+          extensions = new RegExp("\\.(" + extensions.join("|").replace(/\./g, "\\.") + ")$", "i");
         }
 
         if (file.name.search(extensions) === -1) {
-          return promise_default.a.reject('extension');
+          return promise_default.a.reject("extension");
         }
       } // 大小
 
 
       if (this.size > 0 && file.size >= 0 && file.size > this.size) {
-        return promise_default.a.reject('size');
+        return promise_default.a.reject("size");
       }
 
       if (this.customAction) {
@@ -10484,7 +10491,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         return this.uploadHtml4(file);
       }
 
-      return promise_default.a.reject('No action configured');
+      return promise_default.a.reject("No action configured");
     },
 
     /**
@@ -10514,13 +10521,13 @@ var CHUNK_DEFAULT_OPTIONS = {
         value = file.data[key];
 
         if (value !== null && value !== undefined) {
-          querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+          querys.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
         }
       }
 
-      var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
+      var queryString = querys.length ? (file.putAction.indexOf("?") === -1 ? "?" : "&") + querys.join("&") : "";
       var xhr = new XMLHttpRequest();
-      xhr.open('PUT', file.putAction + queryString);
+      xhr.open("PUT", file.putAction + queryString);
       return this.uploadXhr(xhr, file, file.file);
     },
     uploadHtml5: function uploadHtml5(file) {
@@ -10530,7 +10537,7 @@ var CHUNK_DEFAULT_OPTIONS = {
       for (var key in file.data) {
         value = file.data[key];
 
-        if (value && Object(esm_typeof["a" /* default */])(value) === 'object' && typeof value.toString !== 'function') {
+        if (value && Object(esm_typeof["a" /* default */])(value) === "object" && typeof value.toString !== "function") {
           if (value instanceof File) {
             form.append(key, value, value.name);
           } else {
@@ -10543,7 +10550,7 @@ var CHUNK_DEFAULT_OPTIONS = {
 
       form.append(this.name, file.file, file.file.filename || file.name);
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', this.postAction);
+      xhr.open("POST", this.postAction);
       return this.uploadXhr(xhr, file, form);
     },
     uploadXhr: function uploadXhr(xhr, _file, body) {
@@ -10613,12 +10620,12 @@ var CHUNK_DEFAULT_OPTIONS = {
           file = _this4.get(file); // 不存在直接响应
 
           if (!file) {
-            return reject('not_exists');
+            return reject("not_exists");
           } // 不是文件对象
 
 
           if (!file.fileObject) {
-            return reject('file_object');
+            return reject("file_object");
           } // 有错误自动响应
 
 
@@ -10628,7 +10635,7 @@ var CHUNK_DEFAULT_OPTIONS = {
 
 
           if (!file.active) {
-            return reject('abort');
+            return reject("abort");
           } // 已完成 直接相应
 
 
@@ -10639,37 +10646,37 @@ var CHUNK_DEFAULT_OPTIONS = {
           var data = {};
 
           switch (e.type) {
-            case 'timeout':
-            case 'abort':
+            case "timeout":
+            case "abort":
               data.error = e.type;
               break;
 
-            case 'error':
+            case "error":
               if (!xhr.status) {
-                data.error = 'network';
+                data.error = "network";
               } else if (xhr.status >= 500) {
-                data.error = 'server';
+                data.error = "server";
               } else if (xhr.status >= 400) {
-                data.error = 'denied';
+                data.error = "denied";
               }
 
               break;
 
             default:
               if (xhr.status >= 500) {
-                data.error = 'server';
+                data.error = "server";
               } else if (xhr.status >= 400) {
-                data.error = 'denied';
+                data.error = "denied";
               } else {
-                data.progress = '100.00';
+                data.progress = "100.00";
               }
 
           }
 
           if (xhr.responseText) {
-            var contentType = xhr.getResponseHeader('Content-Type');
+            var contentType = xhr.getResponseHeader("Content-Type");
 
-            if (contentType && contentType.indexOf('/json') !== -1) {
+            if (contentType && contentType.indexOf("/json") !== -1) {
               data.response = JSON.parse(xhr.responseText);
             } else {
               data.response = xhr.responseText;
@@ -10721,30 +10728,30 @@ var CHUNK_DEFAULT_OPTIONS = {
         }
       };
 
-      var iframe = document.createElement('iframe');
-      iframe.id = 'upload-iframe-' + file.id;
-      iframe.name = 'upload-iframe-' + file.id;
-      iframe.src = 'about:blank';
-      iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
-      var form = document.createElement('form');
+      var iframe = document.createElement("iframe");
+      iframe.id = "upload-iframe-" + file.id;
+      iframe.name = "upload-iframe-" + file.id;
+      iframe.src = "about:blank";
+      iframe.setAttribute("style", "width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;");
+      var form = document.createElement("form");
       form.action = this.postAction;
-      form.name = 'upload-form-' + file.id;
-      form.setAttribute('method', 'POST');
-      form.setAttribute('target', 'upload-iframe-' + file.id);
-      form.setAttribute('enctype', 'multipart/form-data');
+      form.name = "upload-form-" + file.id;
+      form.setAttribute("method", "POST");
+      form.setAttribute("target", "upload-iframe-" + file.id);
+      form.setAttribute("enctype", "multipart/form-data");
       var value;
       var input;
 
       for (var key in file.data) {
         value = file.data[key];
 
-        if (value && Object(esm_typeof["a" /* default */])(value) === 'object' && typeof value.toString !== 'function') {
+        if (value && Object(esm_typeof["a" /* default */])(value) === "object" && typeof value.toString !== "function") {
           value = stringify_default()(value);
         }
 
         if (value !== null && value !== undefined) {
-          input = document.createElement('input');
-          input.type = 'hidden';
+          input = document.createElement("input");
+          input.type = "hidden";
           input.name = key;
           input.value = value;
           form.appendChild(input);
@@ -10785,7 +10792,7 @@ var CHUNK_DEFAULT_OPTIONS = {
           }); // 不存在
 
           if (!file) {
-            return reject('not_exists');
+            return reject("not_exists");
           } // 定时检查
 
 
@@ -10802,7 +10809,7 @@ var CHUNK_DEFAULT_OPTIONS = {
             }
 
             iframe.onabort({
-              type: file ? 'abort' : 'not_exists'
+              type: file ? "abort" : "not_exists"
             });
           }, 100);
           var complete;
@@ -10821,16 +10828,16 @@ var CHUNK_DEFAULT_OPTIONS = {
             } // 关闭 esc 事件
 
 
-            document.body.removeEventListener('keydown', onKeydown);
+            document.body.removeEventListener("keydown", onKeydown);
             file = _this5.get(file); // 不存在直接响应
 
             if (!file) {
-              return reject('not_exists');
+              return reject("not_exists");
             } // 不是文件对象
 
 
             if (!file.fileObject) {
-              return reject('file_object');
+              return reject("file_object");
             } // 有错误自动响应
 
 
@@ -10840,7 +10847,7 @@ var CHUNK_DEFAULT_OPTIONS = {
 
 
             if (!file.active) {
-              return reject('abort');
+              return reject("abort");
             } // 已完成 直接相应
 
 
@@ -10852,17 +10859,17 @@ var CHUNK_DEFAULT_OPTIONS = {
             var data = {};
 
             switch (e.type) {
-              case 'abort':
-                data.error = 'abort';
+              case "abort":
+                data.error = "abort";
                 break;
 
-              case 'error':
+              case "error":
                 if (file.error) {
                   data.error = file.error;
                 } else if (response === null) {
-                  data.error = 'network';
+                  data.error = "network";
                 } else {
-                  data.error = 'denied';
+                  data.error = "denied";
                 }
 
                 break;
@@ -10871,15 +10878,15 @@ var CHUNK_DEFAULT_OPTIONS = {
                 if (file.error) {
                   data.error = file.error;
                 } else if (data === null) {
-                  data.error = 'network';
+                  data.error = "network";
                 } else {
-                  data.progress = '100.00';
+                  data.progress = "100.00";
                 }
 
             }
 
             if (response !== null) {
-              if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
+              if (response && response.substr(0, 1) === "{" && response.substr(response.length - 1, 1) === "}") {
                 try {
                   response = JSON.parse(response);
                 } catch (err) {}
@@ -10904,7 +10911,7 @@ var CHUNK_DEFAULT_OPTIONS = {
           iframe.onerror = fn;
           iframe.onabort = fn; // 禁止 esc 键
 
-          document.body.addEventListener('keydown', onKeydown); // 提交
+          document.body.addEventListener("keydown", onKeydown); // 提交
 
           form.submit();
         }, 50);
@@ -10957,17 +10964,17 @@ var CHUNK_DEFAULT_OPTIONS = {
 
       if (this.dropElement) {
         try {
-          document.removeEventListener('dragenter', this.onDragenter, false);
-          document.removeEventListener('dragleave', this.onDragleave, false);
-          document.removeEventListener('drop', this.onDocumentDrop, false);
-          this.dropElement.removeEventListener('dragover', this.onDragover, false);
-          this.dropElement.removeEventListener('drop', this.onDrop, false);
+          document.removeEventListener("dragenter", this.onDragenter, false);
+          document.removeEventListener("dragleave", this.onDragleave, false);
+          document.removeEventListener("drop", this.onDocumentDrop, false);
+          this.dropElement.removeEventListener("dragover", this.onDragover, false);
+          this.dropElement.removeEventListener("drop", this.onDrop, false);
         } catch (e) {}
       }
 
       if (!el) {
         el = false;
-      } else if (typeof el === 'string') {
+      } else if (typeof el === "string") {
         el = document.querySelector(el) || this.$root.$el.querySelector(el);
       } else if (el === true) {
         el = this.$parent.$el;
@@ -10976,11 +10983,11 @@ var CHUNK_DEFAULT_OPTIONS = {
       this.dropElement = el;
 
       if (this.dropElement) {
-        document.addEventListener('dragenter', this.onDragenter, false);
-        document.addEventListener('dragleave', this.onDragleave, false);
-        document.addEventListener('drop', this.onDocumentDrop, false);
-        this.dropElement.addEventListener('dragover', this.onDragover, false);
-        this.dropElement.addEventListener('drop', this.onDrop, false);
+        document.addEventListener("dragenter", this.onDragenter, false);
+        document.addEventListener("dragleave", this.onDragleave, false);
+        document.addEventListener("drop", this.onDocumentDrop, false);
+        this.dropElement.addEventListener("dragover", this.onDragover, false);
+        this.dropElement.addEventListener("drop", this.onDrop, false);
       }
     },
     onDragenter: function onDragenter(e) {
@@ -11000,9 +11007,9 @@ var CHUNK_DEFAULT_OPTIONS = {
         this.dropActive = true;
       } else if (!dt.types) {
         this.dropActive = true;
-      } else if (dt.types.indexOf && dt.types.indexOf('Files') !== -1) {
+      } else if (dt.types.indexOf && dt.types.indexOf("Files") !== -1) {
         this.dropActive = true;
-      } else if (dt.types.contains && dt.types.contains('Files')) {
+      } else if (dt.types.contains && dt.types.contains("Files")) {
         this.dropActive = true;
       }
     },
@@ -11013,7 +11020,7 @@ var CHUNK_DEFAULT_OPTIONS = {
         return;
       }
 
-      if (e.target.nodeName === 'HTML' || e.target === e.explicitOriginalTarget || !e.fromElement && (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
+      if (e.target.nodeName === "HTML" || e.target === e.explicitOriginalTarget || !e.fromElement && (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
         this.dropActive = false;
       }
     },
@@ -11026,6 +11033,18 @@ var CHUNK_DEFAULT_OPTIONS = {
     onDrop: function onDrop(e) {
       e.preventDefault();
       this.addDataTransfer(e.dataTransfer);
+    },
+    handleClick: function handleClick(e) {
+      if (this.onBeforeOpen) {
+        this.onBeforeOpen(this);
+      }
+
+      if (this.manual) {
+        e.preventDefault();
+      }
+    },
+    open: function open() {
+      this.$refs.file.$el.click();
     }
   }
 });
@@ -23850,12 +23869,12 @@ var DatepickerRange_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DatepickerRange = (DatepickerRange_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=83d2a8fe&
-var UploaderFilevue_type_template_id_83d2a8fe_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('FileUpload',{ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"inputId":_vm.inputId,"name":_vm.name},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},[_vm._t("default")],2)}
-var UploaderFilevue_type_template_id_83d2a8fe_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UploaderFile.vue?vue&type=template&id=47f3d7e1&
+var UploaderFilevue_type_template_id_47f3d7e1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('FileUpload',{ref:"upload",class:_vm.customClass,attrs:{"post-action":_vm.postAction,"size":_vm.size,"multiple":_vm.multiple,"headers":_vm.headers,"data":_vm.data,"value":_vm.value,"extensions":_vm.extensions,"input-id":_vm.inputId,"accept":_vm.accept,"inputId":_vm.inputId,"name":_vm.name,"manual":_vm.manual,"on-before-open":_vm.onBeforeOpen},on:{"input":_vm.handleUpdateFiles,"input-file":_vm.handleInputFile}},[_vm._t("default")],2)}
+var UploaderFilevue_type_template_id_47f3d7e1_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=83d2a8fe&
+// CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=template&id=47f3d7e1&
 
 // EXTERNAL MODULE: ./src/components/vue-upload-component/index.js
 var vue_upload_component = __webpack_require__("2143");
@@ -23867,6 +23886,8 @@ var vue_upload_component_default = /*#__PURE__*/__webpack_require__.n(vue_upload
 
 var _name$components$prop;
 
+//
+//
 //
 //
 //
@@ -23911,6 +23932,7 @@ var _name$components$prop;
         return uuid();
       }
     },
+    manual: false,
     name: {},
     extensions: {},
     postAction: {},
@@ -23935,8 +23957,9 @@ var _name$components$prop;
     // 出错
     onUpload: {},
     // 上传
-    onDelete: {} // 删除
-
+    onDelete: {},
+    // 删除
+    onBeforeOpen: {}
   }
 }, Object(defineProperty["a" /* default */])(_name$components$prop, "components", {
   FileUpload: vue_upload_component_default.a
@@ -24019,6 +24042,9 @@ var _name$components$prop;
   },
   clear: function clear() {
     this.$refs.upload.clear();
+  },
+  open: function open() {
+    this.$refs.upload.open();
   }
 }), _name$components$prop);
 // CONCATENATED MODULE: ./src/components/UploaderFile.vue?vue&type=script&lang=js&
@@ -24033,8 +24059,8 @@ var _name$components$prop;
 
 var UploaderFile_component = Object(componentNormalizer["a" /* default */])(
   components_UploaderFilevue_type_script_lang_js_,
-  UploaderFilevue_type_template_id_83d2a8fe_render,
-  UploaderFilevue_type_template_id_83d2a8fe_staticRenderFns,
+  UploaderFilevue_type_template_id_47f3d7e1_render,
+  UploaderFilevue_type_template_id_47f3d7e1_staticRenderFns,
   false,
   null,
   null,

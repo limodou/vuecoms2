@@ -12,8 +12,10 @@
     :accept="accept"
     :inputId="inputId"
     :name="name"
+    :manual="manual"
     @input="handleUpdateFiles"
     @input-file="handleInputFile"
+    :on-before-open="onBeforeOpen"
     ref="upload">
     <slot></slot>
   </FileUpload>
@@ -42,6 +44,7 @@ export default {
         return uuid()
       }
     },
+    manual: false,
     name: {},
     extensions: {},
     postAction: {},
@@ -60,6 +63,7 @@ export default {
     onError: {}, // 出错
     onUpload: {}, // 上传
     onDelete: {}, // 删除
+    onBeforeOpen: {}
   },
   components: {FileUpload},
   methods: {
@@ -123,6 +127,9 @@ export default {
     },
     clear () {
       this.$refs.upload.clear()
+    },
+    open () {
+      this.$refs.upload.open()
     }
   }
 }
