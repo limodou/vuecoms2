@@ -15857,12 +15857,12 @@ var USort_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var USort = (USort_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UFilter.vue?vue&type=template&id=c63d8ece&
-var UFiltervue_type_template_id_c63d8ece_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside:exactElement",value:(_vm.handleOutside),expression:"handleOutside",arg:"exactElement"}],staticClass:"u-column-filter exactElement"},[_c('Dropdown',{staticClass:"exactElement",attrs:{"trigger":"custom","visible":_vm.visible,"transfer":""}},[_c('a',{attrs:{"href":"javascript:void(0)"},on:{"click":_vm.handleOpen}},[(_vm.has)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-funnel filter-on"}):_c('i',{staticClass:"ivu-icon ivu-icon-ios-funnel-outline filter-off"})]),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},[_c('div',{staticClass:"filter-content exactElement"},[_c('label',{staticClass:"filter-label"},[_vm._v("\n          "+_vm._s(_vm.column.filterable.label)+"\n        ")]),_c('GenericInput',_vm._b({attrs:{"name":_vm.column.name,"value":_vm.value,"label-dir":"vertical","on":_vm.on}},'GenericInput',_vm.column.filterable,false))],1)])],1)],1)}
-var UFiltervue_type_template_id_c63d8ece_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UFilter.vue?vue&type=template&id=cb597668&
+var UFiltervue_type_template_id_cb597668_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside:exactElement",value:(_vm.handleOutside),expression:"handleOutside",arg:"exactElement"}],staticClass:"u-column-filter exactElement"},[_c('Dropdown',{staticClass:"exactElement",attrs:{"trigger":"custom","visible":_vm.visible,"transfer":""}},[_c('a',{attrs:{"href":"javascript:void(0)"},on:{"click":_vm.handleOpen}},[(_vm.has)?_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOn) + " filter-on")}):_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOff) + " filter-off")})]),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},[_c('div',{staticClass:"filter-content exactElement"},[_c('label',{staticClass:"filter-label"},[_vm._v("\n          "+_vm._s(_vm.column.filterable.label)+"\n        ")]),_c('GenericInput',_vm._b({attrs:{"name":_vm.column.name,"value":_vm.value,"label-dir":"vertical","on":_vm.on}},'GenericInput',_vm.column.filterable,false))],1)])],1)],1)}
+var UFiltervue_type_template_id_cb597668_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UFilter.vue?vue&type=template&id=c63d8ece&
+// CONCATENATED MODULE: ./src/components/Table/UFilter.vue?vue&type=template&id=cb597668&
 
 // CONCATENATED MODULE: ./src/components/directives/clickoutside.js
 
@@ -16043,8 +16043,8 @@ var UFiltervue_type_style_index_0_lang_less_ = __webpack_require__("9208");
 
 var UFilter_component = Object(componentNormalizer["a" /* default */])(
   Table_UFiltervue_type_script_lang_js_,
-  UFiltervue_type_template_id_c63d8ece_render,
-  UFiltervue_type_template_id_c63d8ece_staticRenderFns,
+  UFiltervue_type_template_id_cb597668_render,
+  UFiltervue_type_template_id_cb597668_staticRenderFns,
   false,
   null,
   null,
@@ -17195,6 +17195,10 @@ function () {
       // 是否在操作过滤时立即返回结果，还是显示一个确定按钮
       filterOkText: '确定',
       // 显示过滤器确定按钮的文本
+      filterIconOn: 'ios-funnel',
+      // 过滤器打开图标
+      filterIconOff: 'ios-funnel-outline',
+      // 过滤器关闭图标
       // 分页相关参数
       prev: '上一页',
       next: '下一页',

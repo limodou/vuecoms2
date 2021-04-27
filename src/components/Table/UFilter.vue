@@ -2,8 +2,8 @@
   <div class="u-column-filter exactElement" v-clickoutside:exactElement="handleOutside">
     <Dropdown trigger="custom" class="exactElement" :visible="visible" transfer>
       <a href="javascript:void(0)" @click="handleOpen">
-        <i class="ivu-icon ivu-icon-ios-funnel filter-on" v-if="has"></i>
-        <i class="ivu-icon ivu-icon-ios-funnel-outline filter-off" v-else></i>
+        <i :class="`ivu-icon ivu-icon-${store.states.filterIconOn} filter-on`" v-if="has"></i>
+        <i :class="`ivu-icon ivu-icon-${store.states.filterIconOff} filter-off`" v-else></i>
       </a>
       <DropdownMenu slot="list">
         <div class="filter-content exactElement">
@@ -28,6 +28,7 @@
 <script>
 import clickoutside from '../directives/clickoutside';
 import { mapState, deepCompare, isEmpty } from '../utils/utils.js';
+import config from '../config';
 
 export default {
   name: 'u-column-filter',

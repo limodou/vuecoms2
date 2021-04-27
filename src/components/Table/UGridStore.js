@@ -124,6 +124,8 @@ class Store {
       filterValue: {}, // 过滤相关的数据
       filterImmediate: true, // 是否在操作过滤时立即返回结果，还是显示一个确定按钮
       filterOkText: '确定', // 显示过滤器确定按钮的文本
+      filterIconOn: 'ios-funnel', // 过滤器打开图标
+      filterIconOff: 'ios-funnel-outline', // 过滤器关闭图标
 
       // 分页相关参数
       prev: '上一页',
