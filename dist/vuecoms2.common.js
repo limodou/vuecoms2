@@ -18077,15 +18077,6 @@ function () {
       data.forEach(function (row) {
         var new_row = _this9.getDefaultRow(row, parent);
 
-        for (var k in _this9.states.selectedRows) {
-          var _row = _this9.states.selectedRows[k];
-
-          if (_row[_this9.states.idField] === new_row[_this9.states.idField]) {
-            new_row._rowKey = _row._rowKey;
-            break;
-          }
-        }
-
         if (_this9.hasChildren(new_row)) {
           new_row['_loaded'] = true;
           new_row[_this9.states.childrenField] = _this9.makeRows(new_row[_this9.states.childrenField]);
