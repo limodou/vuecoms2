@@ -12903,12 +12903,12 @@ var Box_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var Box = (Box_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=b5f96426&
-var UGridvue_type_template_id_b5f96426_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"size":_vm.buttonSize,"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e(),_vm._t("tools")],2):_c('div',{staticClass:"no-pagination"},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e(),_vm._t("tools")],2),_vm._t("afterTable")],2)}
-var UGridvue_type_template_id_b5f96426_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UGrid.vue?vue&type=template&id=05e53a14&
+var UGridvue_type_template_id_05e53a14_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-grid-wrapper",class:_vm.themeClass},[_vm._t("beforeQuery"),(_vm.query)?_c('Query',_vm._b({ref:"query",on:{"input":_vm.handleQuerySubmit,"on-query-change":_vm.handleQueryChange}},'Query',_vm.query,false)):_vm._e(),_vm._t("afterQuery"),(_vm.buttons || _vm.rightButtons)?_c('div',{staticClass:"u-grid-tools",attrs:{"slot":"tools"},slot:"tools"},[(_vm.buttons)?_c('div',{staticClass:"u-grid-tools-left"},[_c('Buttons',{ref:"buttons",attrs:{"size":_vm.buttonSize,"buttons":_vm.buttons,"data":_vm.store,"target":this}})],1):_vm._e(),(_vm.rightButtons)?_c('div',{staticClass:"u-grid-tools-right"},[_c('Buttons',{ref:"rightButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.rightButtons,"data":_vm.store,"target":this}})],1):_vm._e()]):_vm._e(),_vm._t("beforeTable"),_c('div',{staticClass:"u-grid"},[(_vm.leftWidth)?_c('u-table',{ref:"left",attrs:{"store":_vm.store,"width":_vm.leftWidth,"table-width":_vm.tableWidth,"table-class":_vm.leftTableClass,"fixed":"left"}}):_vm._e(),_c('u-table',{ref:"table",attrs:{"store":_vm.store,"width":_vm.gridWidth,"table-width":_vm.tableWidth,"table-class":"u-grid-body"},on:{"scroll":_vm.handleScroll}}),(_vm.rightWidth && _vm.xscroll && !_vm.isScrollRight)?_c('u-table',{ref:"right",attrs:{"store":_vm.store,"width":_vm.rightWidth,"table-width":_vm.tableWidth,"table-class":_vm.rightTableClass,"fixed":"right"}}):_vm._e(),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnResizing),expression:"columnResizing"}],staticClass:"column-dragger-guide",style:(_vm.columnDraggerStyles)}),(_vm.loadingText)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],ref:"loading",staticClass:"loading",domProps:{"innerHTML":_vm._s(_vm.loadingText)}}):_vm._e()],1),(_vm.pagination && _vm.store.states.data.length > 0)?_c('Pagination',{ref:"pagination",attrs:{"store":_vm.store.states},on:{"on-page":_vm.handlePage,"on-page-size":_vm.handlePageSize}},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e(),_vm._t("tools")],2):_c('div',{staticClass:"no-pagination"},[(_vm.buttomButtons)?_c('Buttons',{ref:"bottomButtons",attrs:{"size":_vm.buttonSize,"buttons":_vm.bottomButtons,"target":this,"data":_vm.store}}):_vm._e(),_vm._t("tools")],2),_vm._t("afterTable")],2)}
+var UGridvue_type_template_id_05e53a14_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=b5f96426&
+// CONCATENATED MODULE: ./src/components/Table/UGrid.vue?vue&type=template&id=05e53a14&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -15769,12 +15769,12 @@ var UCell_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var UCell = (UCell_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UHeaderCell.vue?vue&type=template&id=11ed06ac&
-var UHeaderCellvue_type_template_id_11ed06ac_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-header-cell"},[(_vm.column.type === 'column')?_c('div',{staticClass:"u-table-header-header-cell",style:(_vm.trStyles(_vm.column))},[(_vm.column.headerRender)?_c('HeaderCellRender',{attrs:{"render":_vm.column.headerRender,"column":_vm.column}}):[_c('div',{staticClass:"u-table-header-cell-title",class:{ nowrap: _vm.nowrap }},[_c('span',{attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.column.title)}}),(_vm.column.filterable && _vm.column.leaf)?_c('Filterable',{attrs:{"store":_vm.store,"column":_vm.column}}):_vm._e()],1),(_vm.column.sortable && _vm.column.leaf)?_c('Sort',{attrs:{"store":_vm.store,"column":_vm.column}}):_vm._e(),(_vm.resizable && _vm.column.resizable && _vm.column.leaf)?_c('div',{staticClass:"u-table-header-cell-resizer",on:{"mousedown":function($event){$event.stopPropagation();$event.preventDefault();return _vm.handleMouseDown(_vm.column, $event)}}}):_vm._e()]],2):_vm._e(),(_vm.column.type === 'check')?_c('div',{staticClass:"u-table-header-cell-title"},[(_vm.multiSelect)?_c('Checkbox',{attrs:{"value":_vm.checkAll,"indeterminate":_vm.indeterminate},nativeOn:{"click":function($event){$event.preventDefault();return _vm.handleCheckAll($event)}}}):_vm._e(),(_vm.column.title)?_c('span',[_vm._v(_vm._s(_vm.column.title))]):_vm._e()],1):_vm._e(),(_vm.column.type === 'index')?_c('div',{staticClass:"u-table-header-cell-title"},[(_vm.column.title)?_c('span',[_vm._v(_vm._s(_vm.column.title))]):_vm._e()]):_vm._e()])}
-var UHeaderCellvue_type_template_id_11ed06ac_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UHeaderCell.vue?vue&type=template&id=43b00a36&
+var UHeaderCellvue_type_template_id_43b00a36_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-header-cell"},[(_vm.column.type === 'column')?_c('div',{staticClass:"u-table-header-header-cell",style:(_vm.trStyles(_vm.column))},[_c('div',{staticClass:"u-table-header-cell-title",class:{ nowrap: _vm.nowrap }},[(_vm.column.headerRender)?_c('HeaderCellRender',{attrs:{"render":_vm.column.headerRender,"column":_vm.column}}):_c('span',{attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.column.title)}}),(_vm.column.filterable && _vm.column.leaf)?_c('Filterable',{attrs:{"store":_vm.store,"column":_vm.column}}):_vm._e()],1),(_vm.column.sortable && _vm.column.leaf)?_c('Sort',{attrs:{"store":_vm.store,"column":_vm.column}}):_vm._e(),(_vm.resizable && _vm.column.resizable && _vm.column.leaf)?_c('div',{staticClass:"u-table-header-cell-resizer",on:{"mousedown":function($event){$event.stopPropagation();$event.preventDefault();return _vm.handleMouseDown(_vm.column, $event)}}}):_vm._e()],1):_vm._e(),(_vm.column.type === 'check')?_c('div',{staticClass:"u-table-header-cell-title"},[(_vm.multiSelect)?_c('Checkbox',{attrs:{"value":_vm.checkAll,"indeterminate":_vm.indeterminate},nativeOn:{"click":function($event){$event.preventDefault();return _vm.handleCheckAll($event)}}}):_vm._e(),(_vm.column.title)?_c('span',[_vm._v(_vm._s(_vm.column.title))]):_vm._e()],1):_vm._e(),(_vm.column.type === 'index')?_c('div',{staticClass:"u-table-header-cell-title"},[(_vm.column.title)?_c('span',[_vm._v(_vm._s(_vm.column.title))]):_vm._e()]):_vm._e()])}
+var UHeaderCellvue_type_template_id_43b00a36_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UHeaderCell.vue?vue&type=template&id=11ed06ac&
+// CONCATENATED MODULE: ./src/components/Table/UHeaderCell.vue?vue&type=template&id=43b00a36&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/USort.vue?vue&type=template&id=29dec304&
 var USortvue_type_template_id_29dec304_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-sort",class:{up:_vm.dir==='asc', down:_vm.dir==='desc'},on:{"click":function($event){$event.stopPropagation();$event.preventDefault();return _vm.handleSort($event)}}},[_c('i',{staticClass:"ivu-icon ivu-icon-md-arrow-dropup u-sort-up"}),_c('i',{staticClass:"ivu-icon ivu-icon-md-arrow-dropdown u-sort-down"})])}
@@ -15857,12 +15857,12 @@ var USort_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var USort = (USort_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UFilter.vue?vue&type=template&id=cb597668&
-var UFiltervue_type_template_id_cb597668_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside:exactElement",value:(_vm.handleOutside),expression:"handleOutside",arg:"exactElement"}],staticClass:"u-column-filter exactElement"},[_c('Dropdown',{staticClass:"exactElement",attrs:{"trigger":"custom","visible":_vm.visible,"transfer":""}},[_c('a',{attrs:{"href":"javascript:void(0)"},on:{"click":_vm.handleOpen}},[(_vm.has)?_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOn) + " filter-on")}):_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOff) + " filter-off")})]),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},[_c('div',{staticClass:"filter-content exactElement"},[_c('label',{staticClass:"filter-label"},[_vm._v("\n          "+_vm._s(_vm.column.filterable.label)+"\n        ")]),_c('GenericInput',_vm._b({attrs:{"name":_vm.column.name,"value":_vm.value,"label-dir":"vertical","on":_vm.on}},'GenericInput',_vm.column.filterable,false))],1)])],1)],1)}
-var UFiltervue_type_template_id_cb597668_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UFilter.vue?vue&type=template&id=a4991db6&
+var UFiltervue_type_template_id_a4991db6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside:exactElement",value:(_vm.handleOutside),expression:"handleOutside",arg:"exactElement"}],staticClass:"u-column-filter exactElement"},[_c('Dropdown',{staticClass:"exactElement",attrs:{"trigger":"custom","visible":_vm.visible,"transfer":""}},[_c('a',{attrs:{"href":"javascript:void(0)"},on:{"click":_vm.handleOpen}},[(_vm.has)?_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOn) + " filter-on")}):_c('i',{class:("ivu-icon ivu-icon-" + (_vm.store.states.filterIconOff) + " filter-off")})]),_c('DropdownMenu',{attrs:{"slot":"list"},slot:"list"},[_c('div',{staticClass:"filter-content exactElement"},[_c('label',{staticClass:"filter-label"},[_vm._v("\n          "+_vm._s(_vm.column.filterable.label)+"\n        ")]),_c('GenericInput',_vm._b({attrs:{"name":_vm.column.name,"value":_vm.value,"label-dir":"vertical","on":_vm.on}},'GenericInput',_vm.column.filterable,false))],1)])],1)],1)}
+var UFiltervue_type_template_id_a4991db6_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UFilter.vue?vue&type=template&id=cb597668&
+// CONCATENATED MODULE: ./src/components/Table/UFilter.vue?vue&type=template&id=a4991db6&
 
 // CONCATENATED MODULE: ./src/components/directives/clickoutside.js
 
@@ -15932,6 +15932,19 @@ var clickoutside_name = '@@__references__';
     delete el.__references__;
   }
 });
+// CONCATENATED MODULE: ./src/components/config/grid.js
+/* harmony default export */ var config_grid = ({
+  base: {},
+  query: {
+    showMoreText: '显示',
+    hiddenMoreText: '隐藏'
+  }
+});
+// CONCATENATED MODULE: ./src/components/config/index.js
+
+/* harmony default export */ var config = ({
+  grid: config_grid
+});
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UFilter.vue?vue&type=script&lang=js&
 
 
@@ -15963,6 +15976,7 @@ var clickoutside_name = '@@__references__';
 //
 //
 //
+
 
 
 /* harmony default export */ var UFiltervue_type_script_lang_js_ = ({
@@ -16043,8 +16057,8 @@ var UFiltervue_type_style_index_0_lang_less_ = __webpack_require__("9208");
 
 var UFilter_component = Object(componentNormalizer["a" /* default */])(
   Table_UFiltervue_type_script_lang_js_,
-  UFiltervue_type_template_id_cb597668_render,
-  UFiltervue_type_template_id_cb597668_staticRenderFns,
+  UFiltervue_type_template_id_a4991db6_render,
+  UFiltervue_type_template_id_a4991db6_staticRenderFns,
   false,
   null,
   null,
@@ -16111,21 +16125,6 @@ var UFilter_component = Object(componentNormalizer["a" /* default */])(
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -16157,11 +16156,12 @@ var UFilter_component = Object(componentNormalizer["a" /* default */])(
   }),
   methods: {
     handleCheckAll: function handleCheckAll() {
-      if (this.static) return;
-      var result;
+      if (this.static) return; // 如果定义了 onSelectAll 则 force 表示不校验  onSelect onDeselect onCheckable
+
+      var force = this.store.states.onSelectAll ? true : false;
 
       if (this.indeterminate) {
-        this.store.selectAll(true); // 增加 onSelectAll 的事件回调
+        this.store.selectAll(force); // 增加 onSelectAll 的事件回调
 
         if (this.store.states.onSelectAll) {
           this.store.states.onSelectAll(true);
@@ -16173,9 +16173,9 @@ var UFilter_component = Object(componentNormalizer["a" /* default */])(
       this.checkAll = !this.checkAll;
 
       if (this.checkAll) {
-        this.store.selectAll(true);
+        this.store.selectAll(force);
       } else {
-        this.store.deselectAll(true);
+        this.store.deselectAll(force);
       } // 增加 onSelectAll 的事件回调
 
 
@@ -16218,8 +16218,8 @@ var UHeaderCellvue_type_style_index_0_lang_less_ = __webpack_require__("8bc4");
 
 var UHeaderCell_component = Object(componentNormalizer["a" /* default */])(
   Table_UHeaderCellvue_type_script_lang_js_,
-  UHeaderCellvue_type_template_id_11ed06ac_render,
-  UHeaderCellvue_type_template_id_11ed06ac_staticRenderFns,
+  UHeaderCellvue_type_template_id_43b00a36_render,
+  UHeaderCellvue_type_template_id_43b00a36_staticRenderFns,
   false,
   null,
   null,
@@ -16983,19 +16983,6 @@ var UTable_component = Object(componentNormalizer["a" /* default */])(
 var values = __webpack_require__("db0c");
 var values_default = /*#__PURE__*/__webpack_require__.n(values);
 
-// CONCATENATED MODULE: ./src/components/config/grid.js
-/* harmony default export */ var config_grid = ({
-  base: {},
-  query: {
-    showMoreText: '显示',
-    hiddenMoreText: '隐藏'
-  }
-});
-// CONCATENATED MODULE: ./src/components/config/index.js
-
-/* harmony default export */ var config = ({
-  grid: config_grid
-});
 // CONCATENATED MODULE: ./src/components/Table/UGridStore.js
 
 
@@ -17404,13 +17391,18 @@ function () {
 
       var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var rows = [];
+      var not_selected = 0,
+          selected = 0;
       utils_walkTree(this.states.data, function (row) {
         if (_this3._select(row, force)) {
           rows.push(row);
+          selected++;
+        } else {
+          not_selected++;
         }
       }, this.states.childrenField);
-      this.states.checkAll = true;
-      this.states.indeterminate = false;
+      this.states.checkAll = selected > 0 && not_selected === 0;
+      this.states.indeterminate = selected > 0 && not_selected > 0;
       this.grid.$emit('on-selected-all', rows);
     }
   }, {
@@ -17465,10 +17457,15 @@ function () {
 
       var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var rows = [];
+      var not_deselected = 0,
+          deselected = 0;
 
       var callback = function callback(row) {
         if (_this5._deselect(row, force)) {
           rows.push(row);
+          deselected++;
+        } else {
+          not_delected++;
         }
       };
 
@@ -17482,8 +17479,8 @@ function () {
       //   this.states.selectedRows = {}
       // }
 
-      this.states.checkAll = false;
-      this.states.indeterminate = false;
+      this.states.checkAll = not_deselected > 0 && deselected === 0;
+      this.states.indeterminate = deselected > 0 && not_deselected > 0;
       this.grid.$emit('on-deselected-all', rows);
     }
   }, {
@@ -17505,8 +17502,6 @@ function () {
   }, {
     key: "setSelection",
     value: function setSelection(selection) {
-      var _this6 = this;
-
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       // if (Array.isArray(selection)) {
       //   for(let c of selection) {
@@ -17528,32 +17523,27 @@ function () {
         }
       } else {
         s = [selection];
-      }
+      } // let checkAll = true
+      // let indeterminate = false
+      // const callback = (row) => {
+      //   if (s.length === 0) {
+      //     checkAll = false
+      //     return true
+      //   }
+      //   let id = row[this.states.idField]
+      //   index = s.indexOf(id)
+      //   if (index > -1) {
+      //     if (this._select(row, force)) {
+      //       indeterminate = true
+      //     }
+      //     s.splice(index, 1)
+      //   } else {
+      //     checkAll = false
+      //   }
+      // }
+      // walkTree(this.states.data, callback)
+      // 处理剩余数据
 
-      var checkAll = true;
-      var indeterminate = false;
-
-      var callback = function callback(row) {
-        if (s.length === 0) {
-          checkAll = false;
-          return true;
-        }
-
-        var id = row[_this6.states.idField];
-        index = s.indexOf(id);
-
-        if (index > -1) {
-          if (_this6._select(row, force)) {
-            indeterminate = true;
-          }
-
-          s.splice(index, 1);
-        } else {
-          checkAll = false;
-        }
-      };
-
-      utils_walkTree(this.states.data, callback); // 处理剩余数据
 
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
@@ -17579,11 +17569,10 @@ function () {
         }
       }
 
-      this.states.checkAll = checkAll;
-
-      if (!checkAll) {
-        this.states.indeterminate = indeterminate;
-      }
+      this.checkSelectStatus(); // this.states.checkAll = checkAll
+      // if (!checkAll) {
+      //   this.states.indeterminate = indeterminate
+      // }
     }
   }, {
     key: "showLoading",
@@ -17912,7 +17901,7 @@ function () {
   }, {
     key: "expand",
     value: function expand(row) {
-      var _this7 = this;
+      var _this6 = this;
 
       if (row) {
         if (this.hasChildren(row) && !row._expand) {
@@ -17920,7 +17909,7 @@ function () {
         }
       } else {
         utils_walkTree(this.states.data, function (row) {
-          if (_this7.hasChildren(row) && !row._expand) _this7.grid.$set(row, '_expand', true);
+          if (_this6.hasChildren(row) && !row._expand) _this6.grid.$set(row, '_expand', true);
         }, this.states.childrenField);
       }
     } // 如果传了参数，则收起指定结点，否则全部收起
@@ -17928,7 +17917,7 @@ function () {
   }, {
     key: "collapse",
     value: function collapse(row) {
-      var _this8 = this;
+      var _this7 = this;
 
       if (row) {
         if (this.hasChildren(row) && row._expand) {
@@ -17936,7 +17925,7 @@ function () {
         }
       } else {
         utils_walkTree(this.states.data, function (row) {
-          if (_this8.hasChildren(row) && row._expand) _this8.grid.$set(row, '_expand', false);
+          if (_this7.hasChildren(row) && row._expand) _this7.grid.$set(row, '_expand', false);
         }, this.states.childrenField);
       }
     } // 返回是否存在处理于行编辑状态的行，如果有返回 true
@@ -18073,17 +18062,17 @@ function () {
   }, {
     key: "makeRows",
     value: function makeRows(data, parent) {
-      var _this9 = this;
+      var _this8 = this;
 
       var rows = []; // redo 
       // let selectedRows = {}
 
       data.forEach(function (row) {
-        var new_row = _this9.getDefaultRow(row, parent);
+        var new_row = _this8.getDefaultRow(row, parent);
 
-        if (_this9.hasChildren(new_row)) {
+        if (_this8.hasChildren(new_row)) {
           new_row['_loaded'] = true;
-          new_row[_this9.states.childrenField] = _this9.makeRows(new_row[_this9.states.childrenField]);
+          new_row[_this8.states.childrenField] = _this8.makeRows(new_row[_this8.states.childrenField]);
         }
 
         rows.push(new_row); // 处理选中
@@ -18099,10 +18088,10 @@ function () {
   }, {
     key: "_callOnMove",
     value: function _callOnMove(order) {
-      var _this10 = this;
+      var _this9 = this;
 
       return new promise_default.a(function (resolve, reject) {
-        if (_this10.states.onMove) {
+        if (_this9.states.onMove) {
           var callback = function callback(result) {
             if (result) {
               resolve(true);
@@ -18111,7 +18100,7 @@ function () {
             }
           };
 
-          _this10.states.onMove(order, callback);
+          _this9.states.onMove(order, callback);
         } else {
           resolve(true);
         }
@@ -18120,7 +18109,7 @@ function () {
   }, {
     key: "_move",
     value: function _move(data, pos, des, row) {
-      var _this11 = this;
+      var _this10 = this;
 
       var _id = this.states.idField;
       var _order = this.states.orderField;
@@ -18141,7 +18130,7 @@ function () {
       this._callOnMove(new_order).then(function () {
         for (var i = begin, _len = end; i <= _len && i < data.length; i++) {
           for (var j = 0, _len_j = new_order.length; j < _len_j; j++) {
-            if (new_order[j][_this11.states.idField] === data[i][_this11.states.idField]) {
+            if (new_order[j][_this10.states.idField] === data[i][_this10.states.idField]) {
               data[i][_order] = new_order[j][_order];
               break;
             }
@@ -18157,7 +18146,7 @@ function () {
   }, {
     key: "moveRow",
     value: function moveRow(row, position) {
-      var _this12 = this;
+      var _this11 = this;
 
       var d, des; // 目标位置
 
@@ -18176,14 +18165,14 @@ function () {
               var _new_order$push, _new_order$push2;
 
               var new_order = [];
-              var last = _this12.states.data[_this12.states.data.length - 1];
+              var last = _this11.states.data[_this11.states.data.length - 1];
               new_order.push((_new_order$push = {}, Object(defineProperty["a" /* default */])(_new_order$push, _id, row[_id]), Object(defineProperty["a" /* default */])(_new_order$push, _order, last[_order]), _new_order$push));
               new_order.push((_new_order$push2 = {}, Object(defineProperty["a" /* default */])(_new_order$push2, _id, last[_id]), Object(defineProperty["a" /* default */])(_new_order$push2, _order, row[_order]), _new_order$push2));
 
-              _this12._callOnMove(new_order).then(function () {
+              _this11._callOnMove(new_order).then(function () {
                 row[_order] = last[_order];
 
-                _this12.states.data.splice(_this12.states.data.length - 1, 1, row);
+                _this11.states.data.splice(_this11.states.data.length - 1, 1, row);
               });
             };
 
@@ -18201,14 +18190,14 @@ function () {
               var _new_order$push3, _new_order$push4;
 
               var new_order = [];
-              var last = _this12.states.data[0];
+              var last = _this11.states.data[0];
               new_order.push((_new_order$push3 = {}, Object(defineProperty["a" /* default */])(_new_order$push3, _id, row[_id]), Object(defineProperty["a" /* default */])(_new_order$push3, _order, last[_order]), _new_order$push3));
               new_order.push((_new_order$push4 = {}, Object(defineProperty["a" /* default */])(_new_order$push4, _id, last[_id]), Object(defineProperty["a" /* default */])(_new_order$push4, _order, row[_order]), _new_order$push4));
 
-              _this12._callOnMove(new_order).then(function () {
+              _this11._callOnMove(new_order).then(function () {
                 row[_order] = last[_order];
 
-                _this12.states.data.splice(0, 1, row);
+                _this11.states.data.splice(0, 1, row);
               });
             };
 
@@ -21141,8 +21130,8 @@ var UGridvue_type_style_index_0_lang_less_ = __webpack_require__("6902");
 
 var UGrid_component = Object(componentNormalizer["a" /* default */])(
   Table_UGridvue_type_script_lang_js_,
-  UGridvue_type_template_id_b5f96426_render,
-  UGridvue_type_template_id_b5f96426_staticRenderFns,
+  UGridvue_type_template_id_05e53a14_render,
+  UGridvue_type_template_id_05e53a14_staticRenderFns,
   false,
   null,
   null,

@@ -975,7 +975,6 @@ label {
 .u-grid-wrapper {
   .u-grid-tools {
     margin-bottom: 5px;
-    height: 25px;
 
     &:after {
       content: '';

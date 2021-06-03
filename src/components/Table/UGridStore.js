@@ -279,13 +279,18 @@ class Store {
 
   selectAll(force = false) {
     let rows = []
+    let not_selected = 0,
+      selected = 0
     walkTree(this.states.data, (row) => {
       if (this._select(row, force)) {
         rows.push(row)
+        selected++
+      } else {
+        not_selected++
       }
     }, this.states.childrenField)
-    this.states.checkAll = true
-    this.states.indeterminate = false
+    this.states.checkAll = (selected > 0) && (not_selected === 0)
+    this.states.indeterminate = (selected > 0) && (not_selected > 0)
     this.grid.$emit('on-selected-all', rows)
   }
 
@@ -324,9 +329,14 @@ class Store {
 
   deselectAll(force = false) {
     let rows = []
+    let not_deselected = 0,
+      deselected = 0
     const callback = (row) => {
       if (this._deselect(row, force)) {
         rows.push(row)
+        deselected++
+      } else {
+        not_delected++
       }
     }
     walkTree(this.states.data, callback)
@@ -340,8 +350,8 @@ class Store {
     //   this.states.selected = {}
     //   this.states.selectedRows = {}
     // }
-    this.states.checkAll = false
-    this.states.indeterminate = false
+    this.states.checkAll = (not_deselected > 0) && (deselected === 0)
+    this.states.indeterminate = (deselected > 0) && (not_deselected > 0)
     this.grid.$emit('on-deselected-all', rows)
   }
 
@@ -377,35 +387,35 @@ class Store {
     } else {
       s = [selection]
     }
-    let checkAll = true
-    let indeterminate = false
-    const callback = (row) => {
-      if (s.length === 0) {
-        checkAll = false
-        return true
-      }
-      let id = row[this.states.idField]
-      index = s.indexOf(id)
-      if (index > -1) {
-        if (this._select(row, force)) {
-          indeterminate = true
-        }
-        s.splice(index, 1)
-      } else {
-        checkAll = false
-      }
-    }
-    walkTree(this.states.data, callback)
+    // let checkAll = true
+    // let indeterminate = false
+    // const callback = (row) => {
+    //   if (s.length === 0) {
+    //     checkAll = false
+    //     return true
+    //   }
+    //   let id = row[this.states.idField]
+    //   index = s.indexOf(id)
+    //   if (index > -1) {
+    //     if (this._select(row, force)) {
+    //       indeterminate = true
+    //     }
+    //     s.splice(index, 1)
+    //   } else {
+    //     checkAll = false
+    //   }
+    // }
+    // walkTree(this.states.data, callback)
 
     // 处理剩余数据
     for (let c of s) {
       this.grid.$set(this.states.selected, c, c)
     }
-
-    this.states.checkAll = checkAll
-    if (!checkAll) {
-      this.states.indeterminate = indeterminate
-    }
+    this.checkSelectStatus()
+    // this.states.checkAll = checkAll
+    // if (!checkAll) {
+    //   this.states.indeterminate = indeterminate
+    // }
   }
 
   showLoading(loading = true, text = '') {
