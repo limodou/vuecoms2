@@ -1,34 +1,19 @@
 <template>
   <div class="u-header-cell">
-    <div
-      v-if="column.type === 'column'"
-      class="u-table-header-header-cell"
-      :style="trStyles(column)"
-    >
-      <HeaderCellRender
-        v-if="column.headerRender"
-        :render="column.headerRender"
-        :column="column"
-      ></HeaderCellRender>
+    <div v-if="column.type === 'column'" class="u-table-header-header-cell" :style="trStyles(column)">
+      <div class="u-table-header-cell-title" :class="{ nowrap: nowrap }">
+        <HeaderCellRender v-if="column.headerRender" :render="column.headerRender" :column="column"></HeaderCellRender>
+        <span v-else v-html="column.title" :title="title"></span>
+        <Filterable v-if="column.filterable && column.leaf" :store="store" :column="column"></Filterable>
+      </div>
 
-      <template v-else>
-        <div class="u-table-header-cell-title" :class="{ nowrap: nowrap }">
-          <span v-html="column.title" :title="title"></span>
-          <Filterable
-            v-if="column.filterable && column.leaf"
-            :store="store"
-            :column="column"
-          ></Filterable>
-        </div>
+      <Sort v-if="column.sortable && column.leaf" :store="store" :column="column"></Sort>
 
-        <Sort v-if="column.sortable && column.leaf" :store="store" :column="column"></Sort>
-
-        <div
-          v-if="resizable && column.resizable && column.leaf"
-          class="u-table-header-cell-resizer"
-          @mousedown.stop.prevent="handleMouseDown(column, $event)"
-        ></div>
-      </template>
+      <div
+        v-if="resizable && column.resizable && column.leaf"
+        class="u-table-header-cell-resizer"
+        @mousedown.stop.prevent="handleMouseDown(column, $event)"
+      ></div>
     </div>
 
     <div v-if="column.type === 'check'" class="u-table-header-cell-title">
@@ -94,24 +79,25 @@ export default {
   methods: {
     handleCheckAll() {
       if (this.static) return;
-      let result;
+      // 如果定义了 onSelectAll 则 force 表示不校验  onSelect onDeselect onCheckable
+      let force = this.store.states.onSelectAll ? true : false;
       if (this.indeterminate) {
-        this.store.selectAll(true);
+        this.store.selectAll(force);
         // 增加 onSelectAll 的事件回调
         if (this.store.states.onSelectAll) {
-          this.store.states.onSelectAll(true)
+          this.store.states.onSelectAll(true);
         }
         return;
       }
       this.checkAll = !this.checkAll;
       if (this.checkAll) {
-        this.store.selectAll(true);
+        this.store.selectAll(force);
       } else {
-        this.store.deselectAll(true);
+        this.store.deselectAll(force);
       }
       // 增加 onSelectAll 的事件回调
       if (this.store.states.onSelectAll) {
-        this.store.states.onSelectAll(this.checkAll)
+        this.store.states.onSelectAll(this.checkAll);
       }
     },
 
