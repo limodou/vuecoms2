@@ -67,6 +67,8 @@ class Store {
       // 增加单元格横向合并
       colspan: false,
       colspanDelimeter: '--',
+      columnHtml: true,
+      headerColumnHtml: true,
 
       // tree 相关的参数
       tree: false, // 是否treegrid

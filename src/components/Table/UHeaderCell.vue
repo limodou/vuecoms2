@@ -3,7 +3,10 @@
     <div v-if="column.type === 'column'" class="u-table-header-header-cell" :style="trStyles(column)">
       <div class="u-table-header-cell-title" :class="{ nowrap: nowrap }">
         <HeaderCellRender v-if="column.headerRender" :render="column.headerRender" :column="column"></HeaderCellRender>
-        <span v-else v-html="column.title" :title="title"></span>
+        <template v-else>
+          <span v-if="column.headerHtml" v-html="column.title" :title="title"></span>
+          <span v-else :title="title">{{ column.title }}</span>
+        </template>
         <Filterable v-if="column.filterable && column.leaf" :store="store" :column="column"></Filterable>
       </div>
 

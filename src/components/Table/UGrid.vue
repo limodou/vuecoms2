@@ -11,22 +11,10 @@
     <slot name="afterQuery"></slot>
     <div class="u-grid-tools" slot="tools" v-if="buttons || rightButtons">
       <div class="u-grid-tools-left" v-if="buttons">
-        <Buttons
-          ref="buttons"
-          :size="buttonSize"
-          :buttons="buttons"
-          :data="store"
-          :target="this"
-        ></Buttons>
+        <Buttons ref="buttons" :size="buttonSize" :buttons="buttons" :data="store" :target="this"></Buttons>
       </div>
       <div class="u-grid-tools-right" v-if="rightButtons">
-        <Buttons
-          ref="rightButtons"
-          :size="buttonSize"
-          :buttons="rightButtons"
-          :data="store"
-          :target="this"
-        ></Buttons>
+        <Buttons ref="rightButtons" :size="buttonSize" :buttons="rightButtons" :data="store" :target="this"></Buttons>
       </div>
     </div>
     <slot name="beforeTable"></slot>
@@ -63,13 +51,7 @@
       </u-table>
 
       <div class="column-dragger-guide" v-show="columnResizing" :style="columnDraggerStyles"></div>
-      <div
-        ref="loading"
-        class="loading"
-        v-if="loadingText"
-        v-show="loading"
-        v-html="loadingText"
-      ></div>
+      <div ref="loading" class="loading" v-if="loadingText" v-show="loading" v-html="loadingText"></div>
     </div>
     <Pagination
       ref="pagination"
@@ -104,27 +86,18 @@
 </template>
 
 <script>
-import UTable from './UTable';
-import Store from './UGridStore';
-import Pagination from './pagination';
-import Buttons from './UButtons';
-import {
-  mapState,
-  mapMethod,
-  copyDataRow,
-  setChoice,
-  deepCopy,
-  findParent,
-  isEmpty,
-  getWH,
-} from '../utils/utils.js';
-import Emitter from '../mixins/emitter.js';
-import Query from '../Query';
-import debounce from 'lodash/debounce';
-import { addListener, removeListener } from 'resize-detector';
+import UTable from "./UTable";
+import Store from "./UGridStore";
+import Pagination from "./pagination";
+import Buttons from "./UButtons";
+import { mapState, mapMethod, copyDataRow, setChoice, deepCopy, findParent, isEmpty, getWH } from "../utils/utils.js";
+import Emitter from "../mixins/emitter.js";
+import Query from "../Query";
+import debounce from "lodash/debounce";
+import { addListener, removeListener } from "resize-detector";
 
 export default {
-  name: 'Grid',
+  name: "Grid",
   mixins: [Emitter],
 
   components: {
@@ -171,78 +144,80 @@ export default {
 
   computed: {
     ...mapState(
-      'columns',
-      'columnResizing',
-      'checkCol',
-      'indexCol',
-      'gridWidth',
-      'width',
-      'height',
-      'resizable',
-      'columnPosition',
-      'guiderHeight',
-      'defaultColWidth',
-      'leftWidth',
-      'rightWidth',
-      'checkColTitle',
-      'checkColWidth',
-      'indexColWidth',
-      'indexColTitle',
-      'scrollLeft',
-      'total',
-      'pageSizeOpts',
-      'pagination',
-      'loading',
-      'loadingText',
-      'loadingTop',
-      'loadingLeft',
-      'autoLoad',
-      'url',
-      'param',
-      'buttons',
-      'rightButtons',
-      'bottomButtons',
-      'buttonSize',
-      'selected',
-      'editMode',
-      'actionColumn',
-      'deleteRowConfirm',
-      'onSaveRow',
-      'onDeleteRow',
-      'onError',
-      'onLoadData',
-      'onBeforeEditing',
-      'onEditing',
-      'onCancelEdit',
-      'query',
-      'theme',
-      'cellTitle',
-      'isScrollRight',
-      'page',
-      'start',
-      'pageSize',
-      'nowrap',
-      'addAutoScrollTo',
-      'onRowEditRender',
-      'static',
-      'xscroll',
-      'afterLoadData',
-      'multiHeaderSep',
-      'zebra',
-      'oldParentWidth',
+      "columns",
+      "columnResizing",
+      "checkCol",
+      "indexCol",
+      "gridWidth",
+      "width",
+      "height",
+      "resizable",
+      "columnPosition",
+      "guiderHeight",
+      "defaultColWidth",
+      "leftWidth",
+      "rightWidth",
+      "checkColTitle",
+      "checkColWidth",
+      "indexColWidth",
+      "indexColTitle",
+      "scrollLeft",
+      "total",
+      "pageSizeOpts",
+      "pagination",
+      "loading",
+      "loadingText",
+      "loadingTop",
+      "loadingLeft",
+      "autoLoad",
+      "url",
+      "param",
+      "buttons",
+      "rightButtons",
+      "bottomButtons",
+      "buttonSize",
+      "selected",
+      "editMode",
+      "actionColumn",
+      "deleteRowConfirm",
+      "onSaveRow",
+      "onDeleteRow",
+      "onError",
+      "onLoadData",
+      "onBeforeEditing",
+      "onEditing",
+      "onCancelEdit",
+      "query",
+      "theme",
+      "cellTitle",
+      "isScrollRight",
+      "page",
+      "start",
+      "pageSize",
+      "nowrap",
+      "addAutoScrollTo",
+      "onRowEditRender",
+      "static",
+      "xscroll",
+      "afterLoadData",
+      "multiHeaderSep",
+      "zebra",
+      "oldParentWidth",
+      "columnHtml",
+      "headerColumnHtml"
     ),
 
     columnDraggerStyles() {
       return {
-        left: this.columnPosition - 7 + 'px',
-        height: this.guiderHeight + 'px',
+        left: this.columnPosition - 7 + "px",
+        height: this.guiderHeight + "px",
       };
     },
 
     themeClass() {
       return {
         [`theme-${this.theme}`]: this.theme,
-        'u-grid-zebra': this.zebra,
+        "u-grid-zebra": this.zebra,
       };
     },
 
@@ -255,17 +230,17 @@ export default {
     },
 
     leftTableClass() {
-      let cls = 'u-grid-body u-table-left';
+      let cls = "u-grid-body u-table-left";
       if (this.scrollLeft) {
-        cls += ' dark';
+        cls += " dark";
       }
       return cls;
     },
 
     rightTableClass() {
-      let cls = 'u-grid-body u-table-right';
+      let cls = "u-grid-body u-table-right";
       if (!this.isScrollRight) {
-        cls += ' dark';
+        cls += " dark";
       }
       return cls;
     },
@@ -273,43 +248,42 @@ export default {
 
   methods: {
     ...mapMethod(
-      'getSelection',
-      'showLoading',
-      'setSelection',
-      'removeRow',
-      'setComment',
-      'removeComment',
-      'getSelectedRows',
-      'getColumn',
-      'getDefaultRow',
-      'makeRows',
-      'sendInputEvent',
-      'deselectAll',
-      'selectAll',
-      'select',
-      'deselect',
-      'toggle',
-      'getComment',
-      'clearRowComment',
-      'getClass',
-      'removeClass',
-      'setClass',
-      'addRow',
-      'addEditRow',
-      'updateRow',
-      'addChildRow',
-      'addEditChildRow',
-      'moveRow',
-      'expand',
-      'collapse',
-      'isEditing'
+      "getSelection",
+      "showLoading",
+      "setSelection",
+      "removeRow",
+      "setComment",
+      "removeComment",
+      "getSelectedRows",
+      "getColumn",
+      "getDefaultRow",
+      "makeRows",
+      "sendInputEvent",
+      "deselectAll",
+      "selectAll",
+      "select",
+      "deselect",
+      "toggle",
+      "getComment",
+      "clearRowComment",
+      "getClass",
+      "removeClass",
+      "setClass",
+      "addRow",
+      "addEditRow",
+      "updateRow",
+      "addChildRow",
+      "addEditChildRow",
+      "moveRow",
+      "expand",
+      "collapse",
+      "isEditing"
     ),
 
     resize(width, height) {
       if (width) this.width = width;
-      if (this.width === 'auto') {
-        this.store.states.gridWidth =
-          this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth;
+      if (this.width === "auto") {
+        this.store.states.gridWidth = this.$el.clientWidth === 0 ? this.$parent.$el.clientWidth : this.$el.clientWidth;
       } else {
         this.store.states.gridWidth = this.width;
       }
@@ -332,10 +306,10 @@ export default {
           cols.push(col);
         }
         switch (col.fixed) {
-          case 'left':
+          case "left":
             hasLeftFixed = true;
             break;
-          case 'right':
+          case "right":
             hasRightFixed = true;
             break;
         }
@@ -371,13 +345,13 @@ export default {
         for (let i = 0, len = this.columns.length; i < len; i++) {
           let col = this.columns[i];
           if (
-            col.fixed === 'left' ||
-            (hasLeftFixed && (col.name === '__check_col__' || col.name === '__index_col__'))
+            col.fixed === "left" ||
+            (hasLeftFixed && (col.name === "__check_col__" || col.name === "__index_col__"))
           ) {
-            col.fixed = 'left';
+            col.fixed = "left";
             leftCols.push(col);
             this.store.states.leftWidth += col.width;
-          } else if (col.fixed === 'right') {
+          } else if (col.fixed === "right") {
             rightCols.push(col);
             this.store.states.rightWidth += col.width;
           } else {
@@ -420,7 +394,7 @@ export default {
         for (j = 0; j < subs_len; j++) {
           path = col.subs[j];
           new_col = Object.assign({}, col);
-          new_col.title = path.replace('%%', '/');
+          new_col.title = path.replace("%%", "/");
           new_col.level = j;
           new_col.colspan = 1;
           new_col.col = col;
@@ -485,20 +459,21 @@ export default {
       }
       return Object.assign(
         {
-          name: 'title',
+          name: "title",
           width: 0,
           sortable: false,
           filterable: false,
-          align: '',
-          headerAlign: '',
+          align: "",
+          headerAlign: "",
           hidden: false,
-          fixed: '',
+          fixed: "",
           resizable: true,
-          type: 'column',
+          type: "column",
           editorOptions: {},
           showTitle: show,
           showHeaderTitle: headerShow,
-          html: true,
+          html: this.columnHtml,
+          headerHtml: this.headerColumnHtml,
         },
         options || {}
       );
@@ -510,60 +485,70 @@ export default {
       let check_column;
       let index_column;
       // 生成checkbox列
-      if (this.checkCol) {
-        check_column = this.getDefaultColumn({
-          name: '__check_col__',
-          type: 'check',
-          resizable: false,
-          width: this.checkColWidth,
-          title: this.checkColTitle,
-          align: 'center',
-          fixed: '',
-        });
-        cols.push(check_column);
-      }
+      check_column = this.getDefaultColumn({
+        name: "__check_col__",
+        type: "check",
+        resizable: false,
+        width: this.checkColWidth,
+        title: this.checkColTitle,
+        align: "center",
+        fixed: "",
+      });
 
       // 生成序号列
-      if (this.indexCol) {
-        index_column = this.getDefaultColumn({
-          name: '__index_col__',
-          type: 'index',
-          resizable: false,
-          width: this.indexColWidth,
-          title: this.indexColTitle,
-          align: 'center',
-          fixed: '',
-        });
-        cols.push(index_column);
-      }
+      index_column = this.getDefaultColumn({
+        name: "__index_col__",
+        type: "index",
+        resizable: false,
+        width: this.indexColWidth,
+        title: this.indexColTitle,
+        align: "center",
+        fixed: "",
+      });
+      let hasCheckCol = this.checkCol;
+      let hasIndexCol = this.indexCol;
 
       this.data.columns.forEach(col => {
-        if (!col.hidden) {
-          if (col.name === '__check_col__') {
-            Object.assign(check_column, col);
-          } else if (col.name === '__index_col__') {
-            Object.assign(index_column, col);
+        if (col.name === "__check_col__") {
+          if (col.hidden) {
+            hasCheckCol = false;
           } else {
-            let d = this.getDefaultColumn(col);
-            // 增加行编辑操作列的render函数
-            if (this.editMode === 'row' && col.name === this.actionColumn) {
-              d.render = this.editActionRender(col.render);
-            }
-            if (!d.title) d.title = d.name;
-            // 静态模式下，隐藏操作列
-            if ((!this.static && col.name === this.actionColumn) || col.name !== this.actionColumn)
-              cols.push(d);
-            // 处理format回调，如果是一个字符串，则转为函数
-            if (typeof col.format === 'string') {
-              let func_str = 'return ' + '`' + col.format + '`';
-              let func = new Function('value', 'column', 'row', func_str);
-              col._format = col.format;
-              col.format = func;
-            }
+            hasCheckCol = true;
+            Object.assign(check_column, col);
+          }
+        } else if (col.name === "__index_col__") {
+          if (col.hidden) {
+            hasIndexCol = false;
+          } else {
+            hasIndexCol = true;
+            Object.assign(index_column, col);
+          }
+        } else {
+          if (col.hidden) return
+          let d = this.getDefaultColumn(col);
+          // 增加行编辑操作列的render函数
+          if (this.editMode === "row" && col.name === this.actionColumn) {
+            d.render = this.editActionRender(col.render);
+          }
+          if (!d.title) d.title = d.name;
+          // 静态模式下，隐藏操作列
+          if ((!this.static && col.name === this.actionColumn) || col.name !== this.actionColumn) cols.push(d);
+          // 处理format回调，如果是一个字符串，则转为函数
+          if (typeof col.format === "string") {
+            let func_str = "return " + "`" + col.format + "`";
+            let func = new Function("value", "column", "row", func_str);
+            col._format = col.format;
+            col.format = func;
           }
         }
       });
 
+      if (hasIndexCol) {
+        cols.unshift(index_column)
+      }
+      if (hasCheckCol) {
+        cols.unshift(check_column)
+      }
       return cols;
     },
 
@@ -590,7 +575,7 @@ export default {
     },
 
     handleQueryChange(change) {
-      this.$emit('on-query-change', change);
+      this.$emit("on-query-change", change);
     },
 
     // 生成缺省的行编辑按钮
@@ -601,10 +586,10 @@ export default {
             let render = this.onRowEditRender(h, param.row);
             if (render) return render;
           }
-          let cls = 'u-cell-text';
-          if (this.nowrap) cls += ' nowrap';
+          let cls = "u-cell-text";
+          if (this.nowrap) cls += " nowrap";
           return h(
-            'div',
+            "div",
             {
               class: cls,
             },
@@ -617,67 +602,68 @@ export default {
     },
 
     async validateRow(row) {
+      this.clearRowComment(row);
       let res = await this._validateRow(row._editRow);
       if (res) {
         for (let key in res) {
           let v = res[key];
-          this.setComment(row, key, v, 'error');
+          this.setComment(row, key, v, "error");
         }
-        this.$set(row, '_saving', false);
+        this.$set(row, "_saving", false);
         if (this.onError) {
           this.onError(res);
         }
       }
-      return res
+      return res;
     },
 
     defaultEditRender(h, row) {
       return h(
-        'Button',
+        "Button",
         {
           props: {
-            type: 'primary',
-            size: 'small',
+            type: "primary",
+            size: "small",
             loading: row._saving,
           },
           style: {
-            margin: '0 5px',
+            margin: "0 5px",
           },
           on: {
             click: async () => {
               if (!row._editting) {
                 if (this.onBeforeEditing) {
-                  let ret = this.onBeforeEditing(row)
-                  if (!ret) return
+                  let ret = this.onBeforeEditing(row);
+                  if (!ret) return;
                 }
-                this.$set(row, '_editRow', Object.assign({}, row));
-                this.$set(row, '_editting', true);
-                if (this.onEditing) this.onEditing(row)
+                this.$set(row, "_editRow", Object.assign({}, row));
+                this.$set(row, "_editting", true);
+                if (this.onEditing) this.onEditing(row);
               } else {
-                this.$set(row, '_saving', true);
+                this.$set(row, "_saving", true);
                 // 校验错误
                 let res = await this.validateRow(row);
                 if (res) {
-                  return
+                  return;
                 }
 
                 if (this.onSaveRow) {
                   let callback = (flag, data) => {
-                    if (flag === 'ok') {
+                    if (flag === "ok") {
                       this.updateRow(copyDataRow(row, Object.assign(row._editRow, data)));
-                      this.removeComment(row);
-                      this.$set(row, '_editting', !row._editting);
-                      this.$set(row, '_new', false); //保存之后，将_new置为false
+                      this.clearRowComment(row);
+                      this.$set(row, "_editting", !row._editting);
+                      this.$set(row, "_new", false); //保存之后，将_new置为false
                       delete row._editRow;
                       this.sendInputEvent();
                     } else {
                       this.clearRowComment(row);
                       for (let key in data) {
                         let v = data[key];
-                        this.setComment(row, key, v, 'error');
+                        this.setComment(row, key, v, "error");
                       }
                     }
-                    this.$set(row, '_saving', false);
+                    this.$set(row, "_saving", false);
                   };
                   // 增加获取干净数据的处理 2020/04/08
                   let cleanData = deepCopy(row._editRow, true);
@@ -685,15 +671,15 @@ export default {
                 } else {
                   this.updateRow(copyDataRow(row, row._editRow));
                   delete row._editRow;
-                  this.$set(row, '_editting', false);
-                  this.$set(row, '_saving', false);
+                  this.$set(row, "_editting", false);
+                  this.$set(row, "_saving", false);
                   this.sendInputEvent();
                 }
               }
             },
           },
         },
-        row._editting ? '保存' : '编辑'
+        row._editting ? "保存" : "编辑"
       );
     },
 
@@ -715,9 +701,9 @@ export default {
     defaultDeleteRender(h, row) {
       let defaultDeleteFunc = () => {
         if (row._editting) {
-          if (this.onCancelEdit) this.onCancelEdit(row)
-          this.$set(row, '_editting', false);
-          this.$delete(row, '_editRow');
+          if (this.onCancelEdit) this.onCancelEdit(row);
+          this.$set(row, "_editting", false);
+          this.$delete(row, "_editRow");
           this.removeComment(row);
           if (row._new) {
             this.removeRow(row);
@@ -726,15 +712,15 @@ export default {
         }
 
         let callback = (flag, data) => {
-          if (flag === 'ok') {
+          if (flag === "ok") {
             this.removeRow(row);
             this.sendInputEvent();
           } else {
             for (let key in data) {
               let v = data[key];
-              this.setComment(row, key, v, 'error');
+              this.setComment(row, key, v, "error");
             }
-            this.$set(row, '_deleting', false);
+            this.$set(row, "_deleting", false);
           }
         };
         if (this.onDeleteRow) {
@@ -745,25 +731,25 @@ export default {
         }
       };
 
-      let type = row._editting ? 'default' : 'error';
+      let type = row._editting ? "default" : "error";
 
       return h(
-        'Button',
+        "Button",
         {
           style: {
-            margin: '0 5px',
+            margin: "0 5px",
           },
           props: {
             type: type,
-            placement: 'top',
-            size: 'small',
+            placement: "top",
+            size: "small",
             loading: row._deleting,
           },
           on: {
             click: () => {
               if (this.deleteRowConfirm && !row._editting) {
                 this.$Modal.confirm({
-                  content: '请确认是否要删除本条记录？',
+                  content: "请确认是否要删除本条记录？",
                   onOk: () => {
                     defaultDeleteFunc();
                   },
@@ -774,7 +760,7 @@ export default {
             },
           },
         },
-        row._editting ? '取消' : '删除'
+        row._editting ? "取消" : "删除"
       );
     },
 
@@ -782,22 +768,22 @@ export default {
       this.page = page;
       if (opts && opts.pageSize) this.pageSize = opts.pageSize;
       this.start = (this.page - 1) * this.pageSize + 1;
-      this.$set(this.param, 'page', page);
+      this.$set(this.param, "page", page);
       this.loadData(opts || {});
     },
 
     reset_query(value) {
       this.$refs.query.reset();
       if (value) {
-        this.$refs.query.setValue(value)
-        Object.assign(this.param, value)
+        this.$refs.query.setValue(value);
+        Object.assign(this.param, value);
       }
     },
 
     clear() {
       this.page = 1;
       this.start = 1;
-      this.$set(this.param, 'page', 1);
+      this.$set(this.param, "page", 1);
       this.store.states.data = [];
     },
 
@@ -842,6 +828,14 @@ export default {
     getData() {
       return deepCopy(this.store.states.data, true);
     },
+
+    hiddenColumn(name, flag=true) {
+      for (let col of this.data.columns) {
+        if (col.name === name) {
+          this.$set(col, 'hidden', flag);
+        }
+      }
+    }
   },
 
   created() {
@@ -851,11 +845,10 @@ export default {
 
   mounted() {
     this.resize();
-    window.addEventListener('resize', this.handleResize, true);
+    window.addEventListener("resize", this.handleResize, true);
 
     // 初始化query 的 param
-    if (this.$refs.query && this.$refs.query.value)
-      this.param = Object.assign(this.param, this.$refs.query.value);
+    if (this.$refs.query && this.$refs.query.value) this.param = Object.assign(this.param, this.$refs.query.value);
 
     if (this.autoLoad) {
       this.$nextTick(() => {
@@ -869,7 +862,7 @@ export default {
       () => {
         let parent = self.$el.parentNode;
         if (!parent) return;
-        let p_width = getWH(parent, 'width');
+        let p_width = getWH(parent, "width");
         let width = p_width;
         while (1) {
           parent = parent.parentNode;
@@ -891,7 +884,7 @@ export default {
       { leading: true }
     );
     if (this.store.states.detectParentResize) {
-      let el = findParent(this, 'Build');
+      let el = findParent(this, "Build");
       if (!el) {
         el = this.$parent.$el;
       } else {
@@ -907,7 +900,7 @@ export default {
   },
 
   watch: {
-    'data.columns': {
+    "data.columns": {
       handler: function() {
         this.store.states.columns = this.makeCols();
         this.resize();
@@ -942,7 +935,7 @@ export default {
       },
       deep: true,
     },
-    'store.states.static': function(value) {
+    "store.states.static": function(value) {
       this.store.states.columns = this.makeCols();
       this.resize();
     },
@@ -953,12 +946,12 @@ export default {
     //   deep: true
     // }
 
-    'store.states.filterValue': {
+    "store.states.filterValue": {
       deep: true,
-      handler (newVal) {
-        this.go(1, newVal)
-      }
-    }
+      handler(newVal) {
+        this.go(1, newVal);
+      },
+    },
   },
 };
 </script>
@@ -977,7 +970,7 @@ label {
     margin-bottom: 5px;
 
     &:after {
-      content: '';
+      content: "";
       display: block;
       height: 0;
       clear: both;
@@ -1096,7 +1089,7 @@ label {
   tr {
     background-color: #fff;
   }
-  @nth: ~'nth-child(2n)';
+  @nth: ~"nth-child(2n)";
   tr:@{nth} {
     background-color: #f8f8f8;
 

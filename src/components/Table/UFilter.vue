@@ -10,13 +10,7 @@
           <label class="filter-label">
             {{ column.filterable.label }}
           </label>
-          <GenericInput
-            v-bind="column.filterable"
-            :name="column.name"
-            :value="value"
-            label-dir="vertical"
-            :on="on"
-          >
+          <GenericInput v-bind="column.filterable" :name="column.name" :value="value" label-dir="vertical" :on="on">
           </GenericInput>
           <!-- <Button v-if="!filterImmediate" @click="handleSubmit">filterOkText</Button> -->
         </div>
@@ -26,17 +20,17 @@
 </template>
 
 <script>
-import clickoutside from '../directives/clickoutside';
-import { mapState, deepCompare, isEmpty } from '../utils/utils.js';
-import config from '../config';
+import clickoutside from "../directives/clickoutside";
+import { mapState, deepCompare, isEmpty } from "../utils/utils.js";
+import config from "../config";
 
 export default {
-  name: 'u-column-filter',
+  name: "u-column-filter",
   directives: { clickoutside },
 
   data() {
     let value = { [this.column.name]: this.store.states.filterValue[this.column.name] };
-    return { visible: false, on: { 'on-keydown': this.handleKeydown }, value };
+    return { visible: false, on: { "on-keydown": this.handleKeydown }, value };
   },
 
   props: {
@@ -45,13 +39,16 @@ export default {
   },
 
   computed: {
-    ...mapState('filterValue', 'filterImmediate', 'filterOkText'),
+    ...mapState("filterValue", "filterImmediate", "filterOkText"),
 
     has() {
+      if (this.column.filterable && this.column.filterable.isEmpty) {
+        return this.column.filterable.isEmpty(this.filterValue[this.column.name]);
+      }
       return !isEmpty(this.filterValue[this.column.name]);
     },
     immediate() {
-      return this.filterImmediate
+      return this.filterImmediate;
       // return this.column.filter.immediate === undefined
       //   ? this.filterImmediate
       //   : this.column.filter.immediate;
@@ -86,7 +83,7 @@ export default {
       this.visible = false;
     },
     handleKeydown(e) {
-      if (e.key === 'Enter') {
+      if (e.key === "Enter") {
         this.visible = false;
       }
     },

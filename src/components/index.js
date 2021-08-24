@@ -50,6 +50,7 @@ const Components = {
   GenericInput,
   DatepickerRange,
   UploaderFile,
+  uUploaderFile: UploaderFile,
   CardList,
   FlatChoices,
   FlatSelect
