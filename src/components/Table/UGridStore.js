@@ -69,6 +69,7 @@ class Store {
       colspanDelimeter: '--',
       columnHtml: true,
       headerColumnHtml: true,
+      checkboxDisabledMode: 'hidden', // 当 onCheckable 为 false 时是隐藏还是 disabled
 
       // tree 相关的参数
       tree: false, // 是否treegrid

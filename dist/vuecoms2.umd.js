@@ -13783,12 +13783,12 @@ function _broadcast(componentName, eventName, params) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=298f3d7c&
-var UCellvue_type_template_id_298f3d7c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField===_vm.col.column.name && _vm.col.row[_vm.childrenField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && _vm.col.row[_vm.expandField])?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.value)},on:{"click":function($event){return _vm.handleClick()}}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{nowrap:_vm.nowrap},attrs:{"title":_vm.title},on:{"click":_vm.handleClick}},[_vm._v(_vm._s(_vm.value))]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.checkable)?_c('Checkbox',{attrs:{"value":Boolean(_vm.store.selected(_vm.col.row)),"indeterminate":_vm.col.row._indeterminate},nativeOn:{"click":function($event){$event.preventDefault();$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{nowrap:_vm.nowrap}},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],1),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
-var UCellvue_type_template_id_298f3d7c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6da17298-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Table/UCell.vue?vue&type=template&id=d5b95528&
+var UCellvue_type_template_id_d5b95528_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"u-cell",class:_vm.classes},[_c('div',{staticClass:"u-cell-wrap",style:(_vm.cellWrapStyles)},[(_vm.tree && _vm.treeField === _vm.col.column.name && _vm.col.row[_vm.childrenField])?_c('span',{staticClass:"u-cell-tree-field-icon",style:(_vm.iconStyles),on:{"click":_vm.handleExpandClick}},[(!_vm.col.row._loading && _vm.col.row[_vm.expandField])?_c('i',{class:_vm.openedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(!_vm.col.row._loading && !_vm.col.row[_vm.expandField])?_c('i',{class:_vm.closedIcon,staticStyle:{"font-size":"18px"}}):_vm._e(),(_vm.col.row._loading)?_c('i',{staticClass:"ivu-icon ivu-icon-ios-loading ivu-load-loop"}):_vm._e()]):_vm._e(),(_vm.columnType === 'render')?_c('CellRender',{attrs:{"row":_vm.col.row,"render":_vm.col.column.render,"column":_vm.col.column,"value":_vm.col.value}}):_vm._e(),(_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{ nowrap: _vm.nowrap },attrs:{"title":_vm.title},domProps:{"innerHTML":_vm._s(_vm.value)},on:{"click":function($event){return _vm.handleClick()}}}):_vm._e(),(!_vm.col.column.html && _vm.columnType === 'normal')?_c('div',{staticClass:"u-cell-text",class:{ nowrap: _vm.nowrap },attrs:{"title":_vm.title},on:{"click":_vm.handleClick}},[_vm._v("\n      "+_vm._s(_vm.value)+"\n    ")]):_vm._e(),(_vm.columnType === 'editor')?_c('GenericInput',_vm._b({attrs:{"name":_vm.col.column.name,"format":_vm.col.column.format,"value":_vm.savingRow || _vm.col.row,"static":_vm.checkCellStatic(_vm.col, _vm.savingRow || _vm.col.row),"show-title":_vm.col.column.showTitle,"classes":_vm.nowrap ? 'nowrap' : ''}},'GenericInput',_vm.col.column.editor,false)):_vm._e(),(_vm.columnType === 'check' && _vm.showCheckbox)?_c('Checkbox',{attrs:{"value":Boolean(_vm.store.selected(_vm.col.row)),"indeterminate":_vm.col.row._indeterminate,"disabled":!_vm.checkable},nativeOn:{"click":function($event){$event.preventDefault();$event.stopPropagation();return _vm.handleCheckClick($event)}}}):_vm._e(),(_vm.columnType === 'index')?_c('span',{class:{ nowrap: _vm.nowrap }},[_vm._v("\n      "+_vm._s(_vm.index)+"\n    ")]):_vm._e()],1),(_vm.comment)?_c('span',{staticClass:"u-cell-comment",class:_vm.comment.type,attrs:{"title":_vm.comment.content}}):_vm._e()])}
+var UCellvue_type_template_id_d5b95528_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=298f3d7c&
+// CONCATENATED MODULE: ./src/components/Table/UCell.vue?vue&type=template&id=d5b95528&
 
 // CONCATENATED MODULE: ./src/components/Table/UCellRender.js
 
@@ -15565,12 +15565,34 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ var UCellvue_type_script_lang_js_ = ({
-  name: 'uCell',
+  name: "uCell",
   props: {
     col: Object,
     store: Object,
@@ -15582,7 +15604,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
     CellRender: UCellRender,
     GenericInput: GenericInput
   },
-  computed: Object(objectSpread["a" /* default */])({}, mapState('nowrap', 'start', 'editRow', 'editMode', 'onCheckable', 'cellTitle', 'tree', 'treeField', 'iconWidth', 'indentWidth', 'expandField', 'openedIcon', 'closedIcon', 'isParentField', 'defaultExpanded', 'onLoadData', 'url', 'selected', 'idField', 'static', 'childrenField', 'selected'), {
+  computed: Object(objectSpread["a" /* default */])({}, mapState("nowrap", "start", "editRow", "editMode", "onCheckable", "cellTitle", "tree", "treeField", "iconWidth", "indentWidth", "expandField", "openedIcon", "closedIcon", "isParentField", "defaultExpanded", "onLoadData", "url", "selected", "idField", "static", "childrenField", "selected", "checkboxDisabledMode"), {
     value: function value() {
       var value = this.col.value;
 
@@ -15596,7 +15618,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       var showTitle = this.col.column.showTitle;
 
       if (showTitle) {
-        if (typeof showTitle === 'function') {
+        if (typeof showTitle === "function") {
           //调用原始值及format值
           return showTitle(this.col.value, this.value);
         } else {
@@ -15618,18 +15640,18 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
      * 根据编辑模式不同，选择数据保存的row
      */
     savingRow: function savingRow() {
-      if (this.editMode === 'row') return this.col.row._editRow;else return this.col.row;
+      if (this.editMode === "row") return this.col.row._editRow;else return this.col.row;
     },
     columnType: function columnType() {
       var type = this.col.column.type;
-      if (type === 'index') return 'index';
-      if (type === 'check') return 'check';
+      if (type === "index") return "index";
+      if (type === "check") return "check";
 
-      if (type === 'column') {
-        if (this.col.column.render && (!this.col.row._editting || !this.col.column.editor)) return 'render';
-        if (this.col.column.format && (!this.col.row._editting || !this.col.column.editor)) return 'normal';
-        if (this.col.column.editor) return 'editor';
-        return 'normal';
+      if (type === "column") {
+        if (this.col.column.render && (!this.col.row._editting || !this.col.column.editor)) return "render";
+        if (this.col.column.format && (!this.col.row._editting || !this.col.column.editor)) return "normal";
+        if (this.col.column.editor) return "editor";
+        return "normal";
       }
     },
     checkable: function checkable() {
@@ -15637,10 +15659,13 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 
       if (this.onCheckable && !this.static) {
         c = this.onCheckable(this.col.row);
-        this.$set(this.col.row, '_checkable', c);
+        this.$set(this.col.row, "_checkable", c);
       }
 
       return c;
+    },
+    showCheckbox: function showCheckbox() {
+      return this.checkboxDisabledMode !== "hidden" || this.checkboxDisabledMode === "hidden" && this.checkable;
     },
     iconStyles: function iconStyles() {
       var s = {};
@@ -15677,7 +15702,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       return s;
     }
   }),
-  methods: Object(objectSpread["a" /* default */])({}, mapMethod('getComment', 'getClass', 'setSelection', 'makeRows', 'checkSelectStatus'), {
+  methods: Object(objectSpread["a" /* default */])({}, mapMethod("getComment", "getClass", "setSelection", "makeRows", "checkSelectStatus"), {
     handleCheckClick: function handleCheckClick() {
       if (this.static) return;
       this.store.toggle(this.col.row);
@@ -15688,7 +15713,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       var expand = !this.col.row[this.expandField];
 
       if (expand && this.col.row[this.childrenField]) {
-        if (!this.col.row['_loaded']) {
+        if (!this.col.row["_loaded"]) {
           var callback = function callback(data, others) {
             //转换数据
             var rows = [];
@@ -15712,9 +15737,9 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 
 
             _this.$nextTick(function () {
-              _this.$set(_this.col.row, '_loading', false);
+              _this.$set(_this.col.row, "_loading", false);
 
-              _this.$set(_this.col.row, '_loaded', true);
+              _this.$set(_this.col.row, "_loaded", true);
 
               _this.setSelection(_this.selected);
 
@@ -15722,12 +15747,12 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 
               _this.checkSelectStatus(_this.col.row);
 
-              _this.$emit('expanded', _this.col.row[_this.expandField], _this.col.row);
+              _this.$emit("expanded", _this.col.row[_this.expandField], _this.col.row);
             });
           };
 
           if (this.onLoadData) {
-            this.$set(this.col.row, '_loading', true);
+            this.$set(this.col.row, "_loading", true);
             this.$nextTick(function () {
               _this.onLoadData(_this.url, {
                 parent: _this.col.row[_this.idField],
@@ -15740,10 +15765,10 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       }
 
       this.$set(this.col.row, this.expandField, expand);
-      this.$emit('expanded', this.col.row[this.expandField], this.col.row);
+      this.$emit("expanded", this.col.row[this.expandField], this.col.row);
     },
     handleClick: function handleClick(e) {
-      this.$emit('click', e);
+      this.$emit("click", e);
     },
     checkCellStatic: function checkCellStatic(col, row) {
       var static_flag = col.column.fixed !== this.fixed || col.column.editor.static || !col.row._editting;
@@ -15768,8 +15793,8 @@ var UCellvue_type_style_index_0_lang_less_ = __webpack_require__("af09");
 
 var UCell_component = Object(componentNormalizer["a" /* default */])(
   Table_UCellvue_type_script_lang_js_,
-  UCellvue_type_template_id_298f3d7c_render,
-  UCellvue_type_template_id_298f3d7c_staticRenderFns,
+  UCellvue_type_template_id_d5b95528_render,
+  UCellvue_type_template_id_d5b95528_staticRenderFns,
   false,
   null,
   null,
@@ -17102,6 +17127,8 @@ function () {
       colspanDelimeter: '--',
       columnHtml: true,
       headerColumnHtml: true,
+      checkboxDisabledMode: 'hidden',
+      // 当 onCheckable 为 false 时是隐藏还是 disabled
       // tree 相关的参数
       tree: false,
       // 是否treegrid
