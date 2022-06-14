@@ -282,18 +282,20 @@ class Store {
 
   selectAll(force = false) {
     let rows = []
-    let not_selected = 0,
-      selected = 0
+    // let not_selected = 0,
+    // selected = 0
     walkTree(this.states.data, (row) => {
       if (this._select(row, force)) {
         rows.push(row)
-        selected++
-      } else {
-        not_selected++
+        // selected++
       }
+      // else {
+      // not_selected++
+      // }
     }, this.states.childrenField)
-    this.states.checkAll = (selected > 0) && (not_selected === 0)
-    this.states.indeterminate = (selected > 0) && (not_selected > 0)
+    // this.states.checkAll = (selected > 0) && (not_selected === 0)
+    // this.states.indeterminate = (selected > 0) && (not_selected > 0)
+    this.checkSelectStatus()
     this.grid.$emit('on-selected-all', rows)
   }
 
@@ -414,6 +416,12 @@ class Store {
     for (let c of s) {
       this.grid.$set(this.states.selected, c, c)
     }
+    walkTree(this.states.data, (row) => {
+      if (this.states.selected.hasOwnProperty(this.getRowId(row))) {
+        this._select(row, true)
+      }
+    }, this.states.childrenField)
+
     this.checkSelectStatus()
     // this.states.checkAll = checkAll
     // if (!checkAll) {

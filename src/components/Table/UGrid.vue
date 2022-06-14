@@ -829,7 +829,7 @@ export default {
       return deepCopy(this.store.states.data, true);
     },
 
-    hiddenColumn(name, flag=true) {
+    hideColumn(name, flag=true) {
       for (let col of this.data.columns) {
         if (col.name === name) {
           this.$set(col, 'hidden', flag);
