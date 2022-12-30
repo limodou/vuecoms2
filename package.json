@@ -42,7 +42,7 @@
     "karma-webpack": "^4.0.2",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "sortablejs": "^1.8.3",
     "vue-scrollto": "^2.13.0",
     "vue-template-compiler": "^2.6.10"
